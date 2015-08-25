@@ -1,0 +1,32 @@
+#!/bin/sh
+#PPMCK_BASEDIR=..
+#PATH=$PATH:$PPMCK_BASEDIR/bin
+#export NES_INCLUDE=$PPMCK_BASEDIR/nes_include
+. ./set_envs.sh
+if [ $# -lt 1 ]; then
+  echo "usage: mknsf MML_BASENAME"
+  echo "  to get foo.nsf from foo.mml, type this:"
+  echo "  mknsf foo"
+  exit 1
+fi
+if [ ! -e $1.mml ]; then
+  echo "mknsf: $1.mml not found"
+  exit 1
+fi
+mml_base=$1
+rm -f effect.h
+ppmckc -i ${mml_base}.mml
+ppstatus=$?
+if [ ! -e effect.h ]; then
+  exit $ppstatus
+fi
+rm -f ppmck.nes
+nesasm -s -raw ppmck.asm
+ppstatus=$?
+if [ ! -e ppmck.nes ]; then
+  exit $ppstatus
+fi
+mv -f ppmck.nes ${mml_base}.nsf
+
+
+
