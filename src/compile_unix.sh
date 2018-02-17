@@ -12,7 +12,7 @@ rm -f nesasm/*.o
 rm -f ppmckc/*.o
 
 if cd nesasm; then
-    make -f Makefile.unx
+    make
     cd ..
 fi
 
