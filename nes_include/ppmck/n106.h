@@ -1,9 +1,9 @@
 n106_sound_init:
 	lda	# (SOUND_GENERATOR & __FME7)
-	bne	.t			;Sunsoft5B‚ğg—p‚·‚éê‡‚Í‘‚©‚È‚¢
+	bne	.t			;Sunsoft5Bã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã¯æ›¸ã‹ãªã„
 
 	lda	#$20
-	sta	$E000			;‰¹Œ¹—LŒø‰»H
+	sta	$E000			;éŸ³æºæœ‰åŠ¹åŒ–ï¼Ÿ
 .t:
 	ldx	#$7f
 	lda	#$80
@@ -30,19 +30,19 @@ n106_sound_init:
 
 sound_n106:
 	ldx	<channel_selx2
-	dec	sound_counter,x		;ƒJƒEƒ“ƒ^‚¢‚Á‚±Œ¸‚ç‚µ
-	beq	.sound_read_go		;ƒ[ƒ‚È‚çƒTƒEƒ“ƒh“Ç‚İ‚İ
-	jsr	n106_do_effect		;ƒ[ƒˆÈŠO‚È‚çƒGƒtƒFƒNƒg‚µ‚Ä
-	rts				;‚¨‚í‚è
+	dec	sound_counter,x		;ã‚«ã‚¦ãƒ³ã‚¿ã„ã£ã“æ¸›ã‚‰ã—
+	beq	.sound_read_go		;ã‚¼ãƒ­ãªã‚‰ã‚µã‚¦ãƒ³ãƒ‰èª­ã¿è¾¼ã¿
+	jsr	n106_do_effect		;ã‚¼ãƒ­ä»¥å¤–ãªã‚‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã—ã¦
+	rts				;ãŠã‚ã‚Š
 .sound_read_go
 	jsr	sound_n106_read
 	jsr	n106_do_effect
 	lda	rest_flag,x
-	and	#%00000010		;ƒL[ƒIƒ“ƒtƒ‰ƒO
-	beq	.end1			
-	jsr	sound_n106_write	;—§‚Á‚Ä‚¢‚½‚çƒf[ƒ^‘‚«o‚µ
+	and	#%00000010		;ã‚­ãƒ¼ã‚ªãƒ³ãƒ•ãƒ©ã‚°
+	beq	.end1
+	jsr	sound_n106_write	;ç«‹ã£ã¦ã„ãŸã‚‰ãƒ‡ãƒ¼ã‚¿æ›¸ãå‡ºã—
 	lda	rest_flag,x
-	and	#%11111101		;ƒL[ƒIƒ“ƒtƒ‰ƒOƒIƒt
+	and	#%11111101		;ã‚­ãƒ¼ã‚ªãƒ³ãƒ•ãƒ©ã‚°ã‚ªãƒ•
 	sta	rest_flag,x
 .end1
 	rts
@@ -52,7 +52,7 @@ n106_do_effect:
 	lda	rest_flag,x
 	and	#%00000001
 	beq	.duty_write2
-	rts				;‹x•„‚È‚çI‚í‚è
+	rts				;ä¼‘ç¬¦ãªã‚‰çµ‚ã‚ã‚Š
 
 .duty_write2:
 
@@ -78,13 +78,13 @@ n106_do_effect:
 	lda	effect_flag,x
 	and	#%00001000
 	beq	.return7
-	lda	rest_flag,x		;ƒL[ƒIƒ“‚Ì‚Æ‚«‚Æ‚»‚¤‚Å‚È‚¢‚Æ‚«‚ÅƒAƒ‹ƒyƒWƒI‚Ì‹““®‚Í‚¿‚ª‚¤
-	and	#%00000010		;ƒL[ƒIƒ“ƒtƒ‰ƒO
+	lda	rest_flag,x		;ã‚­ãƒ¼ã‚ªãƒ³ã®ã¨ãã¨ãã†ã§ãªã„ã¨ãã§ã‚¢ãƒ«ãƒšã‚¸ã‚ªã®æŒ™å‹•ã¯ã¡ãŒã†
+	and	#%00000010		;ã‚­ãƒ¼ã‚ªãƒ³ãƒ•ãƒ©ã‚°
 	bne	.arpe_key_on
-	jsr	sound_n106_note_enve	;ƒL[ƒIƒ“‚¶‚á‚È‚¢‚Æ‚«’Êí‚Í‚±‚ê
+	jsr	sound_n106_note_enve	;ã‚­ãƒ¼ã‚ªãƒ³ã˜ã‚ƒãªã„ã¨ãé€šå¸¸ã¯ã“ã‚Œ
 	jmp	.return7
-.arpe_key_on				;ƒL[ƒIƒ“‚à“¯‚Ìê‡
-	jsr	note_enve_sub		;ƒƒ‚ƒŠ’²®‚¾‚¯‚ÅA‚±‚±‚Å‚Í‘‚«‚İ‚Í‚µ‚È‚¢
+.arpe_key_on				;ã‚­ãƒ¼ã‚ªãƒ³ã‚‚åŒæ™‚ã®å ´åˆ
+	jsr	note_enve_sub		;ãƒ¡ãƒ¢ãƒªèª¿æ•´ã ã‘ã§ã€ã“ã“ã§ã¯æ›¸ãè¾¼ã¿ã¯ã—ãªã„
 	jsr	n106_freq_set
 	jsr	arpeggio_address
 .return7:
@@ -92,39 +92,39 @@ n106_do_effect:
 ;------------------------------------------------
 n106_freq_set:
 	ldx	<channel_selx2
-	lda	sound_sel,x		;‰¹ŠKƒf[ƒ^“Ç‚İo‚µ
-	and	#%00001111		;‰ºˆÊ4bit‚ğæ‚èo‚µ‚Ä
+	lda	sound_sel,x		;éŸ³éšãƒ‡ãƒ¼ã‚¿èª­ã¿å‡ºã—
+	and	#%00001111		;ä¸‹ä½4bitã‚’å–ã‚Šå‡ºã—ã¦
 	asl	a
 	asl	a
 	tay
 
-	lda	n106_frequency_table,y	;n106ü”g”ƒe[ƒuƒ‹‚©‚çLow‚ğ“Ç‚İo‚·
-	sta	sound_freq_low,x	;‘‚«‚İ
-	lda	n106_frequency_table+1,y	;n106ü”g”ƒe[ƒuƒ‹‚©‚çMidle‚ğ“Ç‚İo‚·
-	sta	sound_freq_high,x	;‘‚«‚İ
-	lda	n106_frequency_table+2,y	;n106ü”g”ƒe[ƒuƒ‹‚©‚çHigh‚ğ“Ç‚İo‚·
-	sta	sound_freq_n106,x	;‘‚«‚İ
+	lda	n106_frequency_table,y	;n106å‘¨æ³¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«ã‹ã‚‰Lowã‚’èª­ã¿å‡ºã™
+	sta	sound_freq_low,x	;æ›¸ãè¾¼ã¿
+	lda	n106_frequency_table+1,y	;n106å‘¨æ³¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«ã‹ã‚‰Midleã‚’èª­ã¿å‡ºã™
+	sta	sound_freq_high,x	;æ›¸ãè¾¼ã¿
+	lda	n106_frequency_table+2,y	;n106å‘¨æ³¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«ã‹ã‚‰Highã‚’èª­ã¿å‡ºã™
+	sta	sound_freq_n106,x	;æ›¸ãè¾¼ã¿
 
 n106_oct_set1:
 
-	lda	sound_sel,x		;‰¹ŠKƒf[ƒ^“Ç‚İo‚µ
-	lsr	a			;ãˆÊ4bit‚ğæ‚èo‚µ
+	lda	sound_sel,x		;éŸ³éšãƒ‡ãƒ¼ã‚¿èª­ã¿å‡ºã—
+	lsr	a			;ä¸Šä½4bitã‚’å–ã‚Šå‡ºã—
 	lsr	a			;
 	lsr	a			;
 	lsr	a			;
 	sta	<drvtmp0
 	cmp	#$08
-	beq	n106_freq_end		;ƒ[ƒ‚È‚ç‚»‚Ì‚Ü‚ÜI‚í‚è
+	beq	n106_freq_end		;ã‚¼ãƒ­ãªã‚‰ãã®ã¾ã¾çµ‚ã‚ã‚Š
 	tay
 
 n106_oct_set2:
 
-	lsr	sound_freq_n106,x	;‰EƒVƒtƒg@––”ö‚ÍC‚Ö
-	ror	sound_freq_high,x	;C‚©‚ç‚Á‚Ä‚­‚é‚Å‚æ@‰Eƒ[ƒeƒCƒg
-	ror	sound_freq_low,x	;C‚©‚ç‚Á‚Ä‚­‚é‚Å‚æ@‰Eƒ[ƒeƒCƒg
+	lsr	sound_freq_n106,x	;å³ã‚·ãƒ•ãƒˆã€€æœ«å°¾ã¯Cã¸
+	ror	sound_freq_high,x	;Cã‹ã‚‰æŒã£ã¦ãã‚‹ã§ã‚ˆã€€å³ãƒ­ãƒ¼ãƒ†ã‚¤ãƒˆ
+	ror	sound_freq_low,x	;Cã‹ã‚‰æŒã£ã¦ãã‚‹ã§ã‚ˆã€€å³ãƒ­ãƒ¼ãƒ†ã‚¤ãƒˆ
 	iny				;
 	cpy	#$08
-	bne	n106_oct_set2		;ƒIƒNƒ^[ƒu•ªŒJ‚è•Ô‚·
+	bne	n106_oct_set2		;ã‚ªã‚¯ã‚¿ãƒ¼ãƒ–åˆ†ç¹°ã‚Šè¿”ã™
 
 n106_freq_end:
 	.if PITCH_CORRECTION
@@ -152,21 +152,21 @@ n106_frequency_table:
 	db	$1b,$3d,$04,$00	; b	$043D1B
 
 ;
-;              n(ü”g”—pƒf[ƒ^) * 440 * (2-F)              4
-; Ä¶ü”g” = -------------------------------   *  ----------------
-;                           15467                   ch(ƒ`ƒƒƒ“ƒlƒ‹”)
+;              n(å‘¨æ³¢æ•°ç”¨ãƒ‡ãƒ¼ã‚¿) * 440 * (2-F)              4
+; å†ç”Ÿå‘¨æ³¢æ•° = -------------------------------   *  ----------------
+;                           15467                   ch(ãƒãƒ£ãƒ³ãƒãƒ«æ•°)
 ;
-; n : Ä¶ü”g”—pƒf[ƒ^‚Í18bit‚Å\¬‚³‚ê‚é$0-$3FFFF
-; F : ƒIƒNƒ^[ƒu( $44 , $4c ,... ‚Ì‘æ4ƒrƒbƒg)0‚Å‚PƒIƒNƒ^[ƒuã‚ª‚é
-;ch : g—pƒ`ƒƒƒ“ƒlƒ‹” 1-8
+; n : å†ç”Ÿå‘¨æ³¢æ•°ç”¨ãƒ‡ãƒ¼ã‚¿ã¯18bitã§æ§‹æˆã•ã‚Œã‚‹$0-$3FFFF
+; F : ã‚ªã‚¯ã‚¿ãƒ¼ãƒ–( $44 , $4c ,... ã®ç¬¬4ãƒ“ãƒƒãƒˆ)0ã§ï¼‘ã‚ªã‚¯ã‚¿ãƒ¼ãƒ–ä¸ŠãŒã‚‹
+;ch : ä½¿ç”¨ãƒãƒ£ãƒ³ãƒãƒ«æ•° 1-8
 ;
 ;o1a =   1933 =   78Dh = 000000011110001101
 ;o4a =  15467 =  3C6Bh = 000011110001101011
 ;o8a = 247472 = 3C6B0h = 111100011010110000
 ;
-;o8a ‚æ‚è‚‚¢‰¹‚Ío‚Ü‚¹‚ñiƒe[ƒuƒ‹‚Ío8‚Ìƒ‚ƒmj
-;ƒsƒbƒ`ƒxƒ“ƒh‚àLFO‚à@‚˜@ƒIƒNƒ^[ƒu‚É‚·‚ê‚Î‘å‘Ì115‚ğw’è‚·‚é‚ÆŸ‚Ì‰¹‚¾‚È‚Ÿ
-;—Ç‚¢‹ï‡‚É‚È‚é‚ÈB‚â‚Á‚Ï‚»‚¤‚·‚é‚©‚È‚Ÿ`
+;o8a ã‚ˆã‚Šé«˜ã„éŸ³ã¯å‡ºã¾ã›ã‚“ï¼ˆãƒ†ãƒ¼ãƒ–ãƒ«ã¯o8ã®ãƒ¢ãƒï¼‰
+;ãƒ”ãƒƒãƒãƒ™ãƒ³ãƒ‰ã‚‚LFOã‚‚ã€€ï½˜ã€€ã‚ªã‚¯ã‚¿ãƒ¼ãƒ–ã«ã™ã‚Œã°å¤§ä½“115ã‚’æŒ‡å®šã™ã‚‹ã¨æ¬¡ã®éŸ³ã ãªã
+;è‰¯ã„å…·åˆã«ãªã‚‹ãªã€‚ã‚„ã£ã±ãã†ã™ã‚‹ã‹ãªãã€œ
 
 ;---------------------------------------------------------------
 sound_n106_read:
@@ -177,35 +177,35 @@ sound_n106_read:
 
 	lda	[sound_add_low,x]
 ;----------
-;ƒ‹[ƒvˆ—1
+;ãƒ«ãƒ¼ãƒ—å‡¦ç†1
 n106_loop_program
 	cmp	#$a0
 	bne	n106_loop_program2
 	jsr	loop_sub
 	jmp	sound_n106_read
 ;----------
-;ƒ‹[ƒvˆ—2(•ªŠò)
+;ãƒ«ãƒ¼ãƒ—å‡¦ç†2(åˆ†å²)
 n106_loop_program2
 	cmp	#$a1
 	bne	n106_bank_command
 	jsr	loop_sub2
 	jmp	sound_n106_read
 ;----------
-;ƒoƒ“ƒNØ‚è‘Ö‚¦
+;ãƒãƒ³ã‚¯åˆ‡ã‚Šæ›¿ãˆ
 n106_bank_command
 	cmp	#$ee
 	bne	n106_wave_set
 	jsr	data_bank_addr
 	jmp	sound_n106_read
 ;----------
-;ƒf[ƒ^ƒGƒ“ƒhİ’è
+;ãƒ‡ãƒ¼ã‚¿ã‚¨ãƒ³ãƒ‰è¨­å®š
 ;n106_data_end:
 ;	cmp	#$ff
 ;	bne	n106_wave_set
 ;	jsr	data_end_sub
 ;	jmp	sound_n106_read
 ;----------
-;‰¹Fİ’è
+;éŸ³è‰²è¨­å®š
 n106_wave_set:
 	cmp	#$fe
 	bne	n106_volume_set
@@ -213,9 +213,9 @@ n106_wave_set:
 	lda	[sound_add_low,x]
 
 	asl	a
-	tax				;‰½”Ô–Ú‚Ì”gŒ`‚ğg‚¤‚©‚Ìİ’èŠJn
+	tax				;ä½•ç•ªç›®ã®æ³¢å½¢ã‚’ä½¿ã†ã‹ã®è¨­å®šé–‹å§‹
 
-	lda	n106_wave_init,x	;;”gŒ`ƒf[ƒ^’·ƒŠ[ƒh
+	lda	n106_wave_init,x	;;æ³¢å½¢ãƒ‡ãƒ¼ã‚¿é•·ãƒªãƒ¼ãƒ‰
 	asl	a
 	asl	a
 	sta	temporary
@@ -224,37 +224,37 @@ n106_wave_set:
 	sta	<temp_data_add
 	inx
 	lda	n106_wave_table,x
-	sta	<temp_data_add+1	;”gŒ`ƒf[ƒ^ŠJnƒAƒhƒŒƒXƒZƒbƒg
+	sta	<temp_data_add+1	;æ³¢å½¢ãƒ‡ãƒ¼ã‚¿é–‹å§‹ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚»ãƒƒãƒˆ
 
-	lda	n106_wave_init,x	;”gŒ`ƒf[ƒ^ƒIƒtƒZƒbƒgƒAƒhƒŒƒXƒŠ[ƒh
+	lda	n106_wave_init,x	;æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹ãƒªãƒ¼ãƒ‰
 	pha
 
 	lda	#$7c
 	jsr	n106_write_sub
 	ldx	<channel_selx2
 	lda	temporary
-	ora	#%11100000		;ãˆÊ3bit‚ğ1‚Å–„‚ß‚é
+	ora	#%11100000		;ä¸Šä½3bitã‚’1ã§åŸ‹ã‚ã‚‹
 	sta	n106_7c,x
-	sta	$4800			;”gŒ`ƒf[ƒ^’·ƒZƒbƒg
+	sta	$4800			;æ³¢å½¢ãƒ‡ãƒ¼ã‚¿é•·ã‚»ãƒƒãƒˆ
 	lsr	temporary
 	lda	#$10
 	sec
 	sbc	temporary
-	sta	temporary		;”gŒ`ƒf[ƒ^’·Zo
+	sta	temporary		;æ³¢å½¢ãƒ‡ãƒ¼ã‚¿é•·ç®—å‡º
 
 	lda	#$7e
 	jsr	n106_write_sub
 	pla
-	sta	$4800			;”gŒ`ƒf[ƒ^ƒIƒtƒZƒbƒgƒAƒhƒŒƒXƒZƒbƒg
+	sta	$4800			;æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹ã‚»ãƒƒãƒˆ
 
 	lsr	a
-	ora	#%10000000		;©“®ƒCƒ“ƒNƒŠƒƒ“ƒgƒIƒ“
+	ora	#%10000000		;è‡ªå‹•ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆã‚ªãƒ³
 	sta	$f800
 
 	ldy	#$00
 n106_wave_data_set:
 	lda	[temp_data_add],y
-	sta	$4800			;”gŒ`‘‚«‚İiwave data write)
+	sta	$4800			;æ³¢å½¢æ›¸ãè¾¼ã¿ï¼ˆwave data write)
 	iny
 	cpy	temporary
 	bmi	n106_wave_data_set
@@ -263,7 +263,7 @@ n106_wave_data_set:
 	jsr	sound_data_address
 	jmp	sound_n106_read
 ;----------
-;‰¹—Êİ’è
+;éŸ³é‡è¨­å®š
 n106_volume_set:
 	cmp	#$fd
 	bne	n106_rest_set
@@ -271,12 +271,12 @@ n106_volume_set:
 	lda	[sound_add_low,x]
 
 	sta	temporary
-	bpl	n106_softenve_part	;ƒ\ƒtƒgƒGƒ“ƒxˆ—‚Ö
+	bpl	n106_softenve_part	;ã‚½ãƒ•ãƒˆã‚¨ãƒ³ãƒ™å‡¦ç†ã¸
 
 n106_volume_part:
 	lda	effect_flag,x
 	and	#%11111110
-	sta	effect_flag,x		;ƒ\ƒtƒgƒGƒ“ƒx–³Œøw’è
+	sta	effect_flag,x		;ã‚½ãƒ•ãƒˆã‚¨ãƒ³ãƒ™ç„¡åŠ¹æŒ‡å®š
 
 	lda	temporary
 	and	#%00001111
@@ -327,42 +327,42 @@ n106_detune_set:
 	jsr	detune_sub
 	jmp	sound_n106_read
 ;----------
-;ƒsƒbƒ`ƒGƒ“ƒxƒ[ƒvİ’è
+;ãƒ”ãƒƒãƒã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—è¨­å®š
 n106_pitch_set:
 	cmp	#$f8
 	bne	n106_arpeggio_set
 	jsr	pitch_set_sub
 	jmp	sound_n106_read
 ;----------
-;ƒm[ƒgƒGƒ“ƒxƒ[ƒvİ’è
+;ãƒãƒ¼ãƒˆã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—è¨­å®š
 n106_arpeggio_set:
 	cmp	#$f7
 	bne	n106_freq_direct_set
 	jsr	arpeggio_set_sub
 	jmp	sound_n106_read
 ;----------
-;Ä¶ü”g”’¼Úİ’è
+;å†ç”Ÿå‘¨æ³¢æ•°ç›´æ¥è¨­å®š
 n106_freq_direct_set:
 	cmp	#$f6
 	bne	n106_y_command_set
 	jsr	direct_freq_sub
 	rts
 ;----------
-;‚™ƒRƒ}ƒ“ƒhİ’è
+;ï½™ã‚³ãƒãƒ³ãƒ‰è¨­å®š
 n106_y_command_set:
 	cmp	#$f5
 	bne	n106_wait_set
 	jsr	y_sub
 	jmp	sound_n106_read
 ;----------
-;ƒEƒFƒCƒgİ’è
+;ã‚¦ã‚§ã‚¤ãƒˆè¨­å®š
 n106_wait_set:
 	cmp	#$f4
 	bne	n106_shift_amount_set
 	jsr	wait_sub
 	rts
 ;----------
-;ƒsƒbƒ`ƒVƒtƒg—Êİ’è
+;ãƒ”ãƒƒãƒã‚·ãƒ•ãƒˆé‡è¨­å®š
 n106_shift_amount_set:
 	cmp	#$ef
 	bne	n106_oto_set
@@ -373,12 +373,12 @@ n106_shift_amount_set:
 	jmp	sound_n106_read
 ;----------
 n106_oto_set:
-	sta	sound_sel,x		;ˆ—‚Í‚Ü‚½Œã‚Å
+	sta	sound_sel,x		;å‡¦ç†ã¯ã¾ãŸå¾Œã§
 	jsr	sound_data_address
-	lda	[sound_add_low,x]	;‰¹’·“Ç‚İo‚µ
-	sta	sound_counter,x		;ÀÛ‚ÌƒJƒEƒ“ƒg’l‚Æ‚È‚è‚Ü‚·
+	lda	[sound_add_low,x]	;éŸ³é•·èª­ã¿å‡ºã—
+	sta	sound_counter,x		;å®Ÿéš›ã®ã‚«ã‚¦ãƒ³ãƒˆå€¤ã¨ãªã‚Šã¾ã™
 	jsr	sound_data_address
-	jsr	n106_freq_set		;ü”g”ƒZƒbƒg‚Ö
+	jsr	n106_freq_set		;å‘¨æ³¢æ•°ã‚»ãƒƒãƒˆã¸
 ;volume
 	lda	#$7f
 	jsr	n106_write_sub
@@ -443,7 +443,7 @@ sound_n106_pitch_enve:
 ;-------------------------------------------------------------------------------
 sound_n106_note_enve
 	jsr	note_enve_sub
-	bcs	.end4			;0‚È‚Ì‚Å‘‚©‚È‚­‚Ä‚æ‚µ
+	bcs	.end4			;0ãªã®ã§æ›¸ã‹ãªãã¦ã‚ˆã—
 	jsr	n106_freq_set
 	jsr	sound_n106_write
 	jsr	arpeggio_address

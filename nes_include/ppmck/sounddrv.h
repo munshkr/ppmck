@@ -10,11 +10,11 @@ CH_COUNT	=	PTR_TRACK_END
 ;-------------------------------------------------------------------------------
 ;memory definition
 ;-------------------------------------------------------------------------------
-;ƒ[ƒƒy[ƒWƒƒ‚ƒŠ’è‹`
+;ã‚¼ãƒ­ãƒšãƒ¼ã‚¸ãƒ¡ãƒ¢ãƒªå®šç¾©
 	.zp
 	.org	$00
-	
-t0			.ds	1		; temp 
+
+t0			.ds	1		; temp
 t1			.ds	1		;
 t2			.ds	1		;
 t3			.ds	1		;
@@ -27,7 +27,7 @@ channel_sel		.ds	1		;
 channel_selx2		.ds	1		;
 channel_selx4		.ds	1		;
 
-drvtmp0			.ds	1		; Še‰¹Œ¹‚Ìƒhƒ‰ƒCƒo“à‚Åg—p‚·‚é
+drvtmp0			.ds	1		; å„éŸ³æºã®ãƒ‰ãƒ©ã‚¤ãƒå†…ã§ä½¿ç”¨ã™ã‚‹
 drvtmp1			.ds	1		;
 drvtmp2			.ds	1		;
 drvtmp3			.ds	1		;
@@ -40,19 +40,19 @@ VRC6_DST_REG_LOW	.ds	1		; for vrc6.h
 VRC6_DST_REG_HIGH	.ds	1		;
 
 ;-----------------------------------
-;”ñƒ[ƒƒy[ƒW‚Ìƒƒ‚ƒŠ’è‹`
+;éã‚¼ãƒ­ãƒšãƒ¼ã‚¸ã®ãƒ¡ãƒ¢ãƒªå®šç¾©
 
 	.bss
 BSS_BASE	=	$0200
 	.org	BSS_BASE
 
-;Šeƒ`ƒƒƒ“ƒlƒ‹‚É•K—v‚Èƒƒ‚ƒŠ
+;å„ãƒãƒ£ãƒ³ãƒãƒ«ã«å¿…è¦ãªãƒ¡ãƒ¢ãƒª
 ;	ldx	<channel_selx2
-;	‚µ‚Ä‚©‚ç
+;	ã—ã¦ã‹ã‚‰
 ;	lda	memory,x
-;	‚·‚é‚Ì‚Å1ƒoƒCƒg‚¨‚«‚Éƒf[ƒ^‚ª‚È‚ç‚Ô
+;	ã™ã‚‹ã®ã§1ãƒã‚¤ãƒˆãŠãã«ãƒ‡ãƒ¼ã‚¿ãŒãªã‚‰ã¶
 
-;_add_low‚Æ_add_high‚Í‹ßÚ‚µ‚Ä‚¢‚é•K—v‚ª‚ ‚é
+;_add_lowã¨_add_highã¯è¿‘æ¥ã—ã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚‹
 
 soft_add_low		.ds	1		;software envelope(@v) address
 soft_add_high		.ds	1		;
@@ -101,7 +101,7 @@ sound_counter		.ds	1		;wait counter
 sound_freq_low		.ds	1		;
 sound_freq_high		.ds	1		;
 			.ds	CH_COUNT*2 - 2
-sound_freq_n106		.ds	1		;n106‚¶‚á‚È‚¢ch‚Å‚àg‚Á‚Ä‚é
+sound_freq_n106		.ds	1		;n106ã˜ã‚ƒãªã„chã§ã‚‚ä½¿ã£ã¦ã‚‹
 sound_bank		.ds	1		;
 			.ds	CH_COUNT*2 - 2
 pitch_shift_amount	.ds	1		;
@@ -116,7 +116,7 @@ extra_mem2		.ds	1		;
 			.ds	CH_COUNT*2 - 2	;
 
 ;-------------
-;‚»‚Ì‘¼
+;ãã®ä»–
 temporary		.ds	1		;
 temporary2		.ds	1		;
 
@@ -133,7 +133,7 @@ initial_wait		.ds	1		;
 fme7_ch_sel		.ds	1		;
 fme7_ch_selx2		.ds	1		;
 fme7_ch_selx4		.ds	1		;
-fme7_reg7		.ds	1		;R7Œ»İ’l
+fme7_reg7		.ds	1		;R7ç¾åœ¨å€¤
 fme7_vol_regno		.ds	1		;
 
 DMC_NMI:
@@ -145,8 +145,8 @@ ram_irq			.ds	3		;
 
 ;effect_flag: DLLLadpv
 ;+------ detune flag
-;l+----- software LFOƒXƒs[ƒh‰Â•Ïƒtƒ‰ƒOi—\–ñj
-;ll+---- software LFO•ûŒüƒtƒ‰ƒO0=- 1=+
+;l+----- software LFOã‚¹ãƒ”ãƒ¼ãƒ‰å¯å¤‰ãƒ•ãƒ©ã‚°ï¼ˆäºˆç´„ï¼‰
+;ll+---- software LFOæ–¹å‘ãƒ•ãƒ©ã‚°0=- 1=+
 ;lll+--- software LFO flag
 ;llll+---- note enverope flag
 ;lllll+--- duty enverope flag / FDS hardware effect flag
@@ -196,8 +196,8 @@ channel_sel_inc:
 ;-------------------------------------------------------------------------------
 ;initialize routine
 ;-------------------------------------------------------------------------------
-INITIAL_WAIT_FRM = $00 ;Å‰‚É‚±‚ÌƒtƒŒ[ƒ€”‚¾‚¯ƒEƒFƒCƒg
-;‰Šú‰»ƒ‹[ƒ`ƒ“
+INITIAL_WAIT_FRM = $00 ;æœ€åˆã«ã“ã®ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã ã‘ã‚¦ã‚§ã‚¤ãƒˆ
+;åˆæœŸåŒ–ãƒ«ãƒ¼ãƒãƒ³
 sound_init:
 	.if TOTAL_SONGS > 1
 	pha
@@ -218,10 +218,10 @@ sound_init:
 	lda	#INITIAL_WAIT_FRM
 	sta	initial_wait
 
-	lda	#$0f		;“à‘ ‰¹Œ¹‰Šú‰»
-	sta	$4015		;ƒ`ƒƒƒ“ƒlƒ‹g—pƒtƒ‰ƒO
-	lda	#$08		
-	sta	$4001		;‹éŒ`”go2aˆÈ‰º‘Îô
+	lda	#$0f		;å†…è”µéŸ³æºåˆæœŸåŒ–
+	sta	$4015		;ãƒãƒ£ãƒ³ãƒãƒ«ä½¿ç”¨ãƒ•ãƒ©ã‚°
+	lda	#$08
+	sta	$4001		;çŸ©å½¢æ³¢o2aä»¥ä¸‹å¯¾ç­–
 	sta	$4005
 
 	.if (DPCM_BANKSWITCH)
@@ -257,7 +257,7 @@ sound_init:
 	.if	SOUND_GENERATOR & __FDS
 	jsr	fds_sound_init
 	.endif
-	
+
 	.if	SOUND_GENERATOR & __N106
 	jsr	n106_sound_init
 	.endif
@@ -276,52 +276,52 @@ sound_init:
 		pla
 		asl	a
 		tax
-		
+
 		lda	song_addr_table,x
 		sta	<.start_add_lsb
 		lda	song_addr_table+1,x
 		sta	<.start_add_lsb+1
-		
+
 		.if (ALLOW_BANK_SWITCH)
 			lda	song_bank_table,x
 			sta	<.start_bank
 			lda	song_bank_table+1,x
 			sta	<.start_bank+1
 		.endif
-	
+
 	.endif
-	
+
 	lda	#$00
 	sta	<channel_sel
 	sta	<channel_selx2
 	sta	<channel_selx4
 .sound_channel_set:
 	lda	<channel_sel
-	cmp	#PTR_TRACK_END		;I‚í‚èH
+	cmp	#PTR_TRACK_END		;çµ‚ã‚ã‚Šï¼Ÿ
 	beq	.sound_init_end
-	
-	
+
+
 	.if TOTAL_SONGS > 1
 		.if (ALLOW_BANK_SWITCH)
 			ldy	<channel_sel		; y = ch; x = ch<<1;
 			ldx	<channel_selx2
-			
+
 			lda	[.start_bank],y
 			sta	sound_bank,x
-			
+
 			ldy	<channel_selx2		; x = y = ch<<1;
 		.else
 			ldx	<channel_selx2		; x = y = ch<<1;
 			ldy	<channel_selx2
 		.endif
-				
+
 		lda	[.start_add_lsb],y
-		sta	<sound_add_low,x	;ƒf[ƒ^ŠJnˆÊ’u‘‚«‚İ
+		sta	<sound_add_low,x	;ãƒ‡ãƒ¼ã‚¿é–‹å§‹ä½ç½®æ›¸ãè¾¼ã¿
 		iny
 		lda	[.start_add_lsb],y
-		sta	<sound_add_low+1,x	;ƒf[ƒ^ŠJnˆÊ’u‘‚«‚İ
+		sta	<sound_add_low+1,x	;ãƒ‡ãƒ¼ã‚¿é–‹å§‹ä½ç½®æ›¸ãè¾¼ã¿
 	.else
-		
+
 		ldy	<channel_sel		; y = ch; x = ch<<1;
 		ldx	<channel_selx2
 
@@ -329,20 +329,20 @@ sound_init:
 			lda	song_000_bank_table,y
 			sta	sound_bank,x
 		.endif
-		
+
 		lda	song_000_track_table,x
-		sta	<sound_add_low,x	;ƒf[ƒ^ŠJnˆÊ’u‘‚«‚İ
+		sta	<sound_add_low,x	;ãƒ‡ãƒ¼ã‚¿é–‹å§‹ä½ç½®æ›¸ãè¾¼ã¿
 		lda	song_000_track_table+1,x
-		sta	<sound_add_low+1,x	;ƒf[ƒ^ŠJnˆÊ’u‘‚«‚İ
+		sta	<sound_add_low+1,x	;ãƒ‡ãƒ¼ã‚¿é–‹å§‹ä½ç½®æ›¸ãè¾¼ã¿
 
 	.endif
 	; x = ch<<1; y = ?
-	
+
 	lda	#$00
 	sta	effect_flag,x
 	lda	#$01
 	sta	sound_counter,x
-	
+
 	jsr	channel_sel_inc
 	jmp	.sound_channel_set
 .sound_init_end:
@@ -369,7 +369,7 @@ internal_return:
 	jsr	channel_sel_inc
 	lda	<channel_sel
 	cmp	#$04
-	bne	internal_return		;–ß‚·
+	bne	internal_return		;æˆ»ã™
 
 ;	.if	DPCMON
 sound_dpcm_part:
@@ -378,55 +378,55 @@ sound_dpcm_part:
 	jsr	channel_sel_inc
 
 	.if	SOUND_GENERATOR & __FDS
-	jsr	sound_fds		;FDSs‚Á‚Ä‚±‚¢
+	jsr	sound_fds		;FDSè¡Œã£ã¦ã“ã„
 	jsr	channel_sel_inc
 	.endif
 
 	.if	SOUND_GENERATOR & __VRC7
 vrc7_return:
-	jsr	sound_vrc7		;vrc7s‚Á‚Ä‚±‚¢
+	jsr	sound_vrc7		;vrc7è¡Œã£ã¦ã“ã„
 	jsr	channel_sel_inc
 	lda	<channel_sel
-	cmp	#PTRVRC7+$06		;vrc7‚ÍI‚í‚è‚©H
-	bne	vrc7_return		;‚Ü‚¾‚È‚ç–ß‚ê
+	cmp	#PTRVRC7+$06		;vrc7ã¯çµ‚ã‚ã‚Šã‹ï¼Ÿ
+	bne	vrc7_return		;ã¾ã ãªã‚‰æˆ»ã‚Œ
 	.endif
 
 	.if	SOUND_GENERATOR & __VRC6
 vrc6_return:
-	jsr	sound_vrc6		;vrc6s‚Á‚Ä‚±‚¢
+	jsr	sound_vrc6		;vrc6è¡Œã£ã¦ã“ã„
 	jsr	channel_sel_inc
 	lda	<channel_sel
-	cmp	#PTRVRC6+$03		;vrc6‚ÍI‚í‚è‚©H
-	bne	vrc6_return		;‚Ü‚¾‚È‚ç–ß‚ê
+	cmp	#PTRVRC6+$03		;vrc6ã¯çµ‚ã‚ã‚Šã‹ï¼Ÿ
+	bne	vrc6_return		;ã¾ã ãªã‚‰æˆ»ã‚Œ
 	.endif
 
 	.if	SOUND_GENERATOR & __N106
 .rept:
-	jsr	sound_n106		;n106s‚Á‚Ä‚±‚¢
+	jsr	sound_n106		;n106è¡Œã£ã¦ã“ã„
 	jsr	channel_sel_inc
 	lda	<channel_sel
 	sec
 	sbc	#PTRN106
-	cmp	n106_channel		;n106‚ÍI‚í‚è‚©H
-	bne	.rept			;‚Ü‚¾‚È‚ç–ß‚ê
+	cmp	n106_channel		;n106ã¯çµ‚ã‚ã‚Šã‹ï¼Ÿ
+	bne	.rept			;ã¾ã ãªã‚‰æˆ»ã‚Œ
 	.endif
 
 	.if	SOUND_GENERATOR & __FME7
 fme7_return:
-	jsr	sound_fme7		;fme7s‚Á‚Ä‚±‚¢
+	jsr	sound_fme7		;fme7è¡Œã£ã¦ã“ã„
 	jsr	channel_sel_inc
 	lda	<channel_sel
-	cmp	#PTRFME7+$03		;fme7‚ÍI‚í‚è‚©H
-	bne	fme7_return		;‚Ü‚¾‚È‚ç–ß‚ê
+	cmp	#PTRFME7+$03		;fme7ã¯çµ‚ã‚ã‚Šã‹ï¼Ÿ
+	bne	fme7_return		;ã¾ã ãªã‚‰æˆ»ã‚Œ
 	.endif
 
 	.if	SOUND_GENERATOR & __MMC5
 mmc5_return:
-	jsr	sound_mmc5		;mmc5s‚Á‚Ä‚±‚¢
+	jsr	sound_mmc5		;mmc5è¡Œã£ã¦ã“ã„
 	jsr	channel_sel_inc
 	lda	<channel_sel
-	cmp	#PTRMMC5+$02		;mmc5‚ÍI‚í‚è‚©H
-	bne	mmc5_return		;‚Ü‚¾‚È‚ç–ß‚ê
+	cmp	#PTRMMC5+$02		;mmc5ã¯çµ‚ã‚ã‚Šã‹ï¼Ÿ
+	bne	mmc5_return		;ã¾ã ãªã‚‰æˆ»ã‚Œ
 	.endif
 
 	rts
@@ -435,10 +435,10 @@ mmc5_return:
 ;command read sub routines
 ;------------------------------------------------------------------------------
 sound_data_address:
-	inc	<sound_add_low,x	;ƒf[ƒ^ƒAƒhƒŒƒX{‚P
-	bne	return2			;ˆÊ‚ªã‚ª‚Á‚½‚ç
+	inc	<sound_add_low,x	;ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹ï¼‹ï¼‘
+	bne	return2			;ä½ãŒä¸ŠãŒã£ãŸã‚‰
 sound_data_address_inc_high
-	inc	<sound_add_high,x	;ƒf[ƒ^ƒAƒhƒŒƒX•S‚ÌˆÊiˆáj{‚P
+	inc	<sound_add_high,x	;ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹ç™¾ã®ä½ï¼ˆé•ï¼‰ï¼‹ï¼‘
 return2:
 	rts
 
@@ -450,15 +450,15 @@ sound_data_address_add_a:
 	rts
 ;-------------------------------------------------------------------------------
 change_bank:
-;ƒoƒ“ƒN‚ğReg.A‚É•Ï‚¦‚Ü‚·`
-;•ÏX‚³‚ê‚éƒoƒ“ƒNƒAƒhƒŒƒX‚Íƒoƒ“ƒNƒRƒ“ƒgƒ[ƒ‰‚É‚æ‚é
-;Œ»İ‚ÍNSF‚Ì‚İB
+;ãƒãƒ³ã‚¯ã‚’Reg.Aã«å¤‰ãˆã¾ã™ã€œ
+;å¤‰æ›´ã•ã‚Œã‚‹ãƒãƒ³ã‚¯ã‚¢ãƒ‰ãƒ¬ã‚¹ã¯ãƒãƒ³ã‚¯ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã«ã‚ˆã‚‹
+;ç¾åœ¨ã¯NSFã®ã¿ã€‚
 	if (ALLOW_BANK_SWITCH)
-;ƒoƒ“ƒNØ‚è‘Ö‚¦‚Å‚«‚écondition: A <= BANK_MAX_IN_4KB
+;ãƒãƒ³ã‚¯åˆ‡ã‚Šæ›¿ãˆã§ãã‚‹condition: A <= BANK_MAX_IN_4KB
 ;i.e. A < BANK_MAX_IN_4KB + 1
 ;i.e. A - (BANK_MAX_IN_4KB+1) < 0
 ;i.e. NOT ( A - (BANK_MAX_IN_4KB+1) >= 0 )
-;skip‚·‚écondition: A - (BANK_MAX_IN_4KB+1) >= 0
+;skipã™ã‚‹condition: A - (BANK_MAX_IN_4KB+1) >= 0
 	cmp	#BANK_MAX_IN_4KB+1
 	bcs	.avoidbankswitch
 	sta	$5ffa ; A000h-AFFFh
@@ -472,53 +472,53 @@ change_bank:
 	rts
 
 ;-------------------------------------------------------------------------------
-; ƒŠƒs[ƒgI—¹ƒRƒ}ƒ“ƒh
+; ãƒªãƒ”ãƒ¼ãƒˆçµ‚äº†ã‚³ãƒãƒ³ãƒ‰
 ;
 ; channel_loop++;
 ; if (channel_loop == <num>) {
 ;   channel_loop = 0;
-;   c‚è‚Ìƒpƒ‰ƒ[ƒ^–³‹‚µ‚Äadr‚ğŸ‚Éi‚ß‚é;
+;   æ®‹ã‚Šã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç„¡è¦–ã—ã¦adrã‚’æ¬¡ã«é€²ã‚ã‚‹;
 ; } else {
-;   0xeeƒRƒ}ƒ“ƒh‚Æ“¯‚¶ˆ—;
+;   0xeeã‚³ãƒãƒ³ãƒ‰ã¨åŒã˜å‡¦ç†;
 ; }
 loop_sub:
 	jsr	sound_data_address
 	inc	channel_loop,x
 	lda	channel_loop,x
-	cmp	[sound_add_low,x]	;ŒJ‚è•Ô‚µ‰ñ”
+	cmp	[sound_add_low,x]	;ç¹°ã‚Šè¿”ã—å›æ•°
 	beq	loop_end
 	jsr	sound_data_address
 	jmp	bank_address_change
 loop_end:
 	lda	#$00
 	sta	channel_loop,x
-loop_esc_through			;loop_sub2‚©‚ç”ò‚ñ‚Å‚­‚é
+loop_esc_through			;loop_sub2ã‹ã‚‰é£›ã‚“ã§ãã‚‹
 	lda	#$04
 	jsr	sound_data_address_add_a
-	rts				;‚¨‚¿‚Ü‚¢
+	rts				;ãŠã¡ã¾ã„
 ;-----------
-; ƒŠƒs[ƒg“r’†”²‚¯
+; ãƒªãƒ”ãƒ¼ãƒˆé€”ä¸­æŠœã‘
 ;
 ; channel_loop++;
 ; if (channel_loop == <num>) {
 ;   channel_loop = 0;
-;   0xeeƒRƒ}ƒ“ƒh‚Æ“¯‚¶ˆ—;
+;   0xeeã‚³ãƒãƒ³ãƒ‰ã¨åŒã˜å‡¦ç†;
 ; } else {
-;   c‚è‚Ìƒpƒ‰ƒ[ƒ^–³‹‚µ‚Äadr‚ğŸ‚Éi‚ß‚é;
+;   æ®‹ã‚Šã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç„¡è¦–ã—ã¦adrã‚’æ¬¡ã«é€²ã‚ã‚‹;
 ; }
 
 loop_sub2:
 	jsr	sound_data_address
 	inc	channel_loop,x
 	lda	channel_loop,x
-	cmp	[sound_add_low,x]	;ŒJ‚è•Ô‚µ‰ñ”
+	cmp	[sound_add_low,x]	;ç¹°ã‚Šè¿”ã—å›æ•°
 	bne	loop_esc_through
 	lda	#$00
 	sta	channel_loop,x
 	jsr	sound_data_address
 	jmp	bank_address_change
 ;-------------------------------------------------------------------------------
-;ƒoƒ“ƒNƒZƒbƒg (gotoƒRƒ}ƒ“ƒhBbank, adr_low, adr_high)
+;ãƒãƒ³ã‚¯ã‚»ãƒƒãƒˆ (gotoã‚³ãƒãƒ³ãƒ‰ã€‚bank, adr_low, adr_high)
 data_bank_addr:
 	jsr	sound_data_address
 bank_address_change:
@@ -534,35 +534,35 @@ bank_address_change:
 	lda	[sound_add_low,x]
 	sta	<sound_add_high,x
 	pla
-	sta	<sound_add_low,x	;V‚µ‚¢ƒAƒhƒŒƒX‘‚İ
+	sta	<sound_add_low,x	;æ–°ã—ã„ã‚¢ãƒ‰ãƒ¬ã‚¹æ›¸è¾¼ã¿
 
 	rts
 ;-------------------------------------------------------------------------------
 ;data_end_sub:
 ;	ldy	<channel_sel
-;	
+;
 ;	if (ALLOW_BANK_SWITCH)
 ;	lda	loop_point_bank,y
 ;	sta	sound_bank,x
 ;	endif
-;	
+;
 ;	lda	loop_point_table,x
-;	sta	<sound_add_low,x	;ƒ‹[ƒvŠJnˆÊ’u‘‚«‚İ Low
+;	sta	<sound_add_low,x	;ãƒ«ãƒ¼ãƒ—é–‹å§‹ä½ç½®æ›¸ãè¾¼ã¿ Low
 ;	inx
 ;	lda	loop_point_table,x
-;	sta	<sound_add_low,x	;ƒ‹[ƒvŠJnˆÊ’u‘‚«‚İ High
+;	sta	<sound_add_low,x	;ãƒ«ãƒ¼ãƒ—é–‹å§‹ä½ç½®æ›¸ãè¾¼ã¿ High
 ;	rts
 ;-------------------------------------------------------------------------------
 volume_sub:
 	lda	effect_flag,x
 	ora	#%00000001
-	sta	effect_flag,x		;ƒ\ƒtƒgƒGƒ“ƒx—LŒøw’è
+	sta	effect_flag,x		;ã‚½ãƒ•ãƒˆã‚¨ãƒ³ãƒ™æœ‰åŠ¹æŒ‡å®š
 
 	lda	temporary
 	sta	softenve_sel,x
 	asl	a
 	tay
-	lda	softenve_table,y	;ƒ\ƒtƒgƒGƒ“ƒxƒf[ƒ^ƒAƒhƒŒƒXİ’è
+	lda	softenve_table,y	;ã‚½ãƒ•ãƒˆã‚¨ãƒ³ãƒ™ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹è¨­å®š
 	sta	soft_add_low,x
 	lda	softenve_table+1,y
 	sta	soft_add_high,x
@@ -576,7 +576,7 @@ lfo_set_sub:
 	bne	lfo_data_set
 
 	lda	effect_flag,x
-	and	#%10001111		;LFO–³Œøˆ—
+	and	#%10001111		;LFOç„¡åŠ¹å‡¦ç†
 	sta	effect_flag,x
 	jsr	sound_data_address
 	rts
@@ -588,27 +588,27 @@ lfo_data_set:
 	tay
 	ldx	<channel_selx2
 	lda	lfo_data,y
-	sta	lfo_start_time,x		;ƒfƒBƒŒƒCƒZƒbƒg
+	sta	lfo_start_time,x		;ãƒ‡ã‚£ãƒ¬ã‚¤ã‚»ãƒƒãƒˆ
 	sta	lfo_start_counter,x
 	lda	lfo_data+1,y
-	sta	lfo_reverse_time,x		;ƒXƒs[ƒhƒZƒbƒg
+	sta	lfo_reverse_time,x		;ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
 	sta	lfo_reverse_counter,x
 	lda	lfo_data+2,y
-	sta	lfo_depth,x			;‰¼ƒfƒvƒXƒZƒbƒg(Œã‚Åwarizan_start‚É‚æ‚è‘‚«Š·‚í‚é)
+	sta	lfo_depth,x			;ä»®ãƒ‡ãƒ—ã‚¹ã‚»ãƒƒãƒˆ(å¾Œã§warizan_startã«ã‚ˆã‚Šæ›¸ãæ›ã‚ã‚‹)
 ;	lda	lfo_data+3,y
 ;	sta	lfo_harf_time,x
-;	sta	lfo_harf_count,x		;1/2ƒJƒEƒ“ƒ^ƒZƒbƒg
+;	sta	lfo_harf_count,x		;1/2ã‚«ã‚¦ãƒ³ã‚¿ã‚»ãƒƒãƒˆ
 
 	jsr	warizan_start
 
 	.if PITCH_CORRECTION
 		lda	effect_flag,x
-		ora	#%00010000		;LFO—LŒøƒtƒ‰ƒOƒZƒbƒg
+		ora	#%00010000		;LFOæœ‰åŠ¹ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
 		sta	effect_flag,x
 		jsr	lfo_initial_vector
 	.else
-		lda	<channel_sel		;‚È‚º‚±‚Ìˆ—‚ğ“ü‚ê‚Ä‚¢‚é‚©‚Æ‚¢‚¤‚Æ
-		sec				;“à‘ ‰¹Œ¹‚ÆŠg’£‰¹Œ¹‚Å+-‚ª‹t‚¾‚©‚ç‚Å‚ ‚é
+		lda	<channel_sel		;ãªãœã“ã®å‡¦ç†ã‚’å…¥ã‚Œã¦ã„ã‚‹ã‹ã¨ã„ã†ã¨
+		sec				;å†…è”µéŸ³æºã¨æ‹¡å¼µéŸ³æºã§+-ãŒé€†ã ã‹ã‚‰ã§ã‚ã‚‹
 		sbc	#$05
 		bcc	urararara2
 
@@ -618,8 +618,8 @@ lfo_data_set:
 		jmp	ittoke2
 urararara2:
 		lda	effect_flag,x
-		and	#%11011111		;”gŒ`|ˆ—
-		ora	#%00010000		;LFO—LŒøƒtƒ‰ƒOƒZƒbƒg
+		and	#%11011111		;æ³¢å½¢âˆ’å‡¦ç†
+		ora	#%00010000		;LFOæœ‰åŠ¹ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
 		sta	effect_flag,x
 ittoke2:
 	.endif
@@ -627,19 +627,19 @@ ittoke2:
 	rts
 
 	.if PITCH_CORRECTION
-; ƒ`ƒƒƒ“ƒlƒ‹‚É‚æ‚éƒsƒbƒ`‚Ì•ûŒü«
+; ãƒãƒ£ãƒ³ãƒãƒ«ã«ã‚ˆã‚‹ãƒ”ãƒƒãƒã®æ–¹å‘æ€§
 lfo_initial_vector:
 	lda	freq_vector_table,x
 	bmi	.increasing_function
-; 2A03‚È‚Ç
+; 2A03ãªã©
 .decreasing_function:
 	lda	effect_flag,x
-	and	#%11011111		;LFO‚ÍÅ‰Œ¸Z
+	and	#%11011111		;LFOã¯æœ€åˆæ¸›ç®—
 	jmp	.ittoke2
-; FDS‚È‚Ç
+; FDSãªã©
 .increasing_function:
 	lda	effect_flag,x
-	ora	#%00100000		;LFO‚ÍÅ‰‰ÁZ
+	ora	#%00100000		;LFOã¯æœ€åˆåŠ ç®—
 .ittoke2:
 	sta	effect_flag,x
 	rts
@@ -652,7 +652,7 @@ detune_sub:
 	bne	detune_data_set
 
 	lda	effect_flag,x
-	and	#%01111111		;detune–³Œøˆ—
+	and	#%01111111		;detuneç„¡åŠ¹å‡¦ç†
 	sta	effect_flag,x
 	jsr	sound_data_address
 	rts
@@ -660,7 +660,7 @@ detune_data_set:
 	tay
 	sta	detune_dat,x
 	lda	effect_flag,x
-	ora	#%10000000		;detune—LŒøˆ—
+	ora	#%10000000		;detuneæœ‰åŠ¹å‡¦ç†
 	sta	effect_flag,x
 	jsr	sound_data_address
 	rts
@@ -768,9 +768,9 @@ detune_write_sub:
 detune_part:
 	lda	detune_dat,x
 
-; freq‚ÉA‚ğ‰ÁŒ¸Z‚·‚é
-; A‚Ì$80‚ª—§‚Á‚Ä‚¢‚È‚©‚Á‚½‚ç‚»‚Ì‚Ü‚Ü‰ÁZ
-; A‚Ì$80‚ª—§‚Á‚Ä‚¢‚½‚çand $7F‚µ‚ÄŒ¸Z
+; freqã«Aã‚’åŠ æ¸›ç®—ã™ã‚‹
+; Aã®$80ãŒç«‹ã£ã¦ã„ãªã‹ã£ãŸã‚‰ãã®ã¾ã¾åŠ ç®—
+; Aã®$80ãŒç«‹ã£ã¦ã„ãŸã‚‰and $7Fã—ã¦æ¸›ç®—
 ; input: A
 freq_add_mcknumber:
 	.if PITCH_CORRECTION
@@ -780,15 +780,15 @@ freq_add_mcknumber:
 	.endif
 	bmi	detune_minus
 
-; freq‚ÉA‚ğ‰ÁZ‚·‚é
+; freqã«Aã‚’åŠ ç®—ã™ã‚‹
 ; input: A
 detune_plus:
 	eor	#0			;set Z flag
-	beq	.endo			;ƒvƒ‰ƒX0‚È‚çI—¹
-	
+	beq	.endo			;ãƒ—ãƒ©ã‚¹0ãªã‚‰çµ‚äº†
+
 	ldy	pitch_shift_amount,x
-	bne	detune_plus_with_asl	;ƒVƒtƒg‚ ‚è
-	
+	bne	detune_plus_with_asl	;ã‚·ãƒ•ãƒˆã‚ã‚Š
+
 	clc
 	adc	sound_freq_low,x
 	sta	sound_freq_low,x
@@ -803,15 +803,15 @@ detune_plus:
 
 detune_minus:
 	and	#%01111111
-; freq‚©‚çA‚ğŒ¸Z‚·‚é
+; freqã‹ã‚‰Aã‚’æ¸›ç®—ã™ã‚‹
 ; input: A
 detune_minus_nomask:
 	eor	#0			;set Z flag
-	beq	.endo			;ƒvƒ‰ƒX0‚È‚çI—¹
-	
+	beq	.endo			;ãƒ—ãƒ©ã‚¹0ãªã‚‰çµ‚äº†
+
 	ldy	pitch_shift_amount,x
-	bne	detune_minus_nomask_with_asl	;ƒVƒtƒg‚ ‚è
-	
+	bne	detune_minus_nomask_with_asl	;ã‚·ãƒ•ãƒˆã‚ã‚Š
+
 	sta	<t0
 	lda	sound_freq_low,x
 	sec
@@ -831,11 +831,11 @@ detune_minus_nomask:
 	rts
 
 ;---------------------------------
-; ‰½‰ñ‚©¶ƒVƒtƒg‚·‚éƒo[ƒWƒ‡ƒ“
-; ‚±‚±‚Í’¼ÚŒÄ‚Ño‚³‚¸A
-; freq_add_mcknumber, detune_plus, detune_minus_nomask‚ğŒo—R‚·‚é‚±‚Æ
-; A = ‘«‚µZˆø‚«Z‚·‚é’l
-; Y = ƒVƒtƒg—Ê (0‚Í‹Ö~)
+; ä½•å›ã‹å·¦ã‚·ãƒ•ãƒˆã™ã‚‹ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+; ã“ã“ã¯ç›´æ¥å‘¼ã³å‡ºã•ãšã€
+; freq_add_mcknumber, detune_plus, detune_minus_nomaskã‚’çµŒç”±ã™ã‚‹ã“ã¨
+; A = è¶³ã—ç®—å¼•ãç®—ã™ã‚‹å€¤
+; Y = ã‚·ãƒ•ãƒˆé‡ (0ã¯ç¦æ­¢)
 detune_plus_with_asl:
 	sta	<t0
 	lda	#0
@@ -848,7 +848,7 @@ detune_minus_nomask_with_asl:
 	sta	<t0
 	inc	<t0
 	beq	detune_through		;0
-	
+
 	lda	#$ff
 	sta	<t1
 	sta	<t2
@@ -879,18 +879,18 @@ detune_through:
 sound_software_enverope:
 	jsr	volume_enve_sub
 	sta	register_low,x
-	ora	register_high,x		;‰¹Fƒf[ƒ^iãˆÊ4bitj‚Æ‰ºˆÊ4bit‚Å‘«‚µZ
+	ora	register_high,x		;éŸ³è‰²ãƒ‡ãƒ¼ã‚¿ï¼ˆä¸Šä½4bitï¼‰ã¨ä¸‹ä½4bitã§è¶³ã—ç®—
 	ldy	<channel_selx4
-	sta	$4000,y			;‘‚«‚İ`
-	jsr	enverope_address	;ƒAƒhƒŒƒXˆêŒÂ‘‚â‚µ‚Ä
-	rts				;‚¨‚µ‚Ü‚¢
+	sta	$4000,y			;æ›¸ãè¾¼ã¿ã€œ
+	jsr	enverope_address	;ã‚¢ãƒ‰ãƒ¬ã‚¹ä¸€å€‹å¢—ã‚„ã—ã¦
+	rts				;ãŠã—ã¾ã„
 
 volume_enve_sub:
 	ldx	<channel_selx2
 
-	indirect_lda	soft_add_low		;ƒGƒ“ƒxƒ[ƒvƒf[ƒ^“Ç‚İ‚İ
-	cmp	#$ff			;ÅŒã‚©‚Ç[‚©
-	beq	return3			;ÅŒã‚È‚çƒ‹[ƒvˆ—‚Ö
+	indirect_lda	soft_add_low		;ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
+	cmp	#$ff			;æœ€å¾Œã‹ã©ãƒ¼ã‹
+	beq	return3			;æœ€å¾Œãªã‚‰ãƒ«ãƒ¼ãƒ—å‡¦ç†ã¸
 	rts
 
 return3:
@@ -915,11 +915,11 @@ sound_duty_enverope:
 
 	lda	<channel_sel
 	cmp	#$02
-	beq	return21		;OŠp”g‚È‚ç”ò‚Î‚µ`
+	beq	return21		;ä¸‰è§’æ³¢ãªã‚‰é£›ã°ã—ã€œ
 
-	indirect_lda	duty_add_low		;ƒGƒ“ƒxƒ[ƒvƒf[ƒ^“Ç‚İ‚İ
-	cmp	#$ff			;ÅŒã‚©‚Ç[‚©
-	beq	return22		;ÅŒã‚È‚ç‚»‚Ì‚Ü‚Ü‚¨‚µ‚Ü‚¢
+	indirect_lda	duty_add_low		;ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
+	cmp	#$ff			;æœ€å¾Œã‹ã©ãƒ¼ã‹
+	beq	return22		;æœ€å¾Œãªã‚‰ãã®ã¾ã¾ãŠã—ã¾ã„
 	asl	a
 	asl	a
 	asl	a
@@ -928,12 +928,12 @@ sound_duty_enverope:
 	asl	a
 	ora	#%00110000		;hardware envelope & ... disable
 	sta	register_high,x
-	ora	register_low,x		;‰¹Fƒf[ƒ^iãˆÊ4bitj‚Æ‰ºˆÊ4bit‚Å‘«‚µZ
+	ora	register_low,x		;éŸ³è‰²ãƒ‡ãƒ¼ã‚¿ï¼ˆä¸Šä½4bitï¼‰ã¨ä¸‹ä½4bitã§è¶³ã—ç®—
 	ldy	<channel_selx4
-	sta	$4000,y			;‘‚«‚İ`
-	jsr	duty_enverope_address	;ƒAƒhƒŒƒXˆêŒÂ‘‚â‚µ‚Ä
+	sta	$4000,y			;æ›¸ãè¾¼ã¿ã€œ
+	jsr	duty_enverope_address	;ã‚¢ãƒ‰ãƒ¬ã‚¹ä¸€å€‹å¢—ã‚„ã—ã¦
 return21:
-	rts				;‚¨‚µ‚Ü‚¢
+	rts				;ãŠã—ã¾ã„
 
 return22:
 	lda	duty_sel,x
@@ -952,7 +952,7 @@ duty_enverope_address:
 	inc	duty_add_high,x
 return23:
 	rts
-;--------------------------------------	
+;--------------------------------------
 sound_lfo:
 	lda	sound_freq_high,x
 	sta	temporary
@@ -961,13 +961,13 @@ sound_lfo:
 
 	lda	sound_freq_low,x
 	ldy	<channel_selx4
-	sta	$4002,y			;@@Œ»İ’l‚ğƒŒƒWƒXƒ^‚ÉƒZƒbƒg
+	sta	$4002,y			;ã€€ã€€ç¾åœ¨å€¤ã‚’ãƒ¬ã‚¸ã‚¹ã‚¿ã«ã‚»ãƒƒãƒˆ
 	lda	sound_freq_high,x
 	cmp	temporary
 	beq	end4
 	sta	$4003,y
 end4:
-	rts				;‚±‚±‚Ü‚Å
+	rts				;ã“ã“ã¾ã§
 ;-------------------------------------------------------------------------------
 lfo_sub:
 	ldx	<channel_selx2
@@ -977,28 +977,28 @@ lfo_sub:
 	rts
 
 .lfo_start:
-	asl	lfo_reverse_time,x	;2”{‚·‚é(LFO‚Ì1/2üŠú‚É‚È‚é)
-	lda	lfo_reverse_counter,x	;”½“]—pƒJƒEƒ“ƒ^“Ç‚İ‚İ
-	cmp	lfo_reverse_time,x	;LFO‚ÌüŠú‚Ì1/2‚²‚Æ‚É”½“]‚·‚é
-	bne	.lfo_depth_set		;‹K’è”‚É’B‚µ‚Ä‚¢‚È‚¯‚ê‚ÎƒfƒvƒXˆ—‚Ö
-.lfo_revers_set:				;‹K’è”‚É’B‚µ‚Ä‚¢‚½‚ç•ûŒü”½“]ˆ—
+	asl	lfo_reverse_time,x	;2å€ã™ã‚‹(LFOã®1/2å‘¨æœŸã«ãªã‚‹)
+	lda	lfo_reverse_counter,x	;åè»¢ç”¨ã‚«ã‚¦ãƒ³ã‚¿èª­ã¿è¾¼ã¿
+	cmp	lfo_reverse_time,x	;LFOã®å‘¨æœŸã®1/2ã”ã¨ã«åè»¢ã™ã‚‹
+	bne	.lfo_depth_set		;è¦å®šæ•°ã«é”ã—ã¦ã„ãªã‘ã‚Œã°ãƒ‡ãƒ—ã‚¹å‡¦ç†ã¸
+.lfo_revers_set:				;è¦å®šæ•°ã«é”ã—ã¦ã„ãŸã‚‰æ–¹å‘åè»¢å‡¦ç†
 		lda	#$00			;
-		sta	lfo_reverse_counter,x	;”½“]ƒJƒEƒ“ƒ^‰Šú‰»
-		lda	effect_flag,x		;•ûŒüƒrƒbƒg‚ğ”½“]
+		sta	lfo_reverse_counter,x	;åè»¢ã‚«ã‚¦ãƒ³ã‚¿åˆæœŸåŒ–
+		lda	effect_flag,x		;æ–¹å‘ãƒ“ãƒƒãƒˆã‚’åè»¢
 		eor	#%00100000		;
 		sta	effect_flag,x		;
 
 .lfo_depth_set:
-	lsr	lfo_reverse_time,x	;1/2‚É‚·‚é(LFO‚Ì1/4üŠú‚É‚È‚é)
-	lda	lfo_adc_sbc_counter,x	;ƒfƒvƒX—pƒJƒEƒ“ƒ^“Ç‚İ‚İ
-	cmp	lfo_adc_sbc_time,x	;lfo_adc_sbc_time‚²‚Æ‚ÉƒfƒvƒXˆ—‚·‚é
-	bne	.lfo_count_inc		;‚Ü‚¾‚È‚çƒJƒEƒ“ƒ^ƒvƒ‰ƒX‚Ö
-.lfo_depth_work:				;ˆê’v‚µ‚Ä‚¢‚ê‚ÎƒfƒvƒXˆ—
+	lsr	lfo_reverse_time,x	;1/2ã«ã™ã‚‹(LFOã®1/4å‘¨æœŸã«ãªã‚‹)
+	lda	lfo_adc_sbc_counter,x	;ãƒ‡ãƒ—ã‚¹ç”¨ã‚«ã‚¦ãƒ³ã‚¿èª­ã¿è¾¼ã¿
+	cmp	lfo_adc_sbc_time,x	;lfo_adc_sbc_timeã”ã¨ã«ãƒ‡ãƒ—ã‚¹å‡¦ç†ã™ã‚‹
+	bne	.lfo_count_inc		;ã¾ã ãªã‚‰ã‚«ã‚¦ãƒ³ã‚¿ãƒ—ãƒ©ã‚¹ã¸
+.lfo_depth_work:				;ä¸€è‡´ã—ã¦ã„ã‚Œã°ãƒ‡ãƒ—ã‚¹å‡¦ç†
 		lda	#$00			;
-		sta	lfo_adc_sbc_counter,x	;ƒfƒvƒXƒJƒEƒ“ƒ^‰Šú‰»
-		lda	effect_flag,x		;{‚©|‚©
-		and	#%00100000		;‚±‚Ìƒrƒbƒg‚ª
-		bne	.lfo_depth_plus		;—§‚Á‚Ä‚¢‚½‚ç‰ÁZ
+		sta	lfo_adc_sbc_counter,x	;ãƒ‡ãƒ—ã‚¹ã‚«ã‚¦ãƒ³ã‚¿åˆæœŸåŒ–
+		lda	effect_flag,x		;ï¼‹ã‹âˆ’ã‹
+		and	#%00100000		;ã“ã®ãƒ“ãƒƒãƒˆãŒ
+		bne	.lfo_depth_plus		;ç«‹ã£ã¦ã„ãŸã‚‰åŠ ç®—
 .lfo_depth_minus:
 			lda	lfo_depth,x
 			jsr	detune_minus_nomask
@@ -1008,7 +1008,7 @@ lfo_sub:
 			jsr	detune_plus
 
 .lfo_count_inc:
-	inc	lfo_reverse_counter,x	;ƒJƒEƒ“ƒ^‘«‚µ‚Ä‚¨I‚¢
+	inc	lfo_reverse_counter,x	;ã‚«ã‚¦ãƒ³ã‚¿è¶³ã—ã¦ãŠçµ‚ã„
 	inc	lfo_adc_sbc_counter,x
 	rts
 
@@ -1018,12 +1018,12 @@ warizan_start:
 .divisor = t1
 	lda	#$00
 	sta	<.quotient
-	lda	lfo_reverse_time,x	;1/4üŠú‚Æ
-	cmp	lfo_depth,x		;Y²ƒs[ƒNw’è
-	beq	.plus_one		;“¯‚¶‚È‚ç1:1
-	bmi	.depth_wari		;Y²ƒs[ƒN‚Ì‚Ù‚¤‚ª‘å‚«‚¢ê‡
+	lda	lfo_reverse_time,x	;1/4å‘¨æœŸã¨
+	cmp	lfo_depth,x		;Yè»¸ãƒ”ãƒ¼ã‚¯æŒ‡å®š
+	beq	.plus_one		;åŒã˜ãªã‚‰1:1
+	bmi	.depth_wari		;Yè»¸ãƒ”ãƒ¼ã‚¯ã®ã»ã†ãŒå¤§ãã„å ´åˆ
 
-.revers_wari:				;1/4üŠú‚Ì‚Ù‚¤‚ª‘å‚«‚¢ê‡
+.revers_wari:				;1/4å‘¨æœŸã®ã»ã†ãŒå¤§ãã„å ´åˆ
 	lda	lfo_depth,x
 	sta	<.divisor
 	lda	lfo_reverse_time,x
@@ -1047,7 +1047,7 @@ warizan_start:
 	sta	lfo_adc_sbc_counter,x
 	rts
 
-.plus_one:				;1ƒtƒŒ[ƒ€‚²‚Æ‚É1
+.plus_one:				;1ãƒ•ãƒ¬ãƒ¼ãƒ ã”ã¨ã«1
 	lda	#$01
 	sta	lfo_depth,x
 	sta	lfo_adc_sbc_time,x
@@ -1083,7 +1083,7 @@ end3:
 ;-------------------------------------------------------------------------------
 pitch_sub:
 	ldx	<channel_selx2
-	indirect_lda	pitch_add_low	
+	indirect_lda	pitch_add_low
 	cmp	#$ff
 	beq	return62
 
@@ -1091,7 +1091,7 @@ pitch_sub:
 
 ;--------------------------------------------------
 return62:
-	indirect_lda	pitch_add_low	
+	indirect_lda	pitch_add_low
 	lda	pitch_sel,x
 	asl	a
 	tay
@@ -1109,13 +1109,13 @@ return63:
 	rts
 ;-------------------------------------------------------------------------------
 sound_high_speed_arpeggio:		;note enverope
-ARPEGGIO_RETRIG = 0			; 1‚¾‚Æsound_freq_high‚ª•Ï‰»‚µ‚È‚­‚Ä‚à‘‚«‚Ş
+ARPEGGIO_RETRIG = 0			; 1ã ã¨sound_freq_highãŒå¤‰åŒ–ã—ãªãã¦ã‚‚æ›¸ãè¾¼ã‚€
 	.if !ARPEGGIO_RETRIG
 	lda	sound_freq_high,x
 	sta	temporary2
 	.endif
 	jsr	note_enve_sub
-	bcs	.end			; 0‚È‚Ì‚Å‘‚©‚È‚­‚Ä‚æ‚µ
+	bcs	.end			; 0ãªã®ã§æ›¸ã‹ãªãã¦ã‚ˆã—
 	jsr	frequency_set
 ;.note_freq_write:
 	ldx	<channel_selx2
@@ -1149,76 +1149,76 @@ arpeggio_address:
 return83:
 	rts
 ;-------------------------------------------------------------------------------
-;Output 
-;	C=0(“Ç‚İ‚ñ‚¾’l‚Í0‚¶‚á‚È‚¢‚Ì‚Å”­‰¹ˆ—‚µ‚ë)
-;	C=1(“Ç‚İ‚ñ‚¾’l‚Í0‚È‚Ì‚Å”­‰¹ˆ—‚µ‚È‚­‚Ä‚¢‚¢‚æ)
+;Output
+;	C=0(èª­ã¿è¾¼ã‚“ã å€¤ã¯0ã˜ã‚ƒãªã„ã®ã§ç™ºéŸ³å‡¦ç†ã—ã‚)
+;	C=1(èª­ã¿è¾¼ã‚“ã å€¤ã¯0ãªã®ã§ç™ºéŸ³å‡¦ç†ã—ãªãã¦ã„ã„ã‚ˆ)
 ;
 note_enve_sub:
 
 	ldx	<channel_selx2
-	indirect_lda	arpe_add_low		;ƒm[ƒgƒGƒ“ƒxƒf[ƒ^“Ç‚İo‚µ
-	cmp	#$ff			;$ffi‚¨I‚¢j‚©H
+	indirect_lda	arpe_add_low		;ãƒãƒ¼ãƒˆã‚¨ãƒ³ãƒ™ãƒ‡ãƒ¼ã‚¿èª­ã¿å‡ºã—
+	cmp	#$ff			;$ffï¼ˆãŠçµ‚ã„ï¼‰ã‹ï¼Ÿ
 	beq	note_add_set
-	cmp	#$00			;ƒ[ƒ‚©H(Zƒtƒ‰ƒOÄƒZƒbƒg)
-	beq	.note_enve_zero_end	;ƒ[ƒ‚È‚çC—§‚Ä‚Ä‚¨I‚¢
+	cmp	#$00			;ã‚¼ãƒ­ã‹ï¼Ÿ(Zãƒ•ãƒ©ã‚°å†ã‚»ãƒƒãƒˆ)
+	beq	.note_enve_zero_end	;ã‚¼ãƒ­ãªã‚‰Cç«‹ã¦ã¦ãŠçµ‚ã„
 	cmp	#$80
-	beq	.note_enve_zero_end	;ƒ[ƒ‚È‚çC—§‚Ä‚Ä‚¨I‚¢
+	beq	.note_enve_zero_end	;ã‚¼ãƒ­ãªã‚‰Cç«‹ã¦ã¦ãŠçµ‚ã„
 	bne	.arpeggio_sign_check	;always
 .note_enve_zero_end
-	sec				;”­‰¹ˆ—‚Í•s—v
+	sec				;ç™ºéŸ³å‡¦ç†ã¯ä¸è¦
 	rts
 .arpeggio_sign_check
-	eor	#0			;N flagŠm”F
-	bmi	arpeggio_minus		;|ˆ—‚Ö
+	eor	#0			;N flagç¢ºèª
+	bmi	arpeggio_minus		;âˆ’å‡¦ç†ã¸
 
 arpeggio_plus:
-	sta	<t0			;ƒeƒ“ƒ|ƒ‰ƒŠ‚É’u‚­iƒ‹[ƒv‰ñ”j
+	sta	<t0			;ãƒ†ãƒ³ãƒãƒ©ãƒªã«ç½®ãï¼ˆãƒ«ãƒ¼ãƒ—å›æ•°ï¼‰
 arpeggio_plus2:
-	lda	sound_sel,x		;‰¹ŠKƒf[ƒ^“Ç‚İo‚µ
-	and	#$0f			;‰ºˆÊ4bit’Šo
-	cmp	#$0b			;‚à‚µb‚È‚ç
-	beq	oct_plus		;ƒIƒNƒ^[ƒu{ˆ—‚Ö
-	inc	sound_sel,x		;‚Å‚È‚¯‚ê‚Î‰¹ŠK{‚P
-	jmp	loop_1			;ƒ‹[ƒvˆ—‚P‚Ö
+	lda	sound_sel,x		;éŸ³éšãƒ‡ãƒ¼ã‚¿èª­ã¿å‡ºã—
+	and	#$0f			;ä¸‹ä½4bitæŠ½å‡º
+	cmp	#$0b			;ã‚‚ã—bãªã‚‰
+	beq	oct_plus		;ã‚ªã‚¯ã‚¿ãƒ¼ãƒ–ï¼‹å‡¦ç†ã¸
+	inc	sound_sel,x		;ã§ãªã‘ã‚Œã°éŸ³éšï¼‹ï¼‘
+	jmp	loop_1			;ãƒ«ãƒ¼ãƒ—å‡¦ç†ï¼‘ã¸
 oct_plus:
-	lda	sound_sel,x		;‰¹ŠKƒf[ƒ^“Ç‚İo‚µ
-	and	#$f0			;ãˆÊ4bitæ‚èo‚µ•‰ºˆÊ4bitƒ[ƒ
+	lda	sound_sel,x		;éŸ³éšãƒ‡ãƒ¼ã‚¿èª­ã¿å‡ºã—
+	and	#$f0			;ä¸Šä½4bitå–ã‚Šå‡ºã—ï¼†ä¸‹ä½4bitã‚¼ãƒ­
 	clc
-	adc	#$10			;ƒIƒNƒ^[ƒu{‚P
-	sta	sound_sel,x		;‰¹ŠKƒf[ƒ^‘‚«o‚µ
+	adc	#$10			;ã‚ªã‚¯ã‚¿ãƒ¼ãƒ–ï¼‹ï¼‘
+	sta	sound_sel,x		;éŸ³éšãƒ‡ãƒ¼ã‚¿æ›¸ãå‡ºã—
 loop_1:
-	dec	<t0			;ƒ‹[ƒv‰ñ”|‚P
-	lda	<t0			;‚ñ‚Å“Ç‚İo‚µ
-	beq	note_enve_end		;ƒ[ƒ‚È‚çƒ‹[ƒvˆ—I‚í‚è
-	bne	arpeggio_plus2		;‚Å‚È‚¯‚ê‚Î‚Ü‚¾‘±‚­
+	dec	<t0			;ãƒ«ãƒ¼ãƒ—å›æ•°âˆ’ï¼‘
+	lda	<t0			;ã‚“ã§èª­ã¿å‡ºã—
+	beq	note_enve_end		;ã‚¼ãƒ­ãªã‚‰ãƒ«ãƒ¼ãƒ—å‡¦ç†çµ‚ã‚ã‚Š
+	bne	arpeggio_plus2		;ã§ãªã‘ã‚Œã°ã¾ã ç¶šã
 
 arpeggio_minus:
 	and	#%01111111
 	sta	<t0
 arpeggio_minus2:
-	lda	sound_sel,x		;‰¹ŠKƒf[ƒ^“Ç‚İo‚µ
-	and	#$0f			;‰ºˆÊ4bit’Šo
-	beq	oct_minus		;ƒ[ƒ‚È‚ç|ˆ—‚Ö
-	dec	sound_sel,x		;‚Å‚È‚¯‚ê‚Î‰¹ŠK|‚P
-	jmp	loop_2			;ƒ‹[ƒvˆ—‚Q‚Ö
+	lda	sound_sel,x		;éŸ³éšãƒ‡ãƒ¼ã‚¿èª­ã¿å‡ºã—
+	and	#$0f			;ä¸‹ä½4bitæŠ½å‡º
+	beq	oct_minus		;ã‚¼ãƒ­ãªã‚‰âˆ’å‡¦ç†ã¸
+	dec	sound_sel,x		;ã§ãªã‘ã‚Œã°éŸ³éšâˆ’ï¼‘
+	jmp	loop_2			;ãƒ«ãƒ¼ãƒ—å‡¦ç†ï¼’ã¸
 oct_minus:
-	lda	sound_sel,x		;‰¹ŠKƒf[ƒ^“Ç‚İo‚µ
+	lda	sound_sel,x		;éŸ³éšãƒ‡ãƒ¼ã‚¿èª­ã¿å‡ºã—
 	clc
 	adc	#$0b			;+b
 	sec
 	sbc	#$10			;-10
-	sta	sound_sel,x		;‰¹ŠKƒf[ƒ^‘‚«o‚µ
+	sta	sound_sel,x		;éŸ³éšãƒ‡ãƒ¼ã‚¿æ›¸ãå‡ºã—
 loop_2:
-	dec	<t0			;ƒ‹[ƒv‰ñ”|‚P
-	lda	<t0			;‚ñ‚Å“Ç‚İo‚µ
-	bne	arpeggio_minus2		;ƒ[ƒ‚È‚çƒ‹[ƒvˆ—I‚í‚è
+	dec	<t0			;ãƒ«ãƒ¼ãƒ—å›æ•°âˆ’ï¼‘
+	lda	<t0			;ã‚“ã§èª­ã¿å‡ºã—
+	bne	arpeggio_minus2		;ã‚¼ãƒ­ãªã‚‰ãƒ«ãƒ¼ãƒ—å‡¦ç†çµ‚ã‚ã‚Š
 note_enve_end:
-	clc				;”­‰¹ˆ—‚Í•K—v
+	clc				;ç™ºéŸ³å‡¦ç†ã¯å¿…è¦
 	rts				;
 ;-------------------------------------------------------------------------------
-;oto_set‚ÅŒÄ‚Î‚ê‚é
+;oto_setã§å‘¼ã°ã‚Œã‚‹
 effect_init:
-;ƒ\ƒtƒgƒEƒFƒAƒGƒ“ƒxƒ[ƒv“Ç‚İ‚İƒAƒhƒŒƒX‰Šú‰»
+;ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—èª­ã¿è¾¼ã¿ã‚¢ãƒ‰ãƒ¬ã‚¹åˆæœŸåŒ–
 	lda	softenve_sel,x
 	asl	a
 	tay
@@ -1227,7 +1227,7 @@ effect_init:
 	lda	softenve_table+1,y
 	sta	soft_add_high,x
 
-;ƒsƒbƒ`ƒGƒ“ƒxƒ[ƒv“Ç‚İ‚İƒAƒhƒŒƒX‰Šú‰»
+;ãƒ”ãƒƒãƒã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—èª­ã¿è¾¼ã¿ã‚¢ãƒ‰ãƒ¬ã‚¹åˆæœŸåŒ–
 	lda	pitch_sel,x
 	asl	a
 	tay
@@ -1236,7 +1236,7 @@ effect_init:
 	lda	pitchenve_table+1,y
 	sta	pitch_add_high,x
 
-;ƒfƒ…[ƒeƒBƒGƒ“ƒxƒ[ƒv“Ç‚İ‚İƒAƒhƒŒƒX‰Šú‰»
+;ãƒ‡ãƒ¥ãƒ¼ãƒ†ã‚£ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—èª­ã¿è¾¼ã¿ã‚¢ãƒ‰ãƒ¬ã‚¹åˆæœŸåŒ–
 	lda	duty_sel,x
 	asl	a
 	tay
@@ -1245,7 +1245,7 @@ effect_init:
 	lda	dutyenve_table+1,y
 	sta	duty_add_high,x
 
-;ƒm[ƒgƒGƒ“ƒxƒ[ƒv“Ç‚İ‚İƒAƒhƒŒƒX‰Šú‰»
+;ãƒãƒ¼ãƒˆã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—èª­ã¿è¾¼ã¿ã‚¢ãƒ‰ãƒ¬ã‚¹åˆæœŸåŒ–
 	lda	arpeggio_sel,x
 	asl	a
 	tay
@@ -1253,7 +1253,7 @@ effect_init:
 	sta	arpe_add_low,x
 	lda	arpeggio_table+1,y
 	sta	arpe_add_high,x
-;ƒ\ƒtƒgƒEƒFƒALFO‰Šú‰»
+;ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢LFOåˆæœŸåŒ–
 	lda	lfo_start_time,x
 	sta	lfo_start_counter,x
 	lda	lfo_adc_sbc_time,x
@@ -1278,9 +1278,9 @@ urararara:
 		lda	effect_flag,x
 		and	#%10011111
 		sta	effect_flag,x
-ittoke:	
+ittoke:
 	.endif
-;‹x•„ƒtƒ‰ƒOƒNƒŠƒA&Key Onƒtƒ‰ƒO‘‚«‚İ
+;ä¼‘ç¬¦ãƒ•ãƒ©ã‚°ã‚¯ãƒªã‚¢&Key Onãƒ•ãƒ©ã‚°æ›¸ãè¾¼ã¿
 	lda	#%00000010
 	sta	rest_flag,x
 	rts

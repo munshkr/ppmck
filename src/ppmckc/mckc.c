@@ -21,10 +21,10 @@ int		warning_flag = 1;
 int		include_flag = 0;
 int		mml_num = 0;
 extern	int data_make( void );
-extern	int		message_flag;			// É½¼¨¥á¥Ã¥»¡¼¥¸¤Î½ĞÎÏÀßÄê( 0:Jp 1:En )
+extern	int		message_flag;			// è¡¨ç¤ºãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®å‡ºåŠ›è¨­å®š( 0:Jp 1:En )
 
 /*--------------------------------------------------------------
-	¥Ø¥ë¥×É½¼¨
+	ãƒ˜ãƒ«ãƒ—è¡¨ç¤º
  Input:
 
  Output:
@@ -34,26 +34,26 @@ void dispHelpMessage( void )
 {
 	if( message_flag == 0 ) {
 #ifdef __MINGW32__
-		puts(	"»ÈÍÑÊıË¡:ppmckc [switch] InputFile.mml [OutputFile.h]\n"
-			"¤â¤·¤¯¤Ï:ppmckc [switch] -u InputFile1.mml InputFile2.mml ... \n"
+		puts(	"ä½¿ç”¨æ–¹æ³•:ppmckc [switch] InputFile.mml [OutputFile.h]\n"
+			"ã‚‚ã—ãã¯:ppmckc [switch] -u InputFile1.mml InputFile2.mml ... \n"
 				"\t[switch]\n"
-				"\t-h -?   : ¥Ø¥ë¥×¤òÉ½\¼¨\n"
-				"\t-i      : ²»¿§/¥¨¥ó¥Ù¥í¡¼¥×¥Õ¥¡¥¤¥ë¤Ë¶Ê¥Ç¡¼¥¿¤òÄÉ²Ã¤¹¤ë\n"
-				"\t-m<num> : ¥¨¥é¡¼/¥ï¡¼¥Ë¥ó¥°É½\¼¨¤ÎÁªÂò(0:Jpn 1:Eng)\n"
-				"\t-o<str> : ²»¿§/¥¨¥ó¥Ù¥í¡¼¥×¥Õ¥¡¥¤¥ë¤Î¥Õ¥¡¥¤¥ëÌ¾¤ò<str>¤Ë¤¹¤ë\n"
-				"\t-w      : Warning¥á¥Ã¥»¡¼¥¸¤òÉ½\¼¨¤·¤Ş¤»¤ó\n"
-				"\t-u      : Ê£¿ô¶ÊÅĞÏ¿NSFºîÀ®\n"
+				"\t-h -?   : ãƒ˜ãƒ«ãƒ—ã‚’è¡¨\ç¤º\n"
+				"\t-i      : éŸ³è‰²/ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›²ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ ã™ã‚‹\n"
+				"\t-m<num> : ã‚¨ãƒ©ãƒ¼/ãƒ¯ãƒ¼ãƒ‹ãƒ³ã‚°è¡¨\ç¤ºã®é¸æŠ(0:Jpn 1:Eng)\n"
+				"\t-o<str> : éŸ³è‰²/ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ•ã‚¡ã‚¤ãƒ«åã‚’<str>ã«ã™ã‚‹\n"
+				"\t-w      : Warningãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨\ç¤ºã—ã¾ã›ã‚“\n"
+				"\t-u      : è¤‡æ•°æ›²ç™»éŒ²NSFä½œæˆ\n"
 	    );
 #else
-		puts(	"»ÈÍÑÊıË¡:ppmckc [switch] InputFile.mml [OutputFile.h]\n"
-			"¤â¤·¤¯¤Ï:ppmckc [switch] -u InputFile1.mml InputFile2.mml ... \n"
+		puts(	"ä½¿ç”¨æ–¹æ³•:ppmckc [switch] InputFile.mml [OutputFile.h]\n"
+			"ã‚‚ã—ãã¯:ppmckc [switch] -u InputFile1.mml InputFile2.mml ... \n"
 				"\t[switch]\n"
-				"\t-h -?   : ¥Ø¥ë¥×¤òÉ½¼¨\n"
-				"\t-i      : ²»¿§/¥¨¥ó¥Ù¥í¡¼¥×¥Õ¥¡¥¤¥ë¤Ë¶Ê¥Ç¡¼¥¿¤òÄÉ²Ã¤¹¤ë\n"
-				"\t-m<num> : ¥¨¥é¡¼/¥ï¡¼¥Ë¥ó¥°É½¼¨¤ÎÁªÂò(0:Jpn 1:Eng)\n"
-				"\t-o<str> : ²»¿§/¥¨¥ó¥Ù¥í¡¼¥×¥Õ¥¡¥¤¥ë¤Î¥Õ¥¡¥¤¥ëÌ¾¤ò<str>¤Ë¤¹¤ë\n"
-				"\t-w      : Warning¥á¥Ã¥»¡¼¥¸¤òÉ½¼¨¤·¤Ş¤»¤ó\n"
-				"\t-u      : Ê£¿ô¶ÊÅĞÏ¿NSFºîÀ®\n"
+				"\t-h -?   : ãƒ˜ãƒ«ãƒ—ã‚’è¡¨ç¤º\n"
+				"\t-i      : éŸ³è‰²/ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›²ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ ã™ã‚‹\n"
+				"\t-m<num> : ã‚¨ãƒ©ãƒ¼/ãƒ¯ãƒ¼ãƒ‹ãƒ³ã‚°è¡¨ç¤ºã®é¸æŠ(0:Jpn 1:Eng)\n"
+				"\t-o<str> : éŸ³è‰²/ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ•ã‚¡ã‚¤ãƒ«åã‚’<str>ã«ã™ã‚‹\n"
+				"\t-w      : Warningãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤ºã—ã¾ã›ã‚“\n"
+				"\t-u      : è¤‡æ•°æ›²ç™»éŒ²NSFä½œæˆ\n"
 	    );
 #endif
 
@@ -75,12 +75,12 @@ void dispHelpMessage( void )
 
 
 /*--------------------------------------------------------------
-	¥á¥¤¥ó¥ë¡¼¥Á¥ó
+	ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³
  Input:
-	int  argc		: ¥³¥Ş¥ó¥É¥é¥¤¥ó°ú¿ô¤Î¸Ä¿ô
-	char *argv[]	: ¥³¥Ş¥ó¥É¥é¥¤¥ó°ú¿ô¤Î¥İ¥¤¥ó¥¿
+	int  argc		: ã‚³ãƒãƒ³ãƒ‰ãƒ©ã‚¤ãƒ³å¼•æ•°ã®å€‹æ•°
+	char *argv[]	: ã‚³ãƒãƒ³ãƒ‰ãƒ©ã‚¤ãƒ³å¼•æ•°ã®ãƒã‚¤ãƒ³ã‚¿
  Output:
-	0:Àµ¾ï½ªÎ» 0:°Ê³°°Ê¾å½ªÎ»
+	0:æ­£å¸¸çµ‚äº† 0:ä»¥å¤–ä»¥ä¸Šçµ‚äº†
 --------------------------------------------------------------*/
 int main( int argc , char *argv[] )
 {
@@ -90,20 +90,20 @@ int main( int argc , char *argv[] )
 
 	in = out = 0;
 
-// ¥¿¥¤¥È¥ëÉ½¼¨
+// ã‚¿ã‚¤ãƒˆãƒ«è¡¨ç¤º
 	printf( "MML to MCK Data Converter Ver %d.%02d by Manbow-J\npmck modification by BKC rel 0.2\n",
 			(VersionNo/100), (VersionNo%100) );
 	//printf("patches by [OK] and 2ch mck thread people\n");
 	printf(patchstr);
 	printf(hogereleasestr);
-// ¥³¥Ş¥ó¥É¥é¥¤¥ó²òÀÏ
+// ã‚³ãƒãƒ³ãƒ‰ãƒ©ã‚¤ãƒ³è§£æ
 	if( argc == 1 ) {
 		dispHelpMessage();
 		return -1;
 	}
 
 	for ( i = 1; i < argc; i++ ) {
-		// ¥¹¥¤¥Ã¥Á¡©
+		// ã‚¹ã‚¤ãƒƒãƒï¼Ÿ
 		if ( (argv[i][0] == '-') || (argv[i][0] == '/') ) {
 			switch( toupper( argv[i][1] ) ) {
 			  case 'H':
@@ -137,21 +137,21 @@ int main( int argc , char *argv[] )
 				break;
 			  default:
 				if( message_flag == 0 ) {
-					puts( "¥¹¥¤¥Ã¥Á¤Î»ØÄê¤¬°ã¤¤¤Ş¤¹\n" );
+					puts( "ã‚¹ã‚¤ãƒƒãƒã®æŒ‡å®šãŒé•ã„ã¾ã™\n" );
 				} else {
 					puts( "Invalid switch!\n" );
 				}
 				dispHelpMessage();
 				return -1;
 			}
-		// ÆşÎÏ/½ĞÎÏ¥Õ¥¡¥¤¥ë¤Î³ÊÇ¼
+		// å…¥åŠ›/å‡ºåŠ›ãƒ•ã‚¡ã‚¤ãƒ«ã®æ ¼ç´
 		} else {
 			if ( in < MML_MAX ) {
 				mml_names[in] = argv[i];
 				in++;
 			} else {
 				if( message_flag == 0 ) {
-					puts( "¥Ñ¥é¥á¡¼¥¿¤¬Â¿¤¹¤®¤Ş¤¹\n" );
+					puts( "ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒå¤šã™ãã¾ã™\n" );
 				} else {
 					puts( "Too many parameters!\n" );
 				}
@@ -177,7 +177,7 @@ int main( int argc , char *argv[] )
 			in--;
 		} else {
 			if( message_flag == 0 ) {
-				puts( "¥Ñ¥é¥á¡¼¥¿¤¬Â¿¤¹¤®¤Ş¤¹\n" );
+				puts( "ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒå¤šã™ãã¾ã™\n" );
 			} else {
 				puts( "Too many parameters!\n" );
 			}
@@ -191,19 +191,19 @@ int main( int argc , char *argv[] )
 		printf("%s + ", mml_names[i]);
 	}
 	printf( "%s -> %s\n" ,mml_names[i],  out_name );
-// ¥³¥ó¥Ğ¡¼¥È
+// ã‚³ãƒ³ãƒãƒ¼ãƒˆ
 	i = data_make();
-// ½ªÎ»
+// çµ‚äº†
 	if (i == 0) {
 		if( message_flag == 0 ) {
-			puts( "\n½ªÎ»¤·¤Ş¤·¤¿\n" );
+			puts( "\nçµ‚äº†ã—ã¾ã—ãŸ\n" );
 		} else {
 			puts( "\nCompleated!\n" );
 		}
 		return EXIT_SUCCESS;
 	} else {
 		if( message_flag == 0 ) {
-			puts( "\n¥³¥ó¥Ñ¥¤¥ë¤Ë¼ºÇÔ¤·¤Ş¤·¤¿\n" );
+			puts( "\nã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã«å¤±æ•—ã—ã¾ã—ãŸ\n" );
 		} else {
 			puts( "\nCompilation failed!\n" );
 		}

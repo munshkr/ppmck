@@ -3,19 +3,19 @@
 ;-----------------------------------------------------------------------
 sound_internal:
 	ldx	<channel_selx2
-	dec	sound_counter,x		;ƒJƒEƒ“ƒ^‚¢‚Á‚±Œ¸‚ç‚µ
-	beq	.sound_read_go		;ƒ[ƒ‚È‚çƒTƒEƒ“ƒh“Ç‚İ‚İ
-	jsr	do_effect		;ƒ[ƒˆÈŠO‚È‚çƒGƒtƒFƒNƒg‚µ‚Ä
-	rts				;‚¨‚í‚è
+	dec	sound_counter,x		;ã‚«ã‚¦ãƒ³ã‚¿ã„ã£ã“æ¸›ã‚‰ã—
+	beq	.sound_read_go		;ã‚¼ãƒ­ãªã‚‰ã‚µã‚¦ãƒ³ãƒ‰èª­ã¿è¾¼ã¿
+	jsr	do_effect		;ã‚¼ãƒ­ä»¥å¤–ãªã‚‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã—ã¦
+	rts				;ãŠã‚ã‚Š
 .sound_read_go
 	jsr	sound_data_read
 	jsr	do_effect
 	lda	rest_flag,x
-	and	#%00000010		;ƒL[ƒIƒ“ƒtƒ‰ƒO
-	beq	.end1			
-	jsr	sound_data_write	;—§‚Á‚Ä‚¢‚½‚çƒf[ƒ^‘‚«o‚µ
+	and	#%00000010		;ã‚­ãƒ¼ã‚ªãƒ³ãƒ•ãƒ©ã‚°
+	beq	.end1
+	jsr	sound_data_write	;ç«‹ã£ã¦ã„ãŸã‚‰ãƒ‡ãƒ¼ã‚¿æ›¸ãå‡ºã—
 	lda	rest_flag,x
-	and	#%11111101		;ƒL[ƒIƒ“ƒtƒ‰ƒOƒIƒt
+	and	#%11111101		;ã‚­ãƒ¼ã‚ªãƒ³ãƒ•ãƒ©ã‚°ã‚ªãƒ•
 	sta	rest_flag,x
 .end1
 	rts
@@ -25,7 +25,7 @@ do_effect:
 	lda	rest_flag,x
 	and	#%00000001
 	beq	.duty_write2
-	rts				;‹x•„‚È‚çI‚í‚è
+	rts				;ä¼‘ç¬¦ãªã‚‰çµ‚ã‚ã‚Š
 
 .duty_write2:
 	lda	effect_flag,x
@@ -55,13 +55,13 @@ do_effect:
 	lda	effect_flag,x
 	and	#%00001000
 	beq	.return7
-	lda	rest_flag,x		;ƒL[ƒIƒ“‚Ì‚Æ‚«‚Æ‚»‚¤‚Å‚È‚¢‚Æ‚«‚ÅƒAƒ‹ƒyƒWƒI‚Ì‹““®‚Í‚¿‚ª‚¤
-	and	#%00000010		;ƒL[ƒIƒ“ƒtƒ‰ƒO
+	lda	rest_flag,x		;ã‚­ãƒ¼ã‚ªãƒ³ã®ã¨ãã¨ãã†ã§ãªã„ã¨ãã§ã‚¢ãƒ«ãƒšã‚¸ã‚ªã®æŒ™å‹•ã¯ã¡ãŒã†
+	and	#%00000010		;ã‚­ãƒ¼ã‚ªãƒ³ãƒ•ãƒ©ã‚°
 	bne	.arpe_key_on
-	jsr	sound_high_speed_arpeggio	;ƒL[ƒIƒ“‚¶‚á‚È‚¢‚Æ‚«’Êí‚Í‚±‚ê
+	jsr	sound_high_speed_arpeggio	;ã‚­ãƒ¼ã‚ªãƒ³ã˜ã‚ƒãªã„ã¨ãé€šå¸¸ã¯ã“ã‚Œ
 	jmp	.return7
-.arpe_key_on				;ƒL[ƒIƒ“‚à“¯‚Ìê‡
-	jsr	note_enve_sub		;ƒƒ‚ƒŠ’²®‚¾‚¯‚ÅA‚±‚±‚Å‚Í‘‚«‚İ‚Í‚µ‚È‚¢
+.arpe_key_on				;ã‚­ãƒ¼ã‚ªãƒ³ã‚‚åŒæ™‚ã®å ´åˆ
+	jsr	note_enve_sub		;ãƒ¡ãƒ¢ãƒªèª¿æ•´ã ã‘ã§ã€ã“ã“ã§ã¯æ›¸ãè¾¼ã¿ã¯ã—ãªã„
 	jsr	frequency_set
 	jsr	arpeggio_address
 .return7:
@@ -73,36 +73,36 @@ do_effect:
 frequency_set:
 
 	ldx	<channel_selx2
-	lda	sound_sel,x		;‰¹ŠKƒf[ƒ^“Ç‚İo‚µ
-	and	#%00001111		;‰ºˆÊ4bit‚ğæ‚èo‚µ‚Ä
+	lda	sound_sel,x		;éŸ³éšãƒ‡ãƒ¼ã‚¿èª­ã¿å‡ºã—
+	and	#%00001111		;ä¸‹ä½4bitã‚’å–ã‚Šå‡ºã—ã¦
 	asl	a
 	tay
 
 	lda	<channel_sel
 	cmp	#$03
-	beq	noise_frequency_get	;‚Sƒ`ƒƒƒ“ƒlƒ‹–Ú‚È‚çƒmƒCƒYü”g”æ“¾‚Ö
+	beq	noise_frequency_get	;ï¼”ãƒãƒ£ãƒ³ãƒãƒ«ç›®ãªã‚‰ãƒã‚¤ã‚ºå‘¨æ³¢æ•°å–å¾—ã¸
 
-	lda	psg_frequency_table,y	;PSGü”g”ƒe[ƒuƒ‹‚©‚çLow‚ğ“Ç‚İo‚·
-	sta	sound_freq_low,x	;‘‚«‚İ
-	lda	psg_frequency_table+1,y	;PSGü”g”ƒe[ƒuƒ‹‚©‚çHigh‚ğ“Ç‚İo‚·
-	sta	sound_freq_high,x	;‘‚«‚İ
+	lda	psg_frequency_table,y	;PSGå‘¨æ³¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«ã‹ã‚‰Lowã‚’èª­ã¿å‡ºã™
+	sta	sound_freq_low,x	;æ›¸ãè¾¼ã¿
+	lda	psg_frequency_table+1,y	;PSGå‘¨æ³¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«ã‹ã‚‰Highã‚’èª­ã¿å‡ºã™
+	sta	sound_freq_high,x	;æ›¸ãè¾¼ã¿
 
 oct_set1:
 
-	lda	sound_sel,x		;‰¹ŠKƒf[ƒ^“Ç‚İo‚µ
-	lsr	a			;ãˆÊ4bit‚ğæ‚èo‚µ
+	lda	sound_sel,x		;éŸ³éšãƒ‡ãƒ¼ã‚¿èª­ã¿å‡ºã—
+	lsr	a			;ä¸Šä½4bitã‚’å–ã‚Šå‡ºã—
 	lsr	a			;
 	lsr	a			;
 	lsr	a			;
-	beq	freq_end		;ƒ[ƒ‚È‚ç‚»‚Ì‚Ü‚ÜI‚í‚è
+	beq	freq_end		;ã‚¼ãƒ­ãªã‚‰ãã®ã¾ã¾çµ‚ã‚ã‚Š
 	tay				;
 
 oct_set2:
 
-	lsr	sound_freq_high,x	;‰EƒVƒtƒg@––”ö‚ÍC‚Ö
-	ror	sound_freq_low,x	;C‚©‚ç‚Á‚Ä‚­‚é‚Å‚æ@‰Eƒ[ƒeƒCƒg
+	lsr	sound_freq_high,x	;å³ã‚·ãƒ•ãƒˆã€€æœ«å°¾ã¯Cã¸
+	ror	sound_freq_low,x	;Cã‹ã‚‰æŒã£ã¦ãã‚‹ã§ã‚ˆã€€å³ãƒ­ãƒ¼ãƒ†ã‚¤ãƒˆ
 	dey				;
-	bne	oct_set2		;ƒIƒNƒ^[ƒu•ªŒJ‚è•Ô‚·
+	bne	oct_set2		;ã‚ªã‚¯ã‚¿ãƒ¼ãƒ–åˆ†ç¹°ã‚Šè¿”ã™
 
 freq_end:
 	jsr	detune_write_sub
@@ -110,22 +110,22 @@ freq_end:
 
 
 noise_frequency_get:
-	lda	noise_frequency_table,y	;ü”g”ƒe[ƒuƒ‹‚©‚çLow‚ğ“Ç‚İo‚·
-	sta	sound_freq_low,x	;‘‚«‚İ
+	lda	noise_frequency_table,y	;å‘¨æ³¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«ã‹ã‚‰Lowã‚’èª­ã¿å‡ºã™
+	sta	sound_freq_low,x	;æ›¸ãè¾¼ã¿
 	jsr	detune_write_sub
-	lda	#$00			;$400F‚Íí‚É0
-	sta	sound_freq_high,x	;‘‚«‚İ
+	lda	#$00			;$400Fã¯å¸¸ã«0
+	sta	sound_freq_high,x	;æ›¸ãè¾¼ã¿
 	rts
 
 ;-----------------------
 sound_data_write:
 	ldx	<channel_selx2
 	ldy	<channel_selx4
-	
-	lda	register_low,x		;‰¹—Ê•Û
+
+	lda	register_low,x		;éŸ³é‡ä¿æŒ
 	ora	register_high,x
 	sta	$4000,y
-	
+
 	lda	sound_freq_low,x	;Low Write
 	sta	$4002,y
 	lda	sound_freq_high,x	;High Write
@@ -143,28 +143,28 @@ sound_data_read:
 
 	lda	[sound_add_low,x]
 ;----------
-;ƒ‹[ƒvˆ—1
+;ãƒ«ãƒ¼ãƒ—å‡¦ç†1
 loop_program
 	cmp	#$a0
 	bne	loop_program2
 	jsr	loop_sub
 	jmp	sound_data_read
 ;----------
-;ƒ‹[ƒvˆ—2(•ªŠò)
+;ãƒ«ãƒ¼ãƒ—å‡¦ç†2(åˆ†å²)
 loop_program2
 	cmp	#$a1
 	bne	bank_command		;duty_set
 	jsr	loop_sub2
 	jmp	sound_data_read
 ;----------
-;ƒoƒ“ƒNØ‚è‘Ö‚¦
+;ãƒãƒ³ã‚¯åˆ‡ã‚Šæ›¿ãˆ
 bank_command
 	cmp	#$ee
 	bne	duty_set
 	jsr	data_bank_addr
 	jmp	sound_data_read
 ;----------
-;ƒf[ƒ^ƒGƒ“ƒhİ’è
+;ãƒ‡ãƒ¼ã‚¿ã‚¨ãƒ³ãƒ‰è¨­å®š
 ;data_end:
 ;	cmp	#$ff
 ;	bne	duty_set
@@ -173,19 +173,19 @@ bank_command
 
 
 ;----------
-;‰¹Fİ’è
+;éŸ³è‰²è¨­å®š
 duty_set:
 	cmp	#$fe
 	bne	volume_set
 	jsr	sound_data_address
-	lda	[sound_add_low,x]	;‰¹Fƒf[ƒ^“Ç‚İo‚µ
+	lda	[sound_add_low,x]	;éŸ³è‰²ãƒ‡ãƒ¼ã‚¿èª­ã¿å‡ºã—
 	pha
-	bpl	duty_enverope_part	;ƒaƒ…[ƒeƒBƒGƒ“ƒxˆ—‚Ö
+	bpl	duty_enverope_part	;ãƒ‚ãƒ¥ãƒ¼ãƒ†ã‚£ã‚¨ãƒ³ãƒ™å‡¦ç†ã¸
 
 duty_select_part:
 	lda	effect_flag,x
 	and	#%11111011
-	sta	effect_flag,x		;ƒfƒ…[ƒeƒBƒGƒ“ƒxƒ[ƒv–³Œøw’è
+	sta	effect_flag,x		;ãƒ‡ãƒ¥ãƒ¼ãƒ†ã‚£ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ç„¡åŠ¹æŒ‡å®š
 	pla
 	asl	a
 	asl	a
@@ -194,7 +194,7 @@ duty_select_part:
 	asl	a
 	asl	a
 	ora	#%00110000		;hardware envelope & ... disable
-	sta	register_high,x		;‘‚«‚İ
+	sta	register_high,x		;æ›¸ãè¾¼ã¿
 	ora	register_low,x
 	ldy	<channel_selx4
 	sta	$4000,y
@@ -204,12 +204,12 @@ duty_select_part:
 duty_enverope_part:
 	lda	effect_flag,x
 	ora	#%00000100
-	sta	effect_flag,x		;ƒfƒ…[ƒeƒBƒGƒ“ƒxƒ[ƒv—LŒøw’è
+	sta	effect_flag,x		;ãƒ‡ãƒ¥ãƒ¼ãƒ†ã‚£ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—æœ‰åŠ¹æŒ‡å®š
 	pla
 	sta	duty_sel,x
 	asl	a
 	tay
-	lda	dutyenve_table,y	;ƒfƒ…[ƒeƒBƒGƒ“ƒxƒ[ƒvƒAƒhƒŒƒXİ’è
+	lda	dutyenve_table,y	;ãƒ‡ãƒ¥ãƒ¼ãƒ†ã‚£ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ã‚¢ãƒ‰ãƒ¬ã‚¹è¨­å®š
 	sta	duty_add_low,x
 	lda	dutyenve_table+1,y
 	sta	duty_add_high,x
@@ -217,26 +217,26 @@ duty_enverope_part:
 	jmp	sound_data_read
 
 ;----------
-;‰¹—Êİ’è
+;éŸ³é‡è¨­å®š
 volume_set:
 	cmp	#$fd
 	bne	rest_set
 	jsr	sound_data_address
 	lda	[sound_add_low,x]
 	sta	temporary
-	bpl	softenve_part		;ƒ\ƒtƒgƒGƒ“ƒxˆ—‚Ö
+	bpl	softenve_part		;ã‚½ãƒ•ãƒˆã‚¨ãƒ³ãƒ™å‡¦ç†ã¸
 
 volume_part:
 	lda	effect_flag,x
 	and	#%11111110
-	sta	effect_flag,x		;ƒ\ƒtƒgƒGƒ“ƒx–³Œøw’è
+	sta	effect_flag,x		;ã‚½ãƒ•ãƒˆã‚¨ãƒ³ãƒ™ç„¡åŠ¹æŒ‡å®š
 
 	lda	temporary
 	and	#%00001111
 	sta	register_low,x
 	ora	register_high,x
 	ldy	<channel_selx4
-	sta	$4000,y			;ƒ{ƒŠƒ…[ƒ€‘‚«‚İ
+	sta	$4000,y			;ãƒœãƒªãƒ¥ãƒ¼ãƒ æ›¸ãè¾¼ã¿
 	jsr	sound_data_address
 	jmp	sound_data_read
 
@@ -296,7 +296,7 @@ sweep_set:
 	jsr	sound_data_address
 	jmp	sound_data_read
 ;----------
-;ƒsƒbƒ`ƒGƒ“ƒxƒ[ƒvİ’è
+;ãƒ”ãƒƒãƒã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—è¨­å®š
 pitch_set:
 	cmp	#$f8
 	bne	arpeggio_set
@@ -304,7 +304,7 @@ pitch_set:
 	jmp	sound_data_read
 
 ;----------
-;ƒm[ƒgƒGƒ“ƒxƒ[ƒvİ’è
+;ãƒãƒ¼ãƒˆã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—è¨­å®š
 arpeggio_set:
 	cmp	#$f7
 	bne	freq_direct_set
@@ -312,7 +312,7 @@ arpeggio_set:
 	jmp	sound_data_read
 
 ;----------
-;Ä¶ü”g”’¼Úİ’è
+;å†ç”Ÿå‘¨æ³¢æ•°ç›´æ¥è¨­å®š
 freq_direct_set:
 	cmp	#$f6
 	bne	y_command_set
@@ -320,7 +320,7 @@ freq_direct_set:
 	rts
 
 ;----------
-;‚™ƒRƒ}ƒ“ƒhİ’è
+;ï½™ã‚³ãƒãƒ³ãƒ‰è¨­å®š
 y_command_set:
 	cmp	#$f5
 	bne	wait_set
@@ -328,7 +328,7 @@ y_command_set:
 	jmp	sound_data_read
 
 ;----------
-;ƒEƒFƒCƒgİ’è
+;ã‚¦ã‚§ã‚¤ãƒˆè¨­å®š
 wait_set:
 	cmp	#$f4
 	bne	oto_set
@@ -336,14 +336,14 @@ wait_set:
 	rts
 ;----------
 oto_set:
-	sta	sound_sel,x		;ˆ—‚Í‚Ü‚½Œã‚Å
+	sta	sound_sel,x		;å‡¦ç†ã¯ã¾ãŸå¾Œã§
 
 	jsr	sound_data_address
-	lda	[sound_add_low,x]	;‰¹’·“Ç‚İo‚µ
-	sta	sound_counter,x		;ÀÛ‚ÌƒJƒEƒ“ƒg’l‚Æ‚È‚è‚Ü‚·
+	lda	[sound_add_low,x]	;éŸ³é•·èª­ã¿å‡ºã—
+	sta	sound_counter,x		;å®Ÿéš›ã®ã‚«ã‚¦ãƒ³ãƒˆå€¤ã¨ãªã‚Šã¾ã™
 	jsr	sound_data_address
 
-	jsr	frequency_set		;ü”g”ƒZƒbƒg‚Ö
+	jsr	frequency_set		;å‘¨æ³¢æ•°ã‚»ãƒƒãƒˆã¸
 	jsr	effect_init
 	rts
 

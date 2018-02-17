@@ -10,8 +10,8 @@
 extern int message_flag;
 
 /* -------------------------------------------------------------
- * Ê¸»ú¤¬¥Ñ¥¹¥Ç¥ê¥ß¥¿¤«¤É¤¦¤«È½ÃÇ
- * ´Á»ú¥Õ¥¡¥¤¥ëÌ¾Ì¤ÂĞ±ş?
+ * æ–‡å­—ãŒãƒ‘ã‚¹ãƒ‡ãƒªãƒŸã‚¿ã‹ã©ã†ã‹åˆ¤æ–­
+ * æ¼¢å­—ãƒ•ã‚¡ã‚¤ãƒ«åæœªå¯¾å¿œ?
  * -------------------------------------------------------------*/
 int is_pathdelimiter(char c)
 {
@@ -25,7 +25,7 @@ int is_pathdelimiter(char c)
 
 
 /*--------------------------------------------------------------
-	Ê¸»úÎóptr¤ò¥Ñ¥¹/¥Õ¥¡¥¤¥ë¥Í¡¼¥à/³ÈÄ¥»Ò¤ËÊ¬³ä(path,name,ext¤Ë¥³¥Ô¡¼)
+	æ–‡å­—åˆ—ptrã‚’ãƒ‘ã‚¹/ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ¼ãƒ /æ‹¡å¼µå­ã«åˆ†å‰²(path,name,extã«ã‚³ãƒ”ãƒ¼)
  Input:
 
  Output:
@@ -35,7 +35,7 @@ void splitPath( const char *ptr, char *path, char *name, char *ext )
 {
 	const char *temp, *eopath, *eoname;
 
-	if( *ptr == '\0' ) {								/* ¥¨¥é¡¼¥Á¥§¥Ã¥¯ */
+	if( *ptr == '\0' ) {								/* ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯ */
 		*path = '\0';
 		*name = '\0';
 		*ext = '\0';
@@ -43,7 +43,7 @@ void splitPath( const char *ptr, char *path, char *name, char *ext )
 	}
 
 	temp = ptr;
-	while( *temp != '\0' ) ++temp;						/* °ìÅÙºÇ¸å¤Ş¤Ç¿Ê¤à */
+	while( *temp != '\0' ) ++temp;						/* ä¸€åº¦æœ€å¾Œã¾ã§é€²ã‚€ */
 	eoname = temp;
 	while( --temp != ptr ) {
 		if( is_pathdelimiter(*temp) ) {
@@ -68,7 +68,7 @@ void splitPath( const char *ptr, char *path, char *name, char *ext )
 
 
 /*--------------------------------------------------------------
-  	path + name + ext ¤ò ptr ¤Ë¥³¥Ô¡¼
+  	path + name + ext ã‚’ ptr ã«ã‚³ãƒ”ãƒ¼
  Input:
 
  Output:
@@ -84,11 +84,11 @@ void makePath( char *ptr, const char *path, const char *name, const char *ext )
 
 
 /*--------------------------------------------------------------
-	¥Õ¥¡¥¤¥ë¥µ¥¤¥º¤òµá¤á¤ë
+	ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºã‚’æ±‚ã‚ã‚‹
  Input:
 	char	fname	:FILE NAME
  Return:
-	¥Õ¥¡¥¤¥ë¥µ¥¤¥º(0¤Î¾ì¹ç¤Ï¥¨¥é¡¼)
+	ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚º(0ã®å ´åˆã¯ã‚¨ãƒ©ãƒ¼)
 --------------------------------------------------------------*/
 int getFileSize( char *ptr )
 {
@@ -109,30 +109,30 @@ int getFileSize( char *ptr )
 
 
 /*--------------------------------------------------------------
-	²ş¹Ô¥³¡¼¥É¤òÊÑ¹¹¤·¤Ê¤¬¤é¥Õ¥¡¥¤¥ë¤òÆÉ¤ß¹ş¤à
+	æ”¹è¡Œã‚³ãƒ¼ãƒ‰ã‚’å¤‰æ›´ã—ãªãŒã‚‰ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€
  Input:
 	char	fname	:FILE NAME
  Return:
-	¥İ¥¤¥ó¥¿(NULL¤Î¾ì¹ç¤Ï¥¨¥é¡¼)
+	ãƒã‚¤ãƒ³ã‚¿(NULLã®å ´åˆã¯ã‚¨ãƒ©ãƒ¼)
 --------------------------------------------------------------*/
 char *readTextFile( char *filename )
 {
-	
+
 	FILE *fp;
 	int size, sizeb, line_idx;
 	char *top, *p;
 	int c, c2;
-	/* ¥Õ¥¡¥¤¥ë¥ª¡¼¥×¥ó */
+	/* ãƒ•ã‚¡ã‚¤ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³ */
 	fp = fopen(filename, "rb");
 	if (!fp) {
 		if (message_flag == 0) {
-			printf( "%s : ¥Õ¥¡¥¤¥ë¤¬³«¤±¤Ş¤»¤ó\n", filename );
+			printf( "%s : ãƒ•ã‚¡ã‚¤ãƒ«ãŒé–‹ã‘ã¾ã›ã‚“\n", filename );
 		} else {
 			printf( "%s : Can't open file\n", filename );
 		}
 		return NULL;
 	}
-	/* ¥µ¥¤¥º¤ò¼èÆÀ */
+	/* ã‚µã‚¤ã‚ºã‚’å–å¾— */
 	fseek(fp, 0L, SEEK_END);
 	sizeb = ftell(fp);
 	fseek(fp, 0L, SEEK_SET);
@@ -140,19 +140,19 @@ char *readTextFile( char *filename )
 	if (sizeb == 0) {
 		fclose(fp);
 		if (message_flag == 0) {
-			printf( "%s : ¥Õ¥¡¥¤¥ë¥µ¥¤¥º¤¬0¤Ç¤¹\n", filename );
+			printf( "%s : ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºãŒ0ã§ã™\n", filename );
 		} else {
 			printf( "%s : File is empty\n", filename );
 		}
 		return NULL;
 	}
 	*/
-	/* ¥Ğ¥Ã¥Õ¥¡¤òºîÀ® */
-	top = malloc((sizeb + 1) * sizeof(c)); /* ËöÈø¤Ë¥Ê¥ëÊ¸»ú¤òÉÕ²Ã¤¹¤ë¤Î¤Ç1¥Ğ¥¤¥ÈÂ¿¤¯ */
+	/* ãƒãƒƒãƒ•ã‚¡ã‚’ä½œæˆ */
+	top = malloc((sizeb + 1) * sizeof(c)); /* æœ«å°¾ã«ãƒŠãƒ«æ–‡å­—ã‚’ä»˜åŠ ã™ã‚‹ã®ã§1ãƒã‚¤ãƒˆå¤šã */
 	if (top == NULL) {
 		fclose(fp);
 		if (message_flag == 0) {
-			printf( "%s : ¥á¥â¥ê¤¬³ÎÊİ½ĞÍè¤Ş¤»¤ó¤Ç¤·¤¿\n", filename );
+			printf( "%s : ãƒ¡ãƒ¢ãƒªãŒç¢ºä¿å‡ºæ¥ã¾ã›ã‚“ã§ã—ãŸ\n", filename );
 		} else {
 			printf( "%s : Out of memory\n", filename );
 		}
@@ -195,7 +195,7 @@ char *readTextFile( char *filename )
 					free(top);
 					printf("%s : ungetc failed\n", filename);
 					return NULL;
-					
+
 				}
 			}
 		} else if (c == '\x0a'){
@@ -207,7 +207,7 @@ char *readTextFile( char *filename )
 			fclose(fp);
 			free(top);
 			if (message_flag == 0) {
-				printf("%s : ÉÔÅ¬ÀÚ¤ÊÊ¸»ú'\\0'¤¬¸«¤Ä¤«¤ê¤Ş¤·¤¿(¤ª¤½¤é¤¯¥Ğ¥¤¥Ê¥ê¥Õ¥¡¥¤¥ë¤ò³«¤¤¤¿)\n", filename);
+				printf("%s : ä¸é©åˆ‡ãªæ–‡å­—'\\0'ãŒè¦‹ã¤ã‹ã‚Šã¾ã—ãŸ(ãŠãã‚‰ããƒã‚¤ãƒŠãƒªãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã„ãŸ)\n", filename);
 			} else {
 				printf("%s : Illegal charcter '\\0' found (file may be a binary file)\n", filename);
 			}
@@ -220,13 +220,13 @@ char *readTextFile( char *filename )
 	fclose(fp);
 	size = (p - top) / sizeof(c);
 	/*
-	printf("read %d byte -> store %d byte (\\0 ¤ò´Ş¤à) \n", sizeb, size);
+	printf("read %d byte -> store %d byte (\\0 ã‚’å«ã‚€) \n", sizeb, size);
 	printf("read %d line\n", line_idx);
 	*/
 	if (size > sizeb + 1) {
 		free(top);
 		if (message_flag == 0) {
-			printf("%s : ³ÎÊİ¤·¤¿¥á¥â¥ê°Ê¾å¤Ë¥Õ¥¡¥¤¥ë¤òÆÉ¤ß¹ş¤ß¤Ş¤·¤¿\n", filename);
+			printf("%s : ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªä»¥ä¸Šã«ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã¿ã¾ã—ãŸ\n", filename);
 		} else {
 			printf("%s : File was read exceeding allocated memory\n", filename);
 		}
@@ -253,7 +253,7 @@ static void initDmcPath(void)
 	p = getenv("DMC_INCLUDE");
 	if (p == NULL)
 		return;
-	
+
 	for (i = 0; i < 10; i++) {
 		pl = strchr(p, ';');
 
@@ -287,7 +287,7 @@ FILE *openDmc(char *name)
 	if (!dmcpath_inited) {
 		initDmcPath();
 	}
-	
+
 	fileptr = fopen(name, "rb");
 	if (fileptr != NULL) return(fileptr);
 
@@ -295,7 +295,7 @@ FILE *openDmc(char *name)
 		if (strlen(dmcpath[i])) {
 			strcpy(testname, dmcpath[i]);
 			strcat(testname, name);
-	
+
 			fileptr = fopen(testname, "rb");
 			if (fileptr != NULL) break;
 		}

@@ -9,7 +9,7 @@ MAKE_NES	.equ	0
 START_SONG	.equ	1
 	.endif
 
-	
+
 	.if MAKE_NES
 ; INES header setup
 	.inesprg	2	; 16k PRG bank
@@ -108,7 +108,7 @@ NMI:
 	bit	wantinit
 	bmi	song_init_1
 	bit	nmi_flag
-	bmi	do_rti		; ˆ——Ž‚¿
+	bmi	do_rti		; å‡¦ç†è½ã¡
 	dec	nmi_flag
 IRQ:
 do_rti:
@@ -121,7 +121,7 @@ song_init_1:
 	jmp	song_init
 
 
-RESET:				; ‚±‚Ì‚ ‚½‚è‚ÌXƒŒƒWƒXƒ^‚ÌŽg‚¢•û‚ÍQuietust‚³‚ñ‚Ì•û–@‚ðŽQl‚É‚µ‚Ü‚µ‚½
+RESET:				; ã“ã®ã‚ãŸã‚Šã®Xãƒ¬ã‚¸ã‚¹ã‚¿ã®ä½¿ã„æ–¹ã¯Quietustã•ã‚“ã®æ–¹æ³•ã‚’å‚è€ƒã«ã—ã¾ã—ãŸ
 	sei
 	cld
 	ldx	#$00
@@ -161,20 +161,20 @@ song_init:
 	stx	$4015
 	lda	songno
 	jsr	INIT
-	
+
 ;.wv:	lda	$2002		; unneeded?
 ;	bpl	.wv
-	
+
 	lda	#$80		; PPU NMI on
 	sta	$2000
 
 mainloop:
 	bit	nmi_flag	; wait NMI
 	bpl	mainloop
-	
+
 main_routine:
 
-read_pad:			;NESAudioRipping.TXT‚ðŽQl‚É‚µ‚Ü‚µ‚½
+read_pad:			;NESAudioRipping.TXTã‚’å‚è€ƒã«ã—ã¾ã—ãŸ
 	lda	pad_press
 	sta	pad_click
 	ldy	#$08
@@ -185,15 +185,15 @@ read_pad:			;NESAudioRipping.TXT‚ðŽQl‚É‚µ‚Ü‚µ‚½
 .nextbit:
 	lda	$4016	; A B Select Start Up Down Left Right
 	ror	a	; bit0 into C
-	txa		; 
+	txa		;
 	ror	a	; C into bit7
 	tax		; X=A=C<<7|X>>1
 	dey
 	bne	.nextbit
 	sta	pad_press
-	eor	pad_click		;‚±‚Ì‚ ‚½‚è‚Íkz-s‚³‚ñ‚Ìsnddrv3‚ðŽQl‚É‚µ‚Ü‚µ‚½
+	eor	pad_click		;ã“ã®ã‚ãŸã‚Šã¯kz-sã•ã‚“ã®snddrv3ã‚’å‚è€ƒã«ã—ã¾ã—ãŸ
 	and	pad_press
-	sta	pad_click		;¡‰Ÿ‚³‚ê‚½ƒ{ƒ^ƒ“
+	sta	pad_click		;ä»ŠæŠ¼ã•ã‚ŒãŸãƒœã‚¿ãƒ³
 
 check_pad:
 	lda	pad_click
@@ -208,7 +208,7 @@ check_pad:
 	txa
 	and	#$40
 	beq	.skipLeft
-	
+
 	dec	songno
 	bpl	.set_wantinit
 	inc	songno
@@ -217,7 +217,7 @@ check_pad:
 	dec	wantinit
 	bmi	.check_pad_end	;always
 
-; Right	
+; Right
 .skipLeft:
 	txa
 	and	#$80
@@ -238,13 +238,13 @@ check_pad:
 
  .bank 3
  .org $FFFA
-	
+
 	dw	NMI
 	dw	RESET
 	dw	IRQ
 
  .bank 4
 	; NROM should have 8KB CHR-ROM
-	
+
 	.endif
 

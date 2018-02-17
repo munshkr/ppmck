@@ -15,19 +15,19 @@ fds_sound_init:
 
 sound_fds:
 	ldx	<channel_selx2
-	dec	sound_counter,x		;ƒJƒEƒ“ƒ^‚¢‚Á‚±Œ¸‚ç‚µ
-	beq	.sound_read_go		;ƒ[ƒ‚È‚çƒTƒEƒ“ƒh“Ç‚Ýž‚Ý
-	jsr	fds_do_effect		;ƒ[ƒˆÈŠO‚È‚çƒGƒtƒFƒNƒg‚µ‚Ä
-	rts				;‚¨‚í‚è
+	dec	sound_counter,x		;ã‚«ã‚¦ãƒ³ã‚¿ã„ã£ã“æ¸›ã‚‰ã—
+	beq	.sound_read_go		;ã‚¼ãƒ­ãªã‚‰ã‚µã‚¦ãƒ³ãƒ‰èª­ã¿è¾¼ã¿
+	jsr	fds_do_effect		;ã‚¼ãƒ­ä»¥å¤–ãªã‚‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã—ã¦
+	rts				;ãŠã‚ã‚Š
 .sound_read_go
 	jsr	sound_fds_read
 	jsr	fds_do_effect
 	lda	rest_flag,x
-	and	#%00000010		;ƒL[ƒIƒ“ƒtƒ‰ƒO
-	beq	.end1			
-	jsr	sound_fds_write	;—§‚Á‚Ä‚¢‚½‚çƒf[ƒ^‘‚«o‚µ
+	and	#%00000010		;ã‚­ãƒ¼ã‚ªãƒ³ãƒ•ãƒ©ã‚°
+	beq	.end1
+	jsr	sound_fds_write	;ç«‹ã£ã¦ã„ãŸã‚‰ãƒ‡ãƒ¼ã‚¿æ›¸ãå‡ºã—
 	lda	rest_flag,x
-	and	#%11111101		;ƒL[ƒIƒ“ƒtƒ‰ƒOƒIƒt
+	and	#%11111101		;ã‚­ãƒ¼ã‚ªãƒ³ãƒ•ãƒ©ã‚°ã‚ªãƒ•
 	sta	rest_flag,x
 .end1
 	rts
@@ -37,7 +37,7 @@ fds_do_effect:
 	lda	rest_flag,x
 	and	#%00000001
 	beq	.duty_write2
-	rts				;‹x•„‚È‚çI‚í‚è
+	rts				;ä¼‘ç¬¦ãªã‚‰çµ‚ã‚ã‚Š
 
 .duty_write2:
 
@@ -63,13 +63,13 @@ fds_do_effect:
 	lda	effect_flag,x
 	and	#%00001000
 	beq	.hardenve_write2
-	lda	rest_flag,x		;ƒL[ƒIƒ“‚Ì‚Æ‚«‚Æ‚»‚¤‚Å‚È‚¢‚Æ‚«‚ÅƒAƒ‹ƒyƒWƒI‚Ì‹““®‚Í‚¿‚ª‚¤
-	and	#%00000010		;ƒL[ƒIƒ“ƒtƒ‰ƒO
+	lda	rest_flag,x		;ã‚­ãƒ¼ã‚ªãƒ³ã®ã¨ãã¨ãã†ã§ãªã„ã¨ãã§ã‚¢ãƒ«ãƒšã‚¸ã‚ªã®æŒ™å‹•ã¯ã¡ãŒã†
+	and	#%00000010		;ã‚­ãƒ¼ã‚ªãƒ³ãƒ•ãƒ©ã‚°
 	bne	.arpe_key_on
-	jsr	sound_fds_note_enve	;ƒL[ƒIƒ“‚¶‚á‚È‚¢‚Æ‚«’Êí‚Í‚±‚ê
+	jsr	sound_fds_note_enve	;ã‚­ãƒ¼ã‚ªãƒ³ã˜ã‚ƒãªã„ã¨ãé€šå¸¸ã¯ã“ã‚Œ
 	jmp	.hardenve_write2
-.arpe_key_on				;ƒL[ƒIƒ“‚à“¯Žž‚Ìê‡
-	jsr	note_enve_sub		;ƒƒ‚ƒŠ’²®‚¾‚¯‚ÅA‚±‚±‚Å‚Í‘‚«ž‚Ý‚Í‚µ‚È‚¢
+.arpe_key_on				;ã‚­ãƒ¼ã‚ªãƒ³ã‚‚åŒæ™‚ã®å ´åˆ
+	jsr	note_enve_sub		;ãƒ¡ãƒ¢ãƒªèª¿æ•´ã ã‘ã§ã€ã“ã“ã§ã¯æ›¸ãè¾¼ã¿ã¯ã—ãªã„
 	jsr	fds_freq_set
 	jsr	arpeggio_address
 .hardenve_write2:
@@ -89,34 +89,34 @@ fds_do_effect:
 ;------------------------------------------------
 fds_freq_set:
 	ldx	<channel_selx2
-	lda	sound_sel,x		;‰¹ŠKƒf[ƒ^“Ç‚Ýo‚µ
-	and	#%00001111		;‰ºˆÊ4bit‚ðŽæ‚èo‚µ‚Ä
+	lda	sound_sel,x		;éŸ³éšŽãƒ‡ãƒ¼ã‚¿èª­ã¿å‡ºã—
+	and	#%00001111		;ä¸‹ä½4bitã‚’å–ã‚Šå‡ºã—ã¦
 	asl	a
 	tay
 
-	lda	fds_frequency_table,y	;PSGŽü”g”ƒe[ƒuƒ‹‚©‚çLow‚ð“Ç‚Ýo‚·
-	sta	sound_freq_low,x	;‘‚«ž‚Ý
-	lda	fds_frequency_table+1,y	;PSGŽü”g”ƒe[ƒuƒ‹‚©‚çHigh‚ð“Ç‚Ýo‚·
-	sta	sound_freq_high,x	;‘‚«ž‚Ý
+	lda	fds_frequency_table,y	;PSGå‘¨æ³¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«ã‹ã‚‰Lowã‚’èª­ã¿å‡ºã™
+	sta	sound_freq_low,x	;æ›¸ãè¾¼ã¿
+	lda	fds_frequency_table+1,y	;PSGå‘¨æ³¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«ã‹ã‚‰Highã‚’èª­ã¿å‡ºã™
+	sta	sound_freq_high,x	;æ›¸ãè¾¼ã¿
 
 fds_oct_set1:
 
-	lda	sound_sel,x		;‰¹ŠKƒf[ƒ^“Ç‚Ýo‚µ
-	lsr	a			;ãˆÊ4bit‚ðŽæ‚èo‚µ
+	lda	sound_sel,x		;éŸ³éšŽãƒ‡ãƒ¼ã‚¿èª­ã¿å‡ºã—
+	lsr	a			;ä¸Šä½4bitã‚’å–ã‚Šå‡ºã—
 	lsr	a			;
 	lsr	a			;
 	lsr	a			;
 	cmp	#$06
-	beq	fds_freq_end		;ƒ[ƒ‚È‚ç‚»‚Ì‚Ü‚ÜI‚í‚è
+	beq	fds_freq_end		;ã‚¼ãƒ­ãªã‚‰ãã®ã¾ã¾çµ‚ã‚ã‚Š
 	tay
 
 fds_oct_set2:
 
-	lsr	sound_freq_high,x	;‰EƒVƒtƒg@––”ö‚ÍC‚Ö
-	ror	sound_freq_low,x	;C‚©‚çŽ‚Á‚Ä‚­‚é‚Å‚æ@‰Eƒ[ƒeƒCƒg
+	lsr	sound_freq_high,x	;å³ã‚·ãƒ•ãƒˆã€€æœ«å°¾ã¯Cã¸
+	ror	sound_freq_low,x	;Cã‹ã‚‰æŒã£ã¦ãã‚‹ã§ã‚ˆã€€å³ãƒ­ãƒ¼ãƒ†ã‚¤ãƒˆ
 	iny				;
 	cpy	#$06
-	bne	fds_oct_set2		;ƒIƒNƒ^[ƒu•ªŒJ‚è•Ô‚·
+	bne	fds_oct_set2		;ã‚ªã‚¯ã‚¿ãƒ¼ãƒ–åˆ†ç¹°ã‚Šè¿”ã™
 
 fds_freq_end:
 	jsr	detune_write_sub
@@ -129,27 +129,27 @@ fds_frequency_table:
 	dw	$0f35,$101c,$1110,$1214	;g+,a ,a+,b
 	dw	$0000,$0000,$0000,$0000
 
-;•½‹Ï—¥i‚É‹ß‚¢”’lj‚ðŠî€‚É‚µ‚Ä‚¢‚Ü‚·
-;Ž®‚ÍˆÈ‰º‚ÈŠ´‚¶‚Å
-;              111860.8 Hz  
-;Ä¶Žü”g” = ------------- x n(Žü”g”—pƒf[ƒ^)
+;å¹³å‡å¾‹ï¼ˆã«è¿‘ã„æ•°å€¤ï¼‰ã‚’åŸºæº–ã«ã—ã¦ã„ã¾ã™
+;å¼ã¯ä»¥ä¸‹ãªæ„Ÿã˜ã§
+;              111860.8 Hz
+;å†ç”Ÿå‘¨æ³¢æ•° = ------------- x n(å‘¨æ³¢æ•°ç”¨ãƒ‡ãƒ¼ã‚¿)
 ;	  	64 x 4096
-;o6a‚æ‚èã‚Ì‰¹‚Í‚Å‚Ü‚¹‚ñiƒe[ƒuƒ‹‚Ío6‚Ìƒ‚ƒmj
-;‰¹’ö‚ª‰º‚ª‚é‚Ù‚Ç‰¹’s‚É‚È‚è‚Ü‚·H
+;o6aã‚ˆã‚Šä¸Šã®éŸ³ã¯ã§ã¾ã›ã‚“ï¼ˆãƒ†ãƒ¼ãƒ–ãƒ«ã¯o6ã®ãƒ¢ãƒŽï¼‰
+;éŸ³ç¨‹ãŒä¸‹ãŒã‚‹ã»ã©éŸ³ç—´ã«ãªã‚Šã¾ã™ï¼Ÿ
 
-;        ƒ†ƒjƒ]ƒ“F	x1.0000
-;        ’Z‚Q“xF	x1.0595
-;        ’·‚Q“xF	x1.1225
-;        ’Z‚R“xF	x1.1892
-;        ’·‚R“xF	x1.2599
-;        Š®‘S‚S“xF	x1.3348
-;        ‘‚S“x(Œ¸‚T“x):x1.4142
-;        Š®‘S‚T“xF	x1.4983
-;        ‘‚T“x(’Z‚U“x):x1.5874 
-;        ’·‚U“xF	x1.6818
-;        Œ¸‚V“xF	x1.7818
-;        ’·‚V“xF	x1.8877
-;        ƒIƒNƒ^[ƒu F	x2.0000 
+;        ãƒ¦ãƒ‹ã‚¾ãƒ³ï¼š	x1.0000
+;        çŸ­ï¼’åº¦ï¼š	x1.0595
+;        é•·ï¼’åº¦ï¼š	x1.1225
+;        çŸ­ï¼“åº¦ï¼š	x1.1892
+;        é•·ï¼“åº¦ï¼š	x1.2599
+;        å®Œå…¨ï¼”åº¦ï¼š	x1.3348
+;        å¢—ï¼”åº¦(æ¸›ï¼•åº¦):x1.4142
+;        å®Œå…¨ï¼•åº¦ï¼š	x1.4983
+;        å¢—ï¼•åº¦(çŸ­ï¼–åº¦):x1.5874
+;        é•·ï¼–åº¦ï¼š	x1.6818
+;        æ¸›ï¼—åº¦ï¼š	x1.7818
+;        é•·ï¼—åº¦ï¼š	x1.8877
+;        ã‚ªã‚¯ã‚¿ãƒ¼ãƒ– ï¼š	x2.0000
 
 
 ;---------------------------------------------------------------
@@ -161,35 +161,35 @@ sound_fds_read:
 
 	lda	[sound_add_low,x]
 ;----------
-;ƒ‹[ƒvˆ—1
+;ãƒ«ãƒ¼ãƒ—å‡¦ç†1
 fds_loop_program
 	cmp	#$a0
 	bne	fds_loop_program2
 	jsr	loop_sub
 	jmp	sound_fds_read
 ;----------
-;ƒ‹[ƒvˆ—2(•ªŠò)
+;ãƒ«ãƒ¼ãƒ—å‡¦ç†2(åˆ†å²)
 fds_loop_program2
 	cmp	#$a1
 	bne	fds_bank_set
 	jsr	loop_sub2
 	jmp	sound_fds_read
 ;----------
-;ƒoƒ“ƒN‚ðØ‚è‘Ö‚¦‚Ü‚·`FDS”Å
+;ãƒãƒ³ã‚¯ã‚’åˆ‡ã‚Šæ›¿ãˆã¾ã™ã€œFDSç‰ˆ
 fds_bank_set
 	cmp	#$ee
 	bne	fds_wave_set
 	jsr	data_bank_addr
 	jmp	sound_fds_read
 ;----------
-;ƒf[ƒ^ƒGƒ“ƒhÝ’è
+;ãƒ‡ãƒ¼ã‚¿ã‚¨ãƒ³ãƒ‰è¨­å®š
 ;fds_data_end:
 ;	cmp	#$ff
 ;	bne	fds_wave_set
 ;	jsr	data_end_sub
 ;	jmp	sound_fds_read
 ;----------
-;‰¹FÝ’è
+;éŸ³è‰²è¨­å®š
 fds_wave_set:
 	cmp	#$fe
 	bne	fds_volume_set
@@ -221,40 +221,40 @@ wave_data_set:
 	jsr	sound_data_address
 	jmp	sound_fds_read
 ;----------
-;‰¹—ÊÝ’è
+;éŸ³é‡è¨­å®š
 fds_volume_set:
 	cmp	#$fd
 	bne	fds_rest_set
 	jsr	sound_data_address
 	lda	[sound_add_low,x]
-	bpl	fds_softenve_part	;bit7‚ª0‚È‚çƒ\ƒtƒgƒGƒ“ƒxˆ—‚Ö
+	bpl	fds_softenve_part	;bit7ãŒ0ãªã‚‰ã‚½ãƒ•ãƒˆã‚¨ãƒ³ãƒ™å‡¦ç†ã¸
 
 fds_volume_part:
-;	ora	#%10000000		;í‚É’¼Úƒ‚[ƒh
+;	ora	#%10000000		;å¸¸ã«ç›´æŽ¥ãƒ¢ãƒ¼ãƒ‰
 	and	#%10111111
 	sta	fds_volume
-;	sta	$4080			;ƒ{ƒŠƒ…[ƒ€•ƒn[ƒhƒGƒ“ƒx‘‚«ž‚Ý
+;	sta	$4080			;ãƒœãƒªãƒ¥ãƒ¼ãƒ ï¼†ãƒãƒ¼ãƒ‰ã‚¨ãƒ³ãƒ™æ›¸ãè¾¼ã¿
 
 	lda	effect_flag,x
 	and	#%11111110
-	sta	effect_flag,x		;ƒ\ƒtƒgƒGƒ“ƒx–³ŒøŽw’è
-	
+	sta	effect_flag,x		;ã‚½ãƒ•ãƒˆã‚¨ãƒ³ãƒ™ç„¡åŠ¹æŒ‡å®š
+
 	jsr	sound_data_address
 	jmp	sound_fds_read
 
 fds_softenve_part:
-	sta	softenve_sel,x		;0 ` 127‚Ì”Ô†
+	sta	softenve_sel,x		;0 ã€œ 127ã®ç•ªå·
 	asl	a
 	tay
-	lda	softenve_table,y	;ƒ\ƒtƒgƒGƒ“ƒxƒf[ƒ^ƒAƒhƒŒƒXÝ’è
+	lda	softenve_table,y	;ã‚½ãƒ•ãƒˆã‚¨ãƒ³ãƒ™ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹è¨­å®š
 	sta	soft_add_low,x
 	lda	softenve_table+1,y
 	sta	soft_add_low+1,x
-	
+
 	lda	effect_flag,x
 	ora	#%00000001
-	sta	effect_flag,x		;ƒ\ƒtƒgƒGƒ“ƒx—LŒøŽw’è
-	
+	sta	effect_flag,x		;ã‚½ãƒ•ãƒˆã‚¨ãƒ³ãƒ™æœ‰åŠ¹æŒ‡å®š
+
 	jsr	sound_data_address
 	jmp	sound_fds_read
 ;----------
@@ -287,42 +287,42 @@ fds_detune_set:
 	jsr	detune_sub
 	jmp	sound_fds_read
 ;----------
-;ƒsƒbƒ`ƒGƒ“ƒxƒ[ƒvÝ’è
+;ãƒ”ãƒƒãƒã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—è¨­å®š
 fds_pitch_set:
 	cmp	#$f8
 	bne	fds_arpeggio_set
 	jsr	pitch_set_sub
 	jmp	sound_fds_read
 ;----------
-;ƒm[ƒgƒGƒ“ƒxƒ[ƒvÝ’è
+;ãƒŽãƒ¼ãƒˆã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—è¨­å®š
 fds_arpeggio_set:
 	cmp	#$f7
 	bne	fds_freq_direct_set
 	jsr	arpeggio_set_sub
 	jmp	sound_fds_read
 ;----------
-;Ä¶Žü”g”’¼ÚÝ’è
+;å†ç”Ÿå‘¨æ³¢æ•°ç›´æŽ¥è¨­å®š
 fds_freq_direct_set:
 	cmp	#$f6
 	bne	fds_y_command_set
 	jsr	direct_freq_sub
 	rts
 ;----------
-;‚™ƒRƒ}ƒ“ƒhÝ’è
+;ï½™ã‚³ãƒžãƒ³ãƒ‰è¨­å®š
 fds_y_command_set:
 	cmp	#$f5
 	bne	fds_wait_set
 	jsr	y_sub
 	jmp	sound_fds_read
 ;----------
-;ƒEƒFƒCƒgÝ’è
+;ã‚¦ã‚§ã‚¤ãƒˆè¨­å®š
 fds_wait_set:
 	cmp	#$f4
 	bne	fds_hard_lfo_set
 	jsr	wait_sub
 	rts
 ;----------
-;FDS‰¹Œ¹ƒn[ƒhƒEƒFƒAƒGƒtƒFƒNƒgÝ’è
+;FDSéŸ³æºãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¨ãƒ•ã‚§ã‚¯ãƒˆè¨­å®š
 fds_hard_lfo_set:
 	cmp	#$f3
 	bne	fds_hwenv_set
@@ -357,33 +357,33 @@ fds_hard_lfo_data_set:
 	jsr	sound_data_address
 	jmp	sound_fds_read
 ;----------
-;ƒn[ƒhƒEƒFƒAƒ{ƒŠƒ…[ƒ€ƒGƒ“ƒxƒ[ƒv
+;ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ãƒœãƒªãƒ¥ãƒ¼ãƒ ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—
 fds_hwenv_set:
 	cmp	#$f0
 	bne	fds_oto_set
 	jsr	sound_data_address
 	lda	[sound_add_low,x]
 
-	and	#%01111111		;ˆê‰ž
+	and	#%01111111		;ä¸€å¿œ
 	sta	fds_volume
-;	sta	$4080			;ƒ{ƒŠƒ…[ƒ€•ƒn[ƒhƒGƒ“ƒx‘‚«ž‚Ý
+;	sta	$4080			;ãƒœãƒªãƒ¥ãƒ¼ãƒ ï¼†ãƒãƒ¼ãƒ‰ã‚¨ãƒ³ãƒ™æ›¸ãè¾¼ã¿
 
 	lda	effect_flag,x
 	and	#%11111110
-	sta	effect_flag,x		;ƒ\ƒtƒgƒGƒ“ƒx–³ŒøŽw’è
+	sta	effect_flag,x		;ã‚½ãƒ•ãƒˆã‚¨ãƒ³ãƒ™ç„¡åŠ¹æŒ‡å®š
 	jsr	sound_data_address
 	jmp	sound_fds_read
 ;----------
 fds_oto_set:
-	sta	sound_sel,x		;ˆ—‚Í‚Ü‚½Œã‚Å
+	sta	sound_sel,x		;å‡¦ç†ã¯ã¾ãŸå¾Œã§
 	jsr	sound_data_address
-	lda	[sound_add_low,x]	;‰¹’·“Ç‚Ýo‚µ
-	sta	sound_counter,x		;ŽÀÛ‚ÌƒJƒEƒ“ƒg’l‚Æ‚È‚è‚Ü‚·
+	lda	[sound_add_low,x]	;éŸ³é•·èª­ã¿å‡ºã—
+	sta	sound_counter,x		;å®Ÿéš›ã®ã‚«ã‚¦ãƒ³ãƒˆå€¤ã¨ãªã‚Šã¾ã™
 	jsr	sound_data_address
 	lda	#$00
 	sta	$4083
-;	sta	rest_flag,x		;effect_init‚Å‚â‚Á‚Ä‚é‚Ì‚Å‚¢‚ç‚È‚¢
-	jsr	fds_freq_set		;Žü”g”ƒZƒbƒg‚Ö
+;	sta	rest_flag,x		;effect_initã§ã‚„ã£ã¦ã‚‹ã®ã§ã„ã‚‰ãªã„
+	jsr	fds_freq_set		;å‘¨æ³¢æ•°ã‚»ãƒƒãƒˆã¸
 	lda	fds_volume
 	sta	$4080
 	jsr	effect_init
@@ -428,7 +428,7 @@ sound_fds_pitch_enve:
 ;-------------------------------------------------------------------------------
 sound_fds_note_enve
 	jsr	note_enve_sub
-	bcs	.end4			;0‚È‚Ì‚Å‘‚©‚È‚­‚Ä‚æ‚µ
+	bcs	.end4			;0ãªã®ã§æ›¸ã‹ãªãã¦ã‚ˆã—
 	jsr	fds_freq_set
 	jsr	sound_fds_write
 	jsr	arpeggio_address

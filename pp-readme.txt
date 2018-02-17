@@ -2,46 +2,46 @@ ppmck
 http://takamatsu.cool.ne.jp/dutycycle/ppmck.html
 Author: h7 (h7mailmail at yahoo co jp)
 
-¡‚±‚ê‚Í
-Izumi.‚ªŠJ”­‚µ‚½ƒtƒ@ƒ~ƒŠ[ƒRƒ“ƒsƒ…[ƒ^/NES—pƒTƒEƒ“ƒhƒhƒ‰ƒCƒomck‚ÆA
-Manbow-J‚ªŠJ”­‚µ‚½MMLƒRƒ“ƒpƒCƒ‰mckc‚ÉAƒoƒOƒtƒBƒbƒNƒX‚â‹@”\’Ç‰Á‚È‚Ç‚ğ‚µ‚½ƒo[ƒWƒ‡ƒ“‚Å‚·B 
-‰ü‘¢‚É‚ ‚½‚Á‚ÄA–^‹g‚É‚æ‚émck/mckc‚Ì‰ü‘¢”Å‚Å‚ ‚épmck/pmckc‚Å‚Ì•ÏX“_‚ğæ‚è‚ñ‚Å‚¢‚Ü‚·B
-‚Ü‚½A2ch‚ÌmckƒXƒŒ‚ÅŒöŠJ‚³‚ê‚½ƒpƒbƒ`‚àæ‚è‚ñ‚Å‚¢‚Ü‚·B‚³‚ç‚ÉVRC6, MMC5, FME-7‚Ì
-“¯g—p‚ğ‰Â”\‚É‚µ‚Ä‚¢‚Ü‚·B 
-‚È‚¨AƒA[ƒJƒCƒu‚É‚ÍMagicKit‚Ìˆê•”‚Å‚ ‚énesasm‚ğŠÜ‚ß‚Ä‚ ‚è‚Ü‚·B
+â– ã“ã‚Œã¯
+Izumi.æ°ãŒé–‹ç™ºã—ãŸãƒ•ã‚¡ãƒŸãƒªãƒ¼ã‚³ãƒ³ãƒ”ãƒ¥ãƒ¼ã‚¿/NESç”¨ã‚µã‚¦ãƒ³ãƒ‰ãƒ‰ãƒ©ã‚¤ãƒmckã¨ã€
+Manbow-Jæ°ãŒé–‹ç™ºã—ãŸMMLã‚³ãƒ³ãƒ‘ã‚¤ãƒ©mckcã«ã€ãƒã‚°ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‚„æ©Ÿèƒ½è¿½åŠ ãªã©ã‚’ã—ãŸãƒãƒ¼ã‚¸ãƒ§ãƒ³ã§ã™ã€‚ 
+æ”¹é€ ã«ã‚ãŸã£ã¦ã€æŸå‰æ°ã«ã‚ˆã‚‹mck/mckcã®æ”¹é€ ç‰ˆã§ã‚ã‚‹pmck/pmckcã§ã®å¤‰æ›´ç‚¹ã‚’å–ã‚Šè¾¼ã‚“ã§ã„ã¾ã™ã€‚
+ã¾ãŸã€2chã®mckã‚¹ãƒ¬ã§å…¬é–‹ã•ã‚ŒãŸãƒ‘ãƒƒãƒã‚‚å–ã‚Šè¾¼ã‚“ã§ã„ã¾ã™ã€‚ã•ã‚‰ã«VRC6, MMC5, FME-7ã®
+åŒæ™‚ä½¿ç”¨ã‚’å¯èƒ½ã«ã—ã¦ã„ã¾ã™ã€‚ 
+ãªãŠã€ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã«ã¯MagicKitã®ä¸€éƒ¨ã§ã‚ã‚‹nesasmã‚’å«ã‚ã¦ã‚ã‚Šã¾ã™ã€‚
 
 mck        by Izumi.   http://www.geocities.co.jp/Playtown-Denei/9628/
 mckc       by Manbow-J http://manbowj.hp.infoseek.co.jp/
 pmck/pmckc by BKC      http://www.emucamp.com/boukichi/
 mck/mckc patches   by [OK], 4-46, 4-356, 5-17, 5-95, 5-313, 5-658
-                      (4-46, 4-356, 5-95‚Í„‚Å‚·)
-mmc5.h     by 5-317?  (‚ ‚Õ‚ë‚¾491.lzh‚ÉŠÜ‚Ü‚ê‚Ä‚¢‚½‚à‚Ì‚ğg—p‚µ‚Ü‚µ‚½)
+                      (4-46, 4-356, 5-95ã¯ç§ã§ã™)
+mmc5.h     by 5-317?  (ã‚ã·ã‚ã 491.lzhã«å«ã¾ã‚Œã¦ã„ãŸã‚‚ã®ã‚’ä½¿ç”¨ã—ã¾ã—ãŸ)
 MagicKit assembler by J. H. Van Ornum, David Michel, Dave Shadoff, Charles Doty
                        http://www.magicengine.com/mkit/
 
-„‚ª‘‚¢‚½•”•ª‚Ìƒ\[ƒX‚É‚Â‚¢‚Ä‚Í©—R‚É—˜—p‚µ‚Ä‚­‚¾‚³‚¢B
-‘¼‚Ì•”•ª‚É‚Â‚¢‚Ä‚ÍŠeìÒ‚Ìw¦‚É]‚Á‚Ä‚­‚¾‚³‚¢B
+ç§ãŒæ›¸ã„ãŸéƒ¨åˆ†ã®ã‚½ãƒ¼ã‚¹ã«ã¤ã„ã¦ã¯è‡ªç”±ã«åˆ©ç”¨ã—ã¦ãã ã•ã„ã€‚
+ä»–ã®éƒ¨åˆ†ã«ã¤ã„ã¦ã¯å„ä½œè€…ã®æŒ‡ç¤ºã«å¾“ã£ã¦ãã ã•ã„ã€‚
 
-¡ƒtƒ@ƒCƒ‹\¬
+â– ãƒ•ã‚¡ã‚¤ãƒ«æ§‹æˆ
 mck
-|   pp-changes.txt              XV—š—ğ
-|   pp-readme.txt               ‚±‚Ìƒtƒ@ƒCƒ‹
-|   ppmck-ja.txt                ppmck/ppmckc‚Å‚ÌƒIƒŠƒWƒiƒ‹‚©‚ç‚Ì•ÏX“_‚Ìà–¾
+|   pp-changes.txt              æ›´æ–°å±¥æ­´
+|   pp-readme.txt               ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«
+|   ppmck-ja.txt                ppmck/ppmckcã§ã®ã‚ªãƒªã‚¸ãƒŠãƒ«ã‹ã‚‰ã®å¤‰æ›´ç‚¹ã®èª¬æ˜
 |   ppmck.txt
 |   
 +---bin
-|       nesasm.exe              MagicKit v2.51•t‘®‚ÌNESASM‚Ìƒ\[ƒX‚ğÄƒRƒ“ƒpƒCƒ‹‚µ‚½ƒoƒCƒiƒŠ
-|       ppmckc.exe              MML‚©‚çmckƒf[ƒ^‚Ö‚ÌƒRƒ“ƒo[ƒ^
+|       nesasm.exe              MagicKit v2.51ä»˜å±ã®NESASMã®ã‚½ãƒ¼ã‚¹ã‚’å†ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã—ãŸãƒã‚¤ãƒŠãƒª
+|       ppmckc.exe              MMLã‹ã‚‰mckãƒ‡ãƒ¼ã‚¿ã¸ã®ã‚³ãƒ³ãƒãƒ¼ã‚¿
 |       ppmckc_e.exe            English version
 |       
 +---doc
-|   |   mck.txt                 ƒIƒŠƒWƒiƒ‹mck‚ÌƒhƒLƒ…ƒƒ“ƒg
-|   |   mckc.txt                ƒIƒŠƒWƒiƒ‹mckc‚ÌƒhƒLƒ…ƒƒ“ƒg
-|   |   mckc_p040719.txt        5-658ƒpƒbƒ`‚ÌƒhƒLƒ…ƒƒ“ƒg
-|   |   pmck.txt                pmck‚ÌƒhƒLƒ…ƒƒ“ƒg
-|   |   pmckc.txt               pmckc‚ÌƒhƒLƒ…ƒƒ“ƒg
+|   |   mck.txt                 ã‚ªãƒªã‚¸ãƒŠãƒ«mckã®ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆ
+|   |   mckc.txt                ã‚ªãƒªã‚¸ãƒŠãƒ«mckcã®ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆ
+|   |   mckc_p040719.txt        5-658æ°ãƒ‘ãƒƒãƒã®ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆ
+|   |   pmck.txt                pmckã®ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆ
+|   |   pmckc.txt               pmckcã®ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆ
 |   |   
-|   +---nesasm                  nesasm‚ÌƒhƒLƒ…ƒƒ“ƒg
+|   +---nesasm                  nesasmã®ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆ
 |           CPU_INST.TXT
 |           HISTORY.TXT
 |           INDEX.TXT
@@ -49,9 +49,9 @@ mck
 |           USAGE.TXT
 |           
 +---nes_include
-|   |   ppmck.asm               ƒhƒ‰ƒCƒo‚ÌƒAƒZƒ“ƒuƒ‰ƒ\[ƒX
+|   |   ppmck.asm               ãƒ‰ãƒ©ã‚¤ãƒã®ã‚¢ã‚»ãƒ³ãƒ–ãƒ©ã‚½ãƒ¼ã‚¹
 |   |   
-|   +---ppmck                   ƒhƒ‰ƒCƒo‚ÌƒAƒZƒ“ƒuƒ‰ƒ\[ƒX
+|   +---ppmck                   ãƒ‰ãƒ©ã‚¤ãƒã®ã‚¢ã‚»ãƒ³ãƒ–ãƒ©ã‚½ãƒ¼ã‚¹
 |           dpcm.h
 |           fds.h
 |           fme7.h
@@ -67,19 +67,19 @@ mck
 |       mml2nsf.pl
 |       
 +---songs
-|       00startcmd.bat          ƒRƒ}ƒ“ƒhƒvƒƒ“ƒvƒg‚ğ‹N“®
+|       00startcmd.bat          ã‚³ãƒãƒ³ãƒ‰ãƒ—ãƒ­ãƒ³ãƒ—ãƒˆã‚’èµ·å‹•
 |       mkmultines.bat
 |       mkmultinsf.bat
 |       mknes.bat
-|       mknsf                   ˆê”­ƒRƒ“ƒpƒCƒ‹—pƒVƒFƒ‹ƒXƒNƒŠƒvƒg(Unix—p)
-|       mknsf.bat               ˆê”­ƒRƒ“ƒpƒCƒ‹—pƒoƒbƒ`
+|       mknsf                   ä¸€ç™ºã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ç”¨ã‚·ã‚§ãƒ«ã‚¹ã‚¯ãƒªãƒ—ãƒˆ(Unixç”¨)
+|       mknsf.bat               ä¸€ç™ºã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ç”¨ãƒãƒƒãƒ
 |       set_envs.sh
 |       set_envs.bat
 |
 +---src
-    |   compile_unix.sh         nesasm, ppmckc ƒRƒ“ƒpƒCƒ‹—pƒVƒFƒ‹ƒXƒNƒŠƒvƒg
+    |   compile_unix.sh         nesasm, ppmckc ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ç”¨ã‚·ã‚§ãƒ«ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
     |   
-    +---nesasm                  nesasmƒ\[ƒX
+    +---nesasm                  nesasmã‚½ãƒ¼ã‚¹
     |       assemble.c
     |       code.c
     |       command.c
@@ -108,7 +108,7 @@ mck
     |       symbol.c
     |       vars.h
     |       
-    +---ppmckc                  ppmckcƒ\[ƒX
+    +---ppmckc                  ppmckcã‚½ãƒ¼ã‚¹
             datamake.c
             file.c
             Makefile

@@ -15,7 +15,7 @@
 ;	----FFFF
 ;	freq=1.79/(F*16) Mhz
 ;
-;	
+;
 ;02	Ch. B freq data lower bits
 ;03	Ch. B freq data higher bits
 ;04	Ch. C freq data lower bits
@@ -37,8 +37,8 @@
 ;	||||+----------- Ch A Noise
 ;	|||+------------ Ch B Noise
 ;	||+------------- Ch C Noise
-;	|+-------------- 
-;	+--------------- 
+;	|+--------------
+;	+---------------
 ;
 ;
 ;08	Ch. A volume
@@ -68,15 +68,15 @@
 ;	    +----------- Continue
 ;
 ;
-;0e	
-;0f	
+;0e
+;0f
 
 FME7_ADDR	=	$C000
 FME7_DATA	=	$E000
 
 ;----------------------------------------
 fme7_sound_init:
-	ldy	#$0A			;Volume‚ğ0‚É
+	ldy	#$0A			;Volumeã‚’0ã«
 	lda	#$00
 .loop:
 	sty	FME7_ADDR
@@ -84,7 +84,7 @@ fme7_sound_init:
 	dey
 	cpy	#$07
 	bne	.loop
-	lda	#%11111000		;Tone‚ğEnable‚É
+	lda	#%11111000		;Toneã‚’Enableã«
 	sty	FME7_ADDR
 	sta	FME7_DATA
 	sta	fme7_reg7
@@ -93,8 +93,8 @@ fme7_sound_init:
 ;----------------------------------------
 fme7_dst_adr_set:
 	lda	<channel_sel
-	sec				
-	sbc	#PTRFME7		;FME7‚Ì‰½ƒ`ƒƒƒ“ƒlƒ‹–Ú‚©H
+	sec
+	sbc	#PTRFME7		;FME7ã®ä½•ãƒãƒ£ãƒ³ãƒãƒ«ç›®ã‹ï¼Ÿ
 	sta	fme7_ch_sel
 	asl	a
 	sta	fme7_ch_selx2
@@ -113,19 +113,19 @@ sound_fme7:
 	beq	.end1
 	jsr	fme7_dst_adr_set
 	ldx	<channel_selx2
-	dec	sound_counter,x		;ƒJƒEƒ“ƒ^‚¢‚Á‚±Œ¸‚ç‚µ
-	beq	.sound_read_go		;ƒ[ƒ‚È‚çƒTƒEƒ“ƒh“Ç‚İ‚İ
-	jsr	fme7_do_effect		;ƒ[ƒˆÈŠO‚È‚çƒGƒtƒFƒNƒg‚µ‚Ä
-	rts				;‚¨‚í‚è
+	dec	sound_counter,x		;ã‚«ã‚¦ãƒ³ã‚¿ã„ã£ã“æ¸›ã‚‰ã—
+	beq	.sound_read_go		;ã‚¼ãƒ­ãªã‚‰ã‚µã‚¦ãƒ³ãƒ‰èª­ã¿è¾¼ã¿
+	jsr	fme7_do_effect		;ã‚¼ãƒ­ä»¥å¤–ãªã‚‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã—ã¦
+	rts				;ãŠã‚ã‚Š
 .sound_read_go
 	jsr	sound_fme7_read
 	jsr	fme7_do_effect
 	lda	rest_flag,x
-	and	#%00000010		;ƒL[ƒIƒ“ƒtƒ‰ƒO
-	beq	.end1			
-	jsr	sound_fme7_write	;—§‚Á‚Ä‚¢‚½‚çƒf[ƒ^‘‚«o‚µ
+	and	#%00000010		;ã‚­ãƒ¼ã‚ªãƒ³ãƒ•ãƒ©ã‚°
+	beq	.end1
+	jsr	sound_fme7_write	;ç«‹ã£ã¦ã„ãŸã‚‰ãƒ‡ãƒ¼ã‚¿æ›¸ãå‡ºã—
 	lda	rest_flag,x
-	and	#%11111101		;ƒL[ƒIƒ“ƒtƒ‰ƒOƒIƒt
+	and	#%11111101		;ã‚­ãƒ¼ã‚ªãƒ³ãƒ•ãƒ©ã‚°ã‚ªãƒ•
 	sta	rest_flag,x
 .end1
 	rts
@@ -135,7 +135,7 @@ fme7_do_effect:
 	lda	rest_flag,x
 	and	#%00000001
 	beq	.duty_write2
-	rts				;‹x•„‚È‚çI‚í‚è
+	rts				;ä¼‘ç¬¦ãªã‚‰çµ‚ã‚ã‚Š
 
 .duty_write2:
 
@@ -161,13 +161,13 @@ fme7_do_effect:
 	lda	effect_flag,x
 	and	#%00001000
 	beq	.return7
-	lda	rest_flag,x		;ƒL[ƒIƒ“‚Ì‚Æ‚«‚Æ‚»‚¤‚Å‚È‚¢‚Æ‚«‚ÅƒAƒ‹ƒyƒWƒI‚Ì‹““®‚Í‚¿‚ª‚¤
-	and	#%00000010		;ƒL[ƒIƒ“ƒtƒ‰ƒO
+	lda	rest_flag,x		;ã‚­ãƒ¼ã‚ªãƒ³ã®ã¨ãã¨ãã†ã§ãªã„ã¨ãã§ã‚¢ãƒ«ãƒšã‚¸ã‚ªã®æŒ™å‹•ã¯ã¡ãŒã†
+	and	#%00000010		;ã‚­ãƒ¼ã‚ªãƒ³ãƒ•ãƒ©ã‚°
 	bne	.arpe_key_on
-	jsr	sound_fme7_note_enve	;ƒL[ƒIƒ“‚¶‚á‚È‚¢‚Æ‚«’Êí‚Í‚±‚ê
+	jsr	sound_fme7_note_enve	;ã‚­ãƒ¼ã‚ªãƒ³ã˜ã‚ƒãªã„ã¨ãé€šå¸¸ã¯ã“ã‚Œ
 	jmp	.return7
-.arpe_key_on				;ƒL[ƒIƒ“‚à“¯‚Ìê‡
-	jsr	note_enve_sub		;ƒƒ‚ƒŠ’²®‚¾‚¯‚ÅA‚±‚±‚Å‚Í‘‚«‚İ‚Í‚µ‚È‚¢
+.arpe_key_on				;ã‚­ãƒ¼ã‚ªãƒ³ã‚‚åŒæ™‚ã®å ´åˆ
+	jsr	note_enve_sub		;ãƒ¡ãƒ¢ãƒªèª¿æ•´ã ã‘ã§ã€ã“ã“ã§ã¯æ›¸ãè¾¼ã¿ã¯ã—ãªã„
 	jsr	fme7_freq_set
 	jsr	arpeggio_address
 .return7:
@@ -176,37 +176,37 @@ fme7_do_effect:
 fme7_freq_set:
 	ldx	<channel_selx2
 	lda	fme7_tone,x
-	cmp	#$02			;ƒmƒCƒY‚È‚ç
-	beq	fme7_noise_freq_set	;”ò‚Ô
-	lda	sound_sel,x		;‰¹ŠKƒf[ƒ^“Ç‚İo‚µ
-	and	#%00001111		;‰ºˆÊ4bit‚ğæ‚èo‚µ‚Ä
+	cmp	#$02			;ãƒã‚¤ã‚ºãªã‚‰
+	beq	fme7_noise_freq_set	;é£›ã¶
+	lda	sound_sel,x		;éŸ³éšãƒ‡ãƒ¼ã‚¿èª­ã¿å‡ºã—
+	and	#%00001111		;ä¸‹ä½4bitã‚’å–ã‚Šå‡ºã—ã¦
 	asl	a
 	tay
 
-	lda	fme7_frequency_table,y	;Sun5Bü”g”ƒe[ƒuƒ‹‚©‚çLow‚ğ“Ç‚İo‚·
-	sta	sound_freq_low,x	;‘‚«‚İ
-	lda	fme7_frequency_table+1,y	;Sun5Bü”g”ƒe[ƒuƒ‹‚©‚çHigh‚ğ“Ç‚İo‚·
-	sta	sound_freq_high,x	;‘‚«‚İ
+	lda	fme7_frequency_table,y	;Sun5Bå‘¨æ³¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«ã‹ã‚‰Lowã‚’èª­ã¿å‡ºã™
+	sta	sound_freq_low,x	;æ›¸ãè¾¼ã¿
+	lda	fme7_frequency_table+1,y	;Sun5Bå‘¨æ³¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«ã‹ã‚‰Highã‚’èª­ã¿å‡ºã™
+	sta	sound_freq_high,x	;æ›¸ãè¾¼ã¿
 
-	lda	sound_sel,x		;‰¹ŠKƒf[ƒ^“Ç‚İo‚µ
-	lsr	a			;ãˆÊ4bit‚ğæ‚èo‚µ
+	lda	sound_sel,x		;éŸ³éšãƒ‡ãƒ¼ã‚¿èª­ã¿å‡ºã—
+	lsr	a			;ä¸Šä½4bitã‚’å–ã‚Šå‡ºã—
 	lsr	a			;
 	lsr	a			;
 	lsr	a			;
-	beq	fme7_freq_end		;ƒ[ƒ‚È‚ç‚»‚Ì‚Ü‚ÜI‚í‚è
+	beq	fme7_freq_end		;ã‚¼ãƒ­ãªã‚‰ãã®ã¾ã¾çµ‚ã‚ã‚Š
 	tay
 
 fme7_oct_set2:
 
-	lsr	sound_freq_high,x	;‰EƒVƒtƒg@––”ö‚ÍC‚Ö
-	ror	sound_freq_low,x	;C‚©‚ç‚Á‚Ä‚­‚é‚Å‚æ@‰Eƒ[ƒeƒCƒg
+	lsr	sound_freq_high,x	;å³ã‚·ãƒ•ãƒˆã€€æœ«å°¾ã¯Cã¸
+	ror	sound_freq_low,x	;Cã‹ã‚‰æŒã£ã¦ãã‚‹ã§ã‚ˆã€€å³ãƒ­ãƒ¼ãƒ†ã‚¤ãƒˆ
 	dey				;
-	bne	fme7_oct_set2		;ƒIƒNƒ^[ƒu•ªŒJ‚è•Ô‚·
+	bne	fme7_oct_set2		;ã‚ªã‚¯ã‚¿ãƒ¼ãƒ–åˆ†ç¹°ã‚Šè¿”ã™
 
 FREQ_ROUND = 0
 	.if	FREQ_ROUND
 	lda	sound_freq_low,x
-	adc	#$00			;ÅŒã‚ÉØ‚èÌ‚Ä‚½C‚ğ‘«‚·(lÌŒÜ“ü)
+	adc	#$00			;æœ€å¾Œã«åˆ‡ã‚Šæ¨ã¦ãŸCã‚’è¶³ã™(å››æ¨äº”å…¥)
 	sta	sound_freq_low,x
 	bcc	fme7_freq_end
 	inc	sound_freq_high,x
@@ -218,8 +218,8 @@ fme7_freq_end:
 
 ;----
 fme7_noise_freq_set:
-	lda	sound_sel,x		;‰¹ŠKƒf[ƒ^“Ç‚İo‚µ
-	sta	sound_freq_low,x	;‚»‚Ì‚Ü‚Ü
+	lda	sound_sel,x		;éŸ³éšãƒ‡ãƒ¼ã‚¿èª­ã¿å‡ºã—
+	sta	sound_freq_low,x	;ãã®ã¾ã¾
 	rts
 ;------------------------------------------------
 fme7_frequency_table:
@@ -227,64 +227,64 @@ fme7_frequency_table:
 	dw	$0A9B,$0A02,$0973,$08EB	;   e  f  f+ g
 	dw	$086B,$07F2,$0780,$0714	;   g+ a  a+ b
 	dw	$0000,$0FE4,$0EFF,$0E28	; o-1  a  a+ b
-; Ä¶ü”g” = 1789772.5 / (n*32) [Hz]
+; å†ç”Ÿå‘¨æ³¢æ•° = 1789772.5 / (n*32) [Hz]
 
 ;------------------------------------------------
 sound_fme7_read:
 	ldx	<channel_selx2
-	
+
 	lda	sound_bank,x
 	jsr	change_bank
-	
+
 	lda	[sound_add_low,x]
 ;----------
-;ƒ‹[ƒvˆ—1
+;ãƒ«ãƒ¼ãƒ—å‡¦ç†1
 fme7_loop_program:
 	cmp	#$a0
 	bne	fme7_loop_program2
 	jsr	loop_sub
 	jmp	sound_fme7_read
 ;----------
-;ƒ‹[ƒvˆ—2(•ªŠò)
+;ãƒ«ãƒ¼ãƒ—å‡¦ç†2(åˆ†å²)
 fme7_loop_program2:
 	cmp	#$a1
 	bne	fme7_bank_command
 	jsr	loop_sub2
 	jmp	sound_fme7_read
 ;----------
-;ƒoƒ“ƒNØ‚è‘Ö‚¦
+;ãƒãƒ³ã‚¯åˆ‡ã‚Šæ›¿ãˆ
 fme7_bank_command:
 	cmp	#$ee
 	bne	fme7_wave_set
 	jsr	data_bank_addr
 	jmp	sound_fme7_read
 ;----------
-;ƒf[ƒ^ƒGƒ“ƒhİ’è
+;ãƒ‡ãƒ¼ã‚¿ã‚¨ãƒ³ãƒ‰è¨­å®š
 ;fme7_data_end:
 ;	cmp	#$ff
 ;	bne	fme7_wave_set
 ;	jsr	data_end_sub
 ;	jmp	sound_fme7_read
 ;----------
-;‰¹Fİ’è
+;éŸ³è‰²è¨­å®š
 fme7_wave_set:
 	cmp	#$fe
 	bne	fme7_volume_set
 
 	jsr	sound_data_address
 	ldy	fme7_ch_selx4
-	lda	fme7_enable_bit_tbl,y	;‚Ü‚¸ƒmƒCƒYƒrƒbƒgAƒg[ƒ“ƒrƒbƒg‚Ì—¼•û‚ğ0‚É‚·‚é
+	lda	fme7_enable_bit_tbl,y	;ã¾ãšãƒã‚¤ã‚ºãƒ“ãƒƒãƒˆã€ãƒˆãƒ¼ãƒ³ãƒ“ãƒƒãƒˆã®ä¸¡æ–¹ã‚’0ã«ã™ã‚‹
 	eor	#$FF
 	and	fme7_reg7
 	sta	fme7_reg7
-	lda	[sound_add_low,x]	;‰¹Fƒf[ƒ^“Ç‚İo‚µ
+	lda	[sound_add_low,x]	;éŸ³è‰²ãƒ‡ãƒ¼ã‚¿èª­ã¿å‡ºã—
 	and	#%00000011
 	sta	fme7_tone,x
 	clc
 	adc	fme7_ch_selx4
 	tay
-	lda	fme7_enable_bit_tbl,y	;ƒrƒbƒg“Ç‚İo‚µ
-	ora	fme7_reg7		;1‚Ì‚ğ1‚É‚·‚é(Disable)
+	lda	fme7_enable_bit_tbl,y	;ãƒ“ãƒƒãƒˆèª­ã¿å‡ºã—
+	ora	fme7_reg7		;1ã®ã‚’1ã«ã™ã‚‹(Disable)
 	sta	fme7_reg7		;
 	ldy	#$07
 	sty	FME7_ADDR
@@ -298,22 +298,22 @@ fme7_enable_bit_tbl:
 	db	%00010010, %00010000, %00000010, %00000000	; ch B
 	db	%00100100, %00100000, %00000100, %00000000	; ch C
 ;----------
-;‰¹—Êİ’è
+;éŸ³é‡è¨­å®š
 fme7_volume_set:
 	cmp	#$fd
 	bne	fme7_rest_set
 	jsr	sound_data_address
 	lda	[sound_add_low,x]
 	sta	temporary
-	bpl	fme7_softenve_part	;ƒ\ƒtƒgƒGƒ“ƒxˆ—‚Ö
+	bpl	fme7_softenve_part	;ã‚½ãƒ•ãƒˆã‚¨ãƒ³ãƒ™å‡¦ç†ã¸
 
 fme7_volume_part:
 	lda	effect_flag,x
 	and	#%11111110
-	sta	effect_flag,x		;ƒ\ƒtƒgƒGƒ“ƒx–³Œøw’è
+	sta	effect_flag,x		;ã‚½ãƒ•ãƒˆã‚¨ãƒ³ãƒ™ç„¡åŠ¹æŒ‡å®š
 
 	lda	temporary
-	and	#%00011111		;bit 4‚Íƒn[ƒhƒGƒ“ƒxƒ[ƒvƒtƒ‰ƒO
+	and	#%00011111		;bit 4ã¯ãƒãƒ¼ãƒ‰ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ãƒ•ãƒ©ã‚°
 	sta	fme7_volume,x
 	tay
 	jsr	fme7_volume_write_sub
@@ -337,7 +337,7 @@ fme7_rest_set:
 	lda	[sound_add_low,x]
 	sta	sound_counter,x
 
-	ldy	#$00			;ƒ{ƒŠƒ…[ƒ€0‚ğ‘‚«‚İ
+	ldy	#$00			;ãƒœãƒªãƒ¥ãƒ¼ãƒ 0ã‚’æ›¸ãè¾¼ã¿
 	jsr	fme7_volume_write_sub
 
 	jsr	sound_data_address
@@ -355,42 +355,42 @@ fme7_detune_set:
 	jsr	detune_sub
 	jmp	sound_fme7_read
 ;----------
-;ƒsƒbƒ`ƒGƒ“ƒxƒ[ƒvİ’è
+;ãƒ”ãƒƒãƒã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—è¨­å®š
 fme7_pitch_set:
 	cmp	#$f8
 	bne	fme7_arpeggio_set
 	jsr	pitch_set_sub
 	jmp	sound_fme7_read
 ;----------
-;ƒm[ƒgƒGƒ“ƒxƒ[ƒvİ’è
+;ãƒãƒ¼ãƒˆã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—è¨­å®š
 fme7_arpeggio_set:
 	cmp	#$f7
 	bne	fme7_freq_direct_set
 	jsr	arpeggio_set_sub
 	jmp	sound_fme7_read
 ;----------
-;Ä¶ü”g”’¼Úİ’è
+;å†ç”Ÿå‘¨æ³¢æ•°ç›´æ¥è¨­å®š
 fme7_freq_direct_set:
 	cmp	#$f6
 	bne	fme7_y_command_set
 	jsr	direct_freq_sub
 	rts
 ;----------
-;‚™ƒRƒ}ƒ“ƒhİ’è
+;ï½™ã‚³ãƒãƒ³ãƒ‰è¨­å®š
 fme7_y_command_set:
 	cmp	#$f5
 	bne	fme7_wait_set
 	jsr	y_sub
 	jmp	sound_fme7_read
 ;----------
-;ƒEƒFƒCƒgİ’è
+;ã‚¦ã‚§ã‚¤ãƒˆè¨­å®š
 fme7_wait_set:
 	cmp	#$f4
 	bne	fme7_hard_speed_set
 	jsr	wait_sub
 	rts
 ;----------
-;ƒn[ƒhƒEƒFƒAƒGƒ“ƒxƒ[ƒv‘¬“xİ’è
+;ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—é€Ÿåº¦è¨­å®š
 fme7_hard_speed_set:
 	cmp	#$f2
 	bne	fme7_noise_set
@@ -407,7 +407,7 @@ fme7_hard_speed_set:
 	jsr	sound_data_address
 	jmp	sound_fme7_read
 ;----------
-;ƒmƒCƒYü”g”İ’è
+;ãƒã‚¤ã‚ºå‘¨æ³¢æ•°è¨­å®š
 fme7_noise_set:
 	cmp	#$f1
 	bne	fme7_oto_set
@@ -420,12 +420,12 @@ fme7_noise_set:
 	jmp	sound_fme7_read
 ;----------
 fme7_oto_set:
-	sta	sound_sel,x		;ˆ—‚Í‚Ü‚½Œã‚Å
+	sta	sound_sel,x		;å‡¦ç†ã¯ã¾ãŸå¾Œã§
 	jsr	sound_data_address
-	lda	[sound_add_low,x]	;‰¹’·“Ç‚İo‚µ
-	sta	sound_counter,x		;ÀÛ‚ÌƒJƒEƒ“ƒg’l‚Æ‚È‚è‚Ü‚·
+	lda	[sound_add_low,x]	;éŸ³é•·èª­ã¿å‡ºã—
+	sta	sound_counter,x		;å®Ÿéš›ã®ã‚«ã‚¦ãƒ³ãƒˆå€¤ã¨ãªã‚Šã¾ã™
 	jsr	sound_data_address
-	jsr	fme7_freq_set		;ü”g”ƒZƒbƒg‚Ö
+	jsr	fme7_freq_set		;å‘¨æ³¢æ•°ã‚»ãƒƒãƒˆã¸
 	jsr	effect_init
 	rts
 ;-------------------------------------------------------------------------------
@@ -436,9 +436,9 @@ sound_fme7_write:
 fme7_write:
 	lda	fme7_tone,x
 	cmp	#$02
-	beq	fme7_noise_write	;ƒmƒCƒY‚ÍƒmƒCƒYü”g”‚ğo—Í
+	beq	fme7_noise_write	;ãƒã‚¤ã‚ºæ™‚ã¯ãƒã‚¤ã‚ºå‘¨æ³¢æ•°ã‚’å‡ºåŠ›
 
-	ldy	fme7_ch_selx2		;ü”g”ƒŒƒWƒXƒ^”Ô†
+	ldy	fme7_ch_selx2		;å‘¨æ³¢æ•°ãƒ¬ã‚¸ã‚¹ã‚¿ç•ªå·
 
 	lda	sound_freq_low,x
 	sty	FME7_ADDR
@@ -457,18 +457,18 @@ fme7_noise_write:
 	sta	FME7_DATA
 	rts
 ;----------------------------------------
-;ƒ{ƒŠƒ…[ƒ€‘‚«‚İAƒGƒ“ƒxƒ[ƒvƒVƒFƒCƒv
+;ãƒœãƒªãƒ¥ãƒ¼ãƒ æ›¸ãè¾¼ã¿ã€ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ã‚·ã‚§ã‚¤ãƒ—
 ; input: Y
 fme7_volume_write_sub:
 	cpy	#$10
 	bcc	.write_vol
-	tya				;ƒn[ƒhƒGƒ“ƒxƒ[ƒv‚Ì‚Æ‚«‚Í
+	tya				;ãƒãƒ¼ãƒ‰ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ã®ã¨ãã¯
 	and	#%00001111
-	ldy	#$0D			;ƒGƒ“ƒxƒ[ƒvƒVƒFƒCƒv‚à
+	ldy	#$0D			;ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ã‚·ã‚§ã‚¤ãƒ—ã‚‚
 	sty	FME7_ADDR
 	sta	FME7_DATA
 	ldy	#$10
-.write_vol:				;’Êíƒ{ƒŠƒ…[ƒ€‚Ì‚Æ‚«‚Í‚±‚±‚¾‚¯
+.write_vol:				;é€šå¸¸ãƒœãƒªãƒ¥ãƒ¼ãƒ ã®ã¨ãã¯ã“ã“ã ã‘
 	lda	fme7_vol_regno
 	sta	FME7_ADDR
 	sty	FME7_DATA
@@ -492,7 +492,7 @@ sound_fme7_pitch_enve:
 ;-------------------------------------------------------------------------------
 sound_fme7_note_enve
 	jsr	note_enve_sub
-	bcs	.end4			;0‚È‚Ì‚Å‘‚©‚È‚­‚Ä‚æ‚µ
+	bcs	.end4			;0ãªã®ã§æ›¸ã‹ãªãã¦ã‚ˆã—
 	jsr	fme7_freq_set
 	jsr	fme7_write
 .end4

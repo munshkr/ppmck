@@ -33,48 +33,48 @@ int double2int(double d);
 #define arraysizeof(x) ( sizeof(x) / sizeof(x[0]) )
 
 
-int		error_flag;					// ¥¨¥é¡¼¤¬È¯À¸¤·¤Æ¤¤¤ë¤È0°Ê³°¤Ë
-int		octave;						// ÊÑ´¹Ãæ¤Î¥ª¥¯¥¿¡¼¥Ö
-double	length;						// ÊÑ´¹Ãæ¤Î²»Ä¹
-int		octave_flag = 0;			// ¥ª¥¯¥¿¡¼¥Ö¥¹¥¤¥Ã¥Á ("<" ">" ¤Î½èÍı)
-int		gate_denom = 8;				//q¥³¥Ş¥ó¥É¤ÎÊ¬Êì
-int		pitch_correction = 0;			//³ÈÄ¥²»¸»¤Î¥Ç¥£¥Á¥å¡¼¥ó¡¢¥Ô¥Ã¥Á¥¨¥ó¥Ù¥í¡¼¥×¡¢LFO¤ÎÊı¸ş½¤Àµ
+int		error_flag;					// ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã‚‹ã¨0ä»¥å¤–ã«
+int		octave;						// å¤‰æ›ä¸­ã®ã‚ªã‚¯ã‚¿ãƒ¼ãƒ–
+double	length;						// å¤‰æ›ä¸­ã®éŸ³é•·
+int		octave_flag = 0;			// ã‚ªã‚¯ã‚¿ãƒ¼ãƒ–ã‚¹ã‚¤ãƒƒãƒ ("<" ">" ã®å‡¦ç†)
+int		gate_denom = 8;				//qã‚³ãƒãƒ³ãƒ‰ã®åˆ†æ¯
+int		pitch_correction = 0;			//æ‹¡å¼µéŸ³æºã®ãƒ‡ã‚£ãƒãƒ¥ãƒ¼ãƒ³ã€ãƒ”ãƒƒãƒã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ã€LFOã®æ–¹å‘ä¿®æ­£
 
-int		loop_flag;					// ¥Á¥ã¥ó¥Í¥ë¥ë¡¼¥×¤¬¤¢¤ë¤È0°Ê³°¤Ë
+int		loop_flag;					// ãƒãƒ£ãƒ³ãƒãƒ«ãƒ«ãƒ¼ãƒ—ãŒã‚ã‚‹ã¨0ä»¥å¤–ã«
 int		putAsm_pos;					//
 
-char		*mml_file_name;				//¸½ºß¤Îmml¥Õ¥¡¥¤¥ëÌ¾(¥¢¥»¥ó¥Ö¥é½ĞÎÏ»ş¤Ë»ÈÍÑ)
+char		*mml_file_name;				//ç¾åœ¨ã®mmlãƒ•ã‚¡ã‚¤ãƒ«å(ã‚¢ã‚»ãƒ³ãƒ–ãƒ©å‡ºåŠ›æ™‚ã«ä½¿ç”¨)
 int		mml_line_pos;				//
 int		mml_trk;				//
 
-int		nest;						// ¥ê¥Ô¡¼¥È¤Î¥Í¥¹¥È¿ô
-LEN		track_count[MML_MAX][_TRACK_MAX][2];			// ²»Ä¹¥È¡¼¥¿¥ëÊİ´É¾ì½ê(²»Ä¹/¥Õ¥ì¡¼¥à/¥ë¡¼¥×²»Ä¹/¥ë¡¼¥×¥Õ¥ì¡¼¥à)
+int		nest;						// ãƒªãƒ”ãƒ¼ãƒˆã®ãƒã‚¹ãƒˆæ•°
+LEN		track_count[MML_MAX][_TRACK_MAX][2];			// éŸ³é•·ãƒˆãƒ¼ã‚¿ãƒ«ä¿ç®¡å ´æ‰€(éŸ³é•·/ãƒ•ãƒ¬ãƒ¼ãƒ /ãƒ«ãƒ¼ãƒ—éŸ³é•·/ãƒ«ãƒ¼ãƒ—ãƒ•ãƒ¬ãƒ¼ãƒ )
 
-int		volume_flag;				// ²»ÎÌ¤Î¾õÂÖ
-double		tbase = 0.625;						// ÊÑ´¹Ãæ¤Î[frame/count]³ä¹ç
+int		volume_flag;				// éŸ³é‡ã®çŠ¶æ…‹
+double		tbase = 0.625;						// å¤‰æ›ä¸­ã®[frame/count]å‰²åˆ
 
-int		transpose;					// ¸½ºß¤Î¥È¥é¥ó¥¹¥İ¡¼¥ºÃÍ
+int		transpose;					// ç¾åœ¨ã®ãƒˆãƒ©ãƒ³ã‚¹ãƒãƒ¼ã‚ºå€¤
 
-int		sndgen_flag = 0;			// ³ÈÄ¥²»¸»¥Õ¥é¥°
-// ¥È¥é¥Ã¥¯µö²Ä¥Õ¥é¥°
+int		sndgen_flag = 0;			// æ‹¡å¼µéŸ³æºãƒ•ãƒ©ã‚°
+// ãƒˆãƒ©ãƒƒã‚¯è¨±å¯ãƒ•ãƒ©ã‚°
 unsigned long	track_allow_flag = (TRACK(0)|TRACK(1)|TRACK(2)|NOISETRACK|DPCMTRACK);
-//¼Âºİ¤Ë»È¤Ã¤¿¥È¥é¥Ã¥¯
+//å®Ÿéš›ã«ä½¿ã£ãŸãƒˆãƒ©ãƒƒã‚¯
 unsigned long	actual_track_flag = 0;
-int		dpcm_track_num = 1;			// DPCM¥È¥é¥Ã¥¯
-int		fds_track_num = 0;			// FDS¥È¥é¥Ã¥¯
-int		vrc7_track_num = 0;			// VRC7¥È¥é¥Ã¥¯
-int		vrc6_track_num = 0;			// VRC6¥È¥é¥Ã¥¯
-int		n106_track_num = 0;			// ³ÈÄ¥²»¸»(namco106)»ÈÍÑ¥È¥é¥Ã¥¯¿ô
-int		fme7_track_num = 0;			// FME7¥È¥é¥Ã¥¯
-int		mmc5_track_num = 0;			// MMC5¥È¥é¥Ã¥¯
+int		dpcm_track_num = 1;			// DPCMãƒˆãƒ©ãƒƒã‚¯
+int		fds_track_num = 0;			// FDSãƒˆãƒ©ãƒƒã‚¯
+int		vrc7_track_num = 0;			// VRC7ãƒˆãƒ©ãƒƒã‚¯
+int		vrc6_track_num = 0;			// VRC6ãƒˆãƒ©ãƒƒã‚¯
+int		n106_track_num = 0;			// æ‹¡å¼µéŸ³æº(namco106)ä½¿ç”¨ãƒˆãƒ©ãƒƒã‚¯æ•°
+int		fme7_track_num = 0;			// FME7ãƒˆãƒ©ãƒƒã‚¯
+int		mmc5_track_num = 0;			// MMC5ãƒˆãƒ©ãƒƒã‚¯
 
 
-int		bank_sel[_TRACK_MAX];	// 0 ¡Á 127 = ¥Ğ¥ó¥¯ÀÚ¤êÂØ¤¨ , 0xFF = ÊÑ¹¹Ìµ¤·
+int		bank_sel[_TRACK_MAX];	// 0 ã€œ 127 = ãƒãƒ³ã‚¯åˆ‡ã‚Šæ›¿ãˆ , 0xFF = å¤‰æ›´ç„¡ã—
 int		allow_bankswitching = 1;
 int		dpcm_bankswitch = 0;
 int		auto_bankswitch = 0;
 int		curr_bank = 0x00;
-int		bank_usage[128];		//bank_usage[0]¤Ïº£¤Î¤È¤³¤íÌµ°ÕÌ£
+int		bank_usage[128];		//bank_usage[0]ã¯ä»Šã®ã¨ã“ã‚ç„¡æ„å‘³
 int		bank_maximum = 0;		//8KB
 int		dpcm_extra_bank_num = 0;	//8KB
 
@@ -84,13 +84,13 @@ int pitch_env_tbl[_PITCH_ENV_MAX][1024];	// Pitch Envelope
 int pitch_mod_tbl[_PITCH_MOD_MAX][   5];	// LFO
 int arpeggio_tbl[  _ARPEGGIO_MAX][1024];	// Arpeggio
 int fm_tone_tbl[    _FM_TONE_MAX][2+64];	// FM Tone
-int vrc7_tone_tbl[_VRC7_TONE_MAX][2+64];	// VRC7 Tone(ÇÛÎó¿ô¤Ï»ÈÍÑ´Ø¿ô¤Î´Ø·¸)
+int vrc7_tone_tbl[_VRC7_TONE_MAX][2+64];	// VRC7 Tone(é…åˆ—æ•°ã¯ä½¿ç”¨é–¢æ•°ã®é–¢ä¿‚)
 int n106_tone_tbl[_N106_TONE_MAX][2+64];	// NAMCO106 Tone
 int hard_effect_tbl[_HARD_EFFECT_MAX][5];	// FDS Hardware Effect
 int effect_wave_tbl[_EFFECT_WAVE_MAX][33];	// Effect Wave (4088) Data
 
 DPCMTBL	dpcm_tbl[_DPCM_MAX];				// DPCM
-unsigned char	*dpcm_data;	// DPCMÅ¸³«¥Ç¡¼¥¿
+unsigned char	*dpcm_data;	// DPCMå±•é–‹ãƒ‡ãƒ¼ã‚¿
 int	dpcm_size = 0;
 int	dpcm_reststop = 0;
 
@@ -102,7 +102,7 @@ char	*programer = NULL;
 
 const	char	str_track[] = _TRACK_STR;
 
-// ¥¨¥é¡¼ÈÖ¹æ
+// ã‚¨ãƒ©ãƒ¼ç•ªå·
 enum {
 	COMMAND_NOT_DEFINED = 0,
 	DATA_ENDED_BY_LOOP_DEPTH_EXCEPT_0,
@@ -156,58 +156,58 @@ enum {
 	UNUSE_COMMAND_IN_THIS_TRACK,
 };
 
-// ¥¨¥é¡¼Ê¸»úÎó
+// ã‚¨ãƒ©ãƒ¼æ–‡å­—åˆ—
 const	char	*ErrorlMessage[] = {
-	"»ØÄê¤Î¥³¥Ş¥ó¥É¤Ï¤¢¤ê¤Ş¤»¤ó",							"Command not defined",
-	"¥ë¡¼¥×¿¼ÅÙ¤¬0°Ê³°¤Ç¥Ç¡¼¥¿¤¬½ªÎ»¤·¤Ş¤·¤¿",				"Data ended by loop depth except 0",
-	"ÀßÄê¤Ë¸í¤ê¤¬¤¢¤ê¤Ş¤¹",									"Definition is wrong",
-	"PSG²»¿§ÀßÄê¤Ë¸í¤ê¤¬¤¢¤ê¤Ş¤¹",							"PSG Tone definition is wrong",
-	"¥¨¥ó¥Ù¥í¡¼¥×ÀßÄê¤Ë¸í¤ê¤¬¤¢¤ê¤Ş¤¹",						"Envelope definition is wrong",
-	"¥Ô¥Ã¥Á¥¨¥ó¥Ù¥í¡¼¥×ÀßÄê¤Ë¸í¤ê¤¬¤¢¤ê¤Ş¤¹",				"Pitch envelope definition is wrong",
-	"¥Î¡¼¥È¥¨¥ó¥Ù¥í¡¼¥×ÀßÄê¤Ë¸í¤ê¤¬¤¢¤ê¤Ş¤¹",				"Note envelope definition is wrong",
-	"LFOÀßÄê¤Ë¸í¤ê¤¬¤¢¤ê¤Ş¤¹",								"LFO definition is wrong",
-	"DPCMÀßÄê¤Ë¸í¤ê¤¬¤¢¤ê¤Ş¤¹",								"DPCM definition is wrong",
-	"DPCMÀßÄê¤Î¥Ñ¥é¥á¡¼¥¿¤¬Â­¤ê¤Ş¤»¤ó",						"DPCM parameter is lacking",
-	"FM²»¿§ÀßÄê¤Ë¸í¤ê¤¬¤¢¤ê¤Ş¤¹",							"FM tone definition is wrong",
-	"FMÍÑ²»¿§¤Î¥Ñ¥é¥á¡¼¥¿¤¬°Û¾ï¤Ç¤¹",						"Abnormal parameters of FM tone",
-	"namco106²»¿§ÀßÄê¤Ë¸í¤ê¤¬¤¢¤ê¤Ş¤¹",						"namco106 tone definition is wrong",
-	"namco106ÍÑ²»¿§¤Î¥Ñ¥é¥á¡¼¥¿¤¬°Û¾ï¤Ç¤¹",					"Abnormal parameters of namco106 tone",
-	"·«¤êÊÖ¤·²ó¿ô¤ÎÃÍ¤¬°Û¾ï¤Ç¤¹",							"Abnormal value of repeat count",
-	"²»¿§ÈÖ¹æ¤¬°Û¾ï¤Ç¤¹",									"Abnormal tone number",
-	"¥¨¥ó¥Ù¥í¡¼¥×ÈÖ¹æ¤¬°Û¾ï¤Ç¤¹",							"Abnormal envelope number",
-	"¥¨¥ó¥Ù¥í¡¼¥×¤ÎÃÍ¤¬°Û¾ï¤Ç¤¹",							"Abnormal envelope value",
-	"¥Ô¥Ã¥Á¥¨¥ó¥Ù¥í¡¼¥×ÈÖ¹æ¤ÎÃÍ¤¬°Û¾ï¤Ç¤¹",					"Abnormal pitch envelope number",
-	"¥Î¡¼¥È¥¨¥ó¥Ù¥í¡¼¥×ÈÖ¹æ¤ÎÃÍ¤¬°Û¾ï¤Ç¤¹",					"Abnormal note envelope number",
-	"LFOÈÖ¹æ¤ÎÃÍ¤¬°Û¾ï¤Ç¤¹",								"Abnormal LFO number",
-	"²»Äø¤ÎÃÍ¤¬°Û¾ï¤Ç¤¹",									"Abnormal pitch value",
-	"²»ÎÌ¤ÎÃÍ¤¬°Û¾ï¤Ç¤¹",									"Abnormal volume value",
-	"¥Æ¥ó¥İ¤ÎÃÍ¤¬°Û¾ï¤Ç¤¹",									"Abnormal tempo value",
-	"¥¯¥©¥ó¥¿¥¤¥º¤ÎÃÍ¤¬°Û¾ï¤Ç¤¹",							"Abnormal quantize value",
-	"¥·¥ã¥Ã¥Õ¥ë¥¯¥©¥ó¥¿¥¤¥º¤ÎÃÍ¤¬°Û¾ï¤Ç¤¹",							"Abnormal shuffle quantize value",
-	"¥¹¥¤¡¼¥×¤ÎÃÍ¤¬°Û¾ï¤Ç¤¹",								"Abnormal sweep value",
-	"¥Ç¥£¥Á¥å¡¼¥ó¤ÎÃÍ¤¬°Û¾ï¤Ç¤¹",							"Abnormal detune value",
-	"¥Ô¥Ã¥Á¥·¥Õ¥ÈÎÌ¤ÎÃÍ¤¬°Û¾ï¤Ç¤¹",							"Abnormal pitch shift amount value",
-	"²»ÎÌ¤¬»ØÄê¤µ¤ì¤Æ¤¤¤Ê¤¤¾õÂÖ¤ÇÁêÂĞ²»ÎÌ¤ò»ÈÍÑ¤·¤Ş¤·¤¿",	"Relative volume was used without specifying volume",
-	"ÁêÂĞ²»ÎÌ(+)¤Ç²»ÎÌ¤ÎÈÏ°Ï¤òÄ¶¤¨¤Ş¤·¤¿",					"Volume range over(+) of relative volume",
-	"ÁêÂĞ²»ÎÌ(-)¤Ç²»ÎÌ¤ÎÈÏ°Ï¤òÄ¶¤¨¤Ş¤·¤¿",					"Volume range under(-) of relative volume",
-	"Ï¢Éä½èÍı¤ÎÅÓÃæ¤Ç¥Ç¡¼¥¿¤¬½ªÎ»¤·¤Ş¤·¤¿",					"Data ended by Continuation note",
-	"DPCM¥Õ¥¡¥¤¥ë¤¬¤¢¤ê¤Ş¤»¤ó",								"DPCM file not found",
-	"DPCM¥Ç¡¼¥¿¤Î¥µ¥¤¥º¤¬4081byte¤òÄ¶¤¨¤Ş¤·¤¿",				"DPCM file size over",
-	"DPCM¥Ç¡¼¥¿¤Î¥µ¥¤¥º¤¬µ¬Äê¤Î¥µ¥¤¥º¤òÄ¶¤¨¤Ş¤·¤¿",			"DPCM file total size over",
-	"»ØÄê¤Î¥È¥é¥Ã¥¯¥Ø¥Ã¥À¤ÏÌµ¸ú¤Ç¤¹",						"Invalid track header",
-	"¥Ï¡¼¥É¥¦¥§¥¢¥¨¥Õ¥§¥¯¥ÈÀßÄê¤Ë¸í¤ê¤¬¤¢¤ê¤Ş¤¹¡£",			"Hardware effect definition is wrong",
-	"¥¨¥Õ¥§¥¯¥ÈÇÈ·ÁÀßÄê¤Ë¸í¤ê¤¬¤¢¤ê¤Ş¤¹¡£",					"Effect wavetable definition is wrong",
-	"¥Ï¡¼¥É¥¦¥§¥¢¥¨¥Õ¥§¥¯¥ÈÈÖ¹æ¤ÎÃÍ¤¬°Û¾ï¤Ç¤¹¡£",			"Abnormal hardware effect number",
-	"¥È¥é¥ó¥¹¥İ¡¼¥º¤ÎÃÍ¤¬°Û¾ï¤Ç¤¹",							"Abnormal transpose value",
-	"Ï¢Éä¤Î{}¤ÎÃæ¤Ë²»Éä¤¬¤¢¤ê¤Ş¤»¤ó",						"Tuplet {} empty",
-	"¥Ğ¥ó¥¯¤¬ÈÏ°Ï¤òÄ¶¤¨¤Ş¤·¤¿",						"Bank index out of range",
-	"²»Ä¹¤¬Éé¤ÎÃÍ¤Ç¤¹(unexpected error)",			"Frame length is negative value (unexpected error)",
-	"²»Ä¹¤ÎÃÍ¤¬°Û¾ï¤Ç¤¹",					"Abnormal note length value",
-	"ÀßÄê¤Î¥Ñ¥é¥á¡¼¥¿¤¬Â­¤ê¤Ş¤»¤ó",						"Parameter is lacking",
-	"¥»¥ë¥Õ¥Ç¥£¥ì¥¤¤ÎÃÍ¤¬°Û¾ï¤Ç¤¹",						"Abnormal self-delay value",
-	"DPCM¥µ¥¤¥º¤¬0x4000¤òÄ¶¤¨¤ë¾ì¹ç¤Ï¥Ğ¥ó¥¯2¤È3¤Ï»ÈÍÑ¤Ç¤­¤Ş¤»¤ó",		"Cannot use bank 2 or 3 if DPCM size is greater than 0x4000",
-	"#PITCH-CORRECTION¤ò»ØÄê¤·¤Ê¤¤¸Â¤ê¥Ô¥Ã¥Á¥·¥Õ¥ÈÎÌ¥³¥Ş¥ó¥É¤Ï»ÈÍÑ¤Ç¤­¤Ş¤»¤ó",		"Cannot use SA<num> without #PITCH-CORRECTION",
-	"¤³¤Î¥È¥é¥Ã¥¯¤Ç¤Ï»ÈÍÑ¤Ç¤­¤Ê¤¤¥³¥Ş¥ó¥É¤Ç¤¹",				"Unuse command in this track",
+	"æŒ‡å®šã®ã‚³ãƒãƒ³ãƒ‰ã¯ã‚ã‚Šã¾ã›ã‚“",							"Command not defined",
+	"ãƒ«ãƒ¼ãƒ—æ·±åº¦ãŒ0ä»¥å¤–ã§ãƒ‡ãƒ¼ã‚¿ãŒçµ‚äº†ã—ã¾ã—ãŸ",				"Data ended by loop depth except 0",
+	"è¨­å®šã«èª¤ã‚ŠãŒã‚ã‚Šã¾ã™",									"Definition is wrong",
+	"PSGéŸ³è‰²è¨­å®šã«èª¤ã‚ŠãŒã‚ã‚Šã¾ã™",							"PSG Tone definition is wrong",
+	"ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—è¨­å®šã«èª¤ã‚ŠãŒã‚ã‚Šã¾ã™",						"Envelope definition is wrong",
+	"ãƒ”ãƒƒãƒã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—è¨­å®šã«èª¤ã‚ŠãŒã‚ã‚Šã¾ã™",				"Pitch envelope definition is wrong",
+	"ãƒãƒ¼ãƒˆã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—è¨­å®šã«èª¤ã‚ŠãŒã‚ã‚Šã¾ã™",				"Note envelope definition is wrong",
+	"LFOè¨­å®šã«èª¤ã‚ŠãŒã‚ã‚Šã¾ã™",								"LFO definition is wrong",
+	"DPCMè¨­å®šã«èª¤ã‚ŠãŒã‚ã‚Šã¾ã™",								"DPCM definition is wrong",
+	"DPCMè¨­å®šã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒè¶³ã‚Šã¾ã›ã‚“",						"DPCM parameter is lacking",
+	"FMéŸ³è‰²è¨­å®šã«èª¤ã‚ŠãŒã‚ã‚Šã¾ã™",							"FM tone definition is wrong",
+	"FMç”¨éŸ³è‰²ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒç•°å¸¸ã§ã™",						"Abnormal parameters of FM tone",
+	"namco106éŸ³è‰²è¨­å®šã«èª¤ã‚ŠãŒã‚ã‚Šã¾ã™",						"namco106 tone definition is wrong",
+	"namco106ç”¨éŸ³è‰²ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒç•°å¸¸ã§ã™",					"Abnormal parameters of namco106 tone",
+	"ç¹°ã‚Šè¿”ã—å›æ•°ã®å€¤ãŒç•°å¸¸ã§ã™",							"Abnormal value of repeat count",
+	"éŸ³è‰²ç•ªå·ãŒç•°å¸¸ã§ã™",									"Abnormal tone number",
+	"ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ç•ªå·ãŒç•°å¸¸ã§ã™",							"Abnormal envelope number",
+	"ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ã®å€¤ãŒç•°å¸¸ã§ã™",							"Abnormal envelope value",
+	"ãƒ”ãƒƒãƒã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ç•ªå·ã®å€¤ãŒç•°å¸¸ã§ã™",					"Abnormal pitch envelope number",
+	"ãƒãƒ¼ãƒˆã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ç•ªå·ã®å€¤ãŒç•°å¸¸ã§ã™",					"Abnormal note envelope number",
+	"LFOç•ªå·ã®å€¤ãŒç•°å¸¸ã§ã™",								"Abnormal LFO number",
+	"éŸ³ç¨‹ã®å€¤ãŒç•°å¸¸ã§ã™",									"Abnormal pitch value",
+	"éŸ³é‡ã®å€¤ãŒç•°å¸¸ã§ã™",									"Abnormal volume value",
+	"ãƒ†ãƒ³ãƒã®å€¤ãŒç•°å¸¸ã§ã™",									"Abnormal tempo value",
+	"ã‚¯ã‚©ãƒ³ã‚¿ã‚¤ã‚ºã®å€¤ãŒç•°å¸¸ã§ã™",							"Abnormal quantize value",
+	"ã‚·ãƒ£ãƒƒãƒ•ãƒ«ã‚¯ã‚©ãƒ³ã‚¿ã‚¤ã‚ºã®å€¤ãŒç•°å¸¸ã§ã™",							"Abnormal shuffle quantize value",
+	"ã‚¹ã‚¤ãƒ¼ãƒ—ã®å€¤ãŒç•°å¸¸ã§ã™",								"Abnormal sweep value",
+	"ãƒ‡ã‚£ãƒãƒ¥ãƒ¼ãƒ³ã®å€¤ãŒç•°å¸¸ã§ã™",							"Abnormal detune value",
+	"ãƒ”ãƒƒãƒã‚·ãƒ•ãƒˆé‡ã®å€¤ãŒç•°å¸¸ã§ã™",							"Abnormal pitch shift amount value",
+	"éŸ³é‡ãŒæŒ‡å®šã•ã‚Œã¦ã„ãªã„çŠ¶æ…‹ã§ç›¸å¯¾éŸ³é‡ã‚’ä½¿ç”¨ã—ã¾ã—ãŸ",	"Relative volume was used without specifying volume",
+	"ç›¸å¯¾éŸ³é‡(+)ã§éŸ³é‡ã®ç¯„å›²ã‚’è¶…ãˆã¾ã—ãŸ",					"Volume range over(+) of relative volume",
+	"ç›¸å¯¾éŸ³é‡(-)ã§éŸ³é‡ã®ç¯„å›²ã‚’è¶…ãˆã¾ã—ãŸ",					"Volume range under(-) of relative volume",
+	"é€£ç¬¦å‡¦ç†ã®é€”ä¸­ã§ãƒ‡ãƒ¼ã‚¿ãŒçµ‚äº†ã—ã¾ã—ãŸ",					"Data ended by Continuation note",
+	"DPCMãƒ•ã‚¡ã‚¤ãƒ«ãŒã‚ã‚Šã¾ã›ã‚“",								"DPCM file not found",
+	"DPCMãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚ºãŒ4081byteã‚’è¶…ãˆã¾ã—ãŸ",				"DPCM file size over",
+	"DPCMãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚ºãŒè¦å®šã®ã‚µã‚¤ã‚ºã‚’è¶…ãˆã¾ã—ãŸ",			"DPCM file total size over",
+	"æŒ‡å®šã®ãƒˆãƒ©ãƒƒã‚¯ãƒ˜ãƒƒãƒ€ã¯ç„¡åŠ¹ã§ã™",						"Invalid track header",
+	"ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¨ãƒ•ã‚§ã‚¯ãƒˆè¨­å®šã«èª¤ã‚ŠãŒã‚ã‚Šã¾ã™ã€‚",			"Hardware effect definition is wrong",
+	"ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæ³¢å½¢è¨­å®šã«èª¤ã‚ŠãŒã‚ã‚Šã¾ã™ã€‚",					"Effect wavetable definition is wrong",
+	"ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç•ªå·ã®å€¤ãŒç•°å¸¸ã§ã™ã€‚",			"Abnormal hardware effect number",
+	"ãƒˆãƒ©ãƒ³ã‚¹ãƒãƒ¼ã‚ºã®å€¤ãŒç•°å¸¸ã§ã™",							"Abnormal transpose value",
+	"é€£ç¬¦ã®{}ã®ä¸­ã«éŸ³ç¬¦ãŒã‚ã‚Šã¾ã›ã‚“",						"Tuplet {} empty",
+	"ãƒãƒ³ã‚¯ãŒç¯„å›²ã‚’è¶…ãˆã¾ã—ãŸ",						"Bank index out of range",
+	"éŸ³é•·ãŒè² ã®å€¤ã§ã™(unexpected error)",			"Frame length is negative value (unexpected error)",
+	"éŸ³é•·ã®å€¤ãŒç•°å¸¸ã§ã™",					"Abnormal note length value",
+	"è¨­å®šã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒè¶³ã‚Šã¾ã›ã‚“",						"Parameter is lacking",
+	"ã‚»ãƒ«ãƒ•ãƒ‡ã‚£ãƒ¬ã‚¤ã®å€¤ãŒç•°å¸¸ã§ã™",						"Abnormal self-delay value",
+	"DPCMã‚µã‚¤ã‚ºãŒ0x4000ã‚’è¶…ãˆã‚‹å ´åˆã¯ãƒãƒ³ã‚¯2ã¨3ã¯ä½¿ç”¨ã§ãã¾ã›ã‚“",		"Cannot use bank 2 or 3 if DPCM size is greater than 0x4000",
+	"#PITCH-CORRECTIONã‚’æŒ‡å®šã—ãªã„é™ã‚Šãƒ”ãƒƒãƒã‚·ãƒ•ãƒˆé‡ã‚³ãƒãƒ³ãƒ‰ã¯ä½¿ç”¨ã§ãã¾ã›ã‚“",		"Cannot use SA<num> without #PITCH-CORRECTION",
+	"ã“ã®ãƒˆãƒ©ãƒƒã‚¯ã§ã¯ä½¿ç”¨ã§ããªã„ã‚³ãƒãƒ³ãƒ‰ã§ã™",				"Unuse command in this track",
 };
 
 
@@ -222,20 +222,20 @@ enum {
 };
 
 const	char	*WarningMessage[] = {
-	"¥¤¥ó¥¯¥ë¡¼¥É¥Õ¥¡¥¤¥ë¤Î¿ô¤¬Â¿¤¹¤®¤Ş¤¹",					"Too many include files",
-	"¥Õ¥ì¡¼¥à²»Ä¹¤¬0¤Ë¤Ê¤ê¤Ş¤·¤¿¡£",						"frame length is 0",
-	"¥ê¥Ô¡¼¥È2¤Î¥Õ¥ì¡¼¥à¸íº¹¤¬3¥Õ¥ì¡¼¥à¤òÄ¶¤¨¤Æ¤¤¤Ş¤¹¡£",	"Repeat2 frame error over 3 frames",
-	"#BANK-CHANGE»ÈÍÑ»ş¤Ï#SETBANK, NB¤ÏÌµ»ë¤·¤Ş¤¹",		"Ignoring #SETBANK and NB if #BANK-CHANGE used",
-	"ÄêµÁÈÖ¹æ¤¬½ÅÊ£¤·¤Æ¤¤¤Ş¤¹",				"This definition number is already used",
-	"DPCM¥µ¥¤¥º mod 16 ¤¬1¤Ç¤Ï¤¢¤ê¤Ş¤»¤ó",			"DPCM size mod 16 is not 1",
+	"ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«ã®æ•°ãŒå¤šã™ãã¾ã™",					"Too many include files",
+	"ãƒ•ãƒ¬ãƒ¼ãƒ éŸ³é•·ãŒ0ã«ãªã‚Šã¾ã—ãŸã€‚",						"frame length is 0",
+	"ãƒªãƒ”ãƒ¼ãƒˆ2ã®ãƒ•ãƒ¬ãƒ¼ãƒ èª¤å·®ãŒ3ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’è¶…ãˆã¦ã„ã¾ã™ã€‚",	"Repeat2 frame error over 3 frames",
+	"#BANK-CHANGEä½¿ç”¨æ™‚ã¯#SETBANK, NBã¯ç„¡è¦–ã—ã¾ã™",		"Ignoring #SETBANK and NB if #BANK-CHANGE used",
+	"å®šç¾©ç•ªå·ãŒé‡è¤‡ã—ã¦ã„ã¾ã™",				"This definition number is already used",
+	"DPCMã‚µã‚¤ã‚º mod 16 ãŒ1ã§ã¯ã‚ã‚Šã¾ã›ã‚“",			"DPCM size mod 16 is not 1",
 };
 
 
 
 /*--------------------------------------------------------------
-	¥¨¥é¡¼É½¼¨
+	ã‚¨ãƒ©ãƒ¼è¡¨ç¤º
  Input:
-	
+
  Output:
 	none
 --------------------------------------------------------------*/
@@ -256,9 +256,9 @@ void dispError( int no, char *file, int line )
 
 
 /*--------------------------------------------------------------
-	¥ï¡¼¥Ë¥ó¥°É½¼¨
+	ãƒ¯ãƒ¼ãƒ‹ãƒ³ã‚°è¡¨ç¤º
  Input:
-	
+
  Output:
 	none
 --------------------------------------------------------------*/
@@ -280,9 +280,9 @@ void dispWarning( int no, char *file, int line )
 
 
 /*--------------------------------------------------------------
-	C¸À¸ì¥¿¥¤¥×¤Î¥ê¥Ş¡¼¥¯¤Îºï½ü
+	Cè¨€èªã‚¿ã‚¤ãƒ—ã®ãƒªãƒãƒ¼ã‚¯ã®å‰Šé™¤
  Input:
-	char	*ptr		:¥Ç¡¼¥¿³ÊÇ¼¥İ¥¤¥ó¥¿
+	char	*ptr		:ãƒ‡ãƒ¼ã‚¿æ ¼ç´ãƒã‚¤ãƒ³ã‚¿
  Output:
 	none
 --------------------------------------------------------------*/
@@ -313,19 +313,19 @@ void deleteCRemark( char *ptr )
 	if (within_com) {
 		printf("Warning :");
 		printf( message_flag 	? "Reached EOF in comment"
-					: "¥³¥á¥ó¥È¤¬ÊÄ¤¸¤é¤ì¤Ê¤¤¤Ş¤Ş¥Õ¥¡¥¤¥ë½ªÃ¼¤ËÃ£¤·¤Ş¤·¤¿");
+					: "ã‚³ãƒ¡ãƒ³ãƒˆãŒé–‰ã˜ã‚‰ã‚Œãªã„ã¾ã¾ãƒ•ã‚¡ã‚¤ãƒ«çµ‚ç«¯ã«é”ã—ã¾ã—ãŸ");
 		printf("\n");
 	}
 }
 
 
-//ÉÔÍ×
+//ä¸è¦
 /*--------------------------------------------------------------
-	¥ê¥Ş¡¼¥¯¤Îºï½ü
+	ãƒªãƒãƒ¼ã‚¯ã®å‰Šé™¤
  Input:
-	char	*ptr	:¥Ç¡¼¥¿³ÊÇ¼¥İ¥¤¥ó¥¿
+	char	*ptr	:ãƒ‡ãƒ¼ã‚¿æ ¼ç´ãƒã‚¤ãƒ³ã‚¿
  Output:
-	Ìµ¤·
+	ç„¡ã—
 --------------------------------------------------------------*/
 void deleteRemark( char *ptr )
 {
@@ -348,9 +348,9 @@ void deleteRemark( char *ptr )
 
 
 /*----------------------------------------------------------*/
-/*	¥Õ¥¡¥¤¥ë¹Ô¿ô¤òµá¤á¤ë								    */
+/*	ãƒ•ã‚¡ã‚¤ãƒ«è¡Œæ•°ã‚’æ±‚ã‚ã‚‹								    */
 /* Input:												    */
-/*	char	*data		:¥Ç¡¼¥¿³ÊÇ¼¥İ¥¤¥ó¥¿				    */
+/*	char	*data		:ãƒ‡ãƒ¼ã‚¿æ ¼ç´ãƒã‚¤ãƒ³ã‚¿				    */
 /* Output:												    */
 /*	none												    */
 /*----------------------------------------------------------*/
@@ -382,22 +382,22 @@ LINE *readMmlFile(char *fname)
 	int i;
 	char *filestr;
 	filestr = readTextFile(fname);
-	
+
 	if (filestr == NULL) {
 		error_flag = 1;
 		return NULL;
 	}
-	
+
 	deleteCRemark(filestr);
-	
-	//skipSpace¤ËÁÈ¤ß¹ş¤ß
+
+	//skipSpaceã«çµ„ã¿è¾¼ã¿
 	//deleteRemark(filestr);
 
 	line_count = getLineCount(filestr);
-	lptr = (LINE *)malloc( (line_count+1)*sizeof(LINE) );	/* ¥é¥¤¥ó¥Ğ¥Ã¥Õ¥¡¤ò³ÎÊİ */
+	lptr = (LINE *)malloc( (line_count+1)*sizeof(LINE) );	/* ãƒ©ã‚¤ãƒ³ãƒãƒƒãƒ•ã‚¡ã‚’ç¢ºä¿ */
 
-	lptr[0].status = _HEADER;		/* LINE¥¹¥Æ¡¼¥¿¥¹[0]¤Ïmalloc¤µ¤ì¤¿	*/
-	lptr[0].str    = filestr;		/* ¥İ¥¤¥ó¥¿¤È¥µ¥¤¥º¤¬³ÊÇ¼¤µ¤ì¤Æ¤¤¤ë */
+	lptr[0].status = _HEADER;		/* LINEã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹[0]ã¯mallocã•ã‚ŒãŸ	*/
+	lptr[0].str    = filestr;		/* ãƒã‚¤ãƒ³ã‚¿ã¨ã‚µã‚¤ã‚ºãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ */
 	lptr[0].line   = line_count;
 	lptr[0].filename = fname;
 	for( i = 1; i <= line_count; i++ ) {
@@ -411,11 +411,11 @@ LINE *readMmlFile(char *fname)
 
 
 /*--------------------------------------------------------------
-	²ş¹Ô/EOF¤ò0(NULL)¤Ë¤¹¤ë(¥Ğ¥Ã¥Õ¥¡¤ò¹ÔÃ±°Ì¤ÇÀÚ¤êÊ¬¤±)
+	æ”¹è¡Œ/EOFã‚’0(NULL)ã«ã™ã‚‹(ãƒãƒƒãƒ•ã‚¡ã‚’è¡Œå˜ä½ã§åˆ‡ã‚Šåˆ†ã‘)
  Input:
-	char	*ptr	:¥Ç¡¼¥¿³ÊÇ¼¥İ¥¤¥ó¥¿
+	char	*ptr	:ãƒ‡ãƒ¼ã‚¿æ ¼ç´ãƒã‚¤ãƒ³ã‚¿
  Output:
-	Ìµ¤·
+	ç„¡ã—
 --------------------------------------------------------------*/
 char *changeNULL( char *ptr )
 {
@@ -431,8 +431,8 @@ char *changeNULL( char *ptr )
 
 
 /*---------------------------------------------------------
-  @hoge123 = { ag ae aeag g} ¤Î½èÍı
-  
+  @hoge123 = { ag ae aeag g} ã®å‡¦ç†
+
   @HOGE\s*(\d+)\s*(=|)\s*{.*?(}.*|)$
 -----------------------------------------------------------*/
 int setEffectSub(LINE *lptr, int line, int *ptr_status_end_flag, int min, int max, const int error_no)
@@ -441,26 +441,26 @@ int setEffectSub(LINE *lptr, int line, int *ptr_status_end_flag, int min, int ma
 	char *temp;
 	temp = skipSpace( lptr[line].str );
 	param = Asc2Int( temp, &cnt );
-	
+
 	if (cnt == 0)
 		goto on_error;
 	if (param < min || max <= param)
 		goto on_error;
-	
+
 	lptr[line].param = param;
 	temp = skipSpace( temp+cnt );
-	
+
 	if ( *temp == '=' ) {
 		temp++;
 		temp = skipSpace( temp );
 	}
-	
+
 	if ( *temp != '{' )
 		goto on_error;
-	
+
 	lptr[line].str = temp;
 	*ptr_status_end_flag = 1;
-	
+
 	while ( *temp != '\0' ) {
 		if( *temp == '}' ) {
 			*ptr_status_end_flag = 0;
@@ -478,11 +478,11 @@ on_error:
 
 
 /*--------------------------------------------------------------
-	¥Ø¥Ã¥À¡¼¤òµá¤á¤ë
+	ãƒ˜ãƒƒãƒ€ãƒ¼ã‚’æ±‚ã‚ã‚‹
  Input:
-	char	*ptr	:¥Ç¡¼¥¿³ÊÇ¼¥İ¥¤¥ó¥¿
+	char	*ptr	:ãƒ‡ãƒ¼ã‚¿æ ¼ç´ãƒã‚¤ãƒ³ã‚¿
  Output:
-	Ìµ¤·
+	ç„¡ã—
 --------------------------------------------------------------*/
 void getLineStatus(LINE *lptr, int inc_nest )
 {
@@ -515,7 +515,7 @@ void getLineStatus(LINE *lptr, int inc_nest )
 		{ "@MH",             _SET_HARD_EFFECT},
 		{ "@MW",             _SET_EFFECT_WAVE},
 		{ "@OP",             _SET_VRC7_TONE  },
-		{ "@N",              _SET_N106_TONE  },			
+		{ "@N",              _SET_N106_TONE  },
 		{ "@V",              _SET_ENVELOPE   },
 		{ "@",               _SET_TONE       },
 		{ "",                -1              },
@@ -530,7 +530,7 @@ void getLineStatus(LINE *lptr, int inc_nest )
 
 	for( line = 1; line <= lptr->line; line++ ) {
 		ptr = skipSpace( ptr );
-		/* Á°¤Î¹Ô¤¬¥¨¥Õ¥§¥¯¥ÈÄêµÁ½èÍı¤À¤Ã¤¿¡© */
+		/* å‰ã®è¡ŒãŒã‚¨ãƒ•ã‚§ã‚¯ãƒˆå®šç¾©å‡¦ç†ã ã£ãŸï¼Ÿ */
 		if( ((lptr[line-1].status&_SET_EFFECT) != 0) && (status_end_flag != 0) ) {
 			lptr[line].status = lptr[line-1].status|_SAME_LINE;
 			lptr[line].param  = lptr[line-1].param;
@@ -544,27 +544,27 @@ void getLineStatus(LINE *lptr, int inc_nest )
 				}
 				temp++;
 			}
-		/* ¹Ô¤ÎÀèÆ¬¤Ë²¿¤âÌµ¤¤»ş¤ÏÌµ¸ú¤Ê¹Ô¤È¤¹¤ë */
+		/* è¡Œã®å…ˆé ­ã«ä½•ã‚‚ç„¡ã„æ™‚ã¯ç„¡åŠ¹ãªè¡Œã¨ã™ã‚‹ */
 		} else if( *ptr == '\n' || *ptr == '\0' ) {
 			lptr[line].status = 0;
 			lptr[line].str = ptr;
 			ptr = changeNULL( ptr );
 		} else {
-			/* #/@ÉÕ¤­¥Ø¥Ã¥À¡¼¤Î»ş¤Ï¥Ø¥Ã¥À¡¼¤ÎÊ¸»úÎó¤òÂçÊ¸»ú¤Ë¤¹¤ë */
+			/* #/@ä»˜ããƒ˜ãƒƒãƒ€ãƒ¼ã®æ™‚ã¯ãƒ˜ãƒƒãƒ€ãƒ¼ã®æ–‡å­—åˆ—ã‚’å¤§æ–‡å­—ã«ã™ã‚‹ */
 			if( *ptr == '#' || *ptr == '@' ) {
 				i = 1;
 				while( (*(ptr+i) != ' ') && (*(ptr+i) != '\t') && (*(ptr+i) != '\n') ) {
 					*(ptr+i) = (char)toupper( *(ptr+i) );
 					i++;
 				}
-				/* ¥Ø¥Ã¥À¡¼¤â»úÎó¤ò¥Æ¡¼¥Ö¥ëÊ¸»úÎó¤ÈÈæ³Ó */
+				/* ãƒ˜ãƒƒãƒ€ãƒ¼ã‚‚å­—åˆ—ã‚’ãƒ†ãƒ¼ãƒ–ãƒ«æ–‡å­—åˆ—ã¨æ¯”è¼ƒ */
 				for( i = 0; head[i].status != -1; i++ ) {
 					if( strncmp( ptr, head[i].str, strlen(head[i].str) ) == 0 ) {
 						break;
 					}
 				}
 				lptr[line].status = head[i].status;
-				lptr[line].str = skipSpaceOld( ptr+strlen(head[i].str) );	/* ¥Ø¥Ã¥À¡¼¡Ü¶õÇò¤òÈô¤Ğ¤·¤¿¤È¤³¤í¤òÀèÆ¬¤Ë */
+				lptr[line].str = skipSpaceOld( ptr+strlen(head[i].str) );	/* ãƒ˜ãƒƒãƒ€ãƒ¼ï¼‹ç©ºç™½ã‚’é£›ã°ã—ãŸã¨ã“ã‚ã‚’å…ˆé ­ã« */
 			} else if( strchr( str_track, *ptr ) ) {
 				track_flag = 0;
 				while( strchr( str_track, *ptr ) ) {
@@ -576,19 +576,19 @@ void getLineStatus(LINE *lptr, int inc_nest )
 					}
 					ptr++;
 				}
-				// ¥È¥é¥Ã¥¯µö²Ä¤Î¥Á¥§¥Ã¥¯
+				// ãƒˆãƒ©ãƒƒã‚¯è¨±å¯ã®ãƒã‚§ãƒƒã‚¯
 				for (i = 0; i < _TRACK_MAX; i++) {
 					if( (TRACK(i) & track_flag) && !(TRACK(i) & track_allow_flag) ) {
 						dispError( INVALID_TRACK_HEADER, lptr[line].filename, line );
 						track_flag &= ~TRACK(i);
 					}
 				}
-				
+
 				if( track_flag != 0 ) {
 					lptr[line].status = _TRACK;
 					lptr[line].param = track_flag;
 					lptr[line].str = skipSpace( ptr );
-					actual_track_flag |= track_flag;				
+					actual_track_flag |= track_flag;
 				} else {
 					lptr[line].status = 0;
 					lptr[line].param = 0;
@@ -600,14 +600,14 @@ void getLineStatus(LINE *lptr, int inc_nest )
 			ptr = changeNULL( ptr );
 
 			switch( lptr[line].status ) {
-			/* Include¥³¥Ş¥ó¥É¤Î½èÍı */
+			/* Includeã‚³ãƒãƒ³ãƒ‰ã®å‡¦ç† */
 			  case _INCLUDE:
-				if( inc_nest > 16 ) {				/* ¥Í¥¹¥È¤Ï16ÃÊ¤Ş¤Ç(ºÆµ¢¤Ç¸Æ¤Ğ¤ì¤ë¤È½ªÎ»¤·¤Ê¤¤¤Î¤Ç) */
+				if( inc_nest > 16 ) {				/* ãƒã‚¹ãƒˆã¯16æ®µã¾ã§(å†å¸°ã§å‘¼ã°ã‚Œã‚‹ã¨çµ‚äº†ã—ãªã„ã®ã§) */
 					dispWarning( TOO_MANY_INCLUDE_FILES, lptr[line].filename, line );
 					lptr[line].status = 0;
 				} else {
 					LINE *ltemp;
-					temp = skipSpaceOld( lptr[line].str ); /* /¤ò¤È¤Ğ¤µ¤Ê¤¤¤è¤¦¤Ë¤·¤Æ¤ß¤ë */
+					temp = skipSpaceOld( lptr[line].str ); /* /ã‚’ã¨ã°ã•ãªã„ã‚ˆã†ã«ã—ã¦ã¿ã‚‹ */
 					ltemp = readMmlFile(temp);
 					if( ltemp != NULL ) {
 						lptr[line].inc_ptr = ltemp;
@@ -615,32 +615,32 @@ void getLineStatus(LINE *lptr, int inc_nest )
 						getLineStatus(lptr[line].inc_ptr, inc_nest);
 						--inc_nest;
 					} else {
-						lptr[line].status = 0;					/* ¥Õ¥¡¥¤¥ëÆÉ¤ß¹ş¤ß¼ºÇÔ¤ËÉÕ¤­¥¨¥é¡¼ */
+						lptr[line].status = 0;					/* ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿å¤±æ•—ã«ä»˜ãã‚¨ãƒ©ãƒ¼ */
 						error_flag = 1;
 					}
 				}
 				break;
-			/* LFO¥³¥Ş¥ó¥É */
+			/* LFOã‚³ãƒãƒ³ãƒ‰ */
 			  case _SET_PITCH_MOD:
 				setEffectSub(lptr, line, &status_end_flag, 0, _PITCH_MOD_MAX, LFO_DEFINITION_IS_WRONG);
 				break;
-			/* ¥Ô¥Ã¥Á¥¨¥ó¥Ù¥í¡¼¥×¥³¥Ş¥ó¥É */
+			/* ãƒ”ãƒƒãƒã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ã‚³ãƒãƒ³ãƒ‰ */
 			  case _SET_PITCH_ENV:
 				setEffectSub(lptr, line, &status_end_flag, 0, _PITCH_ENV_MAX, PITCH_ENVELOPE_DEFINITION_IS_WRONG);
 				break;
-			/* ²»ÎÌ¥¨¥ó¥Ù¥í¡¼¥×¥³¥Ş¥ó¥É */
+			/* éŸ³é‡ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ã‚³ãƒãƒ³ãƒ‰ */
 			  case _SET_ENVELOPE:
 				setEffectSub(lptr, line, &status_end_flag, 0, _ENVELOPE_MAX, ENVELOPE_DEFINITION_IS_WRONG);
 				break;
-			/* ¼«ºî²»¿§ */
+			/* è‡ªä½œéŸ³è‰² */
 			  case _SET_TONE:
 				setEffectSub(lptr, line, &status_end_flag, 0, _TONE_MAX, TONE_DEFINITION_IS_WRONG);
 				break;
-			/* ¥¢¥ë¥Ú¥¸¥ª */
+			/* ã‚¢ãƒ«ãƒšã‚¸ã‚ª */
 			  case _SET_ARPEGGIO:
 				setEffectSub(lptr, line, &status_end_flag, 0, _ARPEGGIO_MAX, NOTE_ENVELOPE_DEFINITION_IS_WRONG);
 				break;
-			/* DPCMÅĞÏ¿¥³¥Ş¥ó¥É */
+			/* DPCMç™»éŒ²ã‚³ãƒãƒ³ãƒ‰ */
 			  case _SET_DPCM_DATA:
 				setEffectSub(lptr, line, &status_end_flag, 0, _DPCM_MAX, DPCM_DEFINITION_IS_WRONG);
 				break;
@@ -648,53 +648,53 @@ void getLineStatus(LINE *lptr, int inc_nest )
 			  case _SET_VRC7_TONE:
 				setEffectSub(lptr, line, &status_end_flag, 0, _VRC7_TONE_MAX, FM_TONE_DEFINITION_IS_WRONG);
 				break;
-			/* FM²»¿§ */
+			/* FMéŸ³è‰² */
 			  case _SET_FM_TONE:
 				setEffectSub(lptr, line, &status_end_flag, 0, _FM_TONE_MAX, FM_TONE_DEFINITION_IS_WRONG);
 				break;
-			/* namco106²»¸»²»¿§ */
+			/* namco106éŸ³æºéŸ³è‰² */
 			  case _SET_N106_TONE:
 				setEffectSub(lptr, line, &status_end_flag, 0, _N106_TONE_MAX, N106_TONE_DEFINITION_IS_WRONG);
 				break;
-			/* ¥Ï¡¼¥É¥¦¥§¥¢¥¨¥Õ¥§¥¯¥È */
+			/* ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ */
 			  case _SET_HARD_EFFECT:
 				setEffectSub(lptr, line, &status_end_flag, 0, _HARD_EFFECT_MAX, HARD_EFFECT_DEFINITION_IS_WRONG);
 				break;
-			/* ¥¨¥Õ¥§¥¯¥ÈÇÈ·Á */
+			/* ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæ³¢å½¢ */
 			  case _SET_EFFECT_WAVE:
 				setEffectSub(lptr, line, &status_end_flag, 0, _EFFECT_WAVE_MAX, EFFECT_WAVE_DEFINITION_IS_WRONG);
 				break;
-			/* DISKSYSTEM FM²»¸»»ÈÍÑ¥Õ¥é¥° */
+			/* DISKSYSTEM FMéŸ³æºä½¿ç”¨ãƒ•ãƒ©ã‚° */
 			  case _EX_DISKFM:
 				sndgen_flag |= BDISKFM;
 				track_allow_flag |= FMTRACK;
 				fds_track_num = 1;
 				break;
-			/* VRC7 FM²»¸»»ÈÍÑ¥Õ¥é¥° */
+			/* VRC7 FMéŸ³æºä½¿ç”¨ãƒ•ãƒ©ã‚° */
 			  case _EX_VRC7:
 				sndgen_flag |= BVRC7;
 				track_allow_flag |= VRC7TRACK;
 				vrc7_track_num = 6;
 				break;
-			/* VRC6 ²»¸»»ÈÍÑ¥Õ¥é¥° */
+			/* VRC6 éŸ³æºä½¿ç”¨ãƒ•ãƒ©ã‚° */
 			  case _EX_VRC6:
 				sndgen_flag |= BVRC6;
 				track_allow_flag |= VRC6TRACK;
 				vrc6_track_num = 3;
 				break;
-			/* FME7 ²»¸»»ÈÍÑ¥Õ¥é¥° */
+			/* FME7 éŸ³æºä½¿ç”¨ãƒ•ãƒ©ã‚° */
 			  case _EX_FME7:
 				sndgen_flag |= BFME7;
 				track_allow_flag |= FME7TRACK;
 				fme7_track_num = 3;
 				break;
-			/* MMC5 ²»¸»»ÈÍÑ¥Õ¥é¥° */
+			/* MMC5 éŸ³æºä½¿ç”¨ãƒ•ãƒ©ã‚° */
 			  case _EX_MMC5:
 				sndgen_flag |= BMMC5;
 				track_allow_flag |= MMC5TRACK;
 				mmc5_track_num = 2;
 				break;
-			/* namco106 ³ÈÄ¥²»¸»»ÈÍÑ¥Õ¥é¥° */
+			/* namco106 æ‹¡å¼µéŸ³æºä½¿ç”¨ãƒ•ãƒ©ã‚° */
 			  case _EX_NAMCO106:
 				temp = skipSpace( lptr[line].str );
 				param = Asc2Int( temp, &cnt );
@@ -717,16 +717,16 @@ void getLineStatus(LINE *lptr, int inc_nest )
 			  case _DPCM_RESTSTOP:
 				dpcm_reststop = 1;
 				break;
-			/* NSF mapper ¤Î bankswitching ¶Ø»ß */
+			/* NSF mapper ã® bankswitching ç¦æ­¢ */
 			  case _NO_BANKSWITCH:
 				allow_bankswitching = 0;
 				break;
-			/* ¼«Æ°¥Ğ¥ó¥¯ÀÚ¤êÂØ¤¨ */
+			/* è‡ªå‹•ãƒãƒ³ã‚¯åˆ‡ã‚Šæ›¿ãˆ */
 			  case _AUTO_BANKSWITCH:
 				temp = skipSpace( lptr[line].str );
 				param = Asc2Int( temp, &cnt );
 				if ( cnt != 0 && (0 <= param && param <= 8192)) {
-					// ºÇ½é¤Î°ì²ó¤·¤«Í­¸ú¤Ë¤·¤Ê¤¤
+					// æœ€åˆã®ä¸€å›ã—ã‹æœ‰åŠ¹ã«ã—ãªã„
 					if (!auto_bankswitch) {
 						bank_usage[0] = 8192 - param;
 					}
@@ -735,28 +735,28 @@ void getLineStatus(LINE *lptr, int inc_nest )
 					dispError( DEFINITION_IS_WRONG, lptr[line].filename, line );
 				}
 				break;
-			/* ¥Ğ¥ó¥¯ÀÚ¤êÂØ¤¨Ëä¤á¹ş¤ß(»ÃÄê½èÍı¤Î¸ß´¹Á¼ÃÖ) */
+			/* ãƒãƒ³ã‚¯åˆ‡ã‚Šæ›¿ãˆåŸ‹ã‚è¾¼ã¿(æš«å®šå‡¦ç†ã®äº’æ›æªç½®) */
 			  case _BANK_CHANGE:
 				/*
 					#BANK-CHANGE <num0>,<num1>
-					¾åµ­¥Ğ¥ó¥¯ÀÚ¤êÂØ¤¨¤Î³ÈÄ¥½ñ¼°¤Ç¤¹¡£<num0>¤Ï¥Ğ¥ó¥¯ÈÖ¹æ¤Ç0¡Á2¤ÎÃÍ¤¬
-					Æş¤ê¤Ş¤¹¡£<num1>¤Ï¥È¥é¥Ã¥¯ÈÖ¹æ¤Ç1¡Á14¤Î¿ôÃÍ¤¬Æş¤ê¡¢1¤¬A¥È¥é¥Ã¥¯¤Ë
-					ÂĞ±ş¤·¤Æ¤ª¤ê°Ê²¼2=B¡¢3=C¡¢¡ÄP=7¤È¤Ê¤Ã¤Æ¤¤¤Ş¤¹¡£
-					¤Á¤Ê¤ß¤Ë°Ê²¼¤ÏÆ±¤¸¤³¤È¤ò¤·¤Æ¤¤¤Ş¤¹¡£
+					ä¸Šè¨˜ãƒãƒ³ã‚¯åˆ‡ã‚Šæ›¿ãˆã®æ‹¡å¼µæ›¸å¼ã§ã™ã€‚<num0>ã¯ãƒãƒ³ã‚¯ç•ªå·ã§0ã€œ2ã®å€¤ãŒ
+					å…¥ã‚Šã¾ã™ã€‚<num1>ã¯ãƒˆãƒ©ãƒƒã‚¯ç•ªå·ã§1ã€œ14ã®æ•°å€¤ãŒå…¥ã‚Šã€1ãŒAãƒˆãƒ©ãƒƒã‚¯ã«
+					å¯¾å¿œã—ã¦ãŠã‚Šä»¥ä¸‹2=Bã€3=Cã€â€¦P=7ã¨ãªã£ã¦ã„ã¾ã™ã€‚
+					ã¡ãªã¿ã«ä»¥ä¸‹ã¯åŒã˜ã“ã¨ã‚’ã—ã¦ã„ã¾ã™ã€‚
 					#BANK-CHANGE	n
 					#BANK-CHANGE	0,n
-					
-					#BANK-CHANGE¤ÇÆ±¤¸¥Ğ¥ó¥¯¤Ë¥È¥é¥Ã¥¯¤ò»ı¤Ã¤Æ¤¤¤Ã¤¿¾ì¹ç¡¢
-					ºÇ¸å¤Ë»ØÄê¤·¤¿¤â¤Î¤À¤±¤¬Í­¸ú¡£¤È¤¤¤¦»ÅÍÍ¤Ï¤¢¤Ş¤êÍı²ò¤µ¤ì¤Æ¤¤¤Ê¤«¤Ã¤¿¡£
-					ppmck¤Ç¤ÏÁ´¤ÆÍ­¸ú¤È¤¹¤ë¤¿¤á¡¢¤½¤ÎÅÀ¤ÏÈó¸ß´¹¡£
-					
-					mckcÍÑ¤Î¸Å¤¤MML¤ò¥³¥ó¥Ñ¥¤¥ë¤¹¤ë¤¿¤á¤Ë¤Ï
-					ºÇ¸å¤Î¤â¤Î°Ê³°¾Ã¤¹¡£
-				
+
+					#BANK-CHANGEã§åŒã˜ãƒãƒ³ã‚¯ã«ãƒˆãƒ©ãƒƒã‚¯ã‚’æŒã£ã¦ã„ã£ãŸå ´åˆã€
+					æœ€å¾Œã«æŒ‡å®šã—ãŸã‚‚ã®ã ã‘ãŒæœ‰åŠ¹ã€‚ã¨ã„ã†ä»•æ§˜ã¯ã‚ã¾ã‚Šç†è§£ã•ã‚Œã¦ã„ãªã‹ã£ãŸã€‚
+					ppmckã§ã¯å…¨ã¦æœ‰åŠ¹ã¨ã™ã‚‹ãŸã‚ã€ãã®ç‚¹ã¯éäº’æ›ã€‚
+
+					mckcç”¨ã®å¤ã„MMLã‚’ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã™ã‚‹ãŸã‚ã«ã¯
+					æœ€å¾Œã®ã‚‚ã®ä»¥å¤–æ¶ˆã™ã€‚
+
 				*/
 				/*
-					¿ô»ú¤È¥È¥é¥Ã¥¯¤ÎÂĞ±ş¤ÏÈó¸ß´¹¡£
-				
+					æ•°å­—ã¨ãƒˆãƒ©ãƒƒã‚¯ã®å¯¾å¿œã¯éäº’æ›ã€‚
+
 					mckc
 					A B C D E | F | P Q R  S  T  U  V  W
 					1 2 3 4 5 | 6 | 7 8 9 10 11 12 13 14
@@ -766,10 +766,10 @@ void getLineStatus(LINE *lptr, int inc_nest )
 					ppmckc
 					A B C D E | F | G H I  J  K  L |  M  N  O |  P  Q  R  S  T  U  V  W |  X  Y  Z |  a  b
 					1 2 3 4 5 | 6 | 7 8 9 10 11 12 | 13 14 15 | 16 17 18 19 20 21 22 23 | 24 25 26 | 27 28
-				
-					mckcÍÑ¤Î¸Å¤¤MML¤ò¥³¥ó¥Ñ¥¤¥ë¤¹¤ë¤¿¤á¤Ë¤Ï
-					P°Ê¹ß¤Ï ¼êÆ°¤Ç 9 ¤òÂ­¤»¤ĞOK¡£(¼«Æ°¤Ë¤Ï¤·¤Ê¤¤¤Û¤¦¤¬¤è¤¤¤Ç¤·¤ç¤¦)
-					¤Æ¤«¤³¤ó¤ÊÉ½¤ò¸«¤Ê¤­¤ã¤¤¤±¤Ê¤¤¤³¤È¤¬´Ö°ã¤Ã¤Æ(ry
+
+					mckcç”¨ã®å¤ã„MMLã‚’ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã™ã‚‹ãŸã‚ã«ã¯
+					Pä»¥é™ã¯ æ‰‹å‹•ã§ 9 ã‚’è¶³ã›ã°OKã€‚(è‡ªå‹•ã«ã¯ã—ãªã„ã»ã†ãŒã‚ˆã„ã§ã—ã‚‡ã†)
+					ã¦ã‹ã“ã‚“ãªè¡¨ã‚’è¦‹ãªãã‚ƒã„ã‘ãªã„ã“ã¨ãŒé–“é•ã£ã¦(ry
 				*/
 				temp = skipSpace( lptr[line].str );
 				param = Asc2Int( temp, &cnt );
@@ -777,13 +777,13 @@ void getLineStatus(LINE *lptr, int inc_nest )
 					temp += cnt;
 					temp = skipSpace( temp );
 					if( *temp == ',' ) {
-						/* ³ÈÄ¥½ñ¼° */
+						/* æ‹¡å¼µæ›¸å¼ */
 						temp++;
 						if( (0 <= param) && (param <= 2) ) {
-							bank = param; /* 0,1,2¤¬1,2,3¤ËÂĞ±ş */
+							bank = param; /* 0,1,2ãŒ1,2,3ã«å¯¾å¿œ */
 							//printf( "bank: %d\n", bank );
 							temp = skipSpace( temp );
-							param = Asc2Int( temp, &cnt ); /* 1,2,3 ¤¬ABC¤ËÂĞ±ş ¤À¤«¤é 0,1,2¤ËÂĞ±ş */
+							param = Asc2Int( temp, &cnt ); /* 1,2,3 ãŒABCã«å¯¾å¿œ ã ã‹ã‚‰ 0,1,2ã«å¯¾å¿œ */
 							if( cnt != 0 && (1 <= param && param <= _TRACK_MAX) ) {
 								//bank_change[bank] = param-1;
 								bank_sel[param-1] = bank+1;
@@ -797,7 +797,7 @@ void getLineStatus(LINE *lptr, int inc_nest )
 							lptr[line].status = 0;
 						}
 					} else {
-						/* Èó³ÈÄ¥½ñ¼° bank 1¤ËÆş¤ì¤ë */
+						/* éæ‹¡å¼µæ›¸å¼ bank 1ã«å…¥ã‚Œã‚‹ */
 						if( cnt != 0 && (1 <= param && param <= _TRACK_MAX) ) {
 							//bank_change[0] = param-1;
 							bank_sel[param-1] = 1;
@@ -812,16 +812,16 @@ void getLineStatus(LINE *lptr, int inc_nest )
 					lptr[line].status = 0;
 				}
 				break;
-			/* ¥Ğ¥ó¥¯ÀÚ¤êÂØ¤¨ */
+			/* ãƒãƒ³ã‚¯åˆ‡ã‚Šæ›¿ãˆ */
 			  case _SET_SBANK:
 				temp = skipSpace( lptr[line].str );
-				
+
 				if ((temp2 = strchr(str_track, *temp)) != NULL) {
-					/* ABC..¤Ë¤è¤ë¥È¥é¥Ã¥¯»ØÄê */
+					/* ABC..ã«ã‚ˆã‚‹ãƒˆãƒ©ãƒƒã‚¯æŒ‡å®š */
 					param = (temp2 - str_track) + 1;
 					temp++;
 				} else {
-					/* ¿ô»ú¤Ë¤è¤ë¥È¥é¥Ã¥¯»ØÄê */
+					/* æ•°å­—ã«ã‚ˆã‚‹ãƒˆãƒ©ãƒƒã‚¯æŒ‡å®š */
 					param = Asc2Int( temp, &cnt );
 					if (cnt == 0) {
 						dispError( DEFINITION_IS_WRONG, lptr[line].filename, line );
@@ -831,9 +831,9 @@ void getLineStatus(LINE *lptr, int inc_nest )
 						temp += cnt;
 					}
 				}
-				
+
 				temp = skipSpace( temp );
-				if( *temp == ',' ) {		/* ¥Ğ¥ó¥¯³ÈÄ¥ */
+				if( *temp == ',' ) {		/* ãƒãƒ³ã‚¯æ‹¡å¼µ */
 					temp++;
 					if( (1 <= param) && (param <= _TRACK_MAX) ) {
 						bank_ch = param;
@@ -864,28 +864,28 @@ void getLineStatus(LINE *lptr, int inc_nest )
 			  case _EFFECT_INCLUDE:
 				include_flag = 1;
 				break;
-			/* ¥¿¥¤¥È¥ë */
+			/* ã‚¿ã‚¤ãƒˆãƒ« */
 			  case _TITLE:
 				temp = skipSpaceOld( lptr[line].str );
 				strncpy( song_name, temp, 1023 );
 				break;
-			/* ºî¶Ê¼Ô */
+			/* ä½œæ›²è€… */
 			  case _COMPOSER:
 				temp = skipSpaceOld( lptr[line].str );
 				strncpy( composer, temp, 1023 );
 				break;
-			/* ¥á¡¼¥«¡¼ */
+			/* ãƒ¡ãƒ¼ã‚«ãƒ¼ */
 			  case _MAKER:
 				temp = skipSpaceOld( lptr[line].str );
 				strncpy( maker, temp, 1023 );
 				break;
-			/* ÂÇ¤Á¹ş¤ß¼Ô */
+			/* æ‰“ã¡è¾¼ã¿è€… */
 			  case _PROGRAMER:
 				temp = skipSpaceOld( lptr[line].str );
 				strncpy( programer_buf, temp, 1023 );
 				programer = programer_buf;
 				break;
-			/* ¥ª¥¯¥¿¡¼¥Öµ­¹æ¤ÎÈ¿Å¾ */
+			/* ã‚ªã‚¯ã‚¿ãƒ¼ãƒ–è¨˜å·ã®åè»¢ */
 			  case _OCTAVE_REV:
 				temp = skipSpace( lptr[line].str );
 				param = Asc2Int( temp, &cnt );
@@ -899,7 +899,7 @@ void getLineStatus(LINE *lptr, int inc_nest )
 					octave_flag = 1;
 				}
 				break;
-			/* q¥³¥Ş¥ó¥ÉÊ¬ÊìÊÑ¹¹ */
+			/* qã‚³ãƒãƒ³ãƒ‰åˆ†æ¯å¤‰æ›´ */
 			  case _GATE_DENOM:
 				temp = skipSpace( lptr[line].str );
 				param = Asc2Int( temp, &cnt );
@@ -910,17 +910,17 @@ void getLineStatus(LINE *lptr, int inc_nest )
 					lptr[line].status = 0;
 				}
 				break;
-			/*¥Ç¥£¥Á¥å¡¼¥ó¡¢¥Ô¥Ã¥Á¥¨¥ó¥Ù¥í¡¼¥×¡¢LFO¤ÎÊı¸ş½¤Àµ */
+			/*ãƒ‡ã‚£ãƒãƒ¥ãƒ¼ãƒ³ã€ãƒ”ãƒƒãƒã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ã€LFOã®æ–¹å‘ä¿®æ­£ */
 			  case _PITCH_CORRECTION:
 				pitch_correction = 1;
 				break;
-			/* ¥Ø¥Ã¥ÀÌµ¤· */
+			/* ãƒ˜ãƒƒãƒ€ç„¡ã— */
 			  case -1:
 				if( (lptr[line-1].status&_SET_EFFECT) != 0 ) {
 					lptr[line].status = lptr[line-1].status|_SAME_LINE;
 					lptr[line].str = ptr;
 				} else {
-					/* ¥¨¥é¡¼¥Á¥§¥Ã¥¯ */
+					/* ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯ */
 					dispError( COMMAND_NOT_DEFINED, lptr[line].filename, line );
 					lptr[line].status = 0;
 					lptr[line].str = ptr;
@@ -934,11 +934,11 @@ void getLineStatus(LINE *lptr, int inc_nest )
 
 
 /*--------------------------------------------------------------
-	²»¿§¤Î¼èÆÀ
+	éŸ³è‰²ã®å–å¾—
  Input:
-	
+
  Output:
-	Ìµ¤·
+	ç„¡ã—
 --------------------------------------------------------------*/
 void getTone( LINE *lptr )
 {
@@ -948,11 +948,11 @@ void getTone( LINE *lptr )
 	cnt = 0;
 
 	for( line = 1; line <= lptr->line; line++ ) {
-		/* ²»¿§¥Ç¡¼¥¿È¯¸«¡© */
+		/* éŸ³è‰²ãƒ‡ãƒ¼ã‚¿ç™ºè¦‹ï¼Ÿ */
 		if( lptr[line].status == _SET_TONE ) {
-			no = lptr[line].param;				/* ²»¿§ÈÖ¹æ¼èÆÀ */
+			no = lptr[line].param;				/* éŸ³è‰²ç•ªå·å–å¾— */
 			ptr = lptr[line].str;
-			ptr++;								/* '{'¤ÎÊ¬¤òÈô¤Ğ¤¹ */
+			ptr++;								/* '{'ã®åˆ†ã‚’é£›ã°ã™ */
 			if (tone_tbl[no][0] != 0) {
 				dispWarning( THIS_NUMBER_IS_ALREADY_USED, lptr[line].filename, line );
 			}
@@ -994,7 +994,7 @@ void getTone( LINE *lptr )
 					break;
 				  default:
 					num = Asc2Int( ptr, &cnt );
-					//vrc6ÍÑ¤ËÀ©¸Â¤ò³°¤¹(ÆâÂ¢¶ë·ÁÇÈ¡¢MMC5¤Ï3¤Ş¤Ç)
+					//vrc6ç”¨ã«åˆ¶é™ã‚’å¤–ã™(å†…è”µçŸ©å½¢æ³¢ã€MMC5ã¯3ã¾ã§)
 					//if( cnt != 0 && (0 <= num && num <= 3) ) {
 					if( cnt != 0 && (0 <= num && num <= 7) ) {
 						tone_tbl[no][i] = num;
@@ -1013,10 +1013,10 @@ void getTone( LINE *lptr )
 					ptr++;
 				}
 			}
-		/* ²»¿§ÄêµÁ¤À¤±¤É_SAME_LINE¤Î»ş¤Ï¥¨¥é¡¼ */
+		/* éŸ³è‰²å®šç¾©ã ã‘ã©_SAME_LINEã®æ™‚ã¯ã‚¨ãƒ©ãƒ¼ */
 		} else if( lptr[line].status == (_SET_TONE|_SAME_LINE) ) {
 			dispError( TONE_DEFINITION_IS_WRONG, lptr[line].filename, line );
-		/* ¥¤¥ó¥¯¥ë¡¼¥É¥Õ¥¡¥¤¥ë½èÍı */
+		/* ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«å‡¦ç† */
 		} else if( lptr[line].status == _INCLUDE ) {
 			getTone( lptr[line].inc_ptr );
 		}
@@ -1026,11 +1026,11 @@ void getTone( LINE *lptr )
 
 
 /*--------------------------------------------------------------
-	¥¨¥ó¥Ù¥í¡¼¥×¤Î¼èÆÀ
+	ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ã®å–å¾—
  Input:
-	
+
  Output:
-	Ìµ¤·
+	ç„¡ã—
 --------------------------------------------------------------*/
 void getEnvelope( LINE *lptr )
 {
@@ -1040,11 +1040,11 @@ void getEnvelope( LINE *lptr )
 	cnt = 0;
 
 	for( line = 1; line <= lptr->line; line++ ) {
-		/* ¥¨¥ó¥Ù¥í¡¼¥×¥Ç¡¼¥¿È¯¸«¡© */
+		/* ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ãƒ‡ãƒ¼ã‚¿ç™ºè¦‹ï¼Ÿ */
 		if( lptr[line].status == _SET_ENVELOPE ) {
-			no = lptr[line].param;				/* ¥¨¥ó¥Ù¥í¡¼¥×ÈÖ¹æ¼èÆÀ */
+			no = lptr[line].param;				/* ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ç•ªå·å–å¾— */
 			ptr = lptr[line].str;
-			ptr++;								/* '{'¤ÎÊ¬¤òÈô¤Ğ¤¹ */
+			ptr++;								/* '{'ã®åˆ†ã‚’é£›ã°ã™ */
 			if (envelope_tbl[no][0] != 0) {
 				dispWarning( THIS_NUMBER_IS_ALREADY_USED, lptr[line].filename, line );
 			}
@@ -1103,10 +1103,10 @@ void getEnvelope( LINE *lptr )
 					ptr++;
 				}
 			}
-		/* ¥¨¥ó¥Ù¥í¡¼¥×ÄêµÁ¤À¤±¤É_SAME_LINE¤Î»ş¤Ï¥¨¥é¡¼ */
+		/* ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—å®šç¾©ã ã‘ã©_SAME_LINEã®æ™‚ã¯ã‚¨ãƒ©ãƒ¼ */
 		} else if( lptr[line].status == (_SET_ENVELOPE|_SAME_LINE) ) {
 			dispError( ENVELOPE_DEFINITION_IS_WRONG, lptr[line].filename, line );
-		/* ¥¤¥ó¥¯¥ë¡¼¥É¥Õ¥¡¥¤¥ë½èÍı */
+		/* ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«å‡¦ç† */
 		} else if( lptr[line].status == _INCLUDE ) {
 			getEnvelope( lptr[line].inc_ptr );
 		}
@@ -1114,11 +1114,11 @@ void getEnvelope( LINE *lptr )
 }
 
 /*--------------------------------------------------------------
-	¥Ô¥Ã¥Á¥¨¥ó¥Ù¥í¡¼¥×¤Î¼èÆÀ
+	ãƒ”ãƒƒãƒã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ã®å–å¾—
  Input:
-	
+
  Output:
-	Ìµ¤·
+	ç„¡ã—
 --------------------------------------------------------------*/
 void getPitchEnv( LINE *lptr )
 {
@@ -1128,11 +1128,11 @@ void getPitchEnv( LINE *lptr )
 	cnt = 0;
 
 	for( line = 1; line <= lptr->line; line++ ) {
-		/* ¥Ô¥Ã¥Á¥¨¥ó¥Ù¥í¡¼¥×¥Ç¡¼¥¿È¯¸«¡© */
+		/* ãƒ”ãƒƒãƒã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ãƒ‡ãƒ¼ã‚¿ç™ºè¦‹ï¼Ÿ */
 		if( lptr[line].status == _SET_PITCH_ENV ) {
-			no = lptr[line].param;				/* ¥Ô¥Ã¥Á¥¨¥ó¥Ù¥í¡¼¥×ÈÖ¹æ¼èÆÀ */
+			no = lptr[line].param;				/* ãƒ”ãƒƒãƒã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ç•ªå·å–å¾— */
 			ptr = lptr[line].str;
-			ptr++;								/* '{'¤ÎÊ¬¤òÈô¤Ğ¤¹ */
+			ptr++;								/* '{'ã®åˆ†ã‚’é£›ã°ã™ */
 			if (pitch_env_tbl[no][0] != 0) {
 				dispWarning( THIS_NUMBER_IS_ALREADY_USED, lptr[line].filename, line );
 			}
@@ -1191,10 +1191,10 @@ void getPitchEnv( LINE *lptr )
 					ptr++;
 				}
 			}
-		/* ¥Ô¥Ã¥Á¥¨¥ó¥Ù¥í¡¼¥×ÄêµÁ¤À¤±¤É_SAME_LINE¤Î»ş¤Ï¥¨¥é¡¼ */
+		/* ãƒ”ãƒƒãƒã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—å®šç¾©ã ã‘ã©_SAME_LINEã®æ™‚ã¯ã‚¨ãƒ©ãƒ¼ */
 		} else if( lptr[line].status == (_SET_PITCH_ENV|_SAME_LINE) ) {
 			dispError( PITCH_ENVELOPE_DEFINITION_IS_WRONG, lptr[line].filename, line );
-		/* ¥¤¥ó¥¯¥ë¡¼¥É¥Õ¥¡¥¤¥ë½èÍı */
+		/* ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«å‡¦ç† */
 		} else if( lptr[line].status == _INCLUDE ) {
 			getPitchEnv( lptr[line].inc_ptr );
 		}
@@ -1202,11 +1202,11 @@ void getPitchEnv( LINE *lptr )
 }
 
 /*--------------------------------------------------------------
-	¥Ô¥Ã¥Á¥â¥¸¥å¥ì¡¼¥·¥ç¥ó¤Î¼èÆÀ
+	ãƒ”ãƒƒãƒãƒ¢ã‚¸ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã®å–å¾—
  Input:
-	
+
  Output:
-	Ìµ¤·
+	ç„¡ã—
 --------------------------------------------------------------*/
 void getPitchMod( LINE *lptr )
 {
@@ -1216,11 +1216,11 @@ void getPitchMod( LINE *lptr )
 	cnt = 0;
 
 	for( line = 1; line <= lptr->line; line++ ) {
-		/* ²»¿§¥Ç¡¼¥¿È¯¸«¡© */
+		/* éŸ³è‰²ãƒ‡ãƒ¼ã‚¿ç™ºè¦‹ï¼Ÿ */
 		if( lptr[line].status == _SET_PITCH_MOD ) {
-			no = lptr[line].param;				/* LFOÈÖ¹æ¼èÆÀ */
+			no = lptr[line].param;				/* LFOç•ªå·å–å¾— */
 			ptr = lptr[line].str;
-			ptr++;								/* '{'¤ÎÊ¬¤òÈô¤Ğ¤¹ */
+			ptr++;								/* '{'ã®åˆ†ã‚’é£›ã°ã™ */
 			if (pitch_mod_tbl[no][0] != 0) {
 				dispWarning( THIS_NUMBER_IS_ALREADY_USED, lptr[line].filename, line );
 			}
@@ -1301,10 +1301,10 @@ void getPitchMod( LINE *lptr )
 					ptr++;
 				}
 			}
-		/* ²»¿§ÄêµÁ¤À¤±¤É_SAME_LINE¤Î»ş¤Ï¥¨¥é¡¼ */
+		/* éŸ³è‰²å®šç¾©ã ã‘ã©_SAME_LINEã®æ™‚ã¯ã‚¨ãƒ©ãƒ¼ */
 		} else if( lptr[line].status == (_SET_PITCH_MOD|_SAME_LINE) ) {
 			dispError( LFO_DEFINITION_IS_WRONG, lptr[line].filename, line );
-		/* ¥¤¥ó¥¯¥ë¡¼¥É¥Õ¥¡¥¤¥ë½èÍı */
+		/* ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«å‡¦ç† */
 		} else if( lptr[line].status == _INCLUDE ) {
 			getPitchMod( lptr[line].inc_ptr );
 		}
@@ -1314,11 +1314,11 @@ void getPitchMod( LINE *lptr )
 
 
 /*--------------------------------------------------------------
-	¥Î¡¼¥È¥¨¥ó¥Ù¥í¡¼¥×¤Î¼èÆÀ
+	ãƒãƒ¼ãƒˆã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ã®å–å¾—
  Input:
-	
+
  Output:
-	Ìµ¤·
+	ç„¡ã—
 --------------------------------------------------------------*/
 void getArpeggio( LINE *lptr )
 {
@@ -1328,11 +1328,11 @@ void getArpeggio( LINE *lptr )
 	cnt = 0;
 
 	for( line = 1; line <= lptr->line; line++ ) {
-		/* ¥¢¥ë¥Ú¥¸¥ª¥Ç¡¼¥¿È¯¸«¡© */
+		/* ã‚¢ãƒ«ãƒšã‚¸ã‚ªãƒ‡ãƒ¼ã‚¿ç™ºè¦‹ï¼Ÿ */
 		if( lptr[line].status == _SET_ARPEGGIO ) {
-			no = lptr[line].param;				/* ¥¨¥ó¥Ù¥í¡¼¥×ÈÖ¹æ¼èÆÀ */
+			no = lptr[line].param;				/* ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ç•ªå·å–å¾— */
 			ptr = lptr[line].str;
-			ptr++;								/* '{'¤ÎÊ¬¤òÈô¤Ğ¤¹ */
+			ptr++;								/* '{'ã®åˆ†ã‚’é£›ã°ã™ */
 			if (arpeggio_tbl[no][0] != 0) {
 				dispWarning( THIS_NUMBER_IS_ALREADY_USED, lptr[line].filename, line );
 			}
@@ -1379,7 +1379,7 @@ void getArpeggio( LINE *lptr )
 							arpeggio_tbl[no][i] = num;
 						} else {
 							arpeggio_tbl[no][i] = (-num)|0x80;
-						}	
+						}
 						arpeggio_tbl[no][0]++;
 						ptr += cnt;
 						i++;
@@ -1395,10 +1395,10 @@ void getArpeggio( LINE *lptr )
 					ptr++;
 				}
 			}
-		/* ¥¢¥ë¥Ú¥¸¥ªÄêµÁ¤À¤±¤É_SAME_LINE¤Î»ş¤Ï¥¨¥é¡¼ */
+		/* ã‚¢ãƒ«ãƒšã‚¸ã‚ªå®šç¾©ã ã‘ã©_SAME_LINEã®æ™‚ã¯ã‚¨ãƒ©ãƒ¼ */
 		} else if( lptr[line].status == (_SET_ARPEGGIO|_SAME_LINE) ) {
 			dispError( NOTE_ENVELOPE_DEFINITION_IS_WRONG, lptr[line].filename, line );
-		/* ¥¤¥ó¥¯¥ë¡¼¥É¥Õ¥¡¥¤¥ë½èÍı */
+		/* ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«å‡¦ç† */
 		} else if( lptr[line].status == _INCLUDE ) {
 			getArpeggio( lptr[line].inc_ptr );
 		}
@@ -1408,11 +1408,11 @@ void getArpeggio( LINE *lptr )
 
 
 /*--------------------------------------------------------------
-	DPCM¤Î¼èÆÀ
+	DPCMã®å–å¾—
  Input:
-	
+
  Output:
-	Ìµ¤·
+	ç„¡ã—
 --------------------------------------------------------------*/
 void getDPCM( LINE *lptr )
 {
@@ -1424,16 +1424,16 @@ void getDPCM( LINE *lptr )
 	cnt = 0;
 
 	for( line = 1; line <= lptr->line; line++ ) {
-		// DPCM¥Ç¡¼¥¿È¯¸«¡©
+		// DPCMãƒ‡ãƒ¼ã‚¿ç™ºè¦‹ï¼Ÿ
 		if( lptr[line].status == _SET_DPCM_DATA ) {
-			no = lptr[line].param;				// DPCMÈÖ¹æ¼èÆÀ
+			no = lptr[line].param;				// DPCMç•ªå·å–å¾—
 			ptr = lptr[line].str;
-			ptr++;								// '{'¤ÎÊ¬¤òÈô¤Ğ¤¹
+			ptr++;								// '{'ã®åˆ†ã‚’é£›ã°ã™
 			tbl = &dpcm_tbl[no];
 			if (tbl->flag != 0) {
 				dispWarning( THIS_NUMBER_IS_ALREADY_USED, lptr[line].filename, line );
 			}
-			tbl->flag = 1;						// ¥Õ¥é¥°¤ò»ÈÍÑÃæ¤Ë
+			tbl->flag = 1;						// ãƒ•ãƒ©ã‚°ã‚’ä½¿ç”¨ä¸­ã«
 			tbl->index = -1;
 			tbl->fname = NULL;
 			tbl->freq = 0;
@@ -1445,7 +1445,7 @@ void getDPCM( LINE *lptr )
 			while( end_flag == 0 ) {
 				ptr = skipSpace( ptr );
 				switch( *ptr ) {
-				// ¥Ç¡¼¥¿½ªÎ»
+				// ãƒ‡ãƒ¼ã‚¿çµ‚äº†
 				  case '}':
 					switch( i ) {
 					  case 0:
@@ -1459,7 +1459,7 @@ void getDPCM( LINE *lptr )
 					}
 					end_flag = 1;
 					break;
-				// ²ş¹Ô
+				// æ”¹è¡Œ
 				  case '\0':
 					offset++;
 					if( line+offset <= lptr->line ) {
@@ -1474,28 +1474,28 @@ void getDPCM( LINE *lptr )
 					break;
 				  default:
 					switch( i ) {
-					// ¥Õ¥¡¥¤¥ëÌ¾¤òÅĞÏ¿
+					// ãƒ•ã‚¡ã‚¤ãƒ«åã‚’ç™»éŒ²
 					  case 0:
-						// ¥Õ¥¡¥¤¥ëÌ¾¤Ï"..."¤Ç°Ï¤Ş¤ì¤Æ¤¤¤ë¡©
+						// ãƒ•ã‚¡ã‚¤ãƒ«åã¯"..."ã§å›²ã¾ã‚Œã¦ã„ã‚‹ï¼Ÿ
 						if( *ptr == '\"' ) {
 							ptr++;
 							//ptr = skipSpace( ptr );
-							//"file.dmc"¤ÏOK. " file.dmc"¤ÏNG.
+							//"file.dmc"ã¯OK. " file.dmc"ã¯NG.
 							tbl->fname = ptr;
 							while( *ptr != '\"' && *ptr != '\0' ) {
 								ptr++;
 							}
 						} else {
 							tbl->fname = ptr;
-							//¶õÇò¤¬¤¢¤ë¤È¤³¤í¤Ş¤Ç¤Ï¥Õ¥¡¥¤¥ëÌ¾
-							// '/'';'¤Ï¤È¤Ğ¤µ¤Ê¤¤
+							//ç©ºç™½ãŒã‚ã‚‹ã¨ã“ã‚ã¾ã§ã¯ãƒ•ã‚¡ã‚¤ãƒ«å
+							// '/'';'ã¯ã¨ã°ã•ãªã„
 							while( *ptr != ' ' && *ptr != '\t' && *ptr != '\0' ) {
 								ptr++;
 							}
 						}
 						*ptr = '\0';
 						ptr++;
-						// ¥Õ¥¡¥¤¥ëÂ¸ºß¥Á¥§¥Ã¥¯/¥µ¥¤¥º¥Á¥§¥Ã¥¯
+						// ãƒ•ã‚¡ã‚¤ãƒ«å­˜åœ¨ãƒã‚§ãƒƒã‚¯/ã‚µã‚¤ã‚ºãƒã‚§ãƒƒã‚¯
 						if( (fp = openDmc( tbl->fname )) == NULL ) {
 							dispError( DPCM_FILE_NOT_FOUND, lptr[line+offset].filename, line );
 							tbl->flag = 0;
@@ -1508,7 +1508,7 @@ void getDPCM( LINE *lptr )
 						}
 						i++;
 						break;
-					// ºÆÀ¸¼şÇÈ¿ô¤òÅĞÏ¿
+					// å†ç”Ÿå‘¨æ³¢æ•°ã‚’ç™»éŒ²
 					  case 1:
 						num = Asc2Int( ptr, &cnt );
 						if( cnt != 0 && (0 <= num && num <= 15) ) {
@@ -1521,11 +1521,11 @@ void getDPCM( LINE *lptr )
 						ptr += cnt;
 						i++;
 						break;
-					// ºÆÀ¸¥µ¥¤¥º¤òÅĞÏ¿
+					// å†ç”Ÿã‚µã‚¤ã‚ºã‚’ç™»éŒ²
 					  case 2:
 						num = Asc2Int( ptr, &cnt );
 						if (cnt != 0 && num == 0) {
-							//ÃÍ¤¬0¤Î¤È¤­¤Ï¾ÊÎ¬¤ÈÆ±¤¸
+							//å€¤ãŒ0ã®ã¨ãã¯çœç•¥ã¨åŒã˜
 							ptr += cnt;
 							i++;
 							break;
@@ -1540,7 +1540,7 @@ void getDPCM( LINE *lptr )
 						ptr += cnt;
 						i++;
 						break;
-					// ¥Ç¥ë¥¿¥«¥¦¥ó¥¿($4011)½é´üÃÍ¤òÅĞÏ¿
+					// ãƒ‡ãƒ«ã‚¿ã‚«ã‚¦ãƒ³ã‚¿($4011)åˆæœŸå€¤ã‚’ç™»éŒ²
 					  case 3:
 						num = Asc2Int(ptr, &cnt);
 						if (cnt != 0 && ((0 <= num && num <= 0x7f) || num == 0xff)) {
@@ -1553,7 +1553,7 @@ void getDPCM( LINE *lptr )
 						ptr += cnt;
 						i++;
 						break;
-					// ¥ë¡¼¥×¾ğÊó($4010¤Îbit7,6)¤òÅĞÏ¿
+					// ãƒ«ãƒ¼ãƒ—æƒ…å ±($4010ã®bit7,6)ã‚’ç™»éŒ²
 					  case 4:
 						num = Asc2Int(ptr, &cnt);
 						if (cnt != 0 && (0 <= num && num <= 2)) {
@@ -1585,10 +1585,10 @@ void getDPCM( LINE *lptr )
 			} else if ((tbl->size % 16) != 1) {
 				dispWarning( DPCM_FILE_SIZE_ERROR, lptr[line+offset].filename, line );
 			}
-		// DPCMÄêµÁ¤À¤±¤É_SAME_LINE¤Î»ş¤Ï¥¨¥é¡¼
+		// DPCMå®šç¾©ã ã‘ã©_SAME_LINEã®æ™‚ã¯ã‚¨ãƒ©ãƒ¼
 		} else if( lptr[line].status == (_SET_DPCM_DATA|_SAME_LINE) ) {
 			dispError( DPCM_DEFINITION_IS_WRONG, lptr[line].filename, line );
-		// ¥¤¥ó¥¯¥ë¡¼¥É¥Õ¥¡¥¤¥ë½èÍı
+		// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«å‡¦ç†
 		} else if( lptr[line].status == _INCLUDE ) {
 			getDPCM( lptr[line].inc_ptr );
 		}
@@ -1598,11 +1598,11 @@ void getDPCM( LINE *lptr )
 
 
 /*--------------------------------------------------------------
-	FDS FM²»¿§¤Î¼èÆÀ
+	FDS FMéŸ³è‰²ã®å–å¾—
  Input:
-	
+
  Output:
-	Ìµ¤·
+	ç„¡ã—
 --------------------------------------------------------------*/
 void getFMTone( LINE *lptr )
 {
@@ -1612,11 +1612,11 @@ void getFMTone( LINE *lptr )
 	cnt = 0;
 
 	for( line = 1; line <= lptr->line; line++ ) {
-		/* ²»¿§¥Ç¡¼¥¿È¯¸«¡© */
+		/* éŸ³è‰²ãƒ‡ãƒ¼ã‚¿ç™ºè¦‹ï¼Ÿ */
 		if( lptr[line].status == _SET_FM_TONE ) {
-			no = lptr[line].param;				/* ²»¿§ÈÖ¹æ¼èÆÀ */
+			no = lptr[line].param;				/* éŸ³è‰²ç•ªå·å–å¾— */
 			ptr = lptr[line].str;
-			ptr++;								/* '{'¤ÎÊ¬¤òÈô¤Ğ¤¹ */
+			ptr++;								/* '{'ã®åˆ†ã‚’é£›ã°ã™ */
 			if (fm_tone_tbl[no][0] != 0) {
 				dispWarning( THIS_NUMBER_IS_ALREADY_USED, lptr[line].filename, line );
 			}
@@ -1676,10 +1676,10 @@ void getFMTone( LINE *lptr )
 					ptr++;
 				}
 			}
-		/* ²»¿§ÄêµÁ¤À¤±¤É_SAME_LINE¤Î»ş¤Ï¥¨¥é¡¼ */
+		/* éŸ³è‰²å®šç¾©ã ã‘ã©_SAME_LINEã®æ™‚ã¯ã‚¨ãƒ©ãƒ¼ */
 		} else if( lptr[line].status == (_SET_FM_TONE|_SAME_LINE) ) {
 			dispError( FM_TONE_DEFINITION_IS_WRONG, lptr[line].filename, line );
-		/* ¥¤¥ó¥¯¥ë¡¼¥É¥Õ¥¡¥¤¥ë½èÍı */
+		/* ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«å‡¦ç† */
 		} else if( lptr[line].status == _INCLUDE ) {
 			getFMTone( lptr[line].inc_ptr );
 		}
@@ -1688,11 +1688,11 @@ void getFMTone( LINE *lptr )
 
 
 /*--------------------------------------------------------------
-	VRC7²»¿§¤Î¼èÆÀ
+	VRC7éŸ³è‰²ã®å–å¾—
  Input:
-	
+
  Output:
-	Ìµ¤·
+	ç„¡ã—
 --------------------------------------------------------------*/
 void getVRC7Tone( LINE *lptr )
 {
@@ -1702,11 +1702,11 @@ void getVRC7Tone( LINE *lptr )
 	cnt = 0;
 
 	for( line = 1; line <= lptr->line; line++ ) {
-		/* ²»¿§¥Ç¡¼¥¿È¯¸«¡© */
+		/* éŸ³è‰²ãƒ‡ãƒ¼ã‚¿ç™ºè¦‹ï¼Ÿ */
 		if( lptr[line].status == _SET_VRC7_TONE ) {
-			no = lptr[line].param;				/* ²»¿§ÈÖ¹æ¼èÆÀ */
+			no = lptr[line].param;				/* éŸ³è‰²ç•ªå·å–å¾— */
 			ptr = lptr[line].str;
-			ptr++;								/* '{'¤ÎÊ¬¤òÈô¤Ğ¤¹ */
+			ptr++;								/* '{'ã®åˆ†ã‚’é£›ã°ã™ */
 			if (vrc7_tone_tbl[no][0] != 0) {
 				dispWarning( THIS_NUMBER_IS_ALREADY_USED, lptr[line].filename, line );
 			}
@@ -1774,10 +1774,10 @@ void getVRC7Tone( LINE *lptr )
 			}
 
 
-		/* ²»¿§ÄêµÁ¤À¤±¤É_SAME_LINE¤Î»ş¤Ï¥¨¥é¡¼ */
+		/* éŸ³è‰²å®šç¾©ã ã‘ã©_SAME_LINEã®æ™‚ã¯ã‚¨ãƒ©ãƒ¼ */
 		} else if( lptr[line].status == (_SET_VRC7_TONE|_SAME_LINE) ) {
 			dispError( FM_TONE_DEFINITION_IS_WRONG, lptr[line].filename, line );
-		/* ¥¤¥ó¥¯¥ë¡¼¥É¥Õ¥¡¥¤¥ë½èÍı */
+		/* ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«å‡¦ç† */
 		} else if( lptr[line].status == _INCLUDE ) {
 			getVRC7Tone( lptr[line].inc_ptr );
 		}
@@ -1787,27 +1787,27 @@ void getVRC7Tone( LINE *lptr )
 
 
 /*--------------------------------------------------------------
-	namco106²»¿§¤Î¼èÆÀ
+	namco106éŸ³è‰²ã®å–å¾—
  Input:
-	
+
  Output:
-	Ìµ¤·
+	ç„¡ã—
 --------------------------------------------------------------*/
 void getN106Tone( LINE *lptr )
 {
 	int		line, i, no, end_flag, offset, num, cnt;
 	char	*ptr;
-					//	   16 14 12 10  8  6  4  2 			
-	int	n106_tone_max[] = { 4, 4, 5, 6, 8,10,16,32 }; 
+					//	   16 14 12 10  8  6  4  2
+	int	n106_tone_max[] = { 4, 4, 5, 6, 8,10,16,32 };
 	int	n106_tone_num;
 
 	cnt = 0;
 	for( line = 1; line <= lptr->line; line++ ) {
-		/* ²»¿§¥Ç¡¼¥¿È¯¸«¡© */
+		/* éŸ³è‰²ãƒ‡ãƒ¼ã‚¿ç™ºè¦‹ï¼Ÿ */
 		if( lptr[line].status == _SET_N106_TONE ) {
-			no = lptr[line].param;				/* ²»¿§ÈÖ¹æ¼èÆÀ */
+			no = lptr[line].param;				/* éŸ³è‰²ç•ªå·å–å¾— */
 			ptr = lptr[line].str;
-			ptr++;								/* '{'¤ÎÊ¬¤òÈô¤Ğ¤¹ */
+			ptr++;								/* '{'ã®åˆ†ã‚’é£›ã°ã™ */
 			if (n106_tone_tbl[no][0] != 0) {
 				dispWarning( THIS_NUMBER_IS_ALREADY_USED, lptr[line].filename, line );
 			}
@@ -1819,7 +1819,7 @@ void getN106Tone( LINE *lptr )
 				ptr = skipSpace( ptr );
 				switch( *ptr ) {
 				  case '}':
-					//Í×ÁÇ¤Î¿ô¤Ïwhile¤òÈ´¤±¤¿¸å¤Ç¥Á¥§¥Ã¥¯
+					//è¦ç´ ã®æ•°ã¯whileã‚’æŠœã‘ãŸå¾Œã§ãƒã‚§ãƒƒã‚¯
 					end_flag = 1;
 					line += offset;
 					break;
@@ -1838,7 +1838,7 @@ void getN106Tone( LINE *lptr )
 					break;
 				  default:
 					num = Asc2Int( ptr, &cnt );
-					if( i == 1 ) {						// ÅĞÏ¿¥Ğ¥Ã¥Õ¥¡(0¡Á5)			
+					if( i == 1 ) {						// ç™»éŒ²ãƒãƒƒãƒ•ã‚¡(0ã€œ5)
 						if( cnt != 0 && (0 <= num && num <= 32) ) {
 							n106_tone_tbl[no][1] = num;
 							n106_tone_tbl[no][0]++;
@@ -1895,10 +1895,10 @@ void getN106Tone( LINE *lptr )
 				dispError( N106_TONE_DEFINITION_IS_WRONG, lptr[line].filename, line );
 				n106_tone_tbl[no][0] = 0;
 			}
-		/* ²»¿§ÄêµÁ¤À¤±¤É_SAME_LINE¤Î»ş¤Ï¥¨¥é¡¼ */
+		/* éŸ³è‰²å®šç¾©ã ã‘ã©_SAME_LINEã®æ™‚ã¯ã‚¨ãƒ©ãƒ¼ */
 		} else if( lptr[line].status == (_SET_N106_TONE|_SAME_LINE) ) {
 			dispError( N106_TONE_DEFINITION_IS_WRONG, lptr[line].filename, line );
-		/* ¥¤¥ó¥¯¥ë¡¼¥É¥Õ¥¡¥¤¥ë½èÍı */
+		/* ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«å‡¦ç† */
 		} else if( lptr[line].status == _INCLUDE ) {
 			getN106Tone( lptr[line].inc_ptr );
 		}
@@ -1908,11 +1908,11 @@ void getN106Tone( LINE *lptr )
 
 
 /*--------------------------------------------------------------
-	¥Ï¡¼¥É¥¦¥§¥¢¥¨¥Õ¥§¥¯¥È¤Î¼èÆÀ
+	ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®å–å¾—
  Input:
-	
+
  Output:
-	Ìµ¤·
+	ç„¡ã—
 --------------------------------------------------------------*/
 void getHardEffect( LINE *lptr )
 {
@@ -1922,11 +1922,11 @@ void getHardEffect( LINE *lptr )
 	cnt = 0;
 
 	for( line = 1; line <= lptr->line; line++ ) {
-		/* ²»¿§¥Ç¡¼¥¿È¯¸«¡© */
+		/* éŸ³è‰²ãƒ‡ãƒ¼ã‚¿ç™ºè¦‹ï¼Ÿ */
 		if( lptr[line].status == _SET_HARD_EFFECT ) {
-			no = lptr[line].param;				/* ¥¨¥Õ¥§¥¯¥ÈÈÖ¹æ¼èÆÀ */
+			no = lptr[line].param;				/* ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç•ªå·å–å¾— */
 			ptr = lptr[line].str;
-			ptr++;								/* '{'¤ÎÊ¬¤òÈô¤Ğ¤¹ */
+			ptr++;								/* '{'ã®åˆ†ã‚’é£›ã°ã™ */
 			if (hard_effect_tbl[no][0] != 0) {
 				dispWarning( THIS_NUMBER_IS_ALREADY_USED, lptr[line].filename, line );
 			}
@@ -2029,10 +2029,10 @@ void getHardEffect( LINE *lptr )
 					ptr++;
 				}
 			}
-		/* ²»¿§ÄêµÁ¤À¤±¤É_SAME_LINE¤Î»ş¤Ï¥¨¥é¡¼ */
+		/* éŸ³è‰²å®šç¾©ã ã‘ã©_SAME_LINEã®æ™‚ã¯ã‚¨ãƒ©ãƒ¼ */
 		} else if( lptr[line].status == (_SET_HARD_EFFECT|_SAME_LINE) ) {
 			dispError( LFO_DEFINITION_IS_WRONG, lptr[line].filename, line );
-		/* ¥¤¥ó¥¯¥ë¡¼¥É¥Õ¥¡¥¤¥ë½èÍı */
+		/* ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«å‡¦ç† */
 		} else if( lptr[line].status == _INCLUDE ) {
 			getHardEffect( lptr[line].inc_ptr );
 		}
@@ -2042,11 +2042,11 @@ void getHardEffect( LINE *lptr )
 
 
 /*--------------------------------------------------------------
-	¥¨¥Õ¥§¥¯¥ÈÇÈ·Á¤Î¼èÆÀ
+	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæ³¢å½¢ã®å–å¾—
  Input:
-	
+
  Output:
-	Ìµ¤·
+	ç„¡ã—
 --------------------------------------------------------------*/
 void getEffectWave( LINE *lptr )
 {
@@ -2056,11 +2056,11 @@ void getEffectWave( LINE *lptr )
 	cnt = 0;
 
 	for( line = 1; line <= lptr->line; line++ ) {
-		/* ²»¿§¥Ç¡¼¥¿È¯¸«¡© */
+		/* éŸ³è‰²ãƒ‡ãƒ¼ã‚¿ç™ºè¦‹ï¼Ÿ */
 		if( lptr[line].status == _SET_EFFECT_WAVE ) {
-			no = lptr[line].param;				/* ÇÈ·ÁÈÖ¹æ¼èÆÀ */
+			no = lptr[line].param;				/* æ³¢å½¢ç•ªå·å–å¾— */
 			ptr = lptr[line].str;
-			ptr++;								/* '{'¤ÎÊ¬¤òÈô¤Ğ¤¹ */
+			ptr++;								/* '{'ã®åˆ†ã‚’é£›ã°ã™ */
 			if (effect_wave_tbl[no][0] != 0) {
 				dispWarning( THIS_NUMBER_IS_ALREADY_USED, lptr[line].filename, line );
 			}
@@ -2120,10 +2120,10 @@ void getEffectWave( LINE *lptr )
 					ptr++;
 				}
 			}
-		/* ²»¿§ÄêµÁ¤À¤±¤É_SAME_LINE¤Î»ş¤Ï¥¨¥é¡¼ */
+		/* éŸ³è‰²å®šç¾©ã ã‘ã©_SAME_LINEã®æ™‚ã¯ã‚¨ãƒ©ãƒ¼ */
 		} else if( lptr[line].status == (_SET_EFFECT_WAVE|_SAME_LINE) ) {
 			dispError( EFFECT_WAVE_DEFINITION_IS_WRONG, lptr[line].filename, line );
-		/* ¥¤¥ó¥¯¥ë¡¼¥É¥Õ¥¡¥¤¥ë½èÍı */
+		/* ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«å‡¦ç† */
 		} else if( lptr[line].status == _INCLUDE ) {
 			getEffectWave( lptr[line].inc_ptr );
 		}
@@ -2133,11 +2133,11 @@ void getEffectWave( LINE *lptr )
 
 
 /*--------------------------------------------------------------
-	DPCM¥Ç¡¼¥¿¤Î¥À¥Ö¤ê¤òºï½ü
+	DPCMãƒ‡ãƒ¼ã‚¿ã®ãƒ€ãƒ–ã‚Šã‚’å‰Šé™¤
  Input:
-	Ìµ¤·
+	ç„¡ã—
  Output:
-	Ìµ¤·
+	ç„¡ã—
 --------------------------------------------------------------*/
 void sortDPCM( DPCMTBL dpcm_tbl[_DPCM_MAX] )
 {
@@ -2148,7 +2148,7 @@ void sortDPCM( DPCMTBL dpcm_tbl[_DPCM_MAX] )
 		for( j = 0; j < _DPCM_MAX; j++ ) {
 			if( i == j ) continue;
 			if( dpcm_tbl[j].flag == 0 ) continue;
-			// ¥Õ¥¡¥¤¥ëÌ¾¤¬Æ±¤¸¡©
+			// ãƒ•ã‚¡ã‚¤ãƒ«åãŒåŒã˜ï¼Ÿ
 			if( strcmp( dpcm_tbl[i].fname, dpcm_tbl[j].fname ) == 0
 			 && dpcm_tbl[i].size >= dpcm_tbl[j].size ) {
 				dpcm_tbl[j].index = i;
@@ -2160,25 +2160,25 @@ void sortDPCM( DPCMTBL dpcm_tbl[_DPCM_MAX] )
 
 
 /*--------------------------------------------------------------
-	DPCM¥µ¥¤¥º½¤Àµ(16byte¥Ğ¥¦¥ó¥À¥ê¤Ë½¤Àµ)
+	DPCMã‚µã‚¤ã‚ºä¿®æ­£(16byteãƒã‚¦ãƒ³ãƒ€ãƒªã«ä¿®æ­£)
  Input:
-	
+
  Output:
- 	int: DPCM¥µ¥¤¥º
+ 	int: DPCMã‚µã‚¤ã‚º
 --------------------------------------------------------------*/
 int checkDPCMSize( DPCMTBL dpcm_tbl[_DPCM_MAX] )
 {
 	int	i;
 	int	adr = 0;
 	int	size = 0;
-	int	bank = 0; //0x4000¤´¤È¤ËÁı²Ã
+	int	bank = 0; //0x4000ã”ã¨ã«å¢—åŠ 
 	for( i = 0; i < _DPCM_MAX; i++ ) {
 		if( dpcm_tbl[i].flag != 0 ) {
 			/*
 			   $4013 * 16 + 1 = size
-			   $4013 = (size - 1) / 16 
-			
-			   newsize % 16 == 1¤¬À®Î©¤¹¤ë¤è¤¦¤ËÄ´À°
+			   $4013 = (size - 1) / 16
+
+			   newsize % 16 == 1ãŒæˆç«‹ã™ã‚‹ã‚ˆã†ã«èª¿æ•´
 			   size%16	(size-1)%16	diff(floor)	diff(ceil)
 			   1		0		0		0
 			   2		1		-1		+15
@@ -2195,21 +2195,21 @@ int checkDPCMSize( DPCMTBL dpcm_tbl[_DPCM_MAX] )
 				dpcm_tbl[i].size += diff;
 			}
 			//printf("%s fixed size $%x\n", dpcm_tbl[i].fname, dpcm_tbl[i].size);
-			// ¥¹¥¿¡¼¥È¥¢¥É¥ì¥¹¤òÀßÄê
+			// ã‚¹ã‚¿ãƒ¼ãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¨­å®š
 			if( dpcm_tbl[i].index == -1 ) {
 				if ( ((adr%0x4000 + dpcm_tbl[i].size) > 0x4000) || (adr % 0x4000 == 0 && adr != 0) ) {
-					/* 16KB¶­³¦¤ò¤Ş¤¿¤¬¤ë¾ì¹ç¡¦¤Ş¤¿¤ÏÁ°²ó¤Î¥¢¥É¥ì¥¹ÀÚ¤ê¾å¤²¤Ç¿·¤·¤¤16KBÎÎ°è¤Ë¾è¤Ã¤¿¾ì¹ç */
+					/* 16KBå¢ƒç•Œã‚’ã¾ãŸãŒã‚‹å ´åˆãƒ»ã¾ãŸã¯å‰å›ã®ã‚¢ãƒ‰ãƒ¬ã‚¹åˆ‡ã‚Šä¸Šã’ã§æ–°ã—ã„16KBé ˜åŸŸã«ä¹—ã£ãŸå ´åˆ */
 					adr += (0x4000 - (adr % 0x4000)) % 0x4000;
 					bank++;
 					dpcm_bankswitch = 1;
 				}
 				//printf("%s bank %d a %x s %x\n", dpcm_tbl[i].fname, bank, adr, size);
-				
+
 				dpcm_tbl[i].start_adr = adr;
 				dpcm_tbl[i].bank_ofs = bank;
 				adr += dpcm_tbl[i].size;
 				size = adr;
-				// adr % 64 == 0¤¬À®Î©¤¹¤ë¤è¤¦¤ËÀÚ¤ê¾å¤²
+				// adr % 64 == 0ãŒæˆç«‹ã™ã‚‹ã‚ˆã†ã«åˆ‡ã‚Šä¸Šã’
 				adr += (64 - (adr % 64)) % 64;
 			}
 		}
@@ -2222,9 +2222,9 @@ int checkDPCMSize( DPCMTBL dpcm_tbl[_DPCM_MAX] )
 
 
 /*--------------------------------------------------------------
-	DPCM¥Ç¡¼¥¿ÆÉ¤ß¹ş¤ß
+	DPCMãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
  Input:
-	
+
  Output:
 --------------------------------------------------------------*/
 void readDPCM( DPCMTBL dpcm_tbl[_DPCM_MAX] )
@@ -2233,7 +2233,7 @@ void readDPCM( DPCMTBL dpcm_tbl[_DPCM_MAX] )
 	FILE	*fp;
 
 	for( i = 0; i < dpcm_size; i++ ) {
-		dpcm_data[i] = 0xaa; 
+		dpcm_data[i] = 0xaa;
 	}
 
 	for( i = 0; i < _DPCM_MAX; i++ ) {
@@ -2261,11 +2261,11 @@ void readDPCM( DPCMTBL dpcm_tbl[_DPCM_MAX] )
 
 
 /*--------------------------------------------------------------
-	²»¿§/¥¨¥ó¥Ù¥í¡¼¥×¤Î¥ë¡¼¥×¥Á¥§¥Ã¥¯
+	éŸ³è‰²/ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ã®ãƒ«ãƒ¼ãƒ—ãƒã‚§ãƒƒã‚¯
  Input:
-	
+
  Output:
-	int	: °ìÈÖÂç¤­¤¤²»¿§ÈÖ¹æ
+	int	: ä¸€ç•ªå¤§ãã„éŸ³è‰²ç•ªå·
 --------------------------------------------------------------*/
 int checkLoop( int ptr[128][1024], int max )
 {
@@ -2281,8 +2281,8 @@ int checkLoop( int ptr[128][1024], int max )
 			}
 			if( lp_flag == 0 ) {
 				j = ptr[i][0];
-				ptr[i][j+1] = ptr[i][j  ]; 
-				ptr[i][j  ] = ptr[i][j-1]; 
+				ptr[i][j+1] = ptr[i][j  ];
+				ptr[i][j  ] = ptr[i][j-1];
 				ptr[i][j-1] = EFTBL_LOOP;
 				ptr[i][0]++;
 			}
@@ -2295,11 +2295,11 @@ int checkLoop( int ptr[128][1024], int max )
 
 
 /*--------------------------------------------------------------
-	²»¿§¤Î»ÈÍÑ¸Ä¿ô¤òÊÖ¤¹
+	éŸ³è‰²ã®ä½¿ç”¨å€‹æ•°ã‚’è¿”ã™
  Input:
-	
+
  Output:
-	int	: °ìÈÖÂç¤­¤¤²»¿§ÈÖ¹æ
+	int	: ä¸€ç•ªå¤§ãã„éŸ³è‰²ç•ªå·
 --------------------------------------------------------------*/
 int getMaxTone( int ptr[128][66], int max )
 {
@@ -2318,11 +2318,11 @@ int getMaxTone( int ptr[128][66], int max )
 
 
 /*--------------------------------------------------------------
-	LFO¤Î»ÈÍÑ¸Ä¿ô¤òÊÖ¤¹
+	LFOã®ä½¿ç”¨å€‹æ•°ã‚’è¿”ã™
  Input:
-	
+
  Output:
-	int	: °ìÈÖÂç¤­¤¤LFOÈÖ¹æ
+	int	: ä¸€ç•ªå¤§ãã„LFOç•ªå·
 --------------------------------------------------------------*/
 int getMaxLFO( int ptr[_PITCH_MOD_MAX][5], int max )
 {
@@ -2340,11 +2340,11 @@ int getMaxLFO( int ptr[_PITCH_MOD_MAX][5], int max )
 
 
 /*--------------------------------------------------------------
-	DPCM¤Î»ÈÍÑ¸Ä¿ô¤òÊÖ¤¹
+	DPCMã®ä½¿ç”¨å€‹æ•°ã‚’è¿”ã™
  Input:
-	
+
  Output:
-	int	: °ìÈÖÂç¤­¤¤²»¿§ÈÖ¹æ
+	int	: ä¸€ç•ªå¤§ãã„éŸ³è‰²ç•ªå·
 --------------------------------------------------------------*/
 int getMaxDPCM( DPCMTBL	dpcm_tbl[_DPCM_MAX] )
 {
@@ -2361,11 +2361,11 @@ int getMaxDPCM( DPCMTBL	dpcm_tbl[_DPCM_MAX] )
 
 
 /*--------------------------------------------------------------
-	¥Ï¡¼¥É¥¦¥§¥¢¥¨¥Õ¥§¥¯¥È¤Î»ÈÍÑ¸Ä¿ô¤òÊÖ¤¹
+	ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ä½¿ç”¨å€‹æ•°ã‚’è¿”ã™
  Input:
-	
+
  Output:
-	int	: °ìÈÖÂç¤­¤¤²»¿§ÈÖ¹æ
+	int	: ä¸€ç•ªå¤§ãã„éŸ³è‰²ç•ªå·
 --------------------------------------------------------------*/
 int getMaxHardEffect( int ptr[_HARD_EFFECT_MAX][5], int max )
 {
@@ -2384,11 +2384,11 @@ int getMaxHardEffect( int ptr[_HARD_EFFECT_MAX][5], int max )
 
 
 /*--------------------------------------------------------------
-	¥¨¥Õ¥§¥¯¥ÈÇÈ·Á¤Î»ÈÍÑ¸Ä¿ô¤òÊÖ¤¹
+	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæ³¢å½¢ã®ä½¿ç”¨å€‹æ•°ã‚’è¿”ã™
  Input:
-	
+
  Output:
-	int	: °ìÈÖÂç¤­¤¤²»¿§ÈÖ¹æ
+	int	: ä¸€ç•ªå¤§ãã„éŸ³è‰²ç•ªå·
 --------------------------------------------------------------*/
 int getMaxEffectWave( int ptr[_EFFECT_WAVE_MAX][33], int max )
 {
@@ -2407,11 +2407,11 @@ int getMaxEffectWave( int ptr[_EFFECT_WAVE_MAX][33], int max )
 
 
 /*--------------------------------------------------------------
-	²»¿§/¥¨¥ó¥Ù¥í¡¼¥×¤Î½ñ¤­¹ş¤ß
+	éŸ³è‰²/ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ã®æ›¸ãè¾¼ã¿
  Input:
-	
+
  Output:
-	Ìµ¤·
+	ç„¡ã—
 --------------------------------------------------------------*/
 void writeTone( FILE *fp, int tbl[128][1024], char *str, int max )
 {
@@ -2424,7 +2424,7 @@ void writeTone( FILE *fp, int tbl[128][1024], char *str, int max )
 				fprintf( fp, "\tdw\t%s_%03d\n", str, i );
 			} else {
 				fprintf( fp, "\tdw\t0\n" );
-			}			
+			}
 		}
 	}
 	fprintf( fp, "%s_lp_table:\n", str );
@@ -2434,7 +2434,7 @@ void writeTone( FILE *fp, int tbl[128][1024], char *str, int max )
 				fprintf( fp, "\tdw\t%s_lp_%03d\n", str, i );
 			} else {
 				fprintf( fp, "\tdw\t0\n" );
-			}			
+			}
 		}
 
 		for( i = 0; i < max; i++ ) {
@@ -2467,11 +2467,11 @@ void writeTone( FILE *fp, int tbl[128][1024], char *str, int max )
 
 
 /*--------------------------------------------------------------
-	FM²»¿§¤Î½ñ¤­¹ş¤ß
+	FMéŸ³è‰²ã®æ›¸ãè¾¼ã¿
  Input:
-	
+
  Output:
-	Ìµ¤·
+	ç„¡ã—
 --------------------------------------------------------------*/
 void writeToneFM( FILE *fp, int tbl[_FM_TONE_MAX][66], char *str, int max )
 {
@@ -2491,7 +2491,7 @@ void writeToneFM( FILE *fp, int tbl[_FM_TONE_MAX][66], char *str, int max )
 			if( tbl[i][0] != 0 ) {
 				fprintf( fp, "\n%s_%03d:\n", str, i );
 				x = 0;
-				for( j = 1; j <= tbl[i][0]; j++ ) {				// tbl[i][0] = ¥Ç¡¼¥¿¡¼ÎÌ(byte)
+				for( j = 1; j <= tbl[i][0]; j++ ) {				// tbl[i][0] = ãƒ‡ãƒ¼ã‚¿ãƒ¼é‡(byte)
 					if( x == 0 ) {
 						fprintf( fp, "\tdb\t$%02x", tbl[i][j]&0xff );
 						x++;
@@ -2509,11 +2509,11 @@ void writeToneFM( FILE *fp, int tbl[_FM_TONE_MAX][66], char *str, int max )
 }
 
 /*--------------------------------------------------------------
-	VRC7²»¿§¤Î½ñ¤­¹ş¤ß
+	VRC7éŸ³è‰²ã®æ›¸ãè¾¼ã¿
  Input:
-	
+
  Output:
-	Ìµ¤·
+	ç„¡ã—
 --------------------------------------------------------------*/
 void writeToneVRC7( FILE *fp, int tbl[_VRC7_TONE_MAX][66], char *str, int max )
 {
@@ -2533,7 +2533,7 @@ void writeToneVRC7( FILE *fp, int tbl[_VRC7_TONE_MAX][66], char *str, int max )
 			if( tbl[i][0] != 0 ) {
 				fprintf( fp, "\n%s_%03d:\n", str, i );
 				x = 0;
-				for( j = 1; j <= tbl[i][0]; j++ ) {				// tbl[i][0] = ¥Ç¡¼¥¿¡¼ÎÌ(byte)
+				for( j = 1; j <= tbl[i][0]; j++ ) {				// tbl[i][0] = ãƒ‡ãƒ¼ã‚¿ãƒ¼é‡(byte)
 					if( x == 0 ) {
 						fprintf( fp, "\tdb\t$%02x", tbl[i][j]&0xff );
 						x++;
@@ -2556,11 +2556,11 @@ void writeToneVRC7( FILE *fp, int tbl[_VRC7_TONE_MAX][66], char *str, int max )
 
 
 /*--------------------------------------------------------------
-	¥Ï¡¼¥É¥¦¥§¥¢¥¨¥Õ¥§¥¯¥È¤Î½ñ¤­¹ş¤ß
+	ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®æ›¸ãè¾¼ã¿
  Input:
-	
+
  Output:
-	Ìµ¤·
+	ç„¡ã—
 --------------------------------------------------------------*/
 void writeHardEffect( FILE *fp, int tbl[_HARD_EFFECT_MAX][5], char *str, int max )
 {
@@ -2576,11 +2576,11 @@ void writeHardEffect( FILE *fp, int tbl[_HARD_EFFECT_MAX][5], char *str, int max
 }
 
 /*--------------------------------------------------------------
-	¥¨¥Õ¥§¥¯¥ÈÇÈ·Á¤Î½ñ¤­¹ş¤ß
+	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæ³¢å½¢ã®æ›¸ãè¾¼ã¿
  Input:
-	
+
  Output:
-	Ìµ¤·
+	ç„¡ã—
 --------------------------------------------------------------*/
 void writeEffectWave( FILE *fp, int tbl[_EFFECT_WAVE_MAX][33], char *str, int max )
 {
@@ -2590,7 +2590,7 @@ void writeEffectWave( FILE *fp, int tbl[_EFFECT_WAVE_MAX][33], char *str, int ma
 	for( i = 0; i < max; i++ ) {
 		if( tbl[i][0] != 0 ) {
 			x = 0;
-			for( j = 1; j <= tbl[i][0]; j++ ) {				// tbl[i][0] = ¥Ç¡¼¥¿¡¼ÎÌ(byte)
+			for( j = 1; j <= tbl[i][0]; j++ ) {				// tbl[i][0] = ãƒ‡ãƒ¼ã‚¿ãƒ¼é‡(byte)
 				if( x == 0 ) {
 					fprintf( fp, "\tdb\t$%02x", tbl[i][j]&0xff );
 					x++;
@@ -2605,33 +2605,33 @@ void writeEffectWave( FILE *fp, int tbl[_EFFECT_WAVE_MAX][33], char *str, int ma
 		}
 		else
 		{
-			/* ¥À¥ß¡¼¥Ç¡¼¥¿¤ò½ĞÎÏ */
+			/* ãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’å‡ºåŠ› */
 			for (j = 0; j < 4; j++) {
 				fprintf( fp, "\tdb\t$00,$00,$00,$00,$00,$00,$00,$00\n");
 			}
 		}
 	}
-	
+
 	fprintf( fp, "\n\n" );
 }
 
 
 
 /*--------------------------------------------------------------
-	N106²»¿§¤Î½ñ¤­¹ş¤ß
+	N106éŸ³è‰²ã®æ›¸ãè¾¼ã¿
  Input:
-	
+
  Output:
-	Ìµ¤·
+	ç„¡ã—
 --------------------------------------------------------------*/
 void writeToneN106( FILE *fp, int tbl[_N106_TONE_MAX][2+64], char *str, int max )
 {
 	int		i, j, x;
 
-	// »ÈÍÑ¥Á¥ã¥ó¥Í¥ë½ñ¤­¹ş¤ß
+	// ä½¿ç”¨ãƒãƒ£ãƒ³ãƒãƒ«æ›¸ãè¾¼ã¿
 	fprintf( fp, "%s_channel:\n", str );
 	fprintf( fp, "\tdb\t%d\n", n106_track_num );
-	// ¥Ñ¥é¥á¡¼¥¿½ñ¤­¹ş¤ß
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿
 	fprintf( fp, "%s_wave_init:\n", str );
 	if( max != 0 ) {
 		for( i = 0; i < max; i++ ) {
@@ -2644,12 +2644,12 @@ void writeToneN106( FILE *fp, int tbl[_N106_TONE_MAX][2+64], char *str, int max 
 			  case 12*2+1: j = 2; x = tbl[i][1]*12*2; break;
 			  case 14*2+1: j = 1; x = tbl[i][1]*14*2; break;
 			  case 16*2+1: j = 0; x = tbl[i][1]*16*2; break;
-			  default:     j = 0; x = 0; break;	
+			  default:     j = 0; x = 0; break;
 			}
 			fprintf( fp, "\tdb\t$%02x,$%02x\n", j, x );
 		}
 	}
-	// ¥Ñ¥é¥á¡¼¥¿½ñ¤­¹ş¤ß
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿
 	fprintf( fp, "%s_wave_table:\n", str );
 	if( max != 0 ) {
 		for( i = 0; i < max; i++ ) {
@@ -2659,7 +2659,7 @@ void writeToneN106( FILE *fp, int tbl[_N106_TONE_MAX][2+64], char *str, int max 
 				fprintf( fp, "\tdw\t0\n" );
 			}
 		}
-	}			
+	}
 	if( max != 0 ) {
 		for( i = 0; i < max; i++ ) {
 			if( tbl[i][0] != 0 ) {
@@ -2678,11 +2678,11 @@ void writeToneN106( FILE *fp, int tbl[_N106_TONE_MAX][2+64], char *str, int max 
 
 
 /*--------------------------------------------------------------
-	DPCM¥Æ¡¼¥Ö¥ë¤Î½ñ¤­¹ş¤ß
+	DPCMãƒ†ãƒ¼ãƒ–ãƒ«ã®æ›¸ãè¾¼ã¿
  Input:
-	
+
  Output:
-	Ìµ¤·
+	ç„¡ã—
 --------------------------------------------------------------*/
 void writeDPCM( FILE *fp, DPCMTBL dpcm_tbl[_DPCM_MAX], char *str, int max )
 {
@@ -2714,7 +2714,7 @@ void writeDPCM( FILE *fp, DPCMTBL dpcm_tbl[_DPCM_MAX], char *str, int max )
 			fprintf( fp, "\tdb\t$00,$00,$00,$00\t;unused\n");
 		}
 	}
-	
+
 	if (dpcm_bankswitch) {
 		fprintf( fp, "%s_bank:\n", str );
 		for( i = 0; i < max; i++ ) {
@@ -2746,7 +2746,7 @@ void writeDPCM( FILE *fp, DPCMTBL dpcm_tbl[_DPCM_MAX], char *str, int max )
 
 
 /*--------------------------------------------------------------
-	
+
 --------------------------------------------------------------*/
 static void writeDPCMSampleSub( FILE *fp )
 {
@@ -2758,18 +2758,18 @@ static void writeDPCMSampleSub( FILE *fp )
 }
 
 /*--------------------------------------------------------------
-	DPCM¥Ç¡¼¥¿¤Î½ñ¤­¹ş¤ß
+	DPCMãƒ‡ãƒ¼ã‚¿ã®æ›¸ãè¾¼ã¿
  Input:
-	
+
  Output:
-	Ìµ¤·
+	ç„¡ã—
 --------------------------------------------------------------*/
 void writeDPCMSample( FILE *fp )
 {
 	int		i;
 	int	nes_bank = 1; //8KB
 	int	bank_ofs = 0; //16KB
-	
+
 	fprintf( fp, "; begin DPCM samples\n" );
 	for( i = 0; i < dpcm_size; i++ ) {
 		if (i % 0x2000 == 0) {
@@ -2800,7 +2800,7 @@ void writeDPCMSample( FILE *fp )
 	}
 	fprintf( fp, "\n" );
 	fprintf( fp, "; end DPCM samples\n\n" );
-	
+
 	if (dpcm_extra_bank_num) {
 		int x;
 		fprintf( fp, "; begin DPCM vectors\n" );
@@ -2818,11 +2818,11 @@ void writeDPCMSample( FILE *fp )
 
 
 /*--------------------------------------------------------------
-	¥¿¥¤¥È¥ë/ºî¶Ê¼Ô/¥á¡¼¥«¡¼/ÂÇ¤Á¹ş¤ß¼Ô¤ò¥³¥á¥ó¥È¤È¤·¤Æ½ñ¤­¹ş¤ß
+	ã‚¿ã‚¤ãƒˆãƒ«/ä½œæ›²è€…/ãƒ¡ãƒ¼ã‚«ãƒ¼/æ‰“ã¡è¾¼ã¿è€…ã‚’ã‚³ãƒ¡ãƒ³ãƒˆã¨ã—ã¦æ›¸ãè¾¼ã¿
  Input:
-	
+
  Output:
-	Ìµ¤·
+	ç„¡ã—
 --------------------------------------------------------------*/
 void writeSongInfo( FILE *fp )
 {
@@ -2838,11 +2838,11 @@ void writeSongInfo( FILE *fp )
 
 
 /*--------------------------------------------------------------
-	
- Input: Ê¸»úÎó¥Ç¡¼¥¿¤òdb¤È¤·¤Æmax¥Ğ¥¤¥È½ĞÎÏ(½ªÃ¼°Ê¹ß¤Ï0¤ÇËä¤á¤ë)
-	
+
+ Input: æ–‡å­—åˆ—ãƒ‡ãƒ¼ã‚¿ã‚’dbã¨ã—ã¦maxãƒã‚¤ãƒˆå‡ºåŠ›(çµ‚ç«¯ä»¥é™ã¯0ã§åŸ‹ã‚ã‚‹)
+
  Output:
-	
+
 --------------------------------------------------------------*/
 void printStrDb( FILE *fp, const char *str, int max)
 {
@@ -2865,7 +2865,7 @@ void printStrDb( FILE *fp, const char *str, int max)
 				newline_flag = 1;
 				fprintf(fp, ", $%02x",  c & 0xff);
 				break;
-			default:				
+			default:
 				fprintf(fp, ", $%02x",  c & 0xff);
 				break;
 		}
@@ -2876,17 +2876,17 @@ void printStrDb( FILE *fp, const char *str, int max)
 	if (!newline_flag) {
 		fprintf(fp, "\n");
 	}
-	
+
 }
 
 
 
 /*--------------------------------------------------------------
-	¥¿¥¤¥È¥ë/ºî¶Ê¼Ô/¥á¡¼¥«¡¼¤òmacro¤È¤·¤Æ½ñ¤­¹ş¤ß
+	ã‚¿ã‚¤ãƒˆãƒ«/ä½œæ›²è€…/ãƒ¡ãƒ¼ã‚«ãƒ¼ã‚’macroã¨ã—ã¦æ›¸ãè¾¼ã¿
  Input:
-	
+
  Output:
-	Ìµ¤·
+	ç„¡ã—
 --------------------------------------------------------------*/
 void writeSongInfoMacro(FILE *fp)
 {
@@ -2906,11 +2906,11 @@ void writeSongInfoMacro(FILE *fp)
 
 
 /*--------------------------------------------------------------
-	¥Ñ¥é¥á¡¼¥¿¤¬n¸Ä¤Î¥³¥Ş¥ó¥É¤Î½èÍı
+	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒnå€‹ã®ã‚³ãƒãƒ³ãƒ‰ã®å‡¦ç†
  Input:
-	
+
  Output:
-	Ìµ¤·
+	ç„¡ã—
 --------------------------------------------------------------*/
 char *setCommandBuf( int n, CMD *cmd, int com_no, char *ptr, int line, int enable )
 {
@@ -2923,11 +2923,11 @@ char *setCommandBuf( int n, CMD *cmd, int com_no, char *ptr, int line, int enabl
 
 	if( n != 0 ) {
 		i = 0;
-		if( n > 1 ) {					// n¤¬2¸Ä°Ê¾å¤Î¤È¤­¤Ï","¤Î½èÍı¤¬Æş¤ë
+		if( n > 1 ) {					// nãŒ2å€‹ä»¥ä¸Šã®ã¨ãã¯","ã®å‡¦ç†ãŒå…¥ã‚‹
 			for( i = 0; i < n-1; i++ ) {
 				cnt = 0;
 				param[i] = Asc2Int( ptr, &cnt );
-				if( cnt == 0 ) {		/* ¥Ñ¥é¥á¡¼¥¿¤¬Ìµ¤¤¾ì¹ç¤Ï¥¨¥é¡¼¤Î½Ğ¤ë¿ôÃÍ¤Ë½ñ¤­´¹¤¨¤ë */
+				if( cnt == 0 ) {		/* ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒç„¡ã„å ´åˆã¯ã‚¨ãƒ©ãƒ¼ã®å‡ºã‚‹æ•°å€¤ã«æ›¸ãæ›ãˆã‚‹ */
 					param[i] = PARAM_OMITTED;
 				}
 				ptr += cnt;
@@ -2940,7 +2940,7 @@ char *setCommandBuf( int n, CMD *cmd, int com_no, char *ptr, int line, int enabl
 		}
 		cnt = 0;
 		param[i] = Asc2Int( ptr, &cnt );
-		if( cnt == 0 ) {		/* ¥Ñ¥é¥á¡¼¥¿¤¬Ìµ¤¤¾ì¹ç¤Ï¥¨¥é¡¼¤Î½Ğ¤ë¿ôÃÍ¤Ë½ñ¤­´¹¤¨¤ë */
+		if( cnt == 0 ) {		/* ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒç„¡ã„å ´åˆã¯ã‚¨ãƒ©ãƒ¼ã®å‡ºã‚‹æ•°å€¤ã«æ›¸ãæ›ãˆã‚‹ */
 			param[i] = PARAM_OMITTED;
 		}
 		ptr += cnt;
@@ -2964,18 +2964,18 @@ char *setCommandBuf( int n, CMD *cmd, int com_no, char *ptr, int line, int enabl
 
 
 /*--------------------------------------------------------------
-	²»Ä¹¥Ñ¥é¥á¡¼¥¿¤Î¼èÆÀ
+	éŸ³é•·ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®å–å¾—
  Input:
-	
+
  Output:
-	Ìµ¤·
+	ç„¡ã—
 --------------------------------------------------------------*/
 char *getLengthSub( char *ptr, double *len, double def )
 {
 	int		cnt;
 	double 	temp;
 
-	/* ¥Õ¥ì¡¼¥à»ØÄê */
+	/* ãƒ•ãƒ¬ãƒ¼ãƒ æŒ‡å®š */
 	if( *ptr == '#' ) {
 		ptr++;
 		*len = Asc2Int( ptr, &cnt );
@@ -2985,7 +2985,7 @@ char *getLengthSub( char *ptr, double *len, double def )
 		} else {
 			*len = -1;
 		}
-	/* ¥«¥¦¥ó¥È»ØÄê */
+	/* ã‚«ã‚¦ãƒ³ãƒˆæŒ‡å®š */
 	} else if( *ptr == '%' ) {
 		ptr++;
 		*len = Asc2Int( ptr, &cnt );
@@ -2994,19 +2994,19 @@ char *getLengthSub( char *ptr, double *len, double def )
 		} else {
 			*len = -1;
 		}
-	/* ²»³ÚÅª²»Ä¹»ØÄê */
+	/* éŸ³æ¥½çš„éŸ³é•·æŒ‡å®š */
 	} else {
 		*len = Asc2Int( ptr, &cnt );
 		if( cnt != 0 ) {
 			ptr += cnt;
 			*len = _BASE/(*len);
 		} else {
-			/* ¥Ñ¥é¥á¡¼¥¿¤¬Ìµ¤¤¾ì¹ç¤Ï¥¨¥é¡¼¤Î½Ğ¤ë¿ôÃÍ¤Ë½ñ¤­´¹¤¨¤ë */
+			/* ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒç„¡ã„å ´åˆã¯ã‚¨ãƒ©ãƒ¼ã®å‡ºã‚‹æ•°å€¤ã«æ›¸ãæ›ãˆã‚‹ */
 			*len = def;
 		}
-		/* ¥¨¥é¡¼/l¥³¥Ş¥ó¥É¤Î»ş¤Ï½èÍı¤µ¤»¤Ê¤¤ */
+		/* ã‚¨ãƒ©ãƒ¼/lã‚³ãƒãƒ³ãƒ‰ã®æ™‚ã¯å‡¦ç†ã•ã›ãªã„ */
 		if( *len != -1 ) {
-			/* ÉäÅÀ¤Î½èÍı(Ê£¿ô²ÄÇ½¤Ë) */
+			/* ç¬¦ç‚¹ã®å‡¦ç†(è¤‡æ•°å¯èƒ½ã«) */
 			temp = *len;
 			while( *ptr == '.' ) {
 				temp /= 2;
@@ -3020,14 +3020,14 @@ char *getLengthSub( char *ptr, double *len, double def )
 
 
 /*--------------------------------------------------------------
-	²»Ä¹¼èÆÀ
+	éŸ³é•·å–å¾—
  Output:
-	*len: 
+	*len:
 --------------------------------------------------------------*/
 char *getLength( char *ptr, double *len, double def )
 {
 	ptr = getLengthSub(ptr, len, def);
-	/* ²»Ä¹¸º»»(°ì²ó¤À¤±²ÄÇ½) */
+	/* éŸ³é•·æ¸›ç®—(ä¸€å›ã ã‘å¯èƒ½) */
 	if (*ptr == '-' || *ptr == '~') {
 		double len_adjust;
 		ptr++;
@@ -3035,7 +3035,7 @@ char *getLength( char *ptr, double *len, double def )
 		if (*len - len_adjust > 0) {
 			*len = *len - len_adjust;
 		} else {
-			//dispError();¸Æ¤Ó½Ğ¤·¸µ¤Ç¥¨¥é¡¼ÊáÂª
+			//dispError();å‘¼ã³å‡ºã—å…ƒã§ã‚¨ãƒ©ãƒ¼æ•æ‰
 			*len = *len - len_adjust;
 		}
 	}
@@ -3045,11 +3045,11 @@ char *getLength( char *ptr, double *len, double def )
 
 
 /*--------------------------------------------------------------
-	¥Ñ¥é¥á¡¼¥¿¤¬1¸Ä(²»Ä¹)¤Î¥³¥Ş¥ó¥É¤Î½èÍı
+	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒ1å€‹(éŸ³é•·)ã®ã‚³ãƒãƒ³ãƒ‰ã®å‡¦ç†
  Input:
-	
+
  Output:
-	Ìµ¤·
+	ç„¡ã—
 --------------------------------------------------------------*/
 char *setCommandBufL( CMD *cmd, int com_no, char *ptr, int line, int enable )
 {
@@ -3072,11 +3072,11 @@ char *setCommandBufL( CMD *cmd, int com_no, char *ptr, int line, int enable )
 
 
 /*--------------------------------------------------------------
-	¥Ñ¥é¥á¡¼¥¿¤¬1¸Ä(²»³¬/²»Ä¹)¤Î¥³¥Ş¥ó¥É¤Î½èÍı
+	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒ1å€‹(éŸ³éš/éŸ³é•·)ã®ã‚³ãƒãƒ³ãƒ‰ã®å‡¦ç†
  Input:
-	
+
  Output:
-	Ìµ¤·
+	ç„¡ã—
 --------------------------------------------------------------*/
 char *setCommandBufN( CMD *cmd, int com_no, char *ptr, int line, int enable )
 {
@@ -3085,7 +3085,7 @@ char *setCommandBufN( CMD *cmd, int com_no, char *ptr, int line, int enable )
 
 	com_no += transpose;
 
-	/* c+-++-++--¤È¤«¤â½ĞÍè¤ë¤è¤¦¤ËÂĞºö(ÉáÄÌ¤·¤Ê¤¤¤±¤É) */
+	/* c+-++-++--ã¨ã‹ã‚‚å‡ºæ¥ã‚‹ã‚ˆã†ã«å¯¾ç­–(æ™®é€šã—ãªã„ã‘ã©) */
 	while( 1 ) {
 		if( *ptr == '+' ) {
 			com_no++;
@@ -3097,7 +3097,7 @@ char *setCommandBufN( CMD *cmd, int com_no, char *ptr, int line, int enable )
 			break;
 		}
 	}
-	/* ¥ª¥¯¥¿¡¼¥Ö¤ò¤Ş¤¿¤°»ş¤ÎÊäÀµ½èÍı */
+	/* ã‚ªã‚¯ã‚¿ãƒ¼ãƒ–ã‚’ã¾ãŸãæ™‚ã®è£œæ­£å‡¦ç† */
 	oct_ofs = 0;
 	while( com_no < _NOTE_C ) {
 		com_no += 12;
@@ -3109,7 +3109,7 @@ char *setCommandBufN( CMD *cmd, int com_no, char *ptr, int line, int enable )
 	}
 
 	note = ((octave+oct_ofs)<<4)+com_no;
-	/* ²»³¬¤ÎÈÏ°Ï¥Á¥§¥Ã¥¯ */
+	/* éŸ³éšã®ç¯„å›²ãƒã‚§ãƒƒã‚¯ */
 	if( note < 0 ) {
 		switch( note ) {
 		  case -5: note = 15; break;
@@ -3139,11 +3139,11 @@ char *setCommandBufN( CMD *cmd, int com_no, char *ptr, int line, int enable )
 
 
 /*--------------------------------------------------------------
-	¥Ñ¥é¥á¡¼¥¿¤¬1¸Ä(²»³¬(Ä¾ÀÜ»ØÄê)/²»Ä¹)¤Î¥³¥Ş¥ó¥É¤Î½èÍı
+	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒ1å€‹(éŸ³éš(ç›´æ¥æŒ‡å®š)/éŸ³é•·)ã®ã‚³ãƒãƒ³ãƒ‰ã®å‡¦ç†
  Input:
-	
+
  Output:
-	Ìµ¤·
+	ç„¡ã—
 --------------------------------------------------------------*/
 char *setCommandBufN0( CMD *cmd, char *ptr, int line, int enable )
 {
@@ -3158,25 +3158,25 @@ char *setCommandBufN0( CMD *cmd, char *ptr, int line, int enable )
 	}
 	ptr += cnt;
 
-	// ²»³¬¤ÎÈÏ°Ï¥Á¥§¥Ã¥¯
+	// éŸ³éšã®ç¯„å›²ãƒã‚§ãƒƒã‚¯
 	if( note < 0 ) {
 		note = 0;
 	} else if( note > MAX_NOTE ) {
 		note = MAX_NOTE;
 	}
 
-	ptr = skipSpace( ptr );				// Í¾Ê¬¤Ê¥¹¥Ú¡¼¥¹¤ò¥¹¥­¥Ã¥×
-	// ","¤¬¤¢¤ë¤È¤­¤Ï²»Ä¹¤¬Â¸ºß¤¹¤ë
+	ptr = skipSpace( ptr );				// ä½™åˆ†ãªã‚¹ãƒšãƒ¼ã‚¹ã‚’ã‚¹ã‚­ãƒƒãƒ—
+	// ","ãŒã‚ã‚‹ã¨ãã¯éŸ³é•·ãŒå­˜åœ¨ã™ã‚‹
 	if( *ptr == ',' ) {
 		ptr++;
-		ptr = skipSpace( ptr );			// Í¾Ê¬¤Ê¥¹¥Ú¡¼¥¹¤ò¥¹¥­¥Ã¥×
+		ptr = skipSpace( ptr );			// ä½™åˆ†ãªã‚¹ãƒšãƒ¼ã‚¹ã‚’ã‚¹ã‚­ãƒƒãƒ—
 
 		ptr = getLength( ptr, &len, length );
 		if (len <= 0) {
 			dispError( ABNORMAL_NOTE_LENGTH_VALUE, cmd->filename, line );
 			len = 0.0;
 		}
-	// ","¤¬¤Ê¤¤¤È¤­¤Ï¥Ç¥Õ¥©¥ë¥È¤Î²»Ä¹¤ò»ÈÍÑ¤¹¤ë
+	// ","ãŒãªã„ã¨ãã¯ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®éŸ³é•·ã‚’ä½¿ç”¨ã™ã‚‹
 	} else {
 		len = length;
 	}
@@ -3194,11 +3194,11 @@ char *setCommandBufN0( CMD *cmd, char *ptr, int line, int enable )
 
 
 /*--------------------------------------------------------------
-	¥Ñ¥é¥á¡¼¥¿¤¬1¸Ä(¼şÇÈ¿ô(Ä¾ÀÜ»ØÄê)/²»Ä¹)¤Î¥³¥Ş¥ó¥É¤Î½èÍı
+	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒ1å€‹(å‘¨æ³¢æ•°(ç›´æ¥æŒ‡å®š)/éŸ³é•·)ã®ã‚³ãƒãƒ³ãƒ‰ã®å‡¦ç†
  Input:
-	
+
  Output:
-	Ìµ¤·
+	ç„¡ã—
 --------------------------------------------------------------*/
 char *setCommandBufN1( CMD *cmd, int com_no, char *ptr, int line, int enable )
 {
@@ -3207,18 +3207,18 @@ char *setCommandBufN1( CMD *cmd, int com_no, char *ptr, int line, int enable )
 
 	cnt = 0;
 	freq = Asc2Int( ptr, &cnt );
-	// Ê¸»ú¿ô¥Á¥§¥Ã¥¯
+	// æ–‡å­—æ•°ãƒã‚§ãƒƒã‚¯
 	if( cnt == 0 ) {
 		dispError( ABNORMAL_PITCH_VALUE, cmd->filename, line );
 		return ptr+1;
 	}
 	ptr += cnt;
-	// ¥Ñ¥é¥á¡¼¥¿ÈÏ°Ï¥Á¥§¥Ã¥¯
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç¯„å›²ãƒã‚§ãƒƒã‚¯
 	if( 0x0008 > freq && freq >= 0x07f2 ) {
 		dispError( ABNORMAL_PITCH_VALUE, cmd->filename, line );
 		return ptr+1;
 	}
-	// "," ¤¬¤¢¤ë¤È¤­¤Ï²»Ä¹¼èÆÀ
+	// "," ãŒã‚ã‚‹ã¨ãã¯éŸ³é•·å–å¾—
 	ptr = skipSpace( ptr );
 	if( *ptr == ',' ) {
 		ptr++;
@@ -3228,7 +3228,7 @@ char *setCommandBufN1( CMD *cmd, int com_no, char *ptr, int line, int enable )
 			dispError( ABNORMAL_NOTE_LENGTH_VALUE, cmd->filename, line );
 			len = 0.0;
 		}
-	// "," ¤¬¤Ê¤¤¤È¤­¤Ï¥Ç¥Õ¥©¥ë¥È²»Ä¹¤Ë
+	// "," ãŒãªã„ã¨ãã¯ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆéŸ³é•·ã«
 	} else {
 		len = length;
 	}
@@ -3247,11 +3247,11 @@ char *setCommandBufN1( CMD *cmd, int com_no, char *ptr, int line, int enable )
 
 
 /*--------------------------------------------------------------
-	¥Ñ¥é¥á¡¼¥¿¤¬1¸Ä(µÙÉä/²»Ä¹)¤Î¥³¥Ş¥ó¥É¤Î½èÍı
+	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒ1å€‹(ä¼‘ç¬¦/éŸ³é•·)ã®ã‚³ãƒãƒ³ãƒ‰ã®å‡¦ç†
  Input:
-	
+
  Output:
-	Ìµ¤·
+	ç„¡ã—
 --------------------------------------------------------------*/
 char *setCommandBufR( CMD *cmd, int com_no, char *ptr, int line, int enable )
 {
@@ -3262,7 +3262,7 @@ char *setCommandBufR( CMD *cmd, int com_no, char *ptr, int line, int enable )
 		dispError( ABNORMAL_NOTE_LENGTH_VALUE, cmd->filename, line );
 		len = 0.0;
 	}
-	
+
 	if( enable != 0 ) {
 		cmd->cnt = 0;
 		cmd->line = line;
@@ -3275,22 +3275,22 @@ char *setCommandBufR( CMD *cmd, int com_no, char *ptr, int line, int enable )
 
 
 /*--------------------------------------------------------------
-	¥Ñ¥é¥á¡¼¥¿¤¬1¸Ä(¥­¡¼¥ª¥Õ/²»Ä¹)¤Î¥³¥Ş¥ó¥É¤Î½èÍı
+	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒ1å€‹(ã‚­ãƒ¼ã‚ªãƒ•/éŸ³é•·)ã®ã‚³ãƒãƒ³ãƒ‰ã®å‡¦ç†
  Input:
-	
+
  Output:
-	Ìµ¤·
+	ç„¡ã—
 --------------------------------------------------------------*/
 char *setCommandBufK( CMD *cmd, int com_no, char *ptr, int line, int enable )
 {
 	double	len;
 
 	ptr = getLength( ptr, &len, length );
-	if (len < 0) { /* ²»Ä¹0¤¢¤ê */
+	if (len < 0) { /* éŸ³é•·0ã‚ã‚Š */
 		dispError( ABNORMAL_NOTE_LENGTH_VALUE, cmd->filename, line );
 		len = 0.0;
 	}
-	
+
 	if( enable != 0 ) {
 		cmd->cnt = 0;
 		cmd->line = line;
@@ -3305,11 +3305,11 @@ char *setCommandBufK( CMD *cmd, int com_no, char *ptr, int line, int enable )
 
 
 /*--------------------------------------------------------------
-	
+
  Input:
-	
+
  Output:
-	Ìµ¤·
+	ç„¡ã—
 --------------------------------------------------------------*/
 CMD * analyzeData( int trk, CMD *cmd, LINE *lptr )
 {
@@ -3362,7 +3362,7 @@ CMD * analyzeData( int trk, CMD *cmd, LINE *lptr )
 		{ "S", _SUN5B_HARD_ENV,	(FME7TRACK) },
 		{ "N", _SUN5B_NOISE_FREQ,	(FME7TRACK) },
 		{ "@q", _QUONTIZE2,		(ALLTRACK) },
-		{ "@vr", _REL_ENV,		(ALLTRACK&~TRACK(2)&~DPCMTRACK) }, 
+		{ "@vr", _REL_ENV,		(ALLTRACK&~TRACK(2)&~DPCMTRACK) },
 		{ "@v", _ENVELOPE,		(ALLTRACK&~TRACK(2)&~DPCMTRACK) },
 		{ "@@r", _REL_ORG_TONE,		(TRACK(0)|TRACK(1)|FMTRACK|VRC7TRACK|VRC6PLSTRACK|N106TRACK|MMC5PLSTRACK) },
 		{ "@@", _ORG_TONE,		(TRACK(0)|TRACK(1)|FMTRACK|VRC7TRACK|VRC6PLSTRACK|N106TRACK|MMC5PLSTRACK) },
@@ -3384,7 +3384,7 @@ CMD * analyzeData( int trk, CMD *cmd, LINE *lptr )
 #endif
 //		{ "'", _ARTICULATION_ADJUST,	(ALLTRACK) },
 		{ "k", _KEY_OFF,		(ALLTRACK) },
-		
+
 		{ "L", _SONG_LOOP,		(ALLTRACK) },
 		{ "[", _REPEAT_ST,		(ALLTRACK) },
 		{ "]", _REPEAT_END,		(ALLTRACK) },
@@ -3406,20 +3406,20 @@ CMD * analyzeData( int trk, CMD *cmd, LINE *lptr )
 		if( (lptr[line].status == _TRACK) && ((lptr[line].param&(1<<trk)) != 0) ) {
 			ptr = lptr[line].str;
 			while( *ptr != '\0' ) {
-				ptr = skipSpace( ptr );			// Í¾Ê¬¤Ê¥¹¥Ú¡¼¥¹¤ò¥¹¥­¥Ã¥×
-				if( *ptr == '\0' ) break;		// ¤³¤Î¥é¥¤¥ó¤Ï½ª¤ï¤ê¡©
-				// ¥³¥Ş¥ó¥É¤ò¸¡º÷¤¹¤ë
+				ptr = skipSpace( ptr );			// ä½™åˆ†ãªã‚¹ãƒšãƒ¼ã‚¹ã‚’ã‚¹ã‚­ãƒƒãƒ—
+				if( *ptr == '\0' ) break;		// ã“ã®ãƒ©ã‚¤ãƒ³ã¯çµ‚ã‚ã‚Šï¼Ÿ
+				// ã‚³ãƒãƒ³ãƒ‰ã‚’æ¤œç´¢ã™ã‚‹
 				for( i = 0; mml[i].num != _TRACK_END; i++ ) {
 					if( strncmp( mml[i].cmd, ptr, strlen(mml[i].cmd) ) == 0 ) break;
 				}
-				ptr += strlen(mml[i].cmd);		// ¥³¥Ş¥ó¥É¤ÎÊ¸»ú¿ô¤À¤±Ê¸»ú¤ò¥¹¥­¥Ã¥×
-				cmd->filename = lptr[line].filename;	// ¥¨¥é¡¼½ĞÎÏ»ş¤Î¥Õ¥¡¥¤¥ëÌ¾¼èÆÀ
+				ptr += strlen(mml[i].cmd);		// ã‚³ãƒãƒ³ãƒ‰ã®æ–‡å­—æ•°ã ã‘æ–‡å­—ã‚’ã‚¹ã‚­ãƒƒãƒ—
+				cmd->filename = lptr[line].filename;	// ã‚¨ãƒ©ãƒ¼å‡ºåŠ›æ™‚ã®ãƒ•ã‚¡ã‚¤ãƒ«åå–å¾—
 				switch( mml[i].num ) {
-				/* ¥ª¥¯¥¿¡¼¥Ö */
+				/* ã‚ªã‚¯ã‚¿ãƒ¼ãƒ– */
 				  case _OCTAVE:
 					com = Asc2Int( ptr, &cnt );
 					if( cnt != 0 ) {
-						// ¥³¥Ş¥ó¥É¤ÏÍ­¸ú¤Î»ş¤Ï½èÍı¤òÅĞÏ¿
+						// ã‚³ãƒãƒ³ãƒ‰ã¯æœ‰åŠ¹ã®æ™‚ã¯å‡¦ç†ã‚’ç™»éŒ²
 						if( (mml[i].enable&(1<<trk)) != 0 ) {
 							if( trk == BTRACK(0) || trk == BTRACK(1) || trk == BTRACK(2) ) {
 								octave = com-2;
@@ -3430,7 +3430,7 @@ CMD * analyzeData( int trk, CMD *cmd, LINE *lptr )
 						ptr += cnt;
 					}
 					break;
-				/* ¥ª¥¯¥¿¡¼¥Ö¥¢¥Ã¥× */
+				/* ã‚ªã‚¯ã‚¿ãƒ¼ãƒ–ã‚¢ãƒƒãƒ— */
 				  case _OCT_UP:
 					if( (mml[i].enable&(1<<trk)) != 0 ) {
 						if( octave_flag == 0 ) { octave++; } else { octave--; }
@@ -3438,7 +3438,7 @@ CMD * analyzeData( int trk, CMD *cmd, LINE *lptr )
 						dispError( UNUSE_COMMAND_IN_THIS_TRACK, lptr[line].filename, line );
 					}
 					break;
-				/* ¥ª¥¯¥¿¡¼¥Ö¥À¥¦¥ó */
+				/* ã‚ªã‚¯ã‚¿ãƒ¼ãƒ–ãƒ€ã‚¦ãƒ³ */
 				  case _OCT_DW:
 					if( (mml[i].enable&(1<<trk)) != 0 ) {
 						if( octave_flag == 0 ) { octave--; } else { octave++; }
@@ -3446,28 +3446,28 @@ CMD * analyzeData( int trk, CMD *cmd, LINE *lptr )
 						dispError( UNUSE_COMMAND_IN_THIS_TRACK, lptr[line].filename, line );
 					}
 					break;
-				/* ²»Ä¹ÀßÄê */
+				/* éŸ³é•·è¨­å®š */
 				  case _LENGTH:
 					ptr = setCommandBufL( cmd, _LENGTH, ptr, line, mml[i].enable&(1<<trk) );
 					if( (mml[i].enable&(1<<trk)) == 0 ) {
 						dispError( UNUSE_COMMAND_IN_THIS_TRACK, lptr[line].filename, line );
 					}
 					break;
-				/* ²»Éä(n¥³¥Ş¥ó¥É) */
+				/* éŸ³ç¬¦(nã‚³ãƒãƒ³ãƒ‰) */
 				  case _NOTE:
 					ptr = setCommandBufN0( cmd, ptr, line, mml[i].enable&(1<<trk) );
 					if( (mml[i].enable&(1<<trk)) == 0 ) {
 						dispError( UNUSE_COMMAND_IN_THIS_TRACK, lptr[line].filename, line );
 					}
 					break;
-				/* ²»Éä(@n¥³¥Ş¥ó¥É) */
+				/* éŸ³ç¬¦(@nã‚³ãƒãƒ³ãƒ‰) */
 				  case _KEY:
 					ptr = setCommandBufN1( cmd, _KEY, ptr, line, mml[i].enable&(1<<trk) );
 					if( (mml[i].enable&(1<<trk)) == 0 ) {
 						dispError( UNUSE_COMMAND_IN_THIS_TRACK, lptr[line].filename, line );
 					}
 					break;
-				/* ²»Éä */
+				/* éŸ³ç¬¦ */
 				  case _NOTE_C:
 				  case _NOTE_D:
 				  case _NOTE_E:
@@ -3480,7 +3480,7 @@ CMD * analyzeData( int trk, CMD *cmd, LINE *lptr )
 						dispError( UNUSE_COMMAND_IN_THIS_TRACK, lptr[line].filename, line );
 					}
 					break;
-				/* µÙÉä/Ï¢Éä */
+				/* ä¼‘ç¬¦/é€£ç¬¦ */
 				  case _REST:
 				  case _CONT_END:
 				  case _TIE:
@@ -3490,25 +3490,25 @@ CMD * analyzeData( int trk, CMD *cmd, LINE *lptr )
 						dispError( UNUSE_COMMAND_IN_THIS_TRACK, lptr[line].filename, line );
 					}
 					break;
-				 /* ¥­¡¼¥ª¥Õ */
+				 /* ã‚­ãƒ¼ã‚ªãƒ• */
 				  case _KEY_OFF:
 					ptr = setCommandBufK( cmd, mml[i].num, ptr, line, mml[i].enable&(1<<trk) );
 					if( (mml[i].enable&(1<<trk)) == 0 ) {
 						dispError( UNUSE_COMMAND_IN_THIS_TRACK, lptr[line].filename, line );
 					}
 					break;
-				/* ¥³¥Ş¥ó¥É¥Ñ¥é¥á¡¼¥¿¤¬0¸Ä¤ÎÊª */
-				  case _SLAR:			/* ¥¹¥é¡¼ */
-				  case _SONG_LOOP:			/* ¶Ê¥ë¡¼¥× */
-				  case _REPEAT_ST:		/* ¥ê¥Ô¡¼¥È(¸½¾õ¤Ç¤ÏÅ¸³«¤¹¤ë) */
-				  case _REPEAT_ESC:		/* ¥ê¥Ô¡¼¥ÈÅÓÃæÈ´¤± */
-				  case _CONT_NOTE:		/* Ï¢Éä³«»Ï */
+				/* ã‚³ãƒãƒ³ãƒ‰ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒ0å€‹ã®ç‰© */
+				  case _SLAR:			/* ã‚¹ãƒ©ãƒ¼ */
+				  case _SONG_LOOP:			/* æ›²ãƒ«ãƒ¼ãƒ— */
+				  case _REPEAT_ST:		/* ãƒªãƒ”ãƒ¼ãƒˆ(ç¾çŠ¶ã§ã¯å±•é–‹ã™ã‚‹) */
+				  case _REPEAT_ESC:		/* ãƒªãƒ”ãƒ¼ãƒˆé€”ä¸­æŠœã‘ */
+				  case _CONT_NOTE:		/* é€£ç¬¦é–‹å§‹ */
 				  case _LFO_OFF:
 				  case _EP_OFF:
 				  case _EN_OFF:
 				  case _MH_OFF:
-				  case _REPEAT_ST2:		/* ¥ê¥Ô¡¼¥È2 */
-				  case _REPEAT_ESC2:	/* ¥ê¥Ô¡¼¥ÈÅÓÃæÈ´¤±2 */
+				  case _REPEAT_ST2:		/* ãƒªãƒ”ãƒ¼ãƒˆ2 */
+				  case _REPEAT_ESC2:	/* ãƒªãƒ”ãƒ¼ãƒˆé€”ä¸­æŠœã‘2 */
 //				  case _SHUFFLE_QUONTIZE_RESET:
 //				  case _SHUFFLE_QUONTIZE_OFF:
 				  case _SELF_DELAY_OFF:
@@ -3517,9 +3517,9 @@ CMD * analyzeData( int trk, CMD *cmd, LINE *lptr )
 					if( (mml[i].enable&(1<<trk)) == 0 ) {
 						dispError( UNUSE_COMMAND_IN_THIS_TRACK, lptr[line].filename, line );
 					}
-					break;					
-				/* ¥³¥Ş¥ó¥É¥Ñ¥é¥á¡¼¥¿¤¬1¸Ä¤ÎÊª */
-				  case _TEMPO:			/* ¥Æ¥ó¥İ */
+					break;
+				/* ã‚³ãƒãƒ³ãƒ‰ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒ1å€‹ã®ç‰© */
+				  case _TEMPO:			/* ãƒ†ãƒ³ãƒ */
 					ptr = setCommandBuf( 1, cmd, mml[i].num, ptr, line, mml[i].enable&(1<<trk) );
 					if( (mml[i].enable&(1<<trk)) != 0 ) {
 						if( cmd->param[0] <= 0 ) {
@@ -3532,10 +3532,10 @@ CMD * analyzeData( int trk, CMD *cmd, LINE *lptr )
 						dispError( UNUSE_COMMAND_IN_THIS_TRACK, lptr[line].filename, line );
 					}
 					break;
-				  case _TONE:			/* ²»¿§ÀÚ¤êÂØ¤¨ */
+				  case _TONE:			/* éŸ³è‰²åˆ‡ã‚Šæ›¿ãˆ */
 					ptr = setCommandBuf( 1, cmd, mml[i].num, ptr, line, mml[i].enable&(1<<trk) );
 					if( (mml[i].enable&(1<<trk)) != 0 ) {
-						//vrc6ÍÑ¤ËÀ©¸Â¤ò³°¤¹(ÆâÂ¢¶ë·ÁÇÈ¡¢MMC5¤Ï@3¤Ş¤Ç)
+						//vrc6ç”¨ã«åˆ¶é™ã‚’å¤–ã™(å†…è”µçŸ©å½¢æ³¢ã€MMC5ã¯@3ã¾ã§)
 						//if( cmd->param[0] < 0 || cmd->param[0] > 3 ) {
 						if( cmd->param[0] < 0 || cmd->param[0] > 7 ) {
 							dispError( ABNORMAL_TONE_NUMBER, lptr[line].filename, line );
@@ -3546,8 +3546,8 @@ CMD * analyzeData( int trk, CMD *cmd, LINE *lptr )
 						dispError( UNUSE_COMMAND_IN_THIS_TRACK, lptr[line].filename, line );
 					}
 					break;
-				  case _REL_ORG_TONE:		/* ¥ê¥ê¡¼¥¹²»¿§ */
-				  case _ORG_TONE:		/* ²»¿§ÀÚ¤êÂØ¤¨ */
+				  case _REL_ORG_TONE:		/* ãƒªãƒªãƒ¼ã‚¹éŸ³è‰² */
+				  case _ORG_TONE:		/* éŸ³è‰²åˆ‡ã‚Šæ›¿ãˆ */
 					ptr = setCommandBuf( 1, cmd, mml[i].num, ptr, line, mml[i].enable&(1<<trk) );
 					if( (mml[i].enable&(1<<trk)) != 0 ) {
 						if ((mml[i].num == _REL_ORG_TONE) && (cmd->param[0] == 255)) {
@@ -3561,41 +3561,41 @@ CMD * analyzeData( int trk, CMD *cmd, LINE *lptr )
 						dispError( UNUSE_COMMAND_IN_THIS_TRACK, lptr[line].filename, line );
 					}
 					break;
-				  case _ENVELOPE:		/* ¥¨¥ó¥Ù¥í¡¼¥×»ØÄê */
+				  case _ENVELOPE:		/* ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—æŒ‡å®š */
 					cmd->filename = lptr[line].filename;
 					ptr = setCommandBuf( 1, cmd, mml[i].num, ptr, line, mml[i].enable&(1<<trk) );
 					if( (mml[i].enable&(1<<trk)) != 0 ) {
-						if( cmd->param[0] == 255) { 
-							volume_flag = 0x0000; 
+						if( cmd->param[0] == 255) {
+							volume_flag = 0x0000;
 						} else if( 0 <= cmd->param[0] && cmd->param[0] <= 127) {
-							volume_flag = 0x8000; 
+							volume_flag = 0x8000;
 						} else {
 							dispError( ABNORMAL_ENVELOPE_NUMBER, lptr[line].filename, line );
 							cmd->cmd = 0;
 							cmd->line = 0;
-						} 
-					} else {
-						dispError( UNUSE_COMMAND_IN_THIS_TRACK, lptr[line].filename, line ); 
-					} 
-					break; 
-				  case _REL_ENV:		/* ¥ê¥ê¡¼¥¹¥¨¥ó¥Ù¥í¡¼¥×»ØÄê */ 
-					cmd->filename = lptr[line].filename; 
-					ptr = setCommandBuf( 1, cmd, mml[i].num, ptr, line, mml[i].enable&(1<<trk) ); 
-					if( (mml[i].enable&(1<<trk)) != 0 ) { 
-						if( cmd->param[0] == 255 ) { 
-							volume_flag = 0x0000; 
-						} else if( 0 <= cmd->param[0] && cmd->param[0] <= 127) {
-							volume_flag = 0x8000;
-						} else {
-							dispError( ABNORMAL_ENVELOPE_NUMBER, lptr[line].filename, line ); 
-							cmd->cmd = 0; 
-							cmd->line = 0; 
 						}
 					} else {
 						dispError( UNUSE_COMMAND_IN_THIS_TRACK, lptr[line].filename, line );
 					}
 					break;
-				  case _VOL_PLUS:		/* ²»ÎÌ»ØÄê */
+				  case _REL_ENV:		/* ãƒªãƒªãƒ¼ã‚¹ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—æŒ‡å®š */
+					cmd->filename = lptr[line].filename;
+					ptr = setCommandBuf( 1, cmd, mml[i].num, ptr, line, mml[i].enable&(1<<trk) );
+					if( (mml[i].enable&(1<<trk)) != 0 ) {
+						if( cmd->param[0] == 255 ) {
+							volume_flag = 0x0000;
+						} else if( 0 <= cmd->param[0] && cmd->param[0] <= 127) {
+							volume_flag = 0x8000;
+						} else {
+							dispError( ABNORMAL_ENVELOPE_NUMBER, lptr[line].filename, line );
+							cmd->cmd = 0;
+							cmd->line = 0;
+						}
+					} else {
+						dispError( UNUSE_COMMAND_IN_THIS_TRACK, lptr[line].filename, line );
+					}
+					break;
+				  case _VOL_PLUS:		/* éŸ³é‡æŒ‡å®š */
 					ptr = setCommandBuf( 1, cmd, mml[i].num, ptr, line, mml[i].enable&(1<<trk) );
 					if( (mml[i].enable&(1<<trk)) != 0 ) {
 						if( cmd->param[0] == PARAM_OMITTED ) {
@@ -3622,7 +3622,7 @@ CMD * analyzeData( int trk, CMD *cmd, LINE *lptr )
 						dispError( UNUSE_COMMAND_IN_THIS_TRACK, lptr[line].filename, line );
 					}
 					break;
-				  case _VOL_MINUS:		/* ²»ÎÌ»ØÄê */
+				  case _VOL_MINUS:		/* éŸ³é‡æŒ‡å®š */
 					ptr = setCommandBuf( 1, cmd, mml[i].num, ptr, line, mml[i].enable&(1<<trk) );
 					if( (mml[i].enable&(1<<trk)) != 0 ) {
 						if( cmd->param[0] == PARAM_OMITTED ) {
@@ -3648,7 +3648,7 @@ CMD * analyzeData( int trk, CMD *cmd, LINE *lptr )
 						dispError( UNUSE_COMMAND_IN_THIS_TRACK, lptr[line].filename, line );
 					}
 					break;
-				  case _VOLUME:			/* ²»ÎÌ»ØÄê */
+				  case _VOLUME:			/* éŸ³é‡æŒ‡å®š */
 					ptr = setCommandBuf( 1, cmd, mml[i].num, ptr, line, mml[i].enable&(1<<trk) );
 					if( (mml[i].enable&(1<<trk)) != 0 ) {
 						if( ((1<<trk) & ~(FMTRACK|VRC6SAWTRACK) && (cmd->param[0] < 0 || cmd->param[0] > 15))
@@ -3678,7 +3678,7 @@ CMD * analyzeData( int trk, CMD *cmd, LINE *lptr )
 						dispError( UNUSE_COMMAND_IN_THIS_TRACK, lptr[line].filename, line );
 					}
 					break;
-				  case _QUONTIZE:		/* ¥¯¥ª¥ó¥¿¥¤¥º(length*n/gate_denom) */
+				  case _QUONTIZE:		/* ã‚¯ã‚ªãƒ³ã‚¿ã‚¤ã‚º(length*n/gate_denom) */
 					ptr = setCommandBuf( 2, cmd, mml[i].num, ptr, line, mml[i].enable&(1<<trk) );
 					if( (mml[i].enable&(1<<trk)) != 0 ) {
 						if ( cmd->param[1] == PARAM_OMITTED ) {
@@ -3696,14 +3696,14 @@ CMD * analyzeData( int trk, CMD *cmd, LINE *lptr )
 						dispError( UNUSE_COMMAND_IN_THIS_TRACK, lptr[line].filename, line );
 					}
 					break;
-				  case _QUONTIZE2:		/* ¥¯¥ª¥ó¥¿¥¤¥º(length-n) */
+				  case _QUONTIZE2:		/* ã‚¯ã‚ªãƒ³ã‚¿ã‚¤ã‚º(length-n) */
 					ptr = setCommandBuf( 1, cmd, mml[i].num, ptr, line, mml[i].enable&(1<<trk) );
 					if( (mml[i].enable&(1<<trk)) == 0 ) {
 						dispError( UNUSE_COMMAND_IN_THIS_TRACK, lptr[line].filename, line );
 					}
 					break;
 #if 0
-				  case _SHUFFLE_QUONTIZE:	/* ¥·¥ã¥Ã¥Õ¥ë¥¯¥ª¥ó¥¿¥¤¥ºÀßÄê */
+				  case _SHUFFLE_QUONTIZE:	/* ã‚·ãƒ£ãƒƒãƒ•ãƒ«ã‚¯ã‚ªãƒ³ã‚¿ã‚¤ã‚ºè¨­å®š */
 					ptr = setCommandBuf( 3, cmd, mml[i].num, ptr, line, mml[i].enable&(1<<trk) );
 					if( (mml[i].enable&(1<<trk)) != 0 ) {
 						if (   cmd->param[0] <= 0
@@ -3721,11 +3721,11 @@ CMD * analyzeData( int trk, CMD *cmd, LINE *lptr )
 					}
 					break;
 #endif
-				  case _LFO_ON:			/* ¥½¥Õ¥È£Ì£Æ£Ï */
+				  case _LFO_ON:			/* ã‚½ãƒ•ãƒˆï¼¬ï¼¦ï¼¯ */
 					ptr = setCommandBuf( 1, cmd, mml[i].num, ptr, line, mml[i].enable&(1<<trk) );
 					if( (mml[i].enable&(1<<trk)) != 0 ) {
-						if( (cmd->param[0] != 255) 
-						 && (cmd->param[0] < 0 || cmd->param[0] > 63) ) { 
+						if( (cmd->param[0] != 255)
+						 && (cmd->param[0] < 0 || cmd->param[0] > 63) ) {
 							dispError( ABNORMAL_LFO_NUMBER, lptr[line].filename, line );
 							cmd->cmd = 0;
 							cmd->line = 0;
@@ -3734,11 +3734,11 @@ CMD * analyzeData( int trk, CMD *cmd, LINE *lptr )
 						dispError( UNUSE_COMMAND_IN_THIS_TRACK, lptr[line].filename, line );
 					}
 					break;
-				  case _EP_ON:			/* ¥Ô¥Ã¥Á¥¨¥ó¥Ù¥í¡¼¥× */
+				  case _EP_ON:			/* ãƒ”ãƒƒãƒã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ— */
 					ptr = setCommandBuf( 1, cmd, mml[i].num, ptr, line, mml[i].enable&(1<<trk) );
 					if( (mml[i].enable&(1<<trk)) != 0 ) {
-						if( (cmd->param[0] != 255) 
-						 && (cmd->param[0] < 0 || cmd->param[0] > 127) ) { 
+						if( (cmd->param[0] != 255)
+						 && (cmd->param[0] < 0 || cmd->param[0] > 127) ) {
 							dispError( ABNORMAL_PITCH_ENVELOPE_NUMBER, lptr[line].filename, line );
 							cmd->cmd = 0;
 							cmd->line = 0;
@@ -3747,11 +3747,11 @@ CMD * analyzeData( int trk, CMD *cmd, LINE *lptr )
 						dispError( UNUSE_COMMAND_IN_THIS_TRACK, lptr[line].filename, line );
 					}
 					break;
-				  case _EN_ON:			/* ¥Î¡¼¥È¥¨¥ó¥Ù¥í¡¼¥× */
+				  case _EN_ON:			/* ãƒãƒ¼ãƒˆã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ— */
 					ptr = setCommandBuf( 1, cmd, mml[i].num, ptr, line, mml[i].enable&(1<<trk) );
 					if( (mml[i].enable&(1<<trk)) != 0 ) {
 						if( (cmd->param[0] != 255)
-						 && (cmd->param[0] < 0 || cmd->param[0] > 127) ) { 
+						 && (cmd->param[0] < 0 || cmd->param[0] > 127) ) {
 							dispError( ABNORMAL_NOTE_ENVELOPE_NUMBER, lptr[line].filename, line );
 							cmd->cmd = 0;
 							cmd->line = 0;
@@ -3760,11 +3760,11 @@ CMD * analyzeData( int trk, CMD *cmd, LINE *lptr )
 						dispError( UNUSE_COMMAND_IN_THIS_TRACK, lptr[line].filename, line );
 					}
 					break;
-				  case _MH_ON:			/* ¥Ï¡¼¥É¥¦¥§¥¢¥¨¥Õ¥§¥¯¥È */
+				  case _MH_ON:			/* ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ */
 					ptr = setCommandBuf( 1, cmd, mml[i].num, ptr, line, mml[i].enable&(1<<trk) );
 					if( (mml[i].enable&(1<<trk)) != 0 ) {
-						if( (cmd->param[0] != 255) 
-						 && (cmd->param[0] < 0 || cmd->param[0] > 15) ) { 
+						if( (cmd->param[0] != 255)
+						 && (cmd->param[0] < 0 || cmd->param[0] > 15) ) {
 							dispError( ABNORMAL_HARD_EFFECT_NUMBER, lptr[line].filename, line );
 							cmd->cmd = 0;
 							cmd->line = 0;
@@ -3773,7 +3773,7 @@ CMD * analyzeData( int trk, CMD *cmd, LINE *lptr )
 						dispError( UNUSE_COMMAND_IN_THIS_TRACK, lptr[line].filename, line );
 					}
 					break;
-				  case _DETUNE:			/* ¥Ç¥£¥Á¥å¡¼¥ó */
+				  case _DETUNE:			/* ãƒ‡ã‚£ãƒãƒ¥ãƒ¼ãƒ³ */
 					ptr = setCommandBuf( 1, cmd, mml[i].num, ptr, line, mml[i].enable&(1<<trk) );
 					if( (mml[i].enable&(1<<trk)) != 0 ) {
 						if( (cmd->param[0] != 255)
@@ -3786,7 +3786,7 @@ CMD * analyzeData( int trk, CMD *cmd, LINE *lptr )
 						dispError( UNUSE_COMMAND_IN_THIS_TRACK, lptr[line].filename, line );
 					}
 					break;
-				  case _TRANSPOSE:			/* ¥È¥é¥ó¥¹¥İ¡¼¥º */
+				  case _TRANSPOSE:			/* ãƒˆãƒ©ãƒ³ã‚¹ãƒãƒ¼ã‚º */
 					ptr = setCommandBuf( 1, cmd, mml[i].num, ptr, line, mml[i].enable&(1<<trk) );
 					if( (mml[i].enable&(1<<trk)) != 0 ) {
 						if( (cmd->param[0] != 255)
@@ -3800,8 +3800,8 @@ CMD * analyzeData( int trk, CMD *cmd, LINE *lptr )
 						dispError( UNUSE_COMMAND_IN_THIS_TRACK, lptr[line].filename, line );
 					}
 					break;
-				  case _REPEAT_END:		/* ¥ê¥Ô¡¼¥È½ªÎ» */
-				  case _REPEAT_END2:	/* ¥ê¥Ô¡¼¥È½ªÎ» */
+				  case _REPEAT_END:		/* ãƒªãƒ”ãƒ¼ãƒˆçµ‚äº† */
+				  case _REPEAT_END2:	/* ãƒªãƒ”ãƒ¼ãƒˆçµ‚äº† */
 					ptr = setCommandBuf( 1, cmd, mml[i].num, ptr, line, mml[i].enable&(1<<trk) );
 					if( (mml[i].enable&(1<<trk)) != 0 ) {
 						if( cmd->param[0] < 2 ) {
@@ -3812,7 +3812,7 @@ CMD * analyzeData( int trk, CMD *cmd, LINE *lptr )
 						dispError( UNUSE_COMMAND_IN_THIS_TRACK, lptr[line].filename, line );
 					}
 					break;
-				  case _VRC7_TONE:			/* VRC7¥æ¡¼¥¶¡¼²»¿§ÀÚ¤êÂØ¤¨ */
+				  case _VRC7_TONE:			/* VRC7ãƒ¦ãƒ¼ã‚¶ãƒ¼éŸ³è‰²åˆ‡ã‚Šæ›¿ãˆ */
 					ptr = setCommandBuf( 1, cmd, mml[i].num, ptr, line, mml[i].enable&(1<<trk) );
 					if( (mml[i].enable&(1<<trk)) != 0 ) {
 						if( cmd->param[0] < 0 || cmd->param[0] > 63 ) {
@@ -3824,7 +3824,7 @@ CMD * analyzeData( int trk, CMD *cmd, LINE *lptr )
 						dispError( UNUSE_COMMAND_IN_THIS_TRACK, lptr[line].filename, line );
 					}
 					break;
-				  case _SUN5B_HARD_SPEED:		/* PSG¥Ï¡¼¥É¥¦¥§¥¢¥¨¥ó¥Ù¥í¡¼¥×Â®ÅÙ */
+				  case _SUN5B_HARD_SPEED:		/* PSGãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—é€Ÿåº¦ */
 					ptr = setCommandBuf( 1, cmd, mml[i].num, ptr, line, mml[i].enable&(1<<trk) );
 					if( (mml[i].enable&(1<<trk)) != 0 ) {
 						if( cmd->param[0] < 0 || cmd->param[0] > 65535 ) {
@@ -3836,7 +3836,7 @@ CMD * analyzeData( int trk, CMD *cmd, LINE *lptr )
 						dispError( UNUSE_COMMAND_IN_THIS_TRACK, lptr[line].filename, line );
 					}
 					break;
-				  case _SUN5B_HARD_ENV:		/* PSG¥Ï¡¼¥É¥¦¥§¥¢¥¨¥ó¥Ù¥í¡¼¥×ÁªÂò */
+				  case _SUN5B_HARD_ENV:		/* PSGãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—é¸æŠ */
 					ptr = setCommandBuf( 1, cmd, mml[i].num, ptr, line, mml[i].enable&(1<<trk) );
 					if( (mml[i].enable&(1<<trk)) != 0 ) {
 						if( cmd->param[0] < 0 || cmd->param[0] > 15 ) {
@@ -3850,7 +3850,7 @@ CMD * analyzeData( int trk, CMD *cmd, LINE *lptr )
 						dispError( UNUSE_COMMAND_IN_THIS_TRACK, lptr[line].filename, line );
 					}
 					break;
-				  case _SUN5B_NOISE_FREQ:	/* PSG¥Î¥¤¥º¼şÇÈ¿ô */
+				  case _SUN5B_NOISE_FREQ:	/* PSGãƒã‚¤ã‚ºå‘¨æ³¢æ•° */
 					ptr = setCommandBuf( 1, cmd, mml[i].num, ptr, line, mml[i].enable&(1<<trk) );
 					if( (mml[i].enable&(1<<trk)) != 0 ) {
 						if( cmd->param[0] < 0 || cmd->param[0] > 31 ) {
@@ -3864,7 +3864,7 @@ CMD * analyzeData( int trk, CMD *cmd, LINE *lptr )
 						dispError( UNUSE_COMMAND_IN_THIS_TRACK, lptr[line].filename, line );
 					}
 					break;
-				  case _TEMPO2:			/* ¥Õ¥ì¡¼¥à´ğ½à¥Æ¥ó¥İ */
+				  case _TEMPO2:			/* ãƒ•ãƒ¬ãƒ¼ãƒ åŸºæº–ãƒ†ãƒ³ãƒ */
 					ptr = setCommandBuf( 2, cmd, mml[i].num, ptr, line, mml[i].enable&(1<<trk) );
 					if( (mml[i].enable&(1<<trk)) != 0 ) {
 						if( (cmd->param[0] <= 0) || (cmd->param[1] <= 0) ) {
@@ -3877,7 +3877,7 @@ CMD * analyzeData( int trk, CMD *cmd, LINE *lptr )
 						dispError( UNUSE_COMMAND_IN_THIS_TRACK, lptr[line].filename, line );
 					}
 					break;
-				  case _SWEEP:			/* ¥¹¥¦¥£¡¼¥× */
+				  case _SWEEP:			/* ã‚¹ã‚¦ã‚£ãƒ¼ãƒ— */
 					ptr = setCommandBuf( 2, cmd, _SWEEP, ptr, line, mml[i].enable&(1<<trk) );
 					if( (mml[i].enable&(1<<trk)) != 0 ) {
 						if( (cmd->param[0] < 0 || cmd->param[0] > 15)
@@ -3890,27 +3890,27 @@ CMD * analyzeData( int trk, CMD *cmd, LINE *lptr )
 						dispError( UNUSE_COMMAND_IN_THIS_TRACK, lptr[line].filename, line );
 					}
 					break;
-				  case _DATA_WRITE:		/* ¥Ç¡¼¥¿(¥ì¥¸¥¹¥¿)½ñ¤­¹ş¤ß */
+				  case _DATA_WRITE:		/* ãƒ‡ãƒ¼ã‚¿(ãƒ¬ã‚¸ã‚¹ã‚¿)æ›¸ãè¾¼ã¿ */
 					ptr = setCommandBuf( 2, cmd, _DATA_WRITE, ptr, line, mml[i].enable&(1<<trk) );
 					if( (mml[i].enable&(1<<trk)) == 0 ) {
 						dispError( UNUSE_COMMAND_IN_THIS_TRACK, lptr[line].filename, line );
 					}
 					break;
-				  case _DATA_THRUE:		/* ¥Ç¡¼¥¿Ä¾ÀÜ½ñ¤­¹ş¤ß */
+				  case _DATA_THRUE:		/* ãƒ‡ãƒ¼ã‚¿ç›´æ¥æ›¸ãè¾¼ã¿ */
 					ptr = setCommandBuf( 2, cmd, _DATA_THRUE, ptr, line, mml[i].enable&(1<<trk) );
 					if( (mml[i].enable&(1<<trk)) == 0 ) {
 						dispError( UNUSE_COMMAND_IN_THIS_TRACK, lptr[line].filename, line );
 					}
 					break;
 #if 0
-				  case _XX_COMMAND:		/* ¥Ç¥Ğ¥Ã¥°ÍÑ */
+				  case _XX_COMMAND:		/* ãƒ‡ãƒãƒƒã‚°ç”¨ */
 					ptr = setCommandBuf( 2, cmd, _XX_COMMAND, ptr, line, mml[i].enable&(1<<trk) );
 					if( (mml[i].enable&(1<<trk)) == 0 ) {
 						dispError( UNUSE_COMMAND_IN_THIS_TRACK, lptr[line].filename, line );
 					}
 					break;
 #endif
-				  case _SELF_DELAY_ON:		/* ¥»¥ë¥Õ¥Ç¥£¥ì¥¤ */
+				  case _SELF_DELAY_ON:		/* ã‚»ãƒ«ãƒ•ãƒ‡ã‚£ãƒ¬ã‚¤ */
 					ptr = setCommandBuf( 1, cmd, mml[i].num, ptr, line, mml[i].enable&(1<<trk) );
 					if( (mml[i].enable&(1<<trk)) != 0 ) {
 						if( (cmd->param[0] != 255)
@@ -3924,7 +3924,7 @@ CMD * analyzeData( int trk, CMD *cmd, LINE *lptr )
 						dispError( UNUSE_COMMAND_IN_THIS_TRACK, lptr[line].filename, line );
 					}
 					break;
-				  case _DATA_BREAK:		/* ¥Ç¡¼¥¿ÊÑ´¹Ãæ»ß */
+				  case _DATA_BREAK:		/* ãƒ‡ãƒ¼ã‚¿å¤‰æ›ä¸­æ­¢ */
 					setCommandBuf( 0, cmd, _TRACK_END, ptr, line, mml[i].enable&(1<<trk) );
 					if( (mml[i].enable&(1<<trk)) == 0 ) {
 						dispError( UNUSE_COMMAND_IN_THIS_TRACK, lptr[line].filename, line );
@@ -3932,12 +3932,12 @@ CMD * analyzeData( int trk, CMD *cmd, LINE *lptr )
 					break;
 
 				  case _NEW_BANK:
-					// Ìµ»ë¤¹¤ë¾ì¹ç¤Ç¤âptr¤ÏÆÉ¤ß¿Ê¤á¤ë
+					// ç„¡è¦–ã™ã‚‹å ´åˆã§ã‚‚ptrã¯èª­ã¿é€²ã‚ã‚‹
 					ptr = setCommandBuf( 1, cmd, mml[i].num, ptr, line, mml[i].enable&(1<<trk) );
 					if (!auto_bankswitch) {
 						if( (mml[i].enable&(1<<trk)) != 0 ) {
 							if( cmd->param[0] == PARAM_OMITTED ) {
-								/* ¤½¤¦¤¤¤¦¾ì¹ç¤¬¤¢¤ê¤Ş¤¹ */
+								/* ãã†ã„ã†å ´åˆãŒã‚ã‚Šã¾ã™ */
 							}
 						} else {
 							dispError( UNUSE_COMMAND_IN_THIS_TRACK, lptr[line].filename, line );
@@ -3947,11 +3947,11 @@ CMD * analyzeData( int trk, CMD *cmd, LINE *lptr )
 					}
 					break;
 
-				  case _SHIFT_AMOUNT:			/* ¥Ô¥Ã¥Á¥·¥Õ¥ÈÎÌ (0¡Á8) */
+				  case _SHIFT_AMOUNT:			/* ãƒ”ãƒƒãƒã‚·ãƒ•ãƒˆé‡ (0ã€œ8) */
 					ptr = setCommandBuf( 1, cmd, mml[i].num, ptr, line, mml[i].enable&(1<<trk) );
 					if (pitch_correction) {
 						if( (mml[i].enable&(1<<trk)) != 0 ) {
-							if( (cmd->param[0] < 0 || cmd->param[0] > 8) ) { 
+							if( (cmd->param[0] < 0 || cmd->param[0] > 8) ) {
 								dispError( ABNORMAL_SHIFT_AMOUNT, lptr[line].filename, line );
 								cmd->cmd = 0;
 								cmd->line = 0;
@@ -3963,8 +3963,8 @@ CMD * analyzeData( int trk, CMD *cmd, LINE *lptr )
 						dispError( CANT_USE_SHIFT_AMOUNT_WITHOUT_PITCH_CORRECTION, lptr[line].filename, line );
 					}
 					break;
-						
-				  default:				/* ¤½¤ÎÂ¾(¥¨¥é¡¼) */
+
+				  default:				/* ãã®ä»–(ã‚¨ãƒ©ãƒ¼) */
 					dispError( COMMAND_NOT_DEFINED, lptr[line].filename, line );
 					ptr++;
 					break;
@@ -3987,24 +3987,24 @@ CMD * analyzeData( int trk, CMD *cmd, LINE *lptr )
 typedef struct {
 	int flag;
 	double diff;
-	double base; //¥·¥ã¥Ã¥Õ¥ë¤µ¤»¤ëNÊ¬²»Éä¤Î¥«¥¦¥ó¥ÈÄ¹
+	double base; //ã‚·ãƒ£ãƒƒãƒ•ãƒ«ã•ã›ã‚‹Nåˆ†éŸ³ç¬¦ã®ã‚«ã‚¦ãƒ³ãƒˆé•·
 } SHFL_Q;
 
 
 /*--------------------------------------------------------------
-	¥·¥ã¥Ã¥Õ¥ë¥¯¥ª¥ó¥¿¥¤¥º
+	ã‚·ãƒ£ãƒƒãƒ•ãƒ«ã‚¯ã‚ªãƒ³ã‚¿ã‚¤ã‚º
 --------------------------------------------------------------*/
 void shuffleQuontizeSub(CMD *ptr, SHFL_Q *shf, double count)
 {
 	if (shf->flag != 0) {
 		double noteoff_time;
 		if (double2int(count / shf->base) % 2 == 1 ) {
-			//¥Î¡¼¥È¥ª¥ó¤Î»ş¹ï¤¬Î¢Çï
+			//ãƒãƒ¼ãƒˆã‚ªãƒ³ã®æ™‚åˆ»ãŒè£æ‹
 			ptr->len = ptr->len - shf->diff;
 		}
 		noteoff_time = count + ptr->len;
 		if (double2int(noteoff_time / shf->base) % 2 == 1) {
-			//¥Î¡¼¥È¥ª¥Õ¤Î»ş¹ï¤¬Î¢Çï
+			//ãƒãƒ¼ãƒˆã‚ªãƒ•ã®æ™‚åˆ»ãŒè£æ‹
 			ptr->len = ptr->len + shf->diff;
 		}
 	}
@@ -4016,7 +4016,7 @@ void shuffleQuontizeSub(CMD *ptr, SHFL_Q *shf, double count)
 
 void shuffleQuontize(CMD *ptr)
 {
-	double count = 0.0; //²»Ä¹¤ÎÎßÀÑ¡£¤¹¤Ê¤ï¤Á¥¤¥Ù¥ó¥ÈÈ¯À¸»ş¹ï(¥«¥¦¥ó¥ÈÃ±°Ì)
+	double count = 0.0; //éŸ³é•·ã®ç´¯ç©ã€‚ã™ãªã‚ã¡ã‚¤ãƒ™ãƒ³ãƒˆç™ºç”Ÿæ™‚åˆ»(ã‚«ã‚¦ãƒ³ãƒˆå˜ä½)
 	SHFL_Q shuffle = {0, 0.0, 192.0};
 	while (1) {
 		if (ptr->cmd == _SHUFFLE_QUONTIZE) {
@@ -4025,11 +4025,11 @@ void shuffleQuontize(CMD *ptr)
 			printf("shfl %e\n", shuffle.base);
 			shuffle.diff = shuffle.base * 2 * ptr->param[1]/(ptr->param[2] + ptr->param[1]) - shuffle.base;
 			/*
-			¤¿¤È¤¨¤Ğ16Ê¬²»Éä¤ò2:1¤Ë¤ï¤±¤ë¤Ê¤é
-			shuffle.base = 192/16 = 12; ¤Ä¤Ş¤êl16=l%12
-			shuffle.diff = 24 * 2/3 - 12 
+			ãŸã¨ãˆã°16åˆ†éŸ³ç¬¦ã‚’2:1ã«ã‚ã‘ã‚‹ãªã‚‰
+			shuffle.base = 192/16 = 12; ã¤ã¾ã‚Šl16=l%12
+			shuffle.diff = 24 * 2/3 - 12
 			             = 16 - 12 = 4
-			¤È¤¤¤¦¤ï¤±¤Ç8Ê¬²»Éä(%24)¤ò%12+4¤È%12-4¡¢¤¹¤Ê¤ï¤Á%16¤È%8¤Ë¤ï¤±¤ë
+			ã¨ã„ã†ã‚ã‘ã§8åˆ†éŸ³ç¬¦(%24)ã‚’%12+4ã¨%12-4ã€ã™ãªã‚ã¡%16ã¨%8ã«ã‚ã‘ã‚‹
 			*/
 			ptr->cmd = _NOP;
 			ptr++;
@@ -4042,21 +4042,21 @@ void shuffleQuontize(CMD *ptr)
 			ptr->cmd = _NOP;
 			ptr++;
 		} else if (ptr->cmd == _CONT_NOTE) {
-			//Ï¢Éä¤ÎÃæ¿È¤Ë¤Ï´ØÍ¿¤·¤Ê¤¤¤¬¡¢Ï¢Éä¤ò¥«¥¿¥Ş¥ê¤È¤·¤ÆÂª¤¨¤ë
+			//é€£ç¬¦ã®ä¸­èº«ã«ã¯é–¢ä¸ã—ãªã„ãŒã€é€£ç¬¦ã‚’ã‚«ã‚¿ãƒãƒªã¨ã—ã¦æ‰ãˆã‚‹
 			while( 1 ) {
 				if( ptr->cmd == _TRACK_END ) {
-					//Ï¢ÉäÅÓÃæ¤Ç½ªÎ»
-					//¤³¤³¤Ç¤Ï¥¨¥é¡¼¤ò½Ğ¤µ¤Ê¤¤
+					//é€£ç¬¦é€”ä¸­ã§çµ‚äº†
+					//ã“ã“ã§ã¯ã‚¨ãƒ©ãƒ¼ã‚’å‡ºã•ãªã„
 					return;
 				} else if( ptr->cmd == _CONT_END ) {
-					//¤³¤Î¥³¥Ş¥ó¥É¤¬»ı¤Ã¤Æ¤¤¤ë²»Ä¹¤ËÂĞ¤·¤Æ¥¯¥ª¥ó¥¿¥¤¥º½èÍı
+					//ã“ã®ã‚³ãƒãƒ³ãƒ‰ãŒæŒã£ã¦ã„ã‚‹éŸ³é•·ã«å¯¾ã—ã¦ã‚¯ã‚ªãƒ³ã‚¿ã‚¤ã‚ºå‡¦ç†
 					shuffleQuontizeSub(ptr, &shuffle, count);
 					count += ptr->len;
 					ptr++;
 					break;
 				} else if (ptr->cmd <= MAX_NOTE || ptr->cmd == _REST || ptr->cmd == _KEY
 						|| ptr->cmd == _NOTE || ptr->cmd == _WAIT || ptr->cmd == _TIE || temp->cmd == _KEY_OFF) {
-					//Ãæ¿È¤Ï¥¹¥ë¡¼
+					//ä¸­èº«ã¯ã‚¹ãƒ«ãƒ¼
 					ptr++;
 				} else {
 					ptr++;
@@ -4070,7 +4070,7 @@ void shuffleQuontize(CMD *ptr)
 		} else if (ptr->cmd == _TRACK_END) {
 			break;
 		} else {
-			//Â¾¤Î¤Ï¥¹¥ë¡¼
+			//ä»–ã®ã¯ã‚¹ãƒ«ãƒ¼
 			ptr++;
 		}
 	}
@@ -4080,7 +4080,7 @@ void shuffleQuontize(CMD *ptr)
 
 
 /*--------------------------------------------------------------
-	¥ë¡¼¥×/Ï¢Éä¤ÎÅ¸³«
+	ãƒ«ãƒ¼ãƒ—/é€£ç¬¦ã®å±•é–‹
  Input:
 	*ptr
  Output:
@@ -4104,7 +4104,7 @@ CMD *translateData( CMD **cmd, CMD *ptr )
 			nest++;
 			ptr = translateData( cmd, ptr );
 			if (ptr == NULL) {
-				/* [¤¬ÊÄ¤¸¤é¤ì¤Æ¤¤¤Ê¤¤ */
+				/* [ãŒé–‰ã˜ã‚‰ã‚Œã¦ã„ãªã„ */
 				return NULL;
 			}
 			nest--;
@@ -4143,7 +4143,7 @@ CMD *translateData( CMD **cmd, CMD *ptr )
 		  case _CONT_NOTE:
 			ptr++;
 			temp = ptr;
-			/* {} ¤ÎÃæ¤Ë[cdefgab]|n|@n|r|w¤¬²¿¸Ä¤¢¤ë¤«? */
+			/* {} ã®ä¸­ã«[cdefgab]|n|@n|r|wãŒä½•å€‹ã‚ã‚‹ã‹? */
 			cnt = 0;
 			len = 0;
 			while( 1 ) {
@@ -4156,7 +4156,7 @@ CMD *translateData( CMD **cmd, CMD *ptr )
 						dispError( TUPLET_BRACE_EMPTY, mml_names[mml_idx], (ptr-1)->line );
 						len = 0;
 					} else {
-						/* {}¤ÎÃæ¿È¤ÏÁ´Éô¤³¤ÎÄ¹¤µ¤Ë¤Ê¤ë */
+						/* {}ã®ä¸­èº«ã¯å…¨éƒ¨ã“ã®é•·ã•ã«ãªã‚‹ */
 						len = temp->len/(double)cnt;
 					}
 					break;
@@ -4180,12 +4180,12 @@ CMD *translateData( CMD **cmd, CMD *ptr )
 						(*cmd)->line     = ptr->line;
 						(*cmd)->cmd      = ptr->cmd;
 						(*cmd)->len      = len;
-						for( i = 0; i < 8; i++ ) { 
+						for( i = 0; i < 8; i++ ) {
 							(*cmd)->param[i] = ptr->param[i];
 						}
 						gate -= (*cmd)->len;
 					} else if (ptr->cmd == _TIE) {
-						/* Ï¢ÉäÃæ¤Î¥¿¥¤¤Ïºï½ü */
+						/* é€£ç¬¦ä¸­ã®ã‚¿ã‚¤ã¯å‰Šé™¤ */
 						(*cmd)->filename = ptr->filename;
 						(*cmd)->cnt      = 0;
 						(*cmd)->frm      = 0;
@@ -4199,7 +4199,7 @@ CMD *translateData( CMD **cmd, CMD *ptr )
 						(*cmd)->line     = ptr->line;
 						(*cmd)->cmd      = ptr->cmd;
 						(*cmd)->len      = ptr->len;
-						for( i = 0; i < 8; i++ ) { 
+						for( i = 0; i < 8; i++ ) {
 							(*cmd)->param[i] = ptr->param[i];
 						}
 					}
@@ -4216,7 +4216,7 @@ CMD *translateData( CMD **cmd, CMD *ptr )
 			(*cmd)->line     = ptr->line;
 			(*cmd)->cmd      = ptr->cmd;
 			(*cmd)->len      = ptr->len;
-			for( i = 0; i < 8; i++ ) { 
+			for( i = 0; i < 8; i++ ) {
 				(*cmd)->param[i] = ptr->param[i];
 			}
 			(*cmd)++;
@@ -4232,7 +4232,7 @@ CMD *translateData( CMD **cmd, CMD *ptr )
 			(*cmd)->line     = ptr->line;
 			(*cmd)->cmd      = ptr->cmd;
 			(*cmd)->len      = ptr->len;
-			for( i = 0; i < 8; i++ ) { 
+			for( i = 0; i < 8; i++ ) {
 				(*cmd)->param[i] = ptr->param[i];
 			}
 			(*cmd)++;
@@ -4244,11 +4244,11 @@ CMD *translateData( CMD **cmd, CMD *ptr )
 
 
 /*--------------------------------------------------------------
-	
+
  Input:
-	
+
  Output:
-	Ìµ¤·
+	ç„¡ã—
 --------------------------------------------------------------*/
 void putAsm( FILE *fp, int data )
 {
@@ -4273,7 +4273,7 @@ void putAsm( FILE *fp, int data )
 
 
 /*--------------------------------------------------------------
-	
+
 --------------------------------------------------------------*/
 void putBankOrigin(FILE *fp, int bank)
 {
@@ -4331,11 +4331,11 @@ int checkBankRange(int bank)
 
 
 /*--------------------------------------------------------------
-	
+
  Input:
-	
+
  Output:
-	Ìµ¤·
+	ç„¡ã—
 --------------------------------------------------------------*/
 int double2int(double d)
 {
@@ -4345,28 +4345,28 @@ int double2int(double d)
 
 /*******************************************************
  *
- *¢­È¯²»           ¢­¥­¡¼¥ª¥Õ
+ *â†“ç™ºéŸ³           â†“ã‚­ãƒ¼ã‚ªãƒ•
  *    _                  _
- *   | ¡À               | ¡À ¼¡¤Î²»(¤È¤«¥¤¥Ù¥ó¥È)
- *  |    ¡À_________   |    ¡À_________
- * |                ¡À|                ¡À
- * |                  |                  ¡À
- * <------------------> delta_time È¯²»¤«¤é¼¡¤Î¥¤¥Ù¥ó¥È¤Ş¤Ç
- * <--------------->    gate_time  È¯²»¤«¤é¥­¡¼¥ª¥Õ¤Ş¤Ç
- *                  <-> left_time  ¥­¡¼¥ª¥Õ¤«¤é¼¡¤Î¥¤¥Ù¥ó¥È¤Ş¤Ç¤Î»Ä¤ê»ş´Ö
+ *   | ï¼¼               | ï¼¼ æ¬¡ã®éŸ³(ã¨ã‹ã‚¤ãƒ™ãƒ³ãƒˆ)
+ *  |    ï¼¼_________   |    ï¼¼_________
+ * |                ï¼¼|                ï¼¼
+ * |                  |                  ï¼¼
+ * <------------------> delta_time ç™ºéŸ³ã‹ã‚‰æ¬¡ã®ã‚¤ãƒ™ãƒ³ãƒˆã¾ã§
+ * <--------------->    gate_time  ç™ºéŸ³ã‹ã‚‰ã‚­ãƒ¼ã‚ªãƒ•ã¾ã§
+ *                  <-> left_time  ã‚­ãƒ¼ã‚ªãƒ•ã‹ã‚‰æ¬¡ã®ã‚¤ãƒ™ãƒ³ãƒˆã¾ã§ã®æ®‹ã‚Šæ™‚é–“
  *
  *******************************************************/
 
 /*--------------------------------------------------------------
-	¥¹¥é¡¼¡¦¥¿¥¤¤ò¹ÍÎ¸¤·¤¿¥Ç¥ë¥¿¥¿¥¤¥à¤òÆÀ¤ë
+	ã‚¹ãƒ©ãƒ¼ãƒ»ã‚¿ã‚¤ã‚’è€ƒæ…®ã—ãŸãƒ‡ãƒ«ã‚¿ã‚¿ã‚¤ãƒ ã‚’å¾—ã‚‹
  Input:
-	CMD *cmd; ¥Ç¥ë¥¿¥¿¥¤¥à¤òÆÉ¤ß»Ï¤á¤ë¥³¥Ş¥ó¥É¤Î°ÌÃÖ
-	int allow_slur = 1; ¥¹¥é¡¼µö²Ä(²»Éä¤Î¾ì¹ç)
-	               = 0; ¥¹¥é¡¼¤Ê¤·(µÙÉä¤È¤«)
+	CMD *cmd; ãƒ‡ãƒ«ã‚¿ã‚¿ã‚¤ãƒ ã‚’èª­ã¿å§‹ã‚ã‚‹ã‚³ãƒãƒ³ãƒ‰ã®ä½ç½®
+	int allow_slur = 1; ã‚¹ãƒ©ãƒ¼è¨±å¯(éŸ³ç¬¦ã®å ´åˆ)
+	               = 0; ã‚¹ãƒ©ãƒ¼ãªã—(ä¼‘ç¬¦ã¨ã‹)
  Output:
-	int *delta; ¥Ç¥ë¥¿¥¿¥¤¥à
+	int *delta; ãƒ‡ãƒ«ã‚¿ã‚¿ã‚¤ãƒ 
  Return:
-	CMD *cmd; ¤³¤Î´Ø¿ôÆâ¤Çcmd¤òÆÉ¤ß¿Ê¤á¤¿¤Î¤Ç¡¢¿·¤·¤¤cmd°ÌÃÖ¤òÊÖ¤¹
+	CMD *cmd; ã“ã®é–¢æ•°å†…ã§cmdã‚’èª­ã¿é€²ã‚ãŸã®ã§ã€æ–°ã—ã„cmdä½ç½®ã‚’è¿”ã™
 --------------------------------------------------------------*/
 CMD *getDeltaTime(CMD *cmd, int *delta, int allow_slur) {
 	*delta = 0;
@@ -4387,11 +4387,11 @@ CMD *getDeltaTime(CMD *cmd, int *delta, int allow_slur) {
 }
 
 /*--------------------------------------------------------------
-	q¤È²»Ä¹¤«¤é¥²¡¼¥È¥¿¥¤¥à·×»»
+	qã¨éŸ³é•·ã‹ã‚‰ã‚²ãƒ¼ãƒˆã‚¿ã‚¤ãƒ è¨ˆç®—
  Input:
- 
+
  Output:
-	
+
  Return:
 	int gate;
 --------------------------------------------------------------*/
@@ -4410,15 +4410,15 @@ int calcGateTime(int delta_time, const GATE_Q *gate_q) {
 }
 
 /*--------------------------------------------------------------
-	²»Ä¹¤Î¤¢¤ë¥³¥Ş¥ó¥É¤Î¡¢²»Ä¹ÉôÊ¬¤Î½ĞÎÏ(256¥Õ¥ì¡¼¥à°Ê¾å¤Î¤È¤­¤Î½èÍı)
+	éŸ³é•·ã®ã‚ã‚‹ã‚³ãƒãƒ³ãƒ‰ã®ã€éŸ³é•·éƒ¨åˆ†ã®å‡ºåŠ›(256ãƒ•ãƒ¬ãƒ¼ãƒ ä»¥ä¸Šã®ã¨ãã®å‡¦ç†)
  Input:
-	int wait_com_no; 256¥Õ¥ì¡¼¥à°Ê¾å¤Î¤È¤­¤Ë·Ò¤°¥³¥Ş¥ó¥É(w¤«r)
-	int len; ¥Õ¥ì¡¼¥à²»Ä¹
+	int wait_com_no; 256ãƒ•ãƒ¬ãƒ¼ãƒ ä»¥ä¸Šã®ã¨ãã«ç¹‹ãã‚³ãƒãƒ³ãƒ‰(wã‹r)
+	int len; ãƒ•ãƒ¬ãƒ¼ãƒ éŸ³é•·
  Output:
-	
+
 --------------------------------------------------------------*/
 void putLengthAndWait(FILE *fp, int wait_com_no, const int len, const CMD *cmd) {
-	int len_nokori = len; /* ½ĞÎÏ¤¹¤Ù¤­»Ä¤ê²»Ä¹(¥Õ¥ì¡¼¥à¿ô) */
+	int len_nokori = len; /* å‡ºåŠ›ã™ã¹ãæ®‹ã‚ŠéŸ³é•·(ãƒ•ãƒ¬ãƒ¼ãƒ æ•°) */
 
 	if (len == 0) {
 		dispWarning( FRAME_LENGTH_IS_0, cmd->filename, cmd->line );
@@ -4435,16 +4435,16 @@ void putLengthAndWait(FILE *fp, int wait_com_no, const int len, const CMD *cmd) 
 		putAsm( fp, len_nokori );
 		len_nokori = 0;
 	}
-	while (len_nokori != 0) { /* ½ĞÎÏ¤¹¤Ù¤­»Ä¤ê¤Î¥Õ¥ì¡¼¥à¿ô¤¬0¤Ë¤Ê¤ë¤Ş¤Ç¥ê¥Ô¡¼¥È */
+	while (len_nokori != 0) { /* å‡ºåŠ›ã™ã¹ãæ®‹ã‚Šã®ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ãŒ0ã«ãªã‚‹ã¾ã§ãƒªãƒ”ãƒ¼ãƒˆ */
 		if( len_nokori > 0xff ) {
-			/* »Ä¤ê256¥Õ¥ì¡¼¥à°Ê¾å¤Î¤È¤­ */
-			putAsm( fp, wait_com_no ); 
-			putAsm( fp, 0xff ); /* 255¥Õ¥ì¡¼¥à½ĞÎÏ */
+			/* æ®‹ã‚Š256ãƒ•ãƒ¬ãƒ¼ãƒ ä»¥ä¸Šã®ã¨ã */
+			putAsm( fp, wait_com_no );
+			putAsm( fp, 0xff ); /* 255ãƒ•ãƒ¬ãƒ¼ãƒ å‡ºåŠ› */
 			len_nokori -= 0xff;
 		} else {
-			/* 255¥Õ¥ì¡¼¥à°Ê²¼¤Î¤È¤­ */
+			/* 255ãƒ•ãƒ¬ãƒ¼ãƒ ä»¥ä¸‹ã®ã¨ã */
 			putAsm( fp, wait_com_no );
-			putAsm( fp, len_nokori ); /* »Ä¤êÁ´Éô½ĞÎÏ */
+			putAsm( fp, len_nokori ); /* æ®‹ã‚Šå…¨éƒ¨å‡ºåŠ› */
 			len_nokori = 0;
 		}
 	}
@@ -4453,16 +4453,16 @@ void putLengthAndWait(FILE *fp, int wait_com_no, const int len, const CMD *cmd) 
 
 typedef struct {
 	GATE_Q	gate_q;
-	int	env;			// ¸½ºß¤ÎÄÌ¾ï¤Î(¥­¡¼¥ª¥ó¤Î¤È¤­¤Î)¥¨¥ó¥Ù¥í¡¼¥×ÈÖ¹æor²»ÎÌ
-	int	rel_env;		// ¸½ºß¤Î¥ê¥ê¡¼¥¹¥¨¥ó¥Ù¥í¡¼¥×ÈÖ¹æ(-1:Ì¤»ÈÍÑ)
-	int	last_written_env;	// ºÇ¸å¤Ë½ñ¤­¹ş¤ó¤À¥¨¥ó¥Ù¥í¡¼¥×ÈÖ¹æor²»ÎÌ
-	int	tone;			// 
-	int	rel_tone;		// 
+	int	env;			// ç¾åœ¨ã®é€šå¸¸ã®(ã‚­ãƒ¼ã‚ªãƒ³ã®ã¨ãã®)ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ç•ªå·oréŸ³é‡
+	int	rel_env;		// ç¾åœ¨ã®ãƒªãƒªãƒ¼ã‚¹ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ç•ªå·(-1:æœªä½¿ç”¨)
+	int	last_written_env;	// æœ€å¾Œã«æ›¸ãè¾¼ã‚“ã ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ç•ªå·oréŸ³é‡
+	int	tone;			//
+	int	rel_tone;		//
 	int	last_written_tone;	//
-	int	key_pressed;		// ¥­¡¼¥ª¥ó¥ª¥Õ¤Î¾õÂÖ
-	int	last_note[SELF_DELAY_MAX+1];		// ºÇ¸å¤Ë½ñ¤¤¤¿¥Î¡¼¥È(@n¤ÏÌµ»ë¤Ç)
-	int	last_note_keep[SELF_DELAY_MAX+1];	// \¥³¥Ş¥ó¥É»ÈÍÑ»ş¤Îlast_note¾õÂÖ
-	int	self_delay;		// ¤¤¤¯¤ÄÁ°¤Î¥Î¡¼¥È¤ò»ÈÍÑ¤¹¤ë¤«¡©¡ÊÉé¤Ê¤é¥»¥ë¥Õ¥Ç¥£¥ì¥¤¤·¤Ê¤¤¡Ë
+	int	key_pressed;		// ã‚­ãƒ¼ã‚ªãƒ³ã‚ªãƒ•ã®çŠ¶æ…‹
+	int	last_note[SELF_DELAY_MAX+1];		// æœ€å¾Œã«æ›¸ã„ãŸãƒãƒ¼ãƒˆ(@nã¯ç„¡è¦–ã§)
+	int	last_note_keep[SELF_DELAY_MAX+1];	// \ã‚³ãƒãƒ³ãƒ‰ä½¿ç”¨æ™‚ã®last_noteçŠ¶æ…‹
+	int	self_delay;		// ã„ãã¤å‰ã®ãƒãƒ¼ãƒˆã‚’ä½¿ç”¨ã™ã‚‹ã‹ï¼Ÿï¼ˆè² ãªã‚‰ã‚»ãƒ«ãƒ•ãƒ‡ã‚£ãƒ¬ã‚¤ã—ãªã„ï¼‰
 } PLAYSTATE;
 
 void defaultPlayState(PLAYSTATE *ps)
@@ -4485,37 +4485,37 @@ void defaultPlayState(PLAYSTATE *ps)
 }
 
 /*--------------------------------------------------------------
-	¥ê¥ê¡¼¥¹¥¨¥ó¥Ù¥í¡¼¥×¡õ²»¿§½ĞÎÏ¡¢»Ä¤ê»ş´Ö¤òr¤«w¤ÇËä¤á¤ë
+	ãƒªãƒªãƒ¼ã‚¹ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ï¼†éŸ³è‰²å‡ºåŠ›ã€æ®‹ã‚Šæ™‚é–“ã‚’rã‹wã§åŸ‹ã‚ã‚‹
  Input:
-	*cmd putLengthWait¤Ë¥¨¥é¡¼É½¼¨¤µ¤»¤ë¤¿¤á¤À¤±¤ËÂ¸ºß¤¹¤ë
+	*cmd putLengthWaitã«ã‚¨ãƒ©ãƒ¼è¡¨ç¤ºã•ã›ã‚‹ãŸã‚ã ã‘ã«å­˜åœ¨ã™ã‚‹
 --------------------------------------------------------------*/
 void putReleaseEffect(FILE *fp, const int left_time, const CMD *cmd, PLAYSTATE *ps)
 {
-	int note = MCK_REST;		//¥Ç¥Õ¥©¥ë¥È¤Ï»Ä¤ê»ş´Ö¤ÏµÙÉä¤Ç¤Ä¤Ê¤°
-	
-	//Æó½Å¥­¡¼¥ª¥Õ¥Á¥§¥Ã¥¯
+	int note = MCK_REST;		//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¯æ®‹ã‚Šæ™‚é–“ã¯ä¼‘ç¬¦ã§ã¤ãªã
+
+	//äºŒé‡ã‚­ãƒ¼ã‚ªãƒ•ãƒã‚§ãƒƒã‚¯
 	if (ps->key_pressed == 0) {
 		putAsm(fp, note);
 		putLengthAndWait(fp, MCK_WAIT, left_time, cmd);
 		return;
 	}
-	
-	if( (ps->rel_env != -1 )		// ¥ê¥ê¡¼¥¹¥¨¥ó¥Ù¥í¡¼¥×Æ°ºîÃæ
-	 && (ps->last_written_env != ps->rel_env) ) {	// ¸½ºß¤Î¥¨¥ó¤Ù¥í¡¼¥×¤ÈÊÑ´¹Ãæ¤Î¥¨¥ó¥Ù¥í¡¼¥×¤¬°ã¤¦
-		putAsm( fp, MCK_SET_VOL );	// ¥ê¥ê¡¼¥¹¥¨¥ó¥Ù¥í¡¼¥×½ĞÎÏ
+
+	if( (ps->rel_env != -1 )		// ãƒªãƒªãƒ¼ã‚¹ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—å‹•ä½œä¸­
+	 && (ps->last_written_env != ps->rel_env) ) {	// ç¾åœ¨ã®ã‚¨ãƒ³ã¹ãƒ­ãƒ¼ãƒ—ã¨å¤‰æ›ä¸­ã®ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ãŒé•ã†
+		putAsm( fp, MCK_SET_VOL );	// ãƒªãƒªãƒ¼ã‚¹ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—å‡ºåŠ›
 		putAsm( fp, ps->rel_env );
 	 	ps->last_written_env = ps->rel_env;
-		note = MCK_WAIT;		//»Ä¤ê»ş´Ö¤Ï¥¦¥§¥¤¥È
+		note = MCK_WAIT;		//æ®‹ã‚Šæ™‚é–“ã¯ã‚¦ã‚§ã‚¤ãƒˆ
 	}
-	if( (ps->rel_tone != -1 )		// ¥ê¥ê¡¼¥¹²»¿§Æ°ºîÃæ
-	 && (ps->last_written_tone != ps->rel_tone) ) {	// ¸½ºß¤Î¥¨¥ó¤Ù¥í¡¼¥×¤ÈÊÑ´¹Ãæ¤Î²»¿§¤¬°ã¤¦
-		putAsm( fp, MCK_SET_TONE );	// ¥ê¥ê¡¼¥¹²»¿§½ĞÎÏ
+	if( (ps->rel_tone != -1 )		// ãƒªãƒªãƒ¼ã‚¹éŸ³è‰²å‹•ä½œä¸­
+	 && (ps->last_written_tone != ps->rel_tone) ) {	// ç¾åœ¨ã®ã‚¨ãƒ³ã¹ãƒ­ãƒ¼ãƒ—ã¨å¤‰æ›ä¸­ã®éŸ³è‰²ãŒé•ã†
+		putAsm( fp, MCK_SET_TONE );	// ãƒªãƒªãƒ¼ã‚¹éŸ³è‰²å‡ºåŠ›
 		putAsm( fp, ps->rel_tone );
 	 	ps->last_written_tone = ps->rel_tone;
-		note = MCK_WAIT;		//»Ä¤ê»ş´Ö¤Ï¥¦¥§¥¤¥È
+		note = MCK_WAIT;		//æ®‹ã‚Šæ™‚é–“ã¯ã‚¦ã‚§ã‚¤ãƒˆ
 	}
 	if (note == MCK_WAIT && ps->self_delay >= 0 && ps->last_note[ps->self_delay] >= 0) {
-		/* ¥»¥ë¥Õ¥Ç¥£¥ì¥¤ */
+		/* ã‚»ãƒ«ãƒ•ãƒ‡ã‚£ãƒ¬ã‚¤ */
 		note = ps->last_note[ps->self_delay];
 	}
 	if (left_time != 0) {
@@ -4530,7 +4530,7 @@ void doNewBank(FILE *fp, int trk, const CMD *cmd)
 {
 	int banktemp = curr_bank;
 	if (cmd->param[0] == PARAM_OMITTED) {
-		/* ¥Ç¥Õ¥©¥ë¥È */
+		/* ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ */
 		banktemp++;
 	} else {
 		banktemp = cmd->param[0];
@@ -4552,7 +4552,7 @@ void doNewBank(FILE *fp, int trk, const CMD *cmd)
 	curr_bank = banktemp;
 	putBankOrigin(fp, curr_bank);
 	fprintf( fp,"%s_%02d_bnk%03d:\n",songlabel,trk,curr_bank);
-	putAsm_pos = 0; // ½ĞÎÏ°ÌÃÖ¥¯¥ê¥¢
+	putAsm_pos = 0; // å‡ºåŠ›ä½ç½®ã‚¯ãƒªã‚¢
 	return;
 }
 
@@ -4563,11 +4563,11 @@ void doNewBank(FILE *fp, int trk, const CMD *cmd)
 
 
 /*--------------------------------------------------------------
-	
+
  Input:
-	
+
  Output:
-	Ìµ¤·
+	ç„¡ã—
 --------------------------------------------------------------*/
 void developeData( FILE *fp, const int trk, CMD *const cmdtop, LINE *lptr )
 {
@@ -4576,7 +4576,7 @@ void developeData( FILE *fp, const int trk, CMD *const cmdtop, LINE *lptr )
 	volume_flag = -1;
 
 	{
-		/* ¥Æ¥ó¥İ¥é¥ê¥ï¡¼¥¯¤òºîÀ® */
+		/* ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ¯ãƒ¼ã‚¯ã‚’ä½œæˆ */
 		CMD *cmd = cmdtop;
 		CMD *temp = malloc( sizeof(CMD)*32*1024 );
 		CMD *const tempback = temp;
@@ -4592,7 +4592,7 @@ void developeData( FILE *fp, const int trk, CMD *const cmdtop, LINE *lptr )
 			temp++;
 		}
 		temp = tempback;
-		/* ¥Á¥ã¥ó¥Í¥ë¥Ç¡¼¥¿¤ÎÆ¬¤«¤é¥³¥Ş¥ó¥É¤ò²òÀÏ¡¢¥Ğ¥Ã¥Õ¥¡¤Ë¤¿¤á¤ë */
+		/* ãƒãƒ£ãƒ³ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã®é ­ã‹ã‚‰ã‚³ãƒãƒ³ãƒ‰ã‚’è§£æã€ãƒãƒƒãƒ•ã‚¡ã«ãŸã‚ã‚‹ */
 		temp = analyzeData( trk, temp, lptr );
 		setCommandBuf( 0, temp, _TRACK_END, NULL, 0, 1 );
 		temp = tempback;
@@ -4604,24 +4604,24 @@ void developeData( FILE *fp, const int trk, CMD *const cmdtop, LINE *lptr )
 	}
 
 	tbase = 0.625;
-	
+
 	{
 		CMD *cmd = cmdtop;
 		double	count, lcount, count_t;
 		int		frame, lframe, frame_p, frame_d;
 		double	tbase_p;
 
-		/* ¥«¥¦¥ó¥È¤«¤é¥Õ¥ì¡¼¥à¤ËÊÑ´¹ */
-		/* ¤Ê¤ë¤Ù¤¯¥­¥ê¤Î¤¤¤¤»şÅÀ¤òµ¯ÅÀ¤Ë¤¹¤ë */
+		/* ã‚«ã‚¦ãƒ³ãƒˆã‹ã‚‰ãƒ•ãƒ¬ãƒ¼ãƒ ã«å¤‰æ› */
+		/* ãªã‚‹ã¹ãã‚­ãƒªã®ã„ã„æ™‚ç‚¹ã‚’èµ·ç‚¹ã«ã™ã‚‹ */
 		loop_flag = 0;
-		
-		count = 0; //¥È¥é¥Ã¥¯³«»Ï»şÅÀ¤«¤é¤Î·Ğ²á¥«¥¦¥ó¥È¿ô
-		frame = 0; //¥È¥é¥Ã¥¯³«»Ï»şÅÀ¤«¤é¤Î·Ğ²á¥Õ¥ì¡¼¥à¿ô
-		lcount = 0; //¥ë¡¼¥×³«»Ï»şÅÀ¤«¤é¤Î·Ğ²á¥«¥¦¥ó¥È¿ô
-		lframe = 0; //¥ë¡¼¥×³«»Ï»şÅÀ¤«¤é¤Î·Ğ²á¥Õ¥ì¡¼¥à¿ô
+
+		count = 0; //ãƒˆãƒ©ãƒƒã‚¯é–‹å§‹æ™‚ç‚¹ã‹ã‚‰ã®çµŒéã‚«ã‚¦ãƒ³ãƒˆæ•°
+		frame = 0; //ãƒˆãƒ©ãƒƒã‚¯é–‹å§‹æ™‚ç‚¹ã‹ã‚‰ã®çµŒéãƒ•ãƒ¬ãƒ¼ãƒ æ•°
+		lcount = 0; //ãƒ«ãƒ¼ãƒ—é–‹å§‹æ™‚ç‚¹ã‹ã‚‰ã®çµŒéã‚«ã‚¦ãƒ³ãƒˆæ•°
+		lframe = 0; //ãƒ«ãƒ¼ãƒ—é–‹å§‹æ™‚ç‚¹ã‹ã‚‰ã®çµŒéãƒ•ãƒ¬ãƒ¼ãƒ æ•°
 		/*
-			¥«¥¦¥ó¥È¤Ï¥Æ¥ó¥İ´Ø·¸¤Ê¤¯²Ã»»¤·¤Æ¤¤¤¯
-			¥Õ¥ì¡¼¥à¤Ï
+			ã‚«ã‚¦ãƒ³ãƒˆã¯ãƒ†ãƒ³ãƒé–¢ä¿‚ãªãåŠ ç®—ã—ã¦ã„ã
+			ãƒ•ãƒ¬ãƒ¼ãƒ ã¯
 			      A t120 l4 c  d   e   f  t240   g   a   b   c   !
 			count:          0 48  96 144  192  192 240 288 336 384
 			frame:          0 30  60  90  120  120 135 150 165 180
@@ -4629,7 +4629,7 @@ void developeData( FILE *fp, const int trk, CMD *const cmdtop, LINE *lptr )
 			count_t:        0 48  96 144  192  384 432 480 528 576
 			      B t240 l4 cc dd ee ff          g   a   b   c   !
 		*/
-		count_t = 0; //ºÇ½é¤«¤éº£¤Ş¤Ç¸½ºß¤Î¥Æ¥ó¥İ¤À¤Ã¤¿¤È²¾Äê¤·¤¿»ş¡¢¸½ºß¤Î¾õÂÖ¤ÈÆ±¤¸»ş´Ö¤ò·Ğ²á¤µ¤»¤ë¤¿¤á¤Î¥«¥¦¥ó¥È¿ô
+		count_t = 0; //æœ€åˆã‹ã‚‰ä»Šã¾ã§ç¾åœ¨ã®ãƒ†ãƒ³ãƒã ã£ãŸã¨ä»®å®šã—ãŸæ™‚ã€ç¾åœ¨ã®çŠ¶æ…‹ã¨åŒã˜æ™‚é–“ã‚’çµŒéã•ã›ã‚‹ãŸã‚ã®ã‚«ã‚¦ãƒ³ãƒˆæ•°
 		do {
 			cmd->cnt = count;
 			cmd->frm = frame;
@@ -4640,7 +4640,7 @@ void developeData( FILE *fp, const int trk, CMD *const cmdtop, LINE *lptr )
 
 			if( cmd->cmd == _REPEAT_ST2 ) {
 				double	rcount = 0;
-				double	rcount_esc = 0;		// \¤Î¼êÁ°¤Ş¤Ç
+				double	rcount_esc = 0;		// \ã®æ‰‹å‰ã¾ã§
 				double	rcount_t = 0;
 				double	rcount_esc_t = 0;
 				int	rframe = 0;
@@ -4648,7 +4648,7 @@ void developeData( FILE *fp, const int trk, CMD *const cmdtop, LINE *lptr )
 				int	rframe_err;
 				int	repeat_esc_flag = 0;
 				CMD	*repeat_esc2_cmd_ptr = NULL;
-				
+
 				cmd++;
 				while( 1 ) {
 					cmd->cnt = count;
@@ -4663,7 +4663,7 @@ void developeData( FILE *fp, const int trk, CMD *const cmdtop, LINE *lptr )
 							lcount += rcount*(cmd->param[0]-2)+rcount_esc;
 							lframe += rframe*(cmd->param[0]-2)+rframe_esc;
 						}
-						/* ¥Õ¥ì¡¼¥àÊäÀµ */
+						/* ãƒ•ãƒ¬ãƒ¼ãƒ è£œæ­£ */
 						rframe_err = double2int(count_t * tbase) - frame;
 						//printf( "frame-error: %d frame\n", rframe_err );
 						if (rframe_err > 0) {
@@ -4672,7 +4672,7 @@ void developeData( FILE *fp, const int trk, CMD *const cmdtop, LINE *lptr )
 							{
 								dispWarning(REPEAT2_FRAME_ERROR_OVER_3, cmd->filename, cmd->line);
 							}
-							/* 2004.09.02 ¤ä¤Ã¤Ñ¤ê¤ä¤á¤ë
+							/* 2004.09.02 ã‚„ã£ã±ã‚Šã‚„ã‚ã‚‹
 							cmd->param[1] = rframe_err;
 							frame += rframe_err;
 							if( loop_flag != 0 ) {
@@ -4683,11 +4683,11 @@ void developeData( FILE *fp, const int trk, CMD *const cmdtop, LINE *lptr )
 							cmd->param[1] = 0;
 						}
 						if (repeat_esc_flag) {
-							// ·«¤êÊÖ¤·²ó¿ô¤òÂĞ±ş¤¹¤ë\\¥³¥Ş¥ó¥É¤Ë¤â
+							// ç¹°ã‚Šè¿”ã—å›æ•°ã‚’å¯¾å¿œã™ã‚‹\\ã‚³ãƒãƒ³ãƒ‰ã«ã‚‚
 							repeat_esc2_cmd_ptr->param[0] = cmd->param[0];
 						}
 						break;
-						
+
 					} else if( cmd->cmd == _REPEAT_ESC2 ) {
 						repeat_esc_flag = 1;
 						repeat_esc2_cmd_ptr = cmd;
@@ -4700,7 +4700,7 @@ void developeData( FILE *fp, const int trk, CMD *const cmdtop, LINE *lptr )
 						frame_d = rframe - frame_p;
 						count += cmd->len;
 						frame += frame_d;
-/* ÂĞ¥ë¡¼¥×¤º¤ìÂĞºö */
+/* å¯¾ãƒ«ãƒ¼ãƒ—ãšã‚Œå¯¾ç­– */
 						if( loop_flag != 0 ) {
 							lcount += cmd->len;
 							lframe += frame_d;
@@ -4710,7 +4710,7 @@ void developeData( FILE *fp, const int trk, CMD *const cmdtop, LINE *lptr )
 							rcount_esc_t += cmd->len;
 							rcount_esc += cmd->len;
 							rframe_esc += frame_d;
-						} 
+						}
 					} else if( cmd->cmd == _TEMPO ) {
 						tbase_p = tbase;
 						tbase = (double)_BASETEMPO / (double)cmd->param[0];
@@ -4735,7 +4735,7 @@ void developeData( FILE *fp, const int trk, CMD *const cmdtop, LINE *lptr )
 				frame = double2int(count_t * tbase);
 				frame_d = frame - frame_p;
 				count += cmd->len;
-	/* ÂĞ¥ë¡¼¥×¤º¤ìÂĞºö */
+	/* å¯¾ãƒ«ãƒ¼ãƒ—ãšã‚Œå¯¾ç­– */
 				if( loop_flag != 0 ) {
 					lcount += cmd->len;
 					lframe += frame_d;
@@ -4753,7 +4753,7 @@ void developeData( FILE *fp, const int trk, CMD *const cmdtop, LINE *lptr )
 			}
 		} while( cmd++->cmd != _TRACK_END );
 	}
-	
+
 	{
 		CMD *cmd = cmdtop;
 		PLAYSTATE ps;
@@ -4762,37 +4762,37 @@ void developeData( FILE *fp, const int trk, CMD *const cmdtop, LINE *lptr )
 		int repeat_esc_flag = 0;
 		int i;
 		char loop_point_label[256];
-		
+
 		defaultPlayState(&ps);
-		
+
 		cmd = cmdtop;
 		putAsm_pos = 0;
 		loop_flag = 0;
-		
+
 		sprintf(loop_point_label, "%s_%02d_lp", songlabel, trk );
-		
+
 		mml_trk = trk;
 		fprintf( fp, "\n%s_%02d:\t;Trk %c\n", songlabel, trk, str_track[trk] );
-		
+
 		mml_file_name = cmd->filename;
 		mml_line_pos = cmd->line;
-		
-		// »°³ÑÇÈ/¥Î¥¤¥º¥È¥é¥Ã¥¯ÂĞºö
+
+		// ä¸‰è§’æ³¢/ãƒã‚¤ã‚ºãƒˆãƒ©ãƒƒã‚¯å¯¾ç­–
 		if( (trk == BTRACK(2)) || (trk == BTRACK(3)) ) {
 			putAsm( fp, MCK_SET_TONE );
 			putAsm( fp, 0x8f );
-		}		
-		
-		
-		
+		}
+
+
+
 		do {
-			const CMD cmdtemp = *cmd; //³ÆswitchÆâ¤Çcmd¥İ¥¤¥ó¥¿¤¬¿Ê¤à²ÄÇ½À­¤¬¤¢¤ë¤Î¤Ç°ìÃ¶ÊİÂ¸
+			const CMD cmdtemp = *cmd; //å„switchå†…ã§cmdãƒã‚¤ãƒ³ã‚¿ãŒé€²ã‚€å¯èƒ½æ€§ãŒã‚ã‚‹ã®ã§ä¸€æ—¦ä¿å­˜
 			mml_file_name = cmd->filename;
 			mml_line_pos = cmd->line;
-			
-			// ¼«Æ°¥Ğ¥ó¥¯ÀÚ¤êÂØ¤¨
+
+			// è‡ªå‹•ãƒãƒ³ã‚¯åˆ‡ã‚Šæ›¿ãˆ
 			if (auto_bankswitch) {
-				const int bank_limit = 8192 - 20; // Å¬Åö¤ËÍ¾Íµ¤ò»ı¤¿¤»¤ë
+				const int bank_limit = 8192 - 20; // é©å½“ã«ä½™è£•ã‚’æŒãŸã›ã‚‹
 				if (bank_usage[curr_bank] > bank_limit) {
 					CMD nbcmd;
 					nbcmd.param[0] = curr_bank;
@@ -4804,7 +4804,7 @@ void developeData( FILE *fp, const int trk, CMD *const cmdtop, LINE *lptr )
 					doNewBank( fp, trk, &nbcmd );
 				}
 			}
-			
+
 			switch (cmdtemp.cmd) {
 			  case _NOP:
 			  case _TEMPO:
@@ -4818,17 +4818,17 @@ void developeData( FILE *fp, const int trk, CMD *const cmdtop, LINE *lptr )
 				break;
 			  case _ENVELOPE:
 				putAsm( fp, MCK_SET_VOL );
-				ps.env = cmd->param[0]&0x7f; 
+				ps.env = cmd->param[0]&0x7f;
 				ps.last_written_env = ps.env;
-				putAsm( fp, ps.env ); 
+				putAsm( fp, ps.env );
 				ps.last_written_env = ps.env;
-				cmd++; 
-				break; 
-			  case _REL_ENV: 
-				if( cmd->param[0] == 255 ) { 
+				cmd++;
+				break;
+			  case _REL_ENV:
+				if( cmd->param[0] == 255 ) {
 					ps.rel_env = -1;
-				} else { 
-					ps.rel_env = cmd->param[0]&0x7f; 
+				} else {
+					ps.rel_env = cmd->param[0]&0x7f;
 				}
 				cmd++;
 				break;
@@ -4846,7 +4846,7 @@ void developeData( FILE *fp, const int trk, CMD *const cmdtop, LINE *lptr )
 			  case _HARD_ENVELOPE:
 				putAsm( fp, MCK_SET_FDS_HWENV );
 				ps.env = ((cmd->param[0]&1)<<6)|(cmd->param[1]&0x3f|0x100);
-				putAsm( fp, (ps.env & 0xff) ); 
+				putAsm( fp, (ps.env & 0xff) );
 				ps.last_written_env = ps.env;
 				cmd++;
 				break;
@@ -4865,7 +4865,7 @@ void developeData( FILE *fp, const int trk, CMD *const cmdtop, LINE *lptr )
 				cmd++;
 				break;
 			  case _REL_ORG_TONE:
-				if( cmd->param[0] == 255 ) { 
+				if( cmd->param[0] == 255 ) {
 					ps.rel_tone = -1;
 				} else {
 					ps.rel_tone = cmd->param[0]&0x7f;
@@ -4915,12 +4915,12 @@ void developeData( FILE *fp, const int trk, CMD *const cmdtop, LINE *lptr )
 					putLengthAndWait(fp, MCK_WAIT, delta_time, &cmdtemp);
 				}
 				break;
-			  case _KEY_OFF: /* Ä¹¤µ¤Ä¤­¥­¡¼¥ª¥Õ */ 
+			  case _KEY_OFF: /* é•·ã•ã¤ãã‚­ãƒ¼ã‚ªãƒ• */
 				{
 					int delta_time = 0;
 					cmd = getDeltaTime(cmd, &delta_time, 0);
 					if( delta_time == 0 ) {
-						/* ²»Ä¹0¤òµö¤¹ */
+						/* éŸ³é•·0ã‚’è¨±ã™ */
 					}
 					putReleaseEffect(fp, delta_time, &cmdtemp, &ps);
 					ps.key_pressed = 0;
@@ -5033,7 +5033,7 @@ void developeData( FILE *fp, const int trk, CMD *const cmdtop, LINE *lptr )
 					dispError( DATA_ENDED_BY_LOOP_DEPTH_EXCEPT_0, cmd->filename, cmd->line );
 				} else {
 					if (repeat_esc_flag != 0) {
-						// ¾ï¤ËÌá¤ë
+						// å¸¸ã«æˆ»ã‚‹
 						putAsm( fp, MCK_GOTO );
 					} else {
 						putAsm( fp, MCK_REPEAT_END );
@@ -5043,11 +5043,11 @@ void developeData( FILE *fp, const int trk, CMD *const cmdtop, LINE *lptr )
 					bank_usage[curr_bank]++;
 					fprintf( fp,"\tdw\t%s_%02d_lp_%04d\n", songlabel, trk, repeat_index );
 					bank_usage[curr_bank]+=2;
-					
+
 					fprintf( fp, "%s_%02d_lp_exit_%04d:\n", songlabel, trk, repeat_index );
 					repeat_index++;
 					putAsm_pos = 0;
-					/* 2004.09.02 ¤ä¤Ã¤Ñ¤ê¤ä¤á¤ë
+					/* 2004.09.02 ã‚„ã£ã±ã‚Šã‚„ã‚ã‚‹
 					if ( cmd->param[1] > 0 ) {
 						putAsm( fp, MCK_WAIT );
 						putAsm( fp, cmd->param[1]&0xFF);
@@ -5080,7 +5080,7 @@ void developeData( FILE *fp, const int trk, CMD *const cmdtop, LINE *lptr )
 				cmd++;
 				break;
 			  case _SELF_DELAY_ON:
-				if( cmd->param[0] == 255 ) { 
+				if( cmd->param[0] == 255 ) {
 					ps.self_delay = -1;
 				} else {
 					ps.self_delay = cmd->param[0];
@@ -5109,10 +5109,10 @@ void developeData( FILE *fp, const int trk, CMD *const cmdtop, LINE *lptr )
 			  default:
 				{
 					int note;
-					int delta_time; /* È¯²»¤«¤é¼¡¤Î¥¤¥Ù¥ó¥È¤Ş¤Ç¤Î¥Õ¥ì¡¼¥à¿ô */
-					int gate_time; /* È¯²»¤«¤é¥­¡¼¥ª¥Õ¤Ş¤Ç¤Î¥Õ¥ì¡¼¥à¿ô */
-					int left_time; /* ¥­¡¼¥ª¥Õ¤«¤é¼¡¤Î¥¤¥Ù¥ó¥È¤Ş¤Ç¤Î»Ä¤ê¥Õ¥ì¡¼¥à¿ô */
-					
+					int delta_time; /* ç™ºéŸ³ã‹ã‚‰æ¬¡ã®ã‚¤ãƒ™ãƒ³ãƒˆã¾ã§ã®ãƒ•ãƒ¬ãƒ¼ãƒ æ•° */
+					int gate_time; /* ç™ºéŸ³ã‹ã‚‰ã‚­ãƒ¼ã‚ªãƒ•ã¾ã§ã®ãƒ•ãƒ¬ãƒ¼ãƒ æ•° */
+					int left_time; /* ã‚­ãƒ¼ã‚ªãƒ•ã‹ã‚‰æ¬¡ã®ã‚¤ãƒ™ãƒ³ãƒˆã¾ã§ã®æ®‹ã‚Šãƒ•ãƒ¬ãƒ¼ãƒ æ•° */
+
 					if (cmdtemp.cmd == _KEY) {
 						note = cmd->param[0]&0xffff;
 					} else {
@@ -5123,33 +5123,33 @@ void developeData( FILE *fp, const int trk, CMD *const cmdtop, LINE *lptr )
 							break;
 						}
 					}
-					
-					
+
+
 					delta_time = 0;
 					cmd = getDeltaTime(cmd, &delta_time, 1);
-					
+
 					gate_time = calcGateTime(delta_time, &(ps.gate_q));
 					left_time = delta_time - gate_time;
-					
+
 					if( delta_time == 0 ) {
 						dispWarning( FRAME_LENGTH_IS_0, cmdtemp.filename, cmdtemp.line );
 						break;
 					}
-					
-					
-					if( ps.last_written_env != ps.env ) {		// ºÇ¸å¤Ë½ñ¤­¹ş¤ó¤À¥¨¥ó¤Ù¥í¡¼¥×or²»ÎÌ¤È¡¢¸½ºß¤ÎÄÌ¾ï¤Î¥¨¥ó¥Ù¥í¡¼¥×or²»ÎÌ¤¬°ã¤¦
+
+
+					if( ps.last_written_env != ps.env ) {		// æœ€å¾Œã«æ›¸ãè¾¼ã‚“ã ã‚¨ãƒ³ã¹ãƒ­ãƒ¼ãƒ—oréŸ³é‡ã¨ã€ç¾åœ¨ã®é€šå¸¸ã®ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—oréŸ³é‡ãŒé•ã†
 						if ( (trk == BFMTRACK) && (ps.env > 0xFF) ) {
-							putAsm( fp, MCK_SET_FDS_HWENV );	// ¥Ï¡¼¥É¥¨¥ó¥Ù½ĞÎÏ
+							putAsm( fp, MCK_SET_FDS_HWENV );	// ãƒãƒ¼ãƒ‰ã‚¨ãƒ³ãƒ™å‡ºåŠ›
 							putAsm( fp, (ps.env & 0xff) );
 						} else {
-							putAsm( fp, MCK_SET_VOL );	// ¥¨¥ó¥Ù¥í¡¼¥×½ĞÎÏ
+							putAsm( fp, MCK_SET_VOL );	// ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—å‡ºåŠ›
 							putAsm( fp, ps.env );
 						}
 						ps.last_written_env = ps.env;
 					}
-					
-					if( ps.last_written_tone != ps.tone ) {	// ºÇ¸å¤Ë½ñ¤­¹ş¤ó¤À²»¿§¤È¡¢¸½ºß¤ÎÄÌ¾ï¤Î²»¿§¤¬°ã¤¦
-						putAsm( fp, MCK_SET_TONE );	// ²»¿§½ĞÎÏ
+
+					if( ps.last_written_tone != ps.tone ) {	// æœ€å¾Œã«æ›¸ãè¾¼ã‚“ã éŸ³è‰²ã¨ã€ç¾åœ¨ã®é€šå¸¸ã®éŸ³è‰²ãŒé•ã†
+						putAsm( fp, MCK_SET_TONE );	// éŸ³è‰²å‡ºåŠ›
 						putAsm( fp, ps.tone );
 						ps.last_written_tone = ps.tone;
 					}
@@ -5157,42 +5157,42 @@ void developeData( FILE *fp, const int trk, CMD *const cmdtop, LINE *lptr )
 					if( (ps.tone == -1) &&
 					    ((trk == BTRACK(0))  || (trk == BTRACK(1)) ||
 					     (trk == BMMC5TRACK) || (trk == BMMC5TRACK+1)) ) {
-						// ÆâÂ¢¶ë·ÁÇÈ¡õMMC5¤Ï²»¿§Ì¤»ØÄê»ş@0¤Ë
+						// å†…è”µçŸ©å½¢æ³¢ï¼†MMC5ã¯éŸ³è‰²æœªæŒ‡å®šæ™‚@0ã«
 						putAsm( fp, MCK_SET_TONE );
 						ps.tone = 0x80;
 						putAsm( fp, ps.tone );
 						ps.last_written_tone = ps.tone;
 					}
-					
+
 					if (cmdtemp.cmd == _KEY) {
 						putAsm( fp, MCK_DIRECT_FREQ );
 						putAsm( fp,  note    &0xff );
 						if ( ((trk >= BVRC6TRACK) && (trk <= BVRC6SAWTRACK)) ||
 						     ((trk >= BFME7TRACK) && (trk <= BFME7TRACK+2 )) ) {
-							// VRC6¡õSUN5B¤Ï12bit
+							// VRC6ï¼†SUN5Bã¯12bit
 							putAsm( fp, (note>>8)&0x0f );
 						} else {
-							// 2A03¡õMMC5¤Ï11bit
+							// 2A03ï¼†MMC5ã¯11bit
 							putAsm( fp, (note>>8)&0x07 );
 						}
 					} else {
-						if( note < 0 ) {				/* ºÇÄã²»¤ÎÂĞºö */
+						if( note < 0 ) {				/* æœ€ä½éŸ³ã®å¯¾ç­– */
 							note += 16;
 						}
 						putAsm( fp, note );
-						
-						
+
+
 						for (i = arraysizeof(ps.last_note) - 1 ; i > 0; i--) {
 							ps.last_note[i] = ps.last_note[i-1];
 						}
 						ps.last_note[0] = note;
 					}
-					
-					
+
+
 					putLengthAndWait(fp, MCK_WAIT, gate_time, &cmdtemp);
 					ps.key_pressed = 1;
-					
-					// ¥¯¥ª¥ó¥¿¥¤¥º½èÍı
+
+					// ã‚¯ã‚ªãƒ³ã‚¿ã‚¤ã‚ºå‡¦ç†
 					if ( left_time != 0 ) {
 						putReleaseEffect(fp, left_time, &cmdtemp, &ps);
 						ps.key_pressed = 0;
@@ -5200,11 +5200,11 @@ void developeData( FILE *fp, const int trk, CMD *const cmdtop, LINE *lptr )
 				}
 				break;
 			} // switch (cmdtemp.cmd)
-			
-			
+
+
 		} while( cmd->cmd != _TRACK_END );
-		
-		
+
+
 		track_count[mml_idx][trk][0].cnt = cmd->cnt;
 		track_count[mml_idx][trk][0].frm = cmd->frm;
 
@@ -5232,7 +5232,7 @@ void developeData( FILE *fp, const int trk, CMD *const cmdtop, LINE *lptr )
 
 
 /*--------------------------------------------------------------
-	
+
 --------------------------------------------------------------*/
 void setSongLabel(void)
 {
@@ -5241,7 +5241,7 @@ void setSongLabel(void)
 
 
 /*--------------------------------------------------------------
-	¥ê¥¶¥ë¥ÈÉ½¼¨¥ë¡¼¥Á¥ó
+	ãƒªã‚¶ãƒ«ãƒˆè¡¨ç¤ºãƒ«ãƒ¼ãƒãƒ³
 	i:trk number
 	trk: track symbol
 --------------------------------------------------------------*/
@@ -5264,11 +5264,11 @@ void display_counts_sub(int i, char trk)
 
 
 /*--------------------------------------------------------------
-	¥Ç¡¼¥¿ºîÀ®¥ë¡¼¥Á¥ó
+	ãƒ‡ãƒ¼ã‚¿ä½œæˆãƒ«ãƒ¼ãƒãƒ³
  Input:
-	Ìµ¤·
+	ç„¡ã—
  Return:
-	==0:Àµ¾ï !=0:°Û¾ï
+	==0:æ­£å¸¸ !=0:ç•°å¸¸
 --------------------------------------------------------------*/
 int data_make( void )
 {
@@ -5282,14 +5282,14 @@ int data_make( void )
 	int	trk_flag[_TRACK_MAX];
 
 	for(i=0; i < _TRACK_MAX; i++) {
-		bank_sel[i] = -1; // ½é´ü¾õÂÖ¤ÏÀÚ¤êÂØ¤¨Ìµ¤·
+		bank_sel[i] = -1; // åˆæœŸçŠ¶æ…‹ã¯åˆ‡ã‚Šæ›¿ãˆç„¡ã—
 	}
 	for( i = 0; i < _DPCM_MAX; i++ ) {
 		dpcm_tbl[i].flag = 0;
 		dpcm_tbl[i].index = -1;
 	}
 
-	/* Á´¤Æ¤ÎMML¤«¤é¥¨¥Õ¥§¥¯¥È¤òÆÉ¤ß¹ş¤ß */
+	/* å…¨ã¦ã®MMLã‹ã‚‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’èª­ã¿è¾¼ã¿ */
 	for (mml_idx = 0; mml_idx < mml_num; mml_idx++) {
 		line_ptr[mml_idx] = readMmlFile(mml_names[mml_idx]);
 		if( line_ptr[mml_idx] == NULL ) return -1;
@@ -5326,17 +5326,17 @@ int data_make( void )
 	hard_effect_max = getMaxHardEffect( hard_effect_tbl, _HARD_EFFECT_MAX );
 	effect_wave_max = getMaxEffectWave( effect_wave_tbl, _EFFECT_WAVE_MAX );
 
-	sortDPCM( dpcm_tbl );					// ²»¿§¤Î¥À¥Ö¤ê¤òºï½ü
+	sortDPCM( dpcm_tbl );					// éŸ³è‰²ã®ãƒ€ãƒ–ã‚Šã‚’å‰Šé™¤
 	dpcm_size = checkDPCMSize( dpcm_tbl );
 	//printf("dpcmsize $%x\n",dpcm_size);
-	if ( !allow_bankswitching && (dpcm_size > _DPCM_TOTAL_SIZE)) {	// ¥µ¥¤¥º¤ò¥Á¥§¥Ã¥¯
+	if ( !allow_bankswitching && (dpcm_size > _DPCM_TOTAL_SIZE)) {	// ã‚µã‚¤ã‚ºã‚’ãƒã‚§ãƒƒã‚¯
 		dispError( DPCM_FILE_TOTAL_SIZE_OVER, NULL, 0 );
 		dpcm_size = 0;
 	} else {
 		dpcm_data = malloc( dpcm_size );
 		readDPCM( dpcm_tbl );
 	}
-	/* ¥Ô¥Ã¥Á¥¨¥ó¥Ù¥í¡¼¥×¤Î¥Ñ¥é¥á¡¼¥¿½¤Àµ */
+	/* ãƒ”ãƒƒãƒã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä¿®æ­£ */
 	for( i = 0; i < pitch_env_max; i++ ) {
 		if( pitch_env_tbl[i][0] != 0 ) {
 			for( j = 1; j <= pitch_env_tbl[i][0]; j++ ) {
@@ -5353,24 +5353,24 @@ int data_make( void )
 		fp = fopen( ef_name, "wt" );
 		if( fp == NULL ) {
 			if( message_flag == 0 ) {
-				printf( "%s : ¥Õ¥¡¥¤¥ë¤¬ºîÀ®¤Ç¤­¤Ş¤»¤ó¤Ç¤·¤¿¡£Ãæ»ß¤·¤Ş¤¹¡£\n", ef_name );
+				printf( "%s : ãƒ•ã‚¡ã‚¤ãƒ«ãŒä½œæˆã§ãã¾ã›ã‚“ã§ã—ãŸã€‚ä¸­æ­¢ã—ã¾ã™ã€‚\n", ef_name );
 			} else {
 				printf( "%s : Don't create file. Stops.\n", ef_name );
 			}
 			return -1;
 		}
-		
 
 
-		/* ²»¿§½ñ¤­¹ş¤ß */
+
+		/* éŸ³è‰²æ›¸ãè¾¼ã¿ */
 		writeTone( fp, tone_tbl, "dutyenve", tone_max );
-		/* ¥¨¥ó¥Ù¥í¡¼¥×½ñ¤­¹ş¤ß */
+		/* ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—æ›¸ãè¾¼ã¿ */
 		writeTone( fp, envelope_tbl, "softenve", envelope_max );
-		/* ¥Ô¥Ã¥Á¥¨¥ó¥Ù¥í¡¼¥×½ñ¤­¹ş¤ß */
+		/* ãƒ”ãƒƒãƒã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—æ›¸ãè¾¼ã¿ */
 		writeTone( fp, pitch_env_tbl, "pitchenve", pitch_env_max );
-		/* ¥Î¡¼¥È¥¨¥ó¥Ù¥í¡¼¥×½ñ¤­¹ş¤ß */
+		/* ãƒãƒ¼ãƒˆã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—æ›¸ãè¾¼ã¿ */
 		writeTone( fp, arpeggio_tbl, "arpeggio", arpeggio_max );
-		/* LFO½ñ¤­¹ş¤ß */
+		/* LFOæ›¸ãè¾¼ã¿ */
 		fprintf( fp,"lfo_data:\n" );
 		if( pitch_mod_max != 0 ) {
 			for( i = 0; i < pitch_mod_max; i++ ) {
@@ -5384,38 +5384,38 @@ int data_make( void )
 			}
 			fprintf( fp, "\n" );
 		}
-		/* FM²»¿§½ñ¤­¹ş¤ß */
+		/* FMéŸ³è‰²æ›¸ãè¾¼ã¿ */
 		writeToneFM( fp, fm_tone_tbl, "fds", fm_tone_max );
 		writeHardEffect( fp, hard_effect_tbl, "fds", hard_effect_max );
 		writeEffectWave( fp, effect_wave_tbl, "fds", effect_wave_max );
-		/* namco106²»¿§½ñ¤­¹ş¤ß */
+		/* namco106éŸ³è‰²æ›¸ãè¾¼ã¿ */
 		writeToneN106( fp, n106_tone_tbl, "n106", n106_tone_max );
-		/* VRC7²»¿§½ñ¤­¹ş¤ß */
+		/* VRC7éŸ³è‰²æ›¸ãè¾¼ã¿ */
 		writeToneVRC7( fp, vrc7_tone_tbl, "vrc7", vrc7_tone_max );
-		/* DPCM½ñ¤­¹ş¤ß */
+		/* DPCMæ›¸ãè¾¼ã¿ */
 		writeDPCM( fp, dpcm_tbl, "dpcm_data", dpcm_max );
 		writeDPCMSample( fp );
-		
-		// MML¥Õ¥¡¥¤¥ë½ñ¤­¹ş¤ß
+
+		// MMLãƒ•ã‚¡ã‚¤ãƒ«æ›¸ãè¾¼ã¿
 		if( include_flag != 0 ) {
 			fprintf( fp, "\t.include\t\"%s\"\n", out_name );
 		}
-		
+
 		fclose( fp );
 	}
 
-	/* MML->ASM¥Ç¡¼¥¿ÊÑ´¹ */
+	/* MML->ASMãƒ‡ãƒ¼ã‚¿å¤‰æ› */
 	fp = fopen( out_name, "wt" );
 	if( fp == NULL ) {
 		if( message_flag == 0 ) {
-			printf( "%s : ¥Õ¥¡¥¤¥ë¤¬ºîÀ®¤Ç¤­¤Ş¤»¤ó¤Ç¤·¤¿¡£Ãæ»ß¤·¤Ş¤¹¡£\n", out_name );
+			printf( "%s : ãƒ•ã‚¡ã‚¤ãƒ«ãŒä½œæˆã§ãã¾ã›ã‚“ã§ã—ãŸã€‚ä¸­æ­¢ã—ã¾ã™ã€‚\n", out_name );
 		} else {
 			printf( "%s : Don't create file. Stops.\n", out_name );
 		}
 		return -1;
 	}
 
-	/* ½ĞÎÏ¥Õ¥¡¥¤¥ë¤Ë¥¿¥¤¥È¥ë/ºî¶Ê¼Ô/ÂÇ¤Á¹ş¤ß¼Ô¤Î¾ğÊó¤ò¥³¥á¥ó¥È¤È¤·¤Æ½ñ¤­¹ş¤ß */
+	/* å‡ºåŠ›ãƒ•ã‚¡ã‚¤ãƒ«ã«ã‚¿ã‚¤ãƒˆãƒ«/ä½œæ›²è€…/æ‰“ã¡è¾¼ã¿è€…ã®æƒ…å ±ã‚’ã‚³ãƒ¡ãƒ³ãƒˆã¨ã—ã¦æ›¸ãè¾¼ã¿ */
 	writeSongInfo(fp);
 
 	//printf(" test info:vrc7:%d vrc6:%d n106:%d\n",vrc7_track_num,vrc6_track_num, n106_track_num);
@@ -5423,12 +5423,12 @@ int data_make( void )
 	for(i=0; i < _TRACK_MAX; i++) trk_flag[i]=0;
 
 	for(i=0; i <= BNOISETRACK; i++) trk_flag[i]=1;
-	
+
 	trk_flag[BDPCMTRACK]=1;
-		
+
 	if (fds_track_num)
 		trk_flag[BFMTRACK]=1;
-		
+
 	if (vrc7_track_num)
 		for(i=BVRC7TRACK; i < BVRC7TRACK+vrc7_track_num; i++) trk_flag[i]=1;
 	if (vrc6_track_num)
@@ -5441,7 +5441,7 @@ int data_make( void )
 		for(i=BMMC5TRACK; i < BMMC5TRACK+mmc5_track_num; i++) trk_flag[i]=1;
 
 
-	
+
 	fprintf( fp, "\t.bank\t0\n");
 	fprintf( fp, "\t.if TOTAL_SONGS > 1\n");
 	fprintf( fp, "song_addr_table:\n" );
@@ -5449,7 +5449,7 @@ int data_make( void )
 		setSongLabel();
 		fprintf( fp, "\tdw\t%s_track_table\n", songlabel);
 	}
-	
+
 	fprintf( fp, "\t.if (ALLOW_BANK_SWITCH)\n" );
 	fprintf( fp, "song_bank_table:\n" );
 	for (mml_idx = 0; mml_idx < mml_num; mml_idx++) {
@@ -5458,14 +5458,14 @@ int data_make( void )
 	}
 	fprintf( fp, "\t.endif ; ALLOW_BANK_SWITCH\n" );
 	fprintf( fp, "\t.endif ; TOTAL_SONGS > 1\n" );
-	
+
 	for (mml_idx = 0; mml_idx < mml_num; mml_idx++) {
 		setSongLabel();
 		fprintf( fp, "%s_track_table:\n", songlabel );
 		for( i = 0; i < _TRACK_MAX; i++ ){
 			if (trk_flag[i]) fprintf( fp, "\tdw\t%s_%02d\n", songlabel, i );
 		}
-		
+
 		fprintf( fp, "\t.if (ALLOW_BANK_SWITCH)\n" );
 		fprintf( fp, "%s_bank_table:\n", songlabel );
 		for( i = 0; i < _TRACK_MAX; i++ ){
@@ -5474,20 +5474,20 @@ int data_make( void )
 		fprintf( fp, "\t.endif\n" );
 	}
 
-	
+
 
 
 	curr_bank = 0x00;
 
-	/* Á´¤Æ¤ÎMML¤Ë¤Ä¤¤¤Æ */
+	/* å…¨ã¦ã®MMLã«ã¤ã„ã¦ */
 	for (mml_idx = 0; mml_idx < mml_num; mml_idx++) {
 		setSongLabel();
-		/* ¥È¥é¥Ã¥¯Ã±°Ì¤Ç¥Ç¡¼¥¿ÊÑ´¹ */
+		/* ãƒˆãƒ©ãƒƒã‚¯å˜ä½ã§ãƒ‡ãƒ¼ã‚¿å¤‰æ› */
 		for( i = 0; i < _TRACK_MAX; i++ ) {
 			if ( bank_sel[i] != -1 && !auto_bankswitch) {
 				if (trk_flag[i] == 0) {
 					if( message_flag == 0 ) {
-						printf( "Warning: Ì¤»ÈÍÑ¥È¥é¥Ã¥¯(%c)¤ËÂĞ¤·¤Æ¤Î#SETBANK¤òÌµ»ë¤·¤Ş¤¹\n", str_track[i]);
+						printf( "Warning: æœªä½¿ç”¨ãƒˆãƒ©ãƒƒã‚¯(%c)ã«å¯¾ã—ã¦ã®#SETBANKã‚’ç„¡è¦–ã—ã¾ã™\n", str_track[i]);
 					} else {
 						printf( "Warning: Ignored #SETBANK on unused track(%c)\n", str_track[i]);
 					}
@@ -5500,7 +5500,7 @@ int data_make( void )
 					putBankOrigin(fp, bank_sel[i]);
 				}
 			}
-			
+
 			if (trk_flag[i]) {
 				cmd_buf = malloc( sizeof(CMD)*32*1024 );
 				developeData( fp, i, cmd_buf, line_ptr[mml_idx] );
@@ -5509,13 +5509,13 @@ int data_make( void )
 		}
 	}
 	fclose( fp );
-	
+
 	{
 
 		fp = fopen( inc_name, "wt" );
 		if( fp == NULL ) {
 			if( message_flag == 0 ) {
-				printf( "%s : ¥Õ¥¡¥¤¥ë¤¬ºîÀ®¤Ç¤­¤Ş¤»¤ó¤Ç¤·¤¿¡£Ãæ»ß¤·¤Ş¤¹¡£\n", inc_name );
+				printf( "%s : ãƒ•ã‚¡ã‚¤ãƒ«ãŒä½œæˆã§ãã¾ã›ã‚“ã§ã—ãŸã€‚ä¸­æ­¢ã—ã¾ã™ã€‚\n", inc_name );
 			} else {
 				printf( "%s : Don't create file. Stops.\n", inc_name );
 			}
@@ -5541,7 +5541,7 @@ int data_make( void )
 		fprintf( fp, "PTRMMC5\t\tequ\t%2d\n", track_ptr);
 		track_ptr += mmc5_track_num;
 		fprintf( fp, "PTR_TRACK_END\t\tequ\t%2d\n", track_ptr);
-		
+
 		//fprintf( fp, "INITIAL_WAIT_FRM\t\tequ\t%2d\n", 0x26);
 		fprintf( fp, "PITCH_CORRECTION\t\tequ\t%2d\n", pitch_correction);
 		fprintf( fp, "DPCM_RESTSTOP\t\tequ\t%2d\n", dpcm_reststop);
@@ -5571,8 +5571,8 @@ int data_make( void )
 			}
 			fprintf(fp, "\t.endm\n");
 		}
-		
-		/* ½ĞÎÏ¥Õ¥¡¥¤¥ë¤Ë¥¿¥¤¥È¥ë/ºî¶Ê¼Ô/ÂÇ¤Á¹ş¤ß¼Ô¤Î¾ğÊó¤ò¥Ş¥¯¥í¤È¤·¤Æ½ñ¤­¹ş¤ß */
+
+		/* å‡ºåŠ›ãƒ•ã‚¡ã‚¤ãƒ«ã«ã‚¿ã‚¤ãƒˆãƒ«/ä½œæ›²è€…/æ‰“ã¡è¾¼ã¿è€…ã®æƒ…å ±ã‚’ãƒã‚¯ãƒ­ã¨ã—ã¦æ›¸ãè¾¼ã¿ */
 		writeSongInfoMacro(fp);
 
 		fprintf(fp,"\n\n");
@@ -5580,8 +5580,8 @@ int data_make( void )
 	}
 
 	if( error_flag == 0 ) {
-		
-		/* Á´¤Æ¤ÎMML¤Ë¤Ä¤¤¤Æ */
+
+		/* å…¨ã¦ã®MMLã«ã¤ã„ã¦ */
 		for (mml_idx = 0; mml_idx < mml_num; mml_idx++) {
 			printf("\n");
 			if (mml_num > 1) {
@@ -5599,7 +5599,7 @@ int data_make( void )
 		}
 		return 0;
 	} else {
-		remove( out_name );				/* ¥¨¥é¡¼¤¬¤¢¤Ã¤¿¤È¤­¤Ï½ĞÎÏ¥Õ¥¡¥¤¥ë¤òºï½ü */
+		remove( out_name );				/* ã‚¨ãƒ©ãƒ¼ãŒã‚ã£ãŸã¨ãã¯å‡ºåŠ›ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‰Šé™¤ */
 		remove( ef_name );
 		return -1;
 	}

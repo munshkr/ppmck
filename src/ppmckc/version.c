@@ -2,10 +2,10 @@ char *patchstr = "patches FDS enable patch([OK]), 4-46, 4-356, 5-17, 5-95, 5-313
 char *hogereleasestr = ("ppmck release 9 by h7\n");
 
 #ifdef ENGLISH
-#define	LANGUAGE		1			// 0¤À¤È¥Ç¥Õ¥©¥ë¥È¤ÇÆüËÜ¸ì 1¤À¤È±Ñ¸ì
+#define	LANGUAGE		1			// 0ã ã¨ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§æ—¥æœ¬èª 1ã ã¨è‹±èª
 #else
 #define LANGUAGE		0
 #endif
 
-int message_flag = LANGUAGE;			// É½¼¨¥á¥Ã¥»¡¼¥¸¤Î½ĞÎÏÀßÄê( 0:Jp 1:En )
+int message_flag = LANGUAGE;			// è¡¨ç¤ºãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®å‡ºåŠ›è¨­å®š( 0:Jp 1:En )
 

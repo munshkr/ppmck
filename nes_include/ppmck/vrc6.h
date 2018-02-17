@@ -1,6 +1,6 @@
 ;memo
 ;
-;9000, a000 :GDDDVVVV 
+;9000, a000 :GDDDVVVV
 ;	G=0 normal, G=1 digitized
 ;	D duty cycle
 ;	V volume
@@ -16,7 +16,7 @@
 ;	Sound initialize?
 
 	.ifndef	VRC6_BOARD_TYPE
-VRC6_BOARD_TYPE	=	0		;351949AŠî”Â‚ðŽg—p‚·‚éê‡1‚É
+VRC6_BOARD_TYPE	=	0		;351949AåŸºæ¿ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆ1ã«
 	.endif
 
 	.if	VRC6_BOARD_TYPE = 1
@@ -34,26 +34,26 @@ vrc6_sound_init:
 	rts
 
 ;-----------------------------------------------------------
-;channel_sel‚ð“Ç‚ñ‚Å
-;VRC6‚Ì1”Ô–Ú‚È‚ç[VRC6_DST_REG_LOW],y‚Å9000+y‚ðŽw‚·‚æ‚¤‚É‚·‚é
-;VRC6‚Ì2”Ô–Ú‚È‚ç[VRC6_DST_REG_LOW],y‚Åa000+y‚ðŽw‚·‚æ‚¤‚É‚·‚é
-;VRC6‚Ì3”Ô–Ú‚È‚ç[VRC6_DST_REG_LOW],y‚Åb000+y‚ðŽw‚·‚æ‚¤‚É‚·‚é
+;channel_selã‚’èª­ã‚“ã§
+;VRC6ã®1ç•ªç›®ãªã‚‰[VRC6_DST_REG_LOW],yã§9000+yã‚’æŒ‡ã™ã‚ˆã†ã«ã™ã‚‹
+;VRC6ã®2ç•ªç›®ãªã‚‰[VRC6_DST_REG_LOW],yã§a000+yã‚’æŒ‡ã™ã‚ˆã†ã«ã™ã‚‹
+;VRC6ã®3ç•ªç›®ãªã‚‰[VRC6_DST_REG_LOW],yã§b000+yã‚’æŒ‡ã™ã‚ˆã†ã«ã™ã‚‹
 
 vrc6_dst_adr_set:
 	lda	<channel_sel
-	clc				;VRC6‚Ì‰½ƒ`ƒƒƒ“ƒlƒ‹–Ú‚©H
-	adc	#($09 - PTRVRC6)	;ch1‚È‚ç9
+	clc				;VRC6ã®ä½•ãƒãƒ£ãƒ³ãƒãƒ«ç›®ã‹ï¼Ÿ
+	adc	#($09 - PTRVRC6)	;ch1ãªã‚‰9
 	asl	a
 	asl	a
 	asl	a
-	asl	a			;ch1‚È‚ç90
+	asl	a			;ch1ãªã‚‰90
 	sta	VRC6_DST_REG_LOW+1
 	lda	#0
-	sta	VRC6_DST_REG_LOW	;–ˆ‰ñ0‚µ‚©“ü‚ç‚È‚¢‚Ì‚Å–³‘Ê‚©‚à
+	sta	VRC6_DST_REG_LOW	;æ¯Žå›ž0ã—ã‹å…¥ã‚‰ãªã„ã®ã§ç„¡é§„ã‹ã‚‚
 	rts
 ;-----------------------------------------------------------
 
-;ƒŒƒWƒXƒ^‘‚«ž‚Ý
+;ãƒ¬ã‚¸ã‚¹ã‚¿æ›¸ãè¾¼ã¿
 
 vrc6_ctrl_reg_write:
 	ldy	#$00
@@ -111,13 +111,13 @@ vrc6_mute_write:
 	lda	#$00
 	sta	[VRC6_DST_REG_LOW],y
 	rts
-	
+
 	;lda	sound_freq_high,x
 	;and	#%01111111		;channel disable
 	;ldy	#VRC6_REG_FREQ_H
 	;sta	[VRC6_DST_REG_LOW],y
 	;rts
-	
+
 
 ;----------------------------------------
 sound_vrc6:
@@ -126,19 +126,19 @@ sound_vrc6:
 	beq	.end1
 	jsr	vrc6_dst_adr_set
 	ldx	<channel_selx2
-	dec	sound_counter,x		;ƒJƒEƒ“ƒ^‚¢‚Á‚±Œ¸‚ç‚µ
-	beq	.sound_read_go		;ƒ[ƒ‚È‚çƒTƒEƒ“ƒh“Ç‚Ýž‚Ý
-	jsr	vrc6_do_effect		;ƒ[ƒˆÈŠO‚È‚çƒGƒtƒFƒNƒg‚µ‚Ä
-	rts				;‚¨‚í‚è
+	dec	sound_counter,x		;ã‚«ã‚¦ãƒ³ã‚¿ã„ã£ã“æ¸›ã‚‰ã—
+	beq	.sound_read_go		;ã‚¼ãƒ­ãªã‚‰ã‚µã‚¦ãƒ³ãƒ‰èª­ã¿è¾¼ã¿
+	jsr	vrc6_do_effect		;ã‚¼ãƒ­ä»¥å¤–ãªã‚‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã—ã¦
+	rts				;ãŠã‚ã‚Š
 .sound_read_go
 	jsr	sound_vrc6_read
 	jsr	vrc6_do_effect
 	lda	rest_flag,x
-	and	#%00000010		;ƒL[ƒIƒ“ƒtƒ‰ƒO
-	beq	.end1			
-	jsr	sound_vrc6_write	;—§‚Á‚Ä‚¢‚½‚çƒf[ƒ^‘‚«o‚µ
+	and	#%00000010		;ã‚­ãƒ¼ã‚ªãƒ³ãƒ•ãƒ©ã‚°
+	beq	.end1
+	jsr	sound_vrc6_write	;ç«‹ã£ã¦ã„ãŸã‚‰ãƒ‡ãƒ¼ã‚¿æ›¸ãå‡ºã—
 	lda	rest_flag,x
-	and	#%11111101		;ƒL[ƒIƒ“ƒtƒ‰ƒOƒIƒt
+	and	#%11111101		;ã‚­ãƒ¼ã‚ªãƒ³ãƒ•ãƒ©ã‚°ã‚ªãƒ•
 	sta	rest_flag,x
 .end1
 	rts
@@ -148,7 +148,7 @@ vrc6_do_effect:
 	lda	rest_flag,x
 	and	#%00000001
 	beq	.duty_write2
-	rts				;‹x•„‚È‚çI‚í‚è
+	rts				;ä¼‘ç¬¦ãªã‚‰çµ‚ã‚ã‚Š
 
 .duty_write2:
 	lda	effect_flag,x
@@ -178,13 +178,13 @@ vrc6_do_effect:
 	lda	effect_flag,x
 	and	#%00001000
 	beq	.return7
-	lda	rest_flag,x		;ƒL[ƒIƒ“‚Ì‚Æ‚«‚Æ‚»‚¤‚Å‚È‚¢‚Æ‚«‚ÅƒAƒ‹ƒyƒWƒI‚Ì‹““®‚Í‚¿‚ª‚¤
-	and	#%00000010		;ƒL[ƒIƒ“ƒtƒ‰ƒO
+	lda	rest_flag,x		;ã‚­ãƒ¼ã‚ªãƒ³ã®ã¨ãã¨ãã†ã§ãªã„ã¨ãã§ã‚¢ãƒ«ãƒšã‚¸ã‚ªã®æŒ™å‹•ã¯ã¡ãŒã†
+	and	#%00000010		;ã‚­ãƒ¼ã‚ªãƒ³ãƒ•ãƒ©ã‚°
 	bne	.arpe_key_on
-	jsr	sound_vrc6_note_enve	;ƒL[ƒIƒ“‚¶‚á‚È‚¢‚Æ‚«’Êí‚Í‚±‚ê
+	jsr	sound_vrc6_note_enve	;ã‚­ãƒ¼ã‚ªãƒ³ã˜ã‚ƒãªã„ã¨ãé€šå¸¸ã¯ã“ã‚Œ
 	jmp	.return7
-.arpe_key_on				;ƒL[ƒIƒ“‚à“¯Žž‚Ìê‡
-	jsr	note_enve_sub		;ƒƒ‚ƒŠ’²®‚¾‚¯‚ÅA‚±‚±‚Å‚Í‘‚«ž‚Ý‚Í‚µ‚È‚¢
+.arpe_key_on				;ã‚­ãƒ¼ã‚ªãƒ³ã‚‚åŒæ™‚ã®å ´åˆ
+	jsr	note_enve_sub		;ãƒ¡ãƒ¢ãƒªèª¿æ•´ã ã‘ã§ã€ã“ã“ã§ã¯æ›¸ãè¾¼ã¿ã¯ã—ãªã„
 	jsr	vrc6_freq_set
 	jsr	arpeggio_address
 .return7:
@@ -193,56 +193,56 @@ vrc6_do_effect:
 ;------------------------------------------------
 vrc6_freq_set:
 	ldx	<channel_selx2
-	lda	sound_sel,x		;‰¹ŠKƒf[ƒ^“Ç‚Ýo‚µ
-	and	#%00001111		;‰ºˆÊ4bit‚ðŽæ‚èo‚µ‚Ä
+	lda	sound_sel,x		;éŸ³éšŽãƒ‡ãƒ¼ã‚¿èª­ã¿å‡ºã—
+	and	#%00001111		;ä¸‹ä½4bitã‚’å–ã‚Šå‡ºã—ã¦
 	asl	a
 	tay
 	lda	<channel_sel
 	cmp	#PTRVRC6+2
 	beq	.vrc6_saw_frequency_get
 
-	lda	vrc6_pls_frequency_table,y	;PSGŽü”g”ƒe[ƒuƒ‹‚©‚çLow‚ð“Ç‚Ýo‚·
-	sta	sound_freq_low,x	;‘‚«ž‚Ý
-	lda	vrc6_pls_frequency_table+1,y	;PSGŽü”g”ƒe[ƒuƒ‹‚©‚çHigh‚ð“Ç‚Ýo‚·
-	sta	sound_freq_high,x	;‘‚«ž‚Ý
+	lda	vrc6_pls_frequency_table,y	;PSGå‘¨æ³¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«ã‹ã‚‰Lowã‚’èª­ã¿å‡ºã™
+	sta	sound_freq_low,x	;æ›¸ãè¾¼ã¿
+	lda	vrc6_pls_frequency_table+1,y	;PSGå‘¨æ³¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«ã‹ã‚‰Highã‚’èª­ã¿å‡ºã™
+	sta	sound_freq_high,x	;æ›¸ãè¾¼ã¿
 	jmp	.vrc6_oct_set1
-	
+
 .vrc6_saw_frequency_get:
-	lda	vrc6_saw_frequency_table,y	;Žü”g”ƒe[ƒuƒ‹‚©‚çLow‚ð“Ç‚Ýo‚·
-	sta	sound_freq_low,x	;‘‚«ž‚Ý
-	lda	vrc6_saw_frequency_table+1,y	;Žü”g”ƒe[ƒuƒ‹‚©‚çHigh‚ð“Ç‚Ýo‚·
-	sta	sound_freq_high,x	;‘‚«ž‚Ý
-	
+	lda	vrc6_saw_frequency_table,y	;å‘¨æ³¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«ã‹ã‚‰Lowã‚’èª­ã¿å‡ºã™
+	sta	sound_freq_low,x	;æ›¸ãè¾¼ã¿
+	lda	vrc6_saw_frequency_table+1,y	;å‘¨æ³¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«ã‹ã‚‰Highã‚’èª­ã¿å‡ºã™
+	sta	sound_freq_high,x	;æ›¸ãè¾¼ã¿
+
 .vrc6_oct_set1:
 
-	lda	sound_sel,x		;‰¹ŠKƒf[ƒ^“Ç‚Ýo‚µ
-	lsr	a			;ãˆÊ4bit‚ðŽæ‚èo‚µ
+	lda	sound_sel,x		;éŸ³éšŽãƒ‡ãƒ¼ã‚¿èª­ã¿å‡ºã—
+	lsr	a			;ä¸Šä½4bitã‚’å–ã‚Šå‡ºã—
 	lsr	a			;
 	lsr	a			;
 	lsr	a			;
-;	pha				;ˆê’U”ð“ï
+;	pha				;ä¸€æ—¦é¿é›£
 ;	lda	<channel_sel
 ;	cmp	#PTRVRC6+2
 ;	beq	.saw_skip
-;.squ_oct_adjust				;‹éŒ`”g ƒIƒNƒ^[ƒu‰º‚°
-;	pla				;ƒRƒ“ƒpƒCƒ‰‘¤‚Å‚â‚Á‚½‚Ù‚¤‚ª‚¢‚¢‚Ì‚©H
+;.squ_oct_adjust				;çŸ©å½¢æ³¢ ã‚ªã‚¯ã‚¿ãƒ¼ãƒ–ä¸‹ã’
+;	pla				;ã‚³ãƒ³ãƒ‘ã‚¤ãƒ©å´ã§ã‚„ã£ãŸã»ã†ãŒã„ã„ã®ã‹ï¼Ÿ
 	sec
 	sbc	#$01
 ;	jmp	.branch_end
-;.saw_skip				;ƒmƒRƒMƒŠ”g ƒIƒNƒ^[ƒu‰º‚°
+;.saw_skip				;ãƒŽã‚³ã‚®ãƒªæ³¢ ã‚ªã‚¯ã‚¿ãƒ¼ãƒ–ä¸‹ã’
 ;	pla				;
 ;	sec
 ;	sbc	#$
 ;.branch_end
-	beq	vrc6_freq_end		;ƒ[ƒ‚È‚ç‚»‚Ì‚Ü‚ÜI‚í‚è
+	beq	vrc6_freq_end		;ã‚¼ãƒ­ãªã‚‰ãã®ã¾ã¾çµ‚ã‚ã‚Š
 	tay
 
 vrc6_oct_set2:
 
-	lsr	sound_freq_high,x	;‰EƒVƒtƒg@––”ö‚ÍC‚Ö
-	ror	sound_freq_low,x	;C‚©‚çŽ‚Á‚Ä‚­‚é‚Å‚æ@‰Eƒ[ƒeƒCƒg
+	lsr	sound_freq_high,x	;å³ã‚·ãƒ•ãƒˆã€€æœ«å°¾ã¯Cã¸
+	ror	sound_freq_low,x	;Cã‹ã‚‰æŒã£ã¦ãã‚‹ã§ã‚ˆã€€å³ãƒ­ãƒ¼ãƒ†ã‚¤ãƒˆ
 	dey				;
-	bne	vrc6_oct_set2		;ƒIƒNƒ^[ƒu•ªŒJ‚è•Ô‚·
+	bne	vrc6_oct_set2		;ã‚ªã‚¯ã‚¿ãƒ¼ãƒ–åˆ†ç¹°ã‚Šè¿”ã™
 
 vrc6_freq_end:
 	jsr	detune_write_sub
@@ -250,60 +250,60 @@ vrc6_freq_end:
 ;---------------------------------------------------------------
 sound_vrc6_read:
 	ldx	<channel_selx2
-	
+
 	lda	sound_bank,x
 	jsr	change_bank
-	
+
 	lda	[sound_add_low,x]
 ;----------
-;ƒ‹[ƒvˆ—1
+;ãƒ«ãƒ¼ãƒ—å‡¦ç†1
 vrc6_loop_program
 	cmp	#$a0
 	bne	vrc6_loop_program2
 	jsr	loop_sub
 	jmp	sound_vrc6_read
 ;----------
-;ƒ‹[ƒvˆ—2(•ªŠò)
+;ãƒ«ãƒ¼ãƒ—å‡¦ç†2(åˆ†å²)
 vrc6_loop_program2
 	cmp	#$a1
 	bne	vrc6_bank_command
 	jsr	loop_sub2
 	jmp	sound_vrc6_read
 ;----------
-;ƒoƒ“ƒNØ‚è‘Ö‚¦
+;ãƒãƒ³ã‚¯åˆ‡ã‚Šæ›¿ãˆ
 vrc6_bank_command
 	cmp	#$ee
 	bne	vrc6_wave_set
 	jsr	data_bank_addr
 	jmp	sound_vrc6_read
 ;----------
-;ƒf[ƒ^ƒGƒ“ƒhÝ’è
+;ãƒ‡ãƒ¼ã‚¿ã‚¨ãƒ³ãƒ‰è¨­å®š
 ;vrc6_data_end:
 ;	cmp	#$ff
 ;	bne	vrc6_wave_set
 ;	jsr	data_end_sub
 ;	jmp	sound_vrc6_read
 ;----------
-;‰¹FÝ’è
+;éŸ³è‰²è¨­å®š
 vrc6_wave_set:
 	cmp	#$fe
 	bne	vrc6_volume_set
 	jsr	sound_data_address
-	lda	[sound_add_low,x]	;‰¹Fƒf[ƒ^“Ç‚Ýo‚µ
+	lda	[sound_add_low,x]	;éŸ³è‰²ãƒ‡ãƒ¼ã‚¿èª­ã¿å‡ºã—
 	pha
-	bpl	vrc6_duty_enverope_part	;ƒaƒ…[ƒeƒBƒGƒ“ƒxˆ—‚Ö
+	bpl	vrc6_duty_enverope_part	;ãƒ‚ãƒ¥ãƒ¼ãƒ†ã‚£ã‚¨ãƒ³ãƒ™å‡¦ç†ã¸
 
 vrc6_duty_select_part:
 	lda	effect_flag,x
 	and	#%11111011
-	sta	effect_flag,x		;ƒfƒ…[ƒeƒBƒGƒ“ƒxƒ[ƒv–³ŒøŽw’è
+	sta	effect_flag,x		;ãƒ‡ãƒ¥ãƒ¼ãƒ†ã‚£ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ç„¡åŠ¹æŒ‡å®š
 	ldx	<channel_selx2
 	pla
 	asl	a
 	asl	a
 	asl	a
 	asl	a
-	sta	register_high,x		;‘‚«ž‚Ý
+	sta	register_high,x		;æ›¸ãè¾¼ã¿
 	jsr	vrc6_ctrl_reg_write
 	jsr	sound_data_address
 	jmp	sound_vrc6_read
@@ -311,12 +311,12 @@ vrc6_duty_select_part:
 vrc6_duty_enverope_part:
 	lda	effect_flag,x
 	ora	#%00000100
-	sta	effect_flag,x		;ƒfƒ…[ƒeƒBƒGƒ“ƒxƒ[ƒv—LŒøŽw’è
+	sta	effect_flag,x		;ãƒ‡ãƒ¥ãƒ¼ãƒ†ã‚£ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—æœ‰åŠ¹æŒ‡å®š
 	pla
 	sta	duty_sel,x
 	asl	a
 	tay
-	lda	dutyenve_table,y	;ƒfƒ…[ƒeƒBƒGƒ“ƒxƒ[ƒvƒAƒhƒŒƒXÝ’è
+	lda	dutyenve_table,y	;ãƒ‡ãƒ¥ãƒ¼ãƒ†ã‚£ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ã‚¢ãƒ‰ãƒ¬ã‚¹è¨­å®š
 	sta	duty_add_low,x
 	lda	dutyenve_table+1,y
 	sta	duty_add_high,x
@@ -324,19 +324,19 @@ vrc6_duty_enverope_part:
 	jmp	sound_vrc6_read
 
 ;----------
-;‰¹—ÊÝ’è
+;éŸ³é‡è¨­å®š
 vrc6_volume_set:
 	cmp	#$fd
 	bne	vrc6_rest_set
 	jsr	sound_data_address
 	lda	[sound_add_low,x]
 	sta	temporary
-	bpl	vrc6_softenve_part		;ƒ\ƒtƒgƒGƒ“ƒxˆ—‚Ö
+	bpl	vrc6_softenve_part		;ã‚½ãƒ•ãƒˆã‚¨ãƒ³ãƒ™å‡¦ç†ã¸
 
 vrc6_volume_part:
 	lda	effect_flag,x
 	and	#%11111110
-	sta	effect_flag,x		;ƒ\ƒtƒgƒGƒ“ƒx–³ŒøŽw’è
+	sta	effect_flag,x		;ã‚½ãƒ•ãƒˆã‚¨ãƒ³ãƒ™ç„¡åŠ¹æŒ‡å®š
 
 	lda	<channel_sel
 	cmp	#PTRVRC6+2
@@ -387,35 +387,35 @@ vrc6_detune_set:
 	jsr	detune_sub
 	jmp	sound_vrc6_read
 ;----------
-;ƒsƒbƒ`ƒGƒ“ƒxƒ[ƒvÝ’è
+;ãƒ”ãƒƒãƒã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—è¨­å®š
 vrc6_pitch_set:
 	cmp	#$f8
 	bne	vrc6_arpeggio_set
 	jsr	pitch_set_sub
 	jmp	sound_vrc6_read
 ;----------
-;ƒm[ƒgƒGƒ“ƒxƒ[ƒvÝ’è
+;ãƒŽãƒ¼ãƒˆã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—è¨­å®š
 vrc6_arpeggio_set:
 	cmp	#$f7
 	bne	vrc6_freq_direct_set
 	jsr	arpeggio_set_sub
 	jmp	sound_vrc6_read
 ;----------
-;Ä¶Žü”g”’¼ÚÝ’è
+;å†ç”Ÿå‘¨æ³¢æ•°ç›´æŽ¥è¨­å®š
 vrc6_freq_direct_set:
 	cmp	#$f6
 	bne	vrc6_y_command_set
 	jsr	direct_freq_sub
 	rts
 ;----------
-;‚™ƒRƒ}ƒ“ƒhÝ’è
+;ï½™ã‚³ãƒžãƒ³ãƒ‰è¨­å®š
 vrc6_y_command_set:
 	cmp	#$f5
 	bne	vrc6_wait_set
 	jsr	y_sub
 	jmp	sound_vrc6_read
 ;----------
-;ƒEƒFƒCƒgÝ’è
+;ã‚¦ã‚§ã‚¤ãƒˆè¨­å®š
 vrc6_wait_set:
 	cmp	#$f4
 	bne	vrc6_oto_set
@@ -423,12 +423,12 @@ vrc6_wait_set:
 	rts
 ;----------
 vrc6_oto_set:
-	sta	sound_sel,x		;ˆ—‚Í‚Ü‚½Œã‚Å
+	sta	sound_sel,x		;å‡¦ç†ã¯ã¾ãŸå¾Œã§
 	jsr	sound_data_address
-	lda	[sound_add_low,x]	;‰¹’·“Ç‚Ýo‚µ
-	sta	sound_counter,x		;ŽÀÛ‚ÌƒJƒEƒ“ƒg’l‚Æ‚È‚è‚Ü‚·
+	lda	[sound_add_low,x]	;éŸ³é•·èª­ã¿å‡ºã—
+	sta	sound_counter,x		;å®Ÿéš›ã®ã‚«ã‚¦ãƒ³ãƒˆå€¤ã¨ãªã‚Šã¾ã™
 	jsr	sound_data_address
-	jsr	vrc6_freq_set		;Žü”g”ƒZƒbƒg‚Ö
+	jsr	vrc6_freq_set		;å‘¨æ³¢æ•°ã‚»ãƒƒãƒˆã¸
 	jsr	effect_init
 	rts
 ;-------------------------------------------------------------------------------
@@ -441,8 +441,8 @@ sound_vrc6_softenve:
 	jsr	volume_enve_sub
 	sta	register_low,x
 	jsr	vrc6_ctrl_reg_write
-	jsr	enverope_address	;ƒAƒhƒŒƒXˆêŒÂ‘‚â‚µ‚Ä
-	rts				;‚¨‚µ‚Ü‚¢
+	jsr	enverope_address	;ã‚¢ãƒ‰ãƒ¬ã‚¹ä¸€å€‹å¢—ã‚„ã—ã¦
+	rts				;ãŠã—ã¾ã„
 ;-------------------------------------------------------------------------------
 sound_vrc6_lfo:
 	lda	sound_freq_high,x
@@ -474,7 +474,7 @@ sound_vrc6_note_enve
 ;	lda	sound_freq_high,x
 ;	sta	temporary2
 	jsr	note_enve_sub
-	bcs	.end4			;0‚È‚Ì‚Å‘‚©‚È‚­‚Ä‚æ‚µ
+	bcs	.end4			;0ãªã®ã§æ›¸ã‹ãªãã¦ã‚ˆã—
 	jsr	vrc6_freq_set
 ;.vrc6_note_freq_write:
 	ldx	<channel_selx2
@@ -494,17 +494,17 @@ sound_vrc6_note_enve
 sound_vrc6_dutyenve:
 	ldx	<channel_selx2
 
-	indirect_lda	duty_add_low		;ƒGƒ“ƒxƒ[ƒvƒf[ƒ^“Ç‚Ýž‚Ý
-	cmp	#$ff			;ÅŒã‚©‚Ç[‚©
-	beq	vrc6_return22		;ÅŒã‚È‚ç‚»‚Ì‚Ü‚Ü‚¨‚µ‚Ü‚¢
+	indirect_lda	duty_add_low		;ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
+	cmp	#$ff			;æœ€å¾Œã‹ã©ãƒ¼ã‹
+	beq	vrc6_return22		;æœ€å¾Œãªã‚‰ãã®ã¾ã¾ãŠã—ã¾ã„
 	asl	a
 	asl	a
 	asl	a
 	asl	a
 	sta	register_high,x
 	jsr	vrc6_ctrl_reg_write
-	jsr	duty_enverope_address	;ƒAƒhƒŒƒXˆêŒÂ‘‚â‚µ‚Ä
-	rts				;‚¨‚µ‚Ü‚¢
+	jsr	duty_enverope_address	;ã‚¢ãƒ‰ãƒ¬ã‚¹ä¸€å€‹å¢—ã‚„ã—ã¦
+	rts				;ãŠã—ã¾ã„
 
 vrc6_return22:
 	lda	duty_sel,x
@@ -517,12 +517,12 @@ vrc6_return22:
 	jmp	sound_vrc6_dutyenve
 ;-------------------------------------------------------------------------------
 vrc6_pls_frequency_table
-;psg_frequency_table‚ÌŠe’l‚Ì2”{‚Æ“¯‚¶‚Í‚¸‚È‚Ì‚¾‚¯‚Ç
+;psg_frequency_tableã®å„å€¤ã®2å€ã¨åŒã˜ã¯ãšãªã®ã ã‘ã©
 	dw	$0D5C, $0C9D, $0BE7, $0B3C
 	dw	$0A9B, $0A02, $0973, $08EB
 	dw	$086B, $07F2, $0780, $0714
 	dw	$0000, $0FE4, $0EFF, $0E28
-	
+
 vrc6_saw_frequency_table:
 	dw	$0F45, $0E6A, $0D9B, $0CD7
 	dw	$0C1F, $0B71, $0ACC, $0A31

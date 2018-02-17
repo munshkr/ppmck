@@ -3,10 +3,10 @@
 RM = rm -f
 CC = gcc
 CFLAGS = -O2 -Wall# -mno-cygwin
-CDEFS = 
+CDEFS =
 LDFLAGS=-Xlinker -s# -mno-cygwin
 
-OBJS = datamake.o file.o mckc.o strings.o 
+OBJS = datamake.o file.o mckc.o strings.o
 EXESFX=.exe
 EXEDIR=../../bin
 

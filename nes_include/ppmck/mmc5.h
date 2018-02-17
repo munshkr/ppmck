@@ -1,7 +1,7 @@
-MMC5_REG_CTRL	=	$5000	; ƒRƒ“ƒgƒ[ƒ‹ƒŒƒWƒXƒ^
-MMC5_REG_FREQ_L	=	$5002	; Žü”g”(L)ƒŒƒWƒXƒ^
-MMC5_REG_FREQ_H	=	$5003	; Žü”g”(H)ƒŒƒWƒXƒ^
-MMC5_START_CH	=	PTRMMC5	; ŠJŽnch
+MMC5_REG_CTRL	=	$5000	; ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ¬ã‚¸ã‚¹ã‚¿
+MMC5_REG_FREQ_L	=	$5002	; å‘¨æ³¢æ•°(L)ãƒ¬ã‚¸ã‚¹ã‚¿
+MMC5_REG_FREQ_H	=	$5003	; å‘¨æ³¢æ•°(H)ãƒ¬ã‚¸ã‚¹ã‚¿
+MMC5_START_CH	=	PTRMMC5	; é–‹å§‹ch
 ;----------------------------------------
 
 
@@ -12,19 +12,19 @@ mmc5_sound_init:
 ;-----------------------------------------------------------
 sound_mmc5:
 	ldx	<channel_selx2
-	dec	sound_counter,x		;ƒJƒEƒ“ƒ^‚¢‚Á‚±Œ¸‚ç‚µ
-	beq	.sound_read_go		;ƒ[ƒ‚È‚çƒTƒEƒ“ƒh“Ç‚Ýž‚Ý
-	jsr	mmc5_do_effect		;ƒ[ƒˆÈŠO‚È‚çƒGƒtƒFƒNƒg‚µ‚Ä
-	rts				;‚¨‚í‚è
+	dec	sound_counter,x		;ã‚«ã‚¦ãƒ³ã‚¿ã„ã£ã“æ¸›ã‚‰ã—
+	beq	.sound_read_go		;ã‚¼ãƒ­ãªã‚‰ã‚µã‚¦ãƒ³ãƒ‰èª­ã¿è¾¼ã¿
+	jsr	mmc5_do_effect		;ã‚¼ãƒ­ä»¥å¤–ãªã‚‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã—ã¦
+	rts				;ãŠã‚ã‚Š
 .sound_read_go
 	jsr	sound_mmc5_read
 	jsr	mmc5_do_effect
 	lda	rest_flag,x
-	and	#%00000010		;ƒL[ƒIƒ“ƒtƒ‰ƒO
-	beq	.end1			
-	jsr	sound_mmc5_write	;—§‚Á‚Ä‚¢‚½‚çƒf[ƒ^‘‚«o‚µ
+	and	#%00000010		;ã‚­ãƒ¼ã‚ªãƒ³ãƒ•ãƒ©ã‚°
+	beq	.end1
+	jsr	sound_mmc5_write	;ç«‹ã£ã¦ã„ãŸã‚‰ãƒ‡ãƒ¼ã‚¿æ›¸ãå‡ºã—
 	lda	rest_flag,x
-	and	#%11111101		;ƒL[ƒIƒ“ƒtƒ‰ƒOƒIƒt
+	and	#%11111101		;ã‚­ãƒ¼ã‚ªãƒ³ãƒ•ãƒ©ã‚°ã‚ªãƒ•
 	sta	rest_flag,x
 .end1
 	rts
@@ -34,7 +34,7 @@ mmc5_do_effect:
 	lda	rest_flag,x
 	and	#%00000001
 	beq	.duty_write2
-	rts				;‹x•„‚È‚çI‚í‚è
+	rts				;ä¼‘ç¬¦ãªã‚‰çµ‚ã‚ã‚Š
 
 .duty_write2:
 	lda	effect_flag,x
@@ -64,13 +64,13 @@ mmc5_do_effect:
 	lda	effect_flag,x
 	and	#%00001000
 	beq	.return7
-	lda	rest_flag,x		;ƒL[ƒIƒ“‚Ì‚Æ‚«‚Æ‚»‚¤‚Å‚È‚¢‚Æ‚«‚ÅƒAƒ‹ƒyƒWƒI‚Ì‹““®‚Í‚¿‚ª‚¤
-	and	#%00000010		;ƒL[ƒIƒ“ƒtƒ‰ƒO
+	lda	rest_flag,x		;ã‚­ãƒ¼ã‚ªãƒ³ã®ã¨ãã¨ãã†ã§ãªã„ã¨ãã§ã‚¢ãƒ«ãƒšã‚¸ã‚ªã®æŒ™å‹•ã¯ã¡ãŒã†
+	and	#%00000010		;ã‚­ãƒ¼ã‚ªãƒ³ãƒ•ãƒ©ã‚°
 	bne	.arpe_key_on
-	jsr	sound_mmc5_note_enve	;ƒL[ƒIƒ“‚¶‚á‚È‚¢‚Æ‚«’Êí‚Í‚±‚ê
+	jsr	sound_mmc5_note_enve	;ã‚­ãƒ¼ã‚ªãƒ³ã˜ã‚ƒãªã„ã¨ãé€šå¸¸ã¯ã“ã‚Œ
 	jmp	.return7
-.arpe_key_on				;ƒL[ƒIƒ“‚à“¯Žž‚Ìê‡
-	jsr	note_enve_sub		;ƒƒ‚ƒŠ’²®‚¾‚¯‚ÅA‚±‚±‚Å‚Í‘‚«ž‚Ý‚Í‚µ‚È‚¢
+.arpe_key_on				;ã‚­ãƒ¼ã‚ªãƒ³ã‚‚åŒæ™‚ã®å ´åˆ
+	jsr	note_enve_sub		;ãƒ¡ãƒ¢ãƒªèª¿æ•´ã ã‘ã§ã€ã“ã“ã§ã¯æ›¸ãè¾¼ã¿ã¯ã—ãªã„
 	jsr	mmc5_freq_set
 	jsr	arpeggio_address
 .return7:
@@ -79,36 +79,36 @@ mmc5_do_effect:
 ;------------------------------------------------
 mmc5_freq_set:
 	ldx	<channel_selx2
-	lda	sound_sel,x		;‰¹ŠKƒf[ƒ^“Ç‚Ýo‚µ
-	and	#%00001111		;‰ºˆÊ4bit‚ðŽæ‚èo‚µ‚Ä
+	lda	sound_sel,x		;éŸ³éšŽãƒ‡ãƒ¼ã‚¿èª­ã¿å‡ºã—
+	and	#%00001111		;ä¸‹ä½4bitã‚’å–ã‚Šå‡ºã—ã¦
 	asl	a
 	tay
 
-	lda	psg_frequency_table,y	;PSGŽü”g”ƒe[ƒuƒ‹‚©‚çLow‚ð“Ç‚Ýo‚·
-	sta	sound_freq_low,x	;‘‚«ž‚Ý
-	lda	psg_frequency_table+1,y	;PSGŽü”g”ƒe[ƒuƒ‹‚©‚çHigh‚ð“Ç‚Ýo‚·
-	sta	sound_freq_high,x	;‘‚«ž‚Ý
+	lda	psg_frequency_table,y	;PSGå‘¨æ³¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«ã‹ã‚‰Lowã‚’èª­ã¿å‡ºã™
+	sta	sound_freq_low,x	;æ›¸ãè¾¼ã¿
+	lda	psg_frequency_table+1,y	;PSGå‘¨æ³¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«ã‹ã‚‰Highã‚’èª­ã¿å‡ºã™
+	sta	sound_freq_high,x	;æ›¸ãè¾¼ã¿
 
 mmc5_oct_set1:
 
-	lda	sound_sel,x		;‰¹ŠKƒf[ƒ^“Ç‚Ýo‚µ
-	lsr	a			;ãˆÊ4bit‚ðŽæ‚èo‚µ
+	lda	sound_sel,x		;éŸ³éšŽãƒ‡ãƒ¼ã‚¿èª­ã¿å‡ºã—
+	lsr	a			;ä¸Šä½4bitã‚’å–ã‚Šå‡ºã—
 	lsr	a			;
 	lsr	a			;
 	lsr	a			;
 
-	sec				;ƒIƒNƒ^[ƒu‰º‚°‚é
+	sec				;ã‚ªã‚¯ã‚¿ãƒ¼ãƒ–ä¸‹ã’ã‚‹
 	sbc	#$02
 
-	beq	mmc5_freq_end		;ƒ[ƒ‚È‚ç‚»‚Ì‚Ü‚ÜI‚í‚è
+	beq	mmc5_freq_end		;ã‚¼ãƒ­ãªã‚‰ãã®ã¾ã¾çµ‚ã‚ã‚Š
 	tay
 
 mmc5_oct_set2:
 
-	lsr	sound_freq_high,x	;‰EƒVƒtƒg@––”ö‚ÍC‚Ö
-	ror	sound_freq_low,x	;C‚©‚çŽ‚Á‚Ä‚­‚é‚Å‚æ@‰Eƒ[ƒeƒCƒg
+	lsr	sound_freq_high,x	;å³ã‚·ãƒ•ãƒˆã€€æœ«å°¾ã¯Cã¸
+	ror	sound_freq_low,x	;Cã‹ã‚‰æŒã£ã¦ãã‚‹ã§ã‚ˆã€€å³ãƒ­ãƒ¼ãƒ†ã‚¤ãƒˆ
 	dey				;
-	bne	mmc5_oct_set2		;ƒIƒNƒ^[ƒu•ªŒJ‚è•Ô‚·
+	bne	mmc5_oct_set2		;ã‚ªã‚¯ã‚¿ãƒ¼ãƒ–åˆ†ç¹°ã‚Šè¿”ã™
 
 mmc5_freq_end:
 	jsr	detune_write_sub
@@ -116,53 +116,53 @@ mmc5_freq_end:
 ;---------------------------------------------------------------
 sound_mmc5_read:
 	ldx	<channel_selx2
-	
+
 	lda	sound_bank,x
 	jsr	change_bank
-	
+
 	lda	[sound_add_low,x]
 ;----------
-;ƒ‹[ƒvˆ—1
+;ãƒ«ãƒ¼ãƒ—å‡¦ç†1
 mmc5_loop_program
 	cmp	#$a0
 	bne	mmc5_loop_program2
 	jsr	loop_sub
 	jmp	sound_mmc5_read
 ;----------
-;ƒ‹[ƒvˆ—2(•ªŠò)
+;ãƒ«ãƒ¼ãƒ—å‡¦ç†2(åˆ†å²)
 mmc5_loop_program2
 	cmp	#$a1
 	bne	mmc5_bank_command
 	jsr	loop_sub2
 	jmp	sound_mmc5_read
 ;----------
-;ƒoƒ“ƒNØ‚è‘Ö‚¦
+;ãƒãƒ³ã‚¯åˆ‡ã‚Šæ›¿ãˆ
 mmc5_bank_command
 	cmp	#$ee
 	bne	mmc5_wave_set
 	jsr	data_bank_addr
 	jmp	sound_mmc5_read
 ;----------
-;ƒf[ƒ^ƒGƒ“ƒhÝ’è
+;ãƒ‡ãƒ¼ã‚¿ã‚¨ãƒ³ãƒ‰è¨­å®š
 ;mmc5_data_end:
 ;	cmp	#$ff
 ;	bne	mmc5_wave_set
 ;	jsr	data_end_sub
 ;	jmp	sound_mmc5_read
 ;----------
-;‰¹FÝ’è
+;éŸ³è‰²è¨­å®š
 mmc5_wave_set:
 	cmp	#$fe
 	bne	mmc5_volume_set
 	jsr	sound_data_address
-	lda	[sound_add_low,x]	;‰¹Fƒf[ƒ^“Ç‚Ýo‚µ
+	lda	[sound_add_low,x]	;éŸ³è‰²ãƒ‡ãƒ¼ã‚¿èª­ã¿å‡ºã—
 	pha
-	bpl	mmc5_duty_enverope_part	;ƒaƒ…[ƒeƒBƒGƒ“ƒxˆ—‚Ö
+	bpl	mmc5_duty_enverope_part	;ãƒ‚ãƒ¥ãƒ¼ãƒ†ã‚£ã‚¨ãƒ³ãƒ™å‡¦ç†ã¸
 
 mmc5_duty_select_part:
 	lda	effect_flag,x
 	and	#%11111011
-	sta	effect_flag,x		;ƒfƒ…[ƒeƒBƒGƒ“ƒxƒ[ƒv–³ŒøŽw’è
+	sta	effect_flag,x		;ãƒ‡ãƒ¥ãƒ¼ãƒ†ã‚£ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ç„¡åŠ¹æŒ‡å®š
 	pla
 	asl	a
 	asl	a
@@ -171,7 +171,7 @@ mmc5_duty_select_part:
 	asl	a
 	asl	a
 	ora	#%00110000		;waveform hold on & hardware envelope off
-	sta	register_high,x		;‘‚«ž‚Ý
+	sta	register_high,x		;æ›¸ãè¾¼ã¿
 	ora	register_low,x
 	ldy	<channel_selx4
 	sta	MMC5_REG_CTRL-MMC5_START_CH*4,y
@@ -181,12 +181,12 @@ mmc5_duty_select_part:
 mmc5_duty_enverope_part:
 	lda	effect_flag,x
 	ora	#%00000100
-	sta	effect_flag,x		;ƒfƒ…[ƒeƒBƒGƒ“ƒxƒ[ƒv—LŒøŽw’è
+	sta	effect_flag,x		;ãƒ‡ãƒ¥ãƒ¼ãƒ†ã‚£ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—æœ‰åŠ¹æŒ‡å®š
 	pla
 	sta	duty_sel,x
 	asl	a
 	tay
-	lda	dutyenve_table,y	;ƒfƒ…[ƒeƒBƒGƒ“ƒxƒ[ƒvƒAƒhƒŒƒXÝ’è
+	lda	dutyenve_table,y	;ãƒ‡ãƒ¥ãƒ¼ãƒ†ã‚£ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ã‚¢ãƒ‰ãƒ¬ã‚¹è¨­å®š
 	sta	duty_add_low,x
 	lda	dutyenve_table+1,y
 	sta	duty_add_high,x
@@ -194,26 +194,26 @@ mmc5_duty_enverope_part:
 	jmp	sound_mmc5_read
 
 ;----------
-;‰¹—ÊÝ’è
+;éŸ³é‡è¨­å®š
 mmc5_volume_set:
 	cmp	#$fd
 	bne	mmc5_rest_set
 	jsr	sound_data_address
 	lda	[sound_add_low,x]
 	sta	temporary
-	bpl	mmc5_softenve_part		;ƒ\ƒtƒgƒGƒ“ƒxˆ—‚Ö
+	bpl	mmc5_softenve_part		;ã‚½ãƒ•ãƒˆã‚¨ãƒ³ãƒ™å‡¦ç†ã¸
 
 mmc5_volume_part:
 	lda	effect_flag,x
 	and	#%11111110
-	sta	effect_flag,x		;ƒ\ƒtƒgƒGƒ“ƒx–³ŒøŽw’è
+	sta	effect_flag,x		;ã‚½ãƒ•ãƒˆã‚¨ãƒ³ãƒ™ç„¡åŠ¹æŒ‡å®š
 
 	lda	temporary
 	and	#%00001111
 	sta	register_low,x
 	ora	register_high,x
 	ldy	<channel_selx4
-	sta	MMC5_REG_CTRL-MMC5_START_CH*4,y			;ƒ{ƒŠƒ…[ƒ€‘‚«ž‚Ý
+	sta	MMC5_REG_CTRL-MMC5_START_CH*4,y			;ãƒœãƒªãƒ¥ãƒ¼ãƒ æ›¸ãè¾¼ã¿
 	jsr	sound_data_address
 	jmp	sound_mmc5_read
 
@@ -252,35 +252,35 @@ mmc5_detune_set:
 	jsr	detune_sub
 	jmp	sound_mmc5_read
 ;----------
-;ƒsƒbƒ`ƒGƒ“ƒxƒ[ƒvÝ’è
+;ãƒ”ãƒƒãƒã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—è¨­å®š
 mmc5_pitch_set:
 	cmp	#$f8
 	bne	mmc5_arpeggio_set
 	jsr	pitch_set_sub
 	jmp	sound_mmc5_read
 ;----------
-;ƒm[ƒgƒGƒ“ƒxƒ[ƒvÝ’è
+;ãƒŽãƒ¼ãƒˆã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—è¨­å®š
 mmc5_arpeggio_set:
 	cmp	#$f7
 	bne	mmc5_freq_direct_set
 	jsr	arpeggio_set_sub
 	jmp	sound_mmc5_read
 ;----------
-;Ä¶Žü”g”’¼ÚÝ’è
+;å†ç”Ÿå‘¨æ³¢æ•°ç›´æŽ¥è¨­å®š
 mmc5_freq_direct_set:
 	cmp	#$f6
 	bne	mmc5_y_command_set
 	jsr	direct_freq_sub
 	rts
 ;----------
-;‚™ƒRƒ}ƒ“ƒhÝ’è
+;ï½™ã‚³ãƒžãƒ³ãƒ‰è¨­å®š
 mmc5_y_command_set:
 	cmp	#$f5
 	bne	mmc5_wait_set
 	jsr	y_sub
 	jmp	sound_mmc5_read
 ;----------
-;ƒEƒFƒCƒgÝ’è
+;ã‚¦ã‚§ã‚¤ãƒˆè¨­å®š
 mmc5_wait_set:
 	cmp	#$f4
 	bne	mmc5_oto_set
@@ -288,12 +288,12 @@ mmc5_wait_set:
 	rts
 ;----------
 mmc5_oto_set:
-	sta	sound_sel,x		;ˆ—‚Í‚Ü‚½Œã‚Å
+	sta	sound_sel,x		;å‡¦ç†ã¯ã¾ãŸå¾Œã§
 	jsr	sound_data_address
-	lda	[sound_add_low,x]	;‰¹’·“Ç‚Ýo‚µ
-	sta	sound_counter,x		;ŽÀÛ‚ÌƒJƒEƒ“ƒg’l‚Æ‚È‚è‚Ü‚·
+	lda	[sound_add_low,x]	;éŸ³é•·èª­ã¿å‡ºã—
+	sta	sound_counter,x		;å®Ÿéš›ã®ã‚«ã‚¦ãƒ³ãƒˆå€¤ã¨ãªã‚Šã¾ã™
 	jsr	sound_data_address
-	jsr	mmc5_freq_set		;Žü”g”ƒZƒbƒg‚Ö
+	jsr	mmc5_freq_set		;å‘¨æ³¢æ•°ã‚»ãƒƒãƒˆã¸
 	jsr	effect_init
 	rts
 ;-------------------------------------------------------------------------------
@@ -301,7 +301,7 @@ sound_mmc5_write:
 	ldx	<channel_selx2
 	ldy	<channel_selx4
 
-	lda	register_low,x		;‰¹—Ê•ÛŽ
+	lda	register_low,x		;éŸ³é‡ä¿æŒ
 	ora	register_high,x
 	sta	MMC5_REG_CTRL-MMC5_START_CH*4,y
 
@@ -314,11 +314,11 @@ sound_mmc5_write:
 sound_mmc5_softenve:
 	jsr	volume_enve_sub
 	sta	register_low,x
-	ora	register_high,x		;‰¹Fƒf[ƒ^iãˆÊ4bitj‚Æ‰ºˆÊ4bit‚Å‘«‚µŽZ
+	ora	register_high,x		;éŸ³è‰²ãƒ‡ãƒ¼ã‚¿ï¼ˆä¸Šä½4bitï¼‰ã¨ä¸‹ä½4bitã§è¶³ã—ç®—
 	ldy	<channel_selx4
-	sta	MMC5_REG_CTRL-MMC5_START_CH*4,y			;‘‚«ž‚Ý`
-	jsr	enverope_address	;ƒAƒhƒŒƒXˆêŒÂ‘‚â‚µ‚Ä
-	rts				;‚¨‚µ‚Ü‚¢
+	sta	MMC5_REG_CTRL-MMC5_START_CH*4,y			;æ›¸ãè¾¼ã¿ã€œ
+	jsr	enverope_address	;ã‚¢ãƒ‰ãƒ¬ã‚¹ä¸€å€‹å¢—ã‚„ã—ã¦
+	rts				;ãŠã—ã¾ã„
 ;-------------------------------------------------------------------------------
 sound_mmc5_lfo:
 	lda	sound_freq_high,x
@@ -354,7 +354,7 @@ sound_mmc5_note_enve
 ;	lda	sound_freq_high,x
 ;	sta	temporary2
 	jsr	note_enve_sub
-	bcs	.end4			;0‚È‚Ì‚Å‘‚©‚È‚­‚Ä‚æ‚µ
+	bcs	.end4			;0ãªã®ã§æ›¸ã‹ãªãã¦ã‚ˆã—
 	jsr	mmc5_freq_set
 ;.mmc5_note_freq_write:
 	ldx	<channel_selx2
@@ -377,9 +377,9 @@ sound_mmc5_note_enve
 sound_mmc5_dutyenve:
 	ldx	<channel_selx2
 
-	indirect_lda	duty_add_low		;ƒGƒ“ƒxƒ[ƒvƒf[ƒ^“Ç‚Ýž‚Ý
-	cmp	#$ff			;ÅŒã‚©‚Ç[‚©
-	beq	mmc5_return22		;ÅŒã‚È‚ç‚»‚Ì‚Ü‚Ü‚¨‚µ‚Ü‚¢
+	indirect_lda	duty_add_low		;ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
+	cmp	#$ff			;æœ€å¾Œã‹ã©ãƒ¼ã‹
+	beq	mmc5_return22		;æœ€å¾Œãªã‚‰ãã®ã¾ã¾ãŠã—ã¾ã„
 	asl	a
 	asl	a
 	asl	a
@@ -388,11 +388,11 @@ sound_mmc5_dutyenve:
 	asl	a
 	ora	#%00110000		;waveform hold on & hardware envelope off
 	sta	register_high,x
-	ora	register_low,x		;‰¹Fƒf[ƒ^iãˆÊ4bitj‚Æ‰ºˆÊ4bit‚Å‘«‚µŽZ
+	ora	register_low,x		;éŸ³è‰²ãƒ‡ãƒ¼ã‚¿ï¼ˆä¸Šä½4bitï¼‰ã¨ä¸‹ä½4bitã§è¶³ã—ç®—
 	ldy	<channel_selx4
-	sta	MMC5_REG_CTRL-MMC5_START_CH*4,y			;‘‚«ž‚Ý`
-	jsr	duty_enverope_address	;ƒAƒhƒŒƒXˆêŒÂ‘‚â‚µ‚Ä
-	rts				;‚¨‚µ‚Ü‚¢
+	sta	MMC5_REG_CTRL-MMC5_START_CH*4,y			;æ›¸ãè¾¼ã¿ã€œ
+	jsr	duty_enverope_address	;ã‚¢ãƒ‰ãƒ¬ã‚¹ä¸€å€‹å¢—ã‚„ã—ã¦
+	rts				;ãŠã—ã¾ã„
 
 mmc5_return22:
 	lda	duty_sel,x
