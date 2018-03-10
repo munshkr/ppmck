@@ -1,4 +1,7 @@
-bin
+bin/nesasm
+bin/pceas
+bin/ppmckc
+bin/ppmckc_e
 *.o
 *.swo
 *.swp
