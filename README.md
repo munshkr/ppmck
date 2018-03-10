@@ -26,9 +26,11 @@ $ mknsf my_song.mml
 * Extract .zip file on some directory, like `~/ppcmk`
 * Edit the `~/.bashrc` and add the following lines at the end of the file:
 
-    # PPMCK setup
-    export PPMCK_BASEDIR=$HOME/ppcmk
-    export PATH=$PATH:$PPMCK_BASEDIR/bin
+```bash
+# PPMCK setup
+export PPMCK_BASEDIR=$HOME/ppcmk
+export PATH=$PATH:$PPMCK_BASEDIR/bin
+```
 
 * Re-open your terminal or run `source .bashrc` to have changes applied
 
