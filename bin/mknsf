@@ -2,7 +2,7 @@
 export NES_INCLUDE=$PPMCK_BASEDIR/nes_include
 
 if [ $# -lt 1 ]; then
-  echo "Usage: $0 MML_FILE"
+  echo "Usage: mknsf MML_FILE"
   exit 1
 fi
 
