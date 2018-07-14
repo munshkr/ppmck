@@ -7,12 +7,15 @@ if [ $# -lt 1 ]; then
 fi
 
 mml_file=$1
+mml_name=$(basename "$mml_file")
+mml_name="${mml_name%.*}"
 
 # Compile MML
 rm -f effect.h
 ppmckc -i $mml_file
 ppstatus=$?
 if [ ! -e effect.h ]; then
+  echo "ppmckc ERROR"
   exit $ppstatus
 fi
 
@@ -21,12 +24,12 @@ rm -f ppmck.nes
 nesasm -s -raw ppmck.asm
 ppstatus=$?
 if [ ! -e ppmck.nes ]; then
+  echo "nesasm ERROR"
+  rm -f ${mml_name}.h effect.h define.inc
   exit $ppstatus
 fi
 
 # Extract name from filename
-mml_name=$(basename "$mml_file")
-mml_name="${mml_name%.*}"
 mv -f ppmck.nes ${mml_name}.nsf
 echo "${mml_name}.nsf written"
 
