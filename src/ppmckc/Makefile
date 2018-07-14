@@ -1,4 +1,5 @@
 # mckc makefile for MinGW
+.PHONY: all clean
 
 RM = rm -f
 CC = gcc
@@ -6,26 +7,17 @@ CFLAGS = -O2 -Wall# -mno-cygwin
 CDEFS =
 LDFLAGS=-Xlinker -s# -mno-cygwin
 
-OBJS = datamake.o file.o mckc.o strings.o
+OBJS = datamake.o file.o mckc.o strings.o version.o
+EXEC = ppmckc
 EXESFX=   # use EXESFX=.exe for windows
 EXEDIR=../../bin
 
-
-.PHONY: all clean
-
-TARGET_E = $(EXEDIR)/ppmckc_e$(EXESFX)
 TARGET = $(EXEDIR)/ppmckc$(EXESFX)
 
 all: $(TARGET_E) $(TARGET)
 
-$(TARGET_E): $(OBJS) version_e.o
-	$(CC) $(LDFLAGS) -o $@ $(OBJS) version_e.o
-
-$(TARGET): $(OBJS) version.o
-	$(CC) $(LDFLAGS) -o $@ $(OBJS) version.o
-
-version_e.o: version.c
-	$(CC) $(CFLAGS) $(CDEFS) -DENGLISH -o$@ -c version.c
+$(TARGET): $(OBJS)
+	$(CC) $(LDFLAGS) -o $@ $(OBJS)
 
 .c.o:
 	$(CC) $(CFLAGS) $(CDEFS) -c $<
@@ -34,4 +26,4 @@ mckc.o: mckc.h
 datamake.o: mckc.h
 
 clean:
-	$(RM) $(OBJS) version.o version_e.o ppmckc_e$(EXESFX) ppmckc$(EXESFX)
+	$(RM) $(OBJS) ppmckc$(EXESFX)

@@ -15,7 +15,6 @@ extern char ef_name[256];
 extern char inc_name[256];
 extern char out_name[256];
 extern int	warning_flag;
-extern int	message_flag;
 extern int	include_flag;
 
 
@@ -387,9 +386,7 @@ void datamake_init()
 void dispError( int no, char *file, int line )
 {
 	no = no*2;
-	if( message_flag != 0 ) {
-		no++;
-	}
+  no++;
 	if( file != NULL ) {
 		printf( "Error  : %s %6d: %s\n", file, line, ErrorlMessage[no] );
 	} else {
@@ -411,9 +408,7 @@ void dispWarning( int no, char *file, int line )
 {
 	if( warning_flag != 0 ) {
 		no = no*2;
-		if( message_flag != 0 ) {
-			no++;
-		}
+    no++;
 		if( file != NULL ) {
 			printf( "Warning: %s %6d: %s\n", file, line, WarningMessage[no] );
 		} else {
@@ -457,8 +452,7 @@ void deleteCRemark( char *ptr )
 	}
 	if (within_com) {
 		printf("Warning :");
-		printf( message_flag 	? "Reached EOF in comment"
-					: "コメントが閉じられないままファイル終端に達しました");
+		printf("Reached EOF in comment");
 		printf("\n");
 	}
 }
@@ -5235,8 +5229,9 @@ void checkCommandsForAllTrack( FILE *fp, const int trk, CMD *const cmdtop, LINE 
 	tbase = 0.625;
     
     // タイムシフトのトラックである場合は音長を計算する
-    if (!use_timeshift)
-        return;
+    if (!use_timeshift) {
+      return;
+    }
 
 	{
 		CMD *cmd = cmdtop;
@@ -6650,11 +6645,7 @@ int data_make( void )
 	{
 		fp = fopen( ef_name, "wt" );
 		if( fp == NULL ) {
-			if( message_flag == 0 ) {
-				printf( "%s : ファイルが作成できませんでした。中止します。\n", ef_name );
-			} else {
-				printf( "%s : Don't create file. Stops.\n", ef_name );
-			}
+      printf( "%s : Don't create file. Stops.\n", ef_name );
 			return -1;
 		}
 		
@@ -6731,11 +6722,7 @@ int data_make( void )
 	/* MML->ASMデータ変換 */
 	fp = fopen( out_name, "wt" );
 	if( fp == NULL ) {
-		if( message_flag == 0 ) {
-			printf( "%s : ファイルが作成できませんでした。中止します。\n", out_name );
-		} else {
-			printf( "%s : Don't create file. Stops.\n", out_name );
-		}
+    printf( "%s : Don't create file. Stops.\n", out_name );
 		return -1;
 	}
 
@@ -6819,11 +6806,7 @@ int data_make( void )
 		for( i = 0; i < _TRACK_MAX; i++ ) {
 			if ( bank_sel[i] != -1 && !auto_bankswitch) {
 				if (trk_flag[i] == 0) {
-					if( message_flag == 0 ) {
-						printf( "Warning: 未使用トラック(%c)に対しての#SETBANKを無視します\n", str_track[i]);
-					} else {
-						printf( "Warning: Ignored #SETBANK on unused track(%c)\n", str_track[i]);
-					}
+          printf( "Warning: Ignored #SETBANK on unused track(%c)\n", str_track[i]);
 				} else if ((bank_sel[i] == 2 || bank_sel[i] == 3) && dpcm_bankswitch) {
 					dispError( CANT_USE_BANK_2_OR_3_WITH_DPCMBANKSWITCH, NULL, 0);
 				} else {
@@ -6849,11 +6832,7 @@ int data_make( void )
 		 ここに定義を書き出す */
 		fp = fopen( inc_name, "wt" );
 		if( fp == NULL ) {
-			if( message_flag == 0 ) {
-				printf( "%s : ファイルが作成できませんでした。中止します。\n", inc_name );
-			} else {
-				printf( "%s : Don't create file. Stops.\n", inc_name );
-			}
+      printf( "%s : Don't create file. Stops.\n", inc_name );
 			return -1;
 		}
 

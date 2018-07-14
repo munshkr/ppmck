@@ -7,8 +7,6 @@
 #include	<stdlib.h>
 #include	<string.h>
 
-extern int message_flag;
-
 /* -------------------------------------------------------------
  * 文字がパスデリミタかどうか判断
  * 漢字ファイル名未対応?
@@ -125,11 +123,7 @@ char *readTextFile( char *filename )
 	/* ファイルオープン */
 	fp = fopen(filename, "rb");
 	if (!fp) {
-		if (message_flag == 0) {
-			printf( "%s : ファイルが開けません\n", filename );
-		} else {
-			printf( "%s : Can't open file\n", filename );
-		}
+    printf( "%s : Can't open file\n", filename );
 		return NULL;
 	}
 	/* サイズを取得 */
@@ -139,11 +133,7 @@ char *readTextFile( char *filename )
 	/*
 	if (sizeb == 0) {
 		fclose(fp);
-		if (message_flag == 0) {
-			printf( "%s : ファイルサイズが0です\n", filename );
-		} else {
-			printf( "%s : File is empty\n", filename );
-		}
+    printf( "%s : File is empty\n", filename );
 		return NULL;
 	}
 	*/
@@ -151,11 +141,7 @@ char *readTextFile( char *filename )
 	top = malloc((sizeb + 1) * sizeof(c)); /* 末尾にナル文字を付加するので1バイト多く */
 	if (top == NULL) {
 		fclose(fp);
-		if (message_flag == 0) {
-			printf( "%s : メモリが確保出来ませんでした\n", filename );
-		} else {
-			printf( "%s : Out of memory\n", filename );
-		}
+    printf( "%s : Out of memory\n", filename );
 		return NULL;
 	}
 
@@ -206,11 +192,7 @@ char *readTextFile( char *filename )
 			/* may be binary file */
 			fclose(fp);
 			free(top);
-			if (message_flag == 0) {
-				printf("%s : 不適切な文字'\\0'が見つかりました(おそらくバイナリファイルを開いた)\n", filename);
-			} else {
-				printf("%s : Illegal charcter '\\0' found (file may be a binary file)\n", filename);
-			}
+      printf("%s : Illegal charcter '\\0' found (file may be a binary file)\n", filename);
 			return NULL;
 		} else {
 			/* other char */
@@ -225,11 +207,7 @@ char *readTextFile( char *filename )
 	*/
 	if (size > sizeb + 1) {
 		free(top);
-		if (message_flag == 0) {
-			printf("%s : 確保したメモリ以上にファイルを読み込みました\n", filename);
-		} else {
-			printf("%s : File was read exceeding allocated memory\n", filename);
-		}
+    printf("%s : File was read exceeding allocated memory\n", filename);
 		return NULL;
 	}
 	return top;

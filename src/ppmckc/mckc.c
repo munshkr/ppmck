@@ -32,7 +32,6 @@ int		warning_flag = 1;
 int		include_flag = 0;
 int		mml_num = 0;
 extern	int data_make( void );
-extern	int		message_flag;			// 表示メッセージの出力設定( 0:Jp 1:En )
 
 /*--------------------------------------------------------------
 	ヘルプ表示
@@ -43,30 +42,14 @@ extern	int		message_flag;			// 表示メッセージの出力設定( 0:Jp 1:En )
 --------------------------------------------------------------*/
 void dispHelpMessage( void )
 {
-	if( message_flag == 0 ) {
-		puts(	"使用方法:ppmckc [switch] InputFile.mml [OutputFile.h]\n"
-			"もしくは:ppmckc [switch] -u InputFile1.mml InputFile2.mml ... \n"
-				"\t[switch]\n"
-				"\t-h -?   : ヘルプを表示\n"
-				"\t-i      : 音色/エンベロープファイルに曲データを追加する\n"
-				"\t-m<num> : エラー/ワーニング表示の選択(0:Jpn 1:Eng)\n"
-				"\t-o<str> : 音色/エンベロープファイルのファイル名を<str>にする\n"
-				"\t-w      : Warningメッセージを表示しません\n"
-				"\t-u      : 複数曲登録NSF作成\n"
-	    );
-	} else {
-		puts(	"Usage:ppmckc [switch] InputFile.mml [OutputFile.h]\n"
-			"  or :ppmckc [switch] -u InputFile1.mml InputFile2.mml ... \n"
-				"\t[switch]\n"
-				"\t-h -?   : Display this help message\n"
-				"\t-i      : Including song data in tone/envelope file\n"
-				"\t-m<num> : Select message language(0:Jpn 1:Eng)\n"
-				"\t-o<str> : Output tone/envelope file name is <str>\n"
-				"\t-w      : Don't display warning message\n"
-				"\t-u      : Multiple song NSF creation\n"
-	    );
-	}
-	// exit( 1 );
+  puts("Usage: ppmckc [switch] InputFile.mml [OutputFile.h]\n"
+       "  or : ppmckc [switch] -u InputFile1.mml InputFile2.mml ... \n"
+       "\t[switch]\n"
+       "\t-h -?   : Display this help message\n"
+       "\t-i      : Including song data in tone/envelope file\n"
+       "\t-o<str> : Output tone/envelope file name is <str>\n"
+       "\t-w      : Don't display warning message\n"
+       "\t-u      : Multiple song NSF creation\n");
 }
 
 
@@ -96,6 +79,7 @@ int ENTRY( int argc , char *argv[] )
 	//printf("patches by [OK] and 2ch mck thread people\n");
 	printf("%s",patchstr);
 	printf("%s",hogereleasestr);
+  printf("\n");
 // コマンドライン解析
 	if( argc == 1 ) {
 		dispHelpMessage();
@@ -121,13 +105,6 @@ int ENTRY( int argc , char *argv[] )
 			  case 'I':
 				include_flag = 1;
 				break;
-			  case 'M':
-				message_flag = atoi( &(argv[i][2]) );
-				if( message_flag > 1 ) {
-					dispHelpMessage();
-					return 1;
-				}
-				break;
 			  case 'N':
 				//obsolete
 				break;
@@ -141,11 +118,7 @@ int ENTRY( int argc , char *argv[] )
 				multiple_song_nsf = 1;
 				break;
 			  default:
-				if( message_flag == 0 ) {
-					puts( "スイッチの指定が違います\n" );
-				} else {
-					puts( "Invalid switch!\n" );
-				}
+        puts( "Invalid switch!\n" );
 				dispHelpMessage();
 				return -1;
 			}
@@ -155,11 +128,7 @@ int ENTRY( int argc , char *argv[] )
 				mml_names[in] = argv[i];
 				in++;
 			} else {
-				if( message_flag == 0 ) {
-					puts( "パラメータが多すぎます\n" );
-				} else {
-					puts( "Too many parameters!\n" );
-				}
+        puts( "Too many parameters!\n" );
 				dispHelpMessage();
 				return -1;
 			}
@@ -181,11 +150,7 @@ int ENTRY( int argc , char *argv[] )
 			strcpy(out_name, mml_names[1]);
 			in--;
 		} else {
-			if( message_flag == 0 ) {
-				puts( "パラメータが多すぎます\n" );
-			} else {
-				puts( "Too many parameters!\n" );
-			}
+      puts( "Too many parameters!\n" );
 			dispHelpMessage();
 			return -1;
 		}
@@ -200,18 +165,10 @@ int ENTRY( int argc , char *argv[] )
 	i = data_make();
 // 終了
 	if (i == 0) {
-		if( message_flag == 0 ) {
-			puts( "\n終了しました\n" );
-		} else {
-			puts( "\nCompleated!\n" );
-		}
+    puts( "\nCompleated!\n" );
 		return EXIT_SUCCESS;
 	} else {
-		if( message_flag == 0 ) {
-			puts( "\nコンパイルに失敗しました\n" );
-		} else {
-			puts( "\nCompilation failed!\n" );
-		}
+    puts( "\nCompilation failed!\n" );
 		return EXIT_FAILURE;
 	}
 }

@@ -2,7 +2,7 @@
 
 VERSION := 0.10
 ZIP_FILE := ppmck-$(VERSION)-linux-amd64.zip
-BIN_FILES := nesasm pceas ppmckc ppmckc_e
+BIN_FILES := nesasm pceas ppmckc
 BIN := $(addprefix bin/, $(BIN_FILES))
 
 all: nesasm ppmckc
