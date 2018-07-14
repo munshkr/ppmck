@@ -1,6 +1,8 @@
 .PHONY: nesasm ppmckc
 
-BIN := nesasm pceas ppmckc ppmckc_e
+ZIP_FILE := dist.zip
+BIN_FILES := nesasm pceas ppmckc ppmckc_e
+BIN := $(addprefix bin/, $(BIN_FILES))
 
 all: nesasm ppmckc
 
@@ -13,4 +15,13 @@ ppmckc:
 clean:
 	$(MAKE) -C src/nesasm clean
 	$(MAKE) -C src/ppmckc clean
-	rm -f $(addprefix bin/, $(BIN))
+	@rm -f $(BIN)
+	@rm -rf dist/ dist.zip
+
+dist: all
+	@rm -rf dist/
+	@mkdir -p dist/bin/
+	@cp $(BIN) dist/bin/
+	@cp -a nes_include/ dist/
+	@cp README.md dist/
+	@cd dist/ && zip -r ../$(ZIP_FILE) *

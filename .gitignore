@@ -5,3 +5,4 @@ bin/ppmckc_e
 *.o
 *.swo
 *.swp
+dist/
