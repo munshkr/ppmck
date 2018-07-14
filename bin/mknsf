@@ -10,7 +10,7 @@ mml_file=$1
 
 # Compile MML
 rm -f effect.h
-ppmckc_e -i $mml_file
+ppmckc -i $mml_file
 ppstatus=$?
 if [ ! -e effect.h ]; then
   exit $ppstatus
