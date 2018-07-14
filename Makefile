@@ -1,6 +1,7 @@
 .PHONY: nesasm ppmckc
 
-ZIP_FILE := dist.zip
+VERSION := 0.10
+ZIP_FILE := ppmck-$(VERSION)-linux-amd64.zip
 BIN_FILES := nesasm pceas ppmckc ppmckc_e
 BIN := $(addprefix bin/, $(BIN_FILES))
 
@@ -24,4 +25,6 @@ dist: all
 	@cp $(BIN) dist/bin/
 	@cp -a nes_include/ dist/
 	@cp README.md dist/
-	@cd dist/ && zip -r ../$(ZIP_FILE) *
+	@cp CHANGELOG.md dist/
+	@cp ppmck-ja.txt dist/
+	@cd dist/ && zip -r $(ZIP_FILE) *

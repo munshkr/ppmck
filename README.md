@@ -5,6 +5,8 @@ This is a fork of [ppmck 9a ex11.3 am1](https://github.com/AoiMoe/ppmck), by
 [BouKiCHi](https://github.com/BouKiCHi).  See original [ppmck
 website](http://ppmck.web.fc2.com/ppmck.html) for more info.
 
+Version was renamed to 0.10, to avoid long version names (incompatible on Github).
+
 ## Differences
 
 For now there are only minor cosmetic changes:
