@@ -7,7 +7,7 @@ CDEFS =
 LDFLAGS=-Xlinker -s# -mno-cygwin
 
 OBJS = datamake.o file.o mckc.o strings.o
-EXESFX=.exe
+EXESFX=   # use EXESFX=.exe for windows
 EXEDIR=../../bin
 
 

@@ -41,3 +41,10 @@ export PATH=$PATH:$PPMCK_BASEDIR/bin
 ### Windows
 
 *to-do*
+
+### Source code
+
+* Download the source code either from Github or by cloning the repository.
+* Run `make` to compile both ppmck compiler (`ppmckc`) and Nesasm assembler (`nesasm`).
+* Follow the instructions for configuring your `$PATH` to your `bin/` directory
+  inside the repository.
