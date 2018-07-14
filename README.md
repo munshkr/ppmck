@@ -1,6 +1,7 @@
 # ppmck
 
-Fork of [ppmck 0.9a](http://ppmck.web.fc2.com/ppmck.html)
+This is a fork of [ppmck 9a ex11.3 am1](https://github.com/AoiMoe/ppmck)
+See original [ppmck website](http://ppmck.web.fc2.com/ppmck.html) for more info.
 
 ## Differences
 
@@ -28,7 +29,7 @@ $ mknsf my_song.mml
 
 ```bash
 # PPMCK setup
-export PPMCK_BASEDIR=$HOME/ppcmk
+export PPMCK_BASEDIR=$HOME/ppmck
 export PATH=$PATH:$PPMCK_BASEDIR/bin
 ```
 
