@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## 0.10
 
-* Version rename from AoiMoi fork (was 0.9a-ex11.3-am1)
+* Version rename from AoiMoe fork (was 0.9a-ex11.3-am1)
 
 ## Original changelog
 
