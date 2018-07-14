@@ -6,6 +6,17 @@
 
 #include	"mckc.h"
 
+#ifndef AS_MODULE
+#define ENTRY main
+#else
+#define ENTRY mckc_main
+#endif
+
+#ifdef _WIN32
+#include <locale.h>
+#include <tchar.h>
+#endif
+
 extern void splitPath( const char *ptr, char *path, char *name, char *ext );
 extern void makePath( char *ptr, const char *path, const char *name, const char *ext );
 extern char *skipSpace( char *ptr );
@@ -33,18 +44,6 @@ extern	int		message_flag;			// 表示メッセージの出力設定( 0:Jp 1:En )
 void dispHelpMessage( void )
 {
 	if( message_flag == 0 ) {
-#ifdef __MINGW32__
-		puts(	"使用方法:ppmckc [switch] InputFile.mml [OutputFile.h]\n"
-			"もしくは:ppmckc [switch] -u InputFile1.mml InputFile2.mml ... \n"
-				"\t[switch]\n"
-				"\t-h -?   : ヘルプを表\示\n"
-				"\t-i      : 音色/エンベロープファイルに曲データを追加する\n"
-				"\t-m<num> : エラー/ワーニング表\示の選択(0:Jpn 1:Eng)\n"
-				"\t-o<str> : 音色/エンベロープファイルのファイル名を<str>にする\n"
-				"\t-w      : Warningメッセージを表\示しません\n"
-				"\t-u      : 複数曲登録NSF作成\n"
-	    );
-#else
 		puts(	"使用方法:ppmckc [switch] InputFile.mml [OutputFile.h]\n"
 			"もしくは:ppmckc [switch] -u InputFile1.mml InputFile2.mml ... \n"
 				"\t[switch]\n"
@@ -55,8 +54,6 @@ void dispHelpMessage( void )
 				"\t-w      : Warningメッセージを表示しません\n"
 				"\t-u      : 複数曲登録NSF作成\n"
 	    );
-#endif
-
 	} else {
 		puts(	"Usage:ppmckc [switch] InputFile.mml [OutputFile.h]\n"
 			"  or :ppmckc [switch] -u InputFile1.mml InputFile2.mml ... \n"
@@ -69,7 +66,7 @@ void dispHelpMessage( void )
 				"\t-u      : Multiple song NSF creation\n"
 	    );
 	}
-	exit( 1 );
+	// exit( 1 );
 }
 
 
@@ -82,20 +79,23 @@ void dispHelpMessage( void )
  Output:
 	0:正常終了 0:以外以上終了
 --------------------------------------------------------------*/
-int main( int argc , char *argv[] )
+int ENTRY( int argc , char *argv[] )
 {
 	int	i,in,out;
 	char	path[256],name[256],ext[256];
 	int	multiple_song_nsf = 0;
 
 	in = out = 0;
+#ifdef _WIN32
+	_tsetlocale(LC_ALL, _T(""));
+#endif
 
 // タイトル表示
-	printf( "MML to MCK Data Converter Ver %d.%02d by Manbow-J\npmck modification by BKC rel 0.2\n",
+	printf( "MML to MCK Data Converter Ver %d.%02d by Manbow-J\n",
 			(VersionNo/100), (VersionNo%100) );
 	//printf("patches by [OK] and 2ch mck thread people\n");
-	printf(patchstr);
-	printf(hogereleasestr);
+	printf("%s",patchstr);
+	printf("%s",hogereleasestr);
 // コマンドライン解析
 	if( argc == 1 ) {
 		dispHelpMessage();
@@ -104,7 +104,12 @@ int main( int argc , char *argv[] )
 
 	for ( i = 1; i < argc; i++ ) {
 		// スイッチ？
+#ifdef _WIN32
 		if ( (argv[i][0] == '-') || (argv[i][0] == '/') ) {
+#else
+		// パスセパレータの問題(WIN32以外)
+		if (argv[i][0] == '-') {
+#endif
 			switch( toupper( argv[i][1] ) ) {
 			  case 'H':
 			  case '?':

@@ -4,7 +4,9 @@
 
 #define	VersionNo		27
 
+#ifndef DEBUG
 #define	DEBUG			0
+#endif
 
 #define	MML_MAX			128
 
@@ -20,7 +22,9 @@ typedef	struct {
 typedef struct {
 	int rate;
 	int adjust;
+	int min;
 	// gate length = delta * rate/gate_denom + adjust
+	// if (gate < min) gate = min
 } GATE_Q;
 
 /* */
@@ -60,6 +64,12 @@ typedef struct st_line {
 #define _GATE_DENOM	19
 #define _AUTO_BANKSWITCH	20
 #define _PITCH_CORRECTION		21
+#define _OVERLOAD		22
+#define _EFF_BANKSWITCH	23
+#define _DEFINE			24
+#define _LINE			25
+
+
 
 #define	_SET_EFFECT		0x20
 #define	_SET_TONE		0x21
@@ -73,6 +83,7 @@ typedef struct st_line {
 #define	_SET_VRC7_TONE	0x29
 #define _SET_HARD_EFFECT	0x2A
 #define _SET_EFFECT_WAVE	0x2B
+#define	_SET_VRC7_NTONE	0x2C
 #define	_TRACK			0x40
 #define	_SAME_LINE		0x80000000
 
@@ -107,6 +118,8 @@ typedef struct st_line {
 
 #define ALLTRACK	0xffffffff
 
+#define NOSLAR_TRACK (FME7TRACK|FMTRACK)
+
 #define	_PITCH_MOD_MAX	 64
 #define	_PITCH_ENV_MAX	128
 #define	_ENVELOPE_MAX	128
@@ -128,10 +141,14 @@ typedef struct {
 	int	frm;	//↑をフレーム単位にしたもの
 	double	lcnt;	//トラックのループ点(Lコマンド)を0として、そこからの経過したカウント数(ただしLより前は0)
 	int	lfrm;	//↑をフレーム単位にしたもの
-	int	cmd;
+	int	cmd;	
 	double	len;	//単位:count
 	int	param[PARAM_MAX];
+	int flags; // 特殊フラグ
 } CMD;
+
+#define CMD_FLAG_SLAR 0x0001
+
 
 #define PARAM_OMITTED	0x80000000
 
@@ -187,6 +204,11 @@ enum {
 	_DATA_WRITE,
 	_DATA_THRUE,
 
+	_SMOOTH_ON,
+	_SMOOTH_OFF,
+
+	_PITCH_SHIFT,
+
 	_NEW_BANK,
 
 	_REPEAT_ST2,
@@ -214,6 +236,16 @@ enum {
 	_SUN5B_NOISE_FREQ,
 	_SHIFT_AMOUNT,
 
+    _TIME_SHIFT,
+	
+	_SLAR_ST,
+	_SLAR_ED,
+	
+	_PORTAMENT,
+
+	_FDS_MODFREQ,
+
+	
 	_REST		= 0xfc,
 	_NOP		= 0xfe,
 	_TRACK_END	= 0xff
@@ -255,6 +287,10 @@ enum {
 enum {
 	MCK_REPEAT_END = 0xa0,
 	MCK_REPEAT_ESC = 0xa1,
+	MCK_SET_FDS_MODFREQ = 0xe6,
+	MCK_PITCH_SHIFT = 0xe7,
+	MCK_SMOOTH = 0xe8,
+	MCK_SLAR = 0xe9,
 	MCK_GOTO = 0xee,
 	MCK_SET_SHIFT_AMOUNT = 0xef,
 	MCK_SET_FDS_HWENV = 0xf0,
